@@ -14,15 +14,20 @@ public class PeaShooter : Character
         //체력 3
         HealthPoint = 3f;
         //투사체 속도 1 (변함 없음)
+        ProjectileSpeed = 3f;
         //공격 속도 1 (변함 없음)
+        AttackDelay = 2f;
         //투사체 개수 1 (변함 없음)
         //사거리 10 (최대 사거리)
         Range = 10f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Attack()
     {
-        
+        if (projectile == null)
+            return;
+        GameObject Pea = Instantiate(projectile, gameObject.transform);
+        Pea.transform.rotation = Quaternion.Euler(new Vector2(0, 0));
+        Pea.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
     }
 }

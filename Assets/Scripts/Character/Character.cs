@@ -28,6 +28,11 @@ public class Character : MonoBehaviour
         }
     }
     
+    public virtual void Attack()
+    {
+
+    }
+
     IEnumerator AttackCoolTime()
     {
         Debug.Log("Start Attack Coroutine");
@@ -37,6 +42,8 @@ public class Character : MonoBehaviour
             if(pAttackDelay >= attackDelay)
             {
                 pAttackDelay -= attackDelay;
+                Attack();
+                Debug.Log("Reset");
             }
             yield return new WaitForSeconds(0);
         }
