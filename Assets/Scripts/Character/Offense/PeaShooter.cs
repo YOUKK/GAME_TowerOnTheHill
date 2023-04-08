@@ -26,8 +26,22 @@ public class PeaShooter : Character
     {
         if (projectile == null)
             return;
+        
         GameObject Pea = Instantiate(projectile, gameObject.transform);
         Pea.transform.rotation = Quaternion.Euler(new Vector2(0, 0));
         Pea.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
+    }
+
+    public override void Hit()
+    {
+        // -1로 설정 했지만 타격받은 상대의 공격력에 맞춰서 감소
+        HealthPoint -= 1;
+        Debug.Log(HealthPoint);
+
+        if(HealthPoint == 0)
+        {   
+            //체력이 0에 도달하면 0.5초 후에 파괴
+            Destroy(gameObject, 0.5f);
+        }
     }
 }

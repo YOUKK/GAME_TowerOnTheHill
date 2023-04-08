@@ -17,6 +17,21 @@ public class Character : MonoBehaviour
     protected float healthPoint = 1.0f;             //체력
 
     IEnumerator AttackCoroutine = null;
+    private List<IEnumerator> HitCoroutine = new List<IEnumerator>() { };
+    private List<Collider2D> destroyCheck = new List<Collider2D>() { };
+
+    private bool collCheckTrigger = false;
+
+    private float pHitDelay = 0f;
+    private float hitDelay = 1.0f; // 타격 시간 1초
+
+    public float CoolTime           { get => coolTime; set => coolTime = value; }
+    public float Strength           { get => strength; set => strength = value; }
+    public float HealthPoint        { get => healthPoint; set => healthPoint = value; }
+    public float ProjectileSpeed    { get => projectileSpeed; set => projectileSpeed = value; }
+    public float AttackDelay        { get => attackDelay; set => attackDelay = value; }
+    public float ProjectileNum      { get => projectileNum; set => projectileNum = value; }
+    public float Range              { get => range; set => range = value; }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -27,11 +42,37 @@ public class Character : MonoBehaviour
             StartCoroutine(AttackCoroutine);
         }
     }
-    
-    public virtual void Attack()
-    {
 
+    private void Update()
+    {
+        for(int i = 0; i < HitCoroutine.Count; i++)
+        {
+            if (collCheckTrigger && !destroyCheck[i] && HitCoroutine[i] != null)
+            {
+                StopCoroutine(HitCoroutine[i]);
+                HitCoroutine[i] = null;
+            }
+        }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collCheckTrigger = true;
+        destroyCheck.Add(collision);
+
+        HitCoroutine.Add(HitCoolTime());
+        StartCoroutine(HitCoroutine[HitCoroutine.Count - 1]);
+
+
+        for(int i = 0; i < HitCoroutine.Count; i++)
+        {
+            Debug.Log(HitCoroutine[i]+","+collision.name);
+        }
+        Debug.Log("JJJJJJJJJJJ");
+    }
+
+    public virtual void Attack(){ }
+    public virtual void Hit() { }
 
     IEnumerator AttackCoolTime()
     {
@@ -41,19 +82,26 @@ public class Character : MonoBehaviour
             pAttackDelay += Time.deltaTime;
             if(pAttackDelay >= attackDelay)
             {
-                pAttackDelay -= attackDelay;
                 Attack();
-                Debug.Log("Reset");
+                pAttackDelay -= attackDelay;
             }
             yield return new WaitForSeconds(0);
         }
     }
 
-    public float CoolTime           { get => coolTime;          set => coolTime = value;        }
-    public float Strength           { get => strength;          set => strength = value;        }
-    public float HealthPoint        { get => healthPoint;       set => healthPoint = value;     }
-    public float ProjectileSpeed    { get => projectileSpeed;   set => projectileSpeed = value; }
-    public float AttackDelay        { get => attackDelay;       set => attackDelay = value;     }
-    public float ProjectileNum      { get => projectileNum;     set => projectileNum = value;   }
-    public float Range              { get => range;             set => range = value;           }
+    //1초마다 1번씩 타격당하도록 설정
+    IEnumerator HitCoolTime()
+    {
+        Debug.Log("Start Hit Coroutine");
+        while(true)
+        {
+            pHitDelay += Time.deltaTime;
+            if (pHitDelay >= hitDelay)
+            {
+                Hit();
+                pHitDelay -= hitDelay;
+            }
+            yield return new WaitForSeconds(0);
+        }
+    }
 }
