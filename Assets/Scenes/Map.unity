@@ -1410,17 +1410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ce821c29bb64d4c90fdc76cb38aaf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapState:
-  - character: {fileID: 0}
-    background: {fileID: 0}
-  - character: {fileID: 0}
-    background: {fileID: 0}
-  - character: {fileID: 0}
-    background: {fileID: 0}
-  - character: {fileID: 0}
-    background: {fileID: 0}
-  - character: {fileID: 0}
-    background: {fileID: 0}
 --- !u!1 &447445300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,7 +2611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98161d0f67a0f14590901256e6e9efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 298181734540766720, guid: c1c40c6440193ea44b57c006e6f38d74, type: 3}
 --- !u!1 &1002671336
 GameObject:
   m_ObjectHideFlags: 0
