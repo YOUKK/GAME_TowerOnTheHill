@@ -19,8 +19,6 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         _pressed = false;
-        Debug.Log("Press over");
-        
 
         Vector3 rayStart = new Vector3(iCharacter.transform.position.x,
             iCharacter.transform.position.y, -1);
@@ -38,7 +36,6 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_pressed)
         {
-
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
             if (iCharacter != null)
                 iCharacter.transform.position = mousePosition;
