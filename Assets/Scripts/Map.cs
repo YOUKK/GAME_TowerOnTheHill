@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    void Start()
-    {
-
-    }
 
     void Update()
     {
-        if(Input.GetMouseButtonUp(0))
+        /*if(Input.GetMouseButtonUp(0))
         {
             Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Debug.DrawRay(MousePosition, Vector3.forward * 10.0f, Color.red, 3.0f);
@@ -21,6 +17,6 @@ public class Map : MonoBehaviour
             {
                 hit.transform.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             }
-        }
+        }*/
     }
 }
