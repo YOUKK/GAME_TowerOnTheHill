@@ -10,38 +10,70 @@ using UnityEngine;
 /// : Seat들 정보, 라인별 합산 정보, 배경 정보, 라인 합산, 캐릭터 배치&삭제
 /// </summary>
 
-[System.Serializable]
-public struct Seat
-{
-    public GameObject character;
-    public SpriteRenderer background;
-    bool isCharacterOn;
-    bool usable;
-
-    public Seat(GameObject go = null, SpriteRenderer sp = null)
-    {
-        character = go;
-        background = sp;
-        isCharacterOn = false;
-        usable = true;
-    }
-}
-
 public class Map : MonoBehaviour
 {
-    public List<Seat> line1 = new List<Seat>();
-    public List<Seat> line2 = new List<Seat>();
-    public List<Seat> line3 = new List<Seat>();
-    public List<Seat> line4 = new List<Seat>();
-    public List<Seat> line5 = new List<Seat>();
+    static Map _map;
+    public static Map GetInstance() { return _map; }
+    public int mapX, mapY;
+    
+    List<List<GameObject>> seats = new List<List<GameObject>>();
+
+    void Awake()
+    {
+        if (_map != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _map = this;
+    }
 
     void Start()
     {
+        Transform[] seatTransform = GetComponentsInChildren<Transform>();
 
+        List<GameObject> tempSeats = new List<GameObject>();
+        for (int i = 0; i < seatTransform.Length; i++)
+            if (seatTransform[i].CompareTag("Seat"))
+                tempSeats.Add(seatTransform[i].gameObject);
+
+        int idx = 0;
+        for (int i = 0; i < mapY; ++i)
+        {
+            seats.Add(new List<GameObject>());
+            for(int j = 0; j < mapX; ++j, ++idx)
+            {
+                if(tempSeats[idx].CompareTag("Seat"))
+                {
+                    seats[i].Add(tempSeats[idx].gameObject);
+                }
+            }
+        }
     }
 
     void Update()
     {
 
+    }
+
+    public void PutCharacter(Vector2 _location, GameObject _character)
+    {
+        int x = (int)_location.x;
+        int y = (int)_location.y;
+
+        seats[y][x].GetComponent<Seat>().character =
+            Instantiate(_character, seats[y][x].transform.position, transform.rotation);
+        seats[y][x].GetComponent<Seat>().isCharacterOn = true;
+        seats[y][x].GetComponent<Seat>().usable = false;
+    }
+
+    public void RemoveCharacter(Vector2 _location)
+    {
+        int x = (int)_location.x;
+        int y = (int)_location.y;
+
+        Destroy(seats[y][x].GetComponent<Seat>().character);
+        seats[y][x].GetComponent<Seat>().isCharacterOn = false;
+        seats[y][x].GetComponent<Seat>().usable = true; // 좀비가 아직 있으면 생성 불가하게 수정
     }
 }
