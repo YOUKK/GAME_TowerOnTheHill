@@ -24,7 +24,8 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             dragCharacter.transform.position.y, -1);
         Debug.DrawRay(rayStart, Vector3.forward * 10.0f, Color.red, 3.0f);
 
-        RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f);
+        int layerMask = 1 << LayerMask.NameToLayer("Seat");
+        RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
         if (hit)
         {
             if (hit.transform.CompareTag("Seat")) // Seat에 올려놓음

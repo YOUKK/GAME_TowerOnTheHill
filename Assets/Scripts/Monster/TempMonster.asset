@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbd6a76847af4a4f956679266bb12aa, type: 3}
   m_Name: TempMonster
   m_EditorClassIdentifier: 
+  monsterName: Temp
+  hp: 100
+  speed: 10
+  force: 10
+  hitSpeed: 1
