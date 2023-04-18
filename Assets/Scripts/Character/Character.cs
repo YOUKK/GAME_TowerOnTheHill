@@ -14,13 +14,10 @@ public class Character : MonoBehaviour
     protected float projectileNum = 1.0f;           //투사체 개수
     protected float range = 1.0f;                   //투사체 거리
     protected float strength = 1.0f;                //공격력
+    [SerializeField]
     protected float healthPoint = 1.0f;             //체력
 
     IEnumerator AttackCoroutine = null;
-    private List<IEnumerator> HitCoroutine = new List<IEnumerator>() { };
-    private List<Collider2D> destroyCheck = new List<Collider2D>() { };
-
-    private bool collCheckTrigger = false;
 
     private float pHitDelay = 0f;
     private float hitDelay = 1.0f; // 타격 시간 1초
@@ -45,34 +42,14 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        for(int i = 0; i < HitCoroutine.Count; i++)
+        if(HealthPoint <= 0)
         {
-            if (collCheckTrigger && !destroyCheck[i] && HitCoroutine[i] != null)
-            {
-                StopCoroutine(HitCoroutine[i]);
-                HitCoroutine[i] = null;
-            }
+            Debug.Log("Stop Attack Coroutine");
+            StopCoroutine(AttackCoroutine);
+            Destroy(gameObject);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        collCheckTrigger = true;
-        destroyCheck.Add(collision);
-
-        HitCoroutine.Add(HitCoolTime());
-        StartCoroutine(HitCoroutine[HitCoroutine.Count - 1]);
-
-
-        for(int i = 0; i < HitCoroutine.Count; i++)
-        {
-            Debug.Log(HitCoroutine[i]+","+collision.name);
-        }
-        Debug.Log("JJJJJJJJJJJ");
-    }
-
     public virtual void Attack(){ }
-    public virtual void Hit() { }
 
     IEnumerator AttackCoolTime()
     {
@@ -84,22 +61,6 @@ public class Character : MonoBehaviour
             {
                 Attack();
                 pAttackDelay -= attackDelay;
-            }
-            yield return new WaitForSeconds(0);
-        }
-    }
-
-    //1초마다 1번씩 타격당하도록 설정
-    IEnumerator HitCoolTime()
-    {
-        Debug.Log("Start Hit Coroutine");
-        while(true)
-        {
-            pHitDelay += Time.deltaTime;
-            if (pHitDelay >= hitDelay)
-            {
-                Hit();
-                pHitDelay -= hitDelay;
             }
             yield return new WaitForSeconds(0);
         }
