@@ -1311,7 +1311,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7884656, g: 0.9245283, b: 0.79904777, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2619,7 +2619,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7884656, g: 0.9245283, b: 0.79904777, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2867,7 +2867,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7884656, g: 0.9245283, b: 0.79904777, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3694,7 +3694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93efab3e1a25cc841bb18ab01935d1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster: {fileID: 4039320281581104835, guid: aa55c914ec4a8dd4491eb9f733c97f72, type: 3}
+  monster: {fileID: 1787259474991635259, guid: 3b3cd8e94b0e68846839f45b346dfbf3, type: 3}
   monsterCreate: 0
   lineNum: 0
   lines:
@@ -5023,7 +5023,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7884656, g: 0.9245283, b: 0.79904777, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5448,7 +5448,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7884656, g: 0.9245283, b: 0.79904777, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

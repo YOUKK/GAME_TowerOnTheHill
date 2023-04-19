@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class NormalMonster : Monster
 {
+    private Animator anim;
     private Transform target;
 
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -22,6 +23,7 @@ public class NormalMonster : Monster
                 StartCoroutine(AttackCoroutine());
             }
         }
+        anim.SetBool("isAttack", isAttack);
     }
 
     protected override void Move()
@@ -29,18 +31,19 @@ public class NormalMonster : Monster
         base.Move();
     }
 
-    protected override void Attack()
-    {
-        base.Attack();
-    }
-
     private IEnumerator AttackCoroutine()
     {
         Debug.Log("Coroutine Start");
+        //anim.SetBool("isAttack", true);
         Attack();
         yield return new WaitForSeconds(status.hitSpeed);
         isAttack = false;
         Debug.Log("Coroutine End");
+    }
+
+    protected override void Attack()
+    {
+        base.Attack();
     }
 
     protected override void Dead()
@@ -52,7 +55,8 @@ public class NormalMonster : Monster
     {
         Debug.Log($"{collision.transform.name}");
 
-        if (collision.transform.CompareTag("Character"))
+        if (collision.transform.CompareTag("Character") && 
+            transform.position.x >= collision.transform.position.x)
         {
             Debug.Log($"{collision.transform.name}");
             target = collision.transform;

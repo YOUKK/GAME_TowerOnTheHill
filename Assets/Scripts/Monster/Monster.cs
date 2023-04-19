@@ -7,8 +7,8 @@ public abstract class Monster : MonoBehaviour
     [SerializeField]
     protected MonsterStatus status;
     protected int           lineNumber;
-    protected bool          isDepart;
     protected bool          isAttack;
+    // 랜덤 머니 관련 변수 추가
 
     void Start()
     {
