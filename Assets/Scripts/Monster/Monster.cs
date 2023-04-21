@@ -6,19 +6,16 @@ public abstract class Monster : MonoBehaviour
 {
     [SerializeField]
     protected MonsterStatus status;
+    protected Animator      anim;
+    protected Transform     target;
     protected int           lineNumber;
     protected bool          isAttack;
     // 랜덤 머니 관련 변수 추가
 
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
-
-    /*void Update()
-    {
-        Move();
-    }*/
 
     protected virtual void Move()
     {

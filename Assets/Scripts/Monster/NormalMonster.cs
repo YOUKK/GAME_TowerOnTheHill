@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class NormalMonster : Monster
 {
-    private Animator anim;
-    private Transform target;
-
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
-
     void Update()
     {
         if(target == null) Move();
