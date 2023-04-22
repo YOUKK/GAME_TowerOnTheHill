@@ -15,6 +15,7 @@ public abstract class Monster : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        if (anim == null) anim = GetComponentInChildren<Animator>();
     }
 
     protected virtual void Move()

@@ -3694,7 +3694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93efab3e1a25cc841bb18ab01935d1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster: {fileID: 1787259474991635259, guid: 3b3cd8e94b0e68846839f45b346dfbf3, type: 3}
+  monster: {fileID: 4886612449991451534, guid: 30d23e989b381684885cc017f8470383, type: 3}
   monsterCreate: 0
   lineNum: 0
   lines:
