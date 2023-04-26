@@ -12,15 +12,21 @@ public abstract class Monster : MonoBehaviour
     protected bool          isAttack;
     // 랜덤 머니 관련 변수 추가
 
+    protected int           currentHP;
+    protected float         currentSpeed;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         if (anim == null) anim = GetComponentInChildren<Animator>();
+
+        currentHP = status.hp;
+        currentSpeed = status.speed;
     }
 
     protected virtual void Move()
     {
-        transform.position = new Vector3(transform.position.x + status.speed * (-1) * Time.deltaTime,
+        transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
             transform.position.y, transform.position.z);
     }
 
@@ -32,5 +38,11 @@ public abstract class Monster : MonoBehaviour
     protected virtual void Dead()
     {
         Destroy(gameObject);
+    }
+
+    public void Hit(int damage)
+    {
+        if (currentHP - damage > 0) currentHP -= damage;
+        else Dead();
     }
 }

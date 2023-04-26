@@ -52,22 +52,22 @@ public class Map : MonoBehaviour
     }
 
     // 캐릭터 배치
-    public void PutCharacter(Vector2 _location, GameObject _character)
+    public void PutCharacter(Vector2 location, GameObject character)
     {
-        int x = (int)_location.x;
-        int y = (int)_location.y;
+        int x = (int)location.x;
+        int y = (int)location.y;
 
         seats[y][x].GetComponent<Seat>().character =
-            Instantiate(_character, seats[y][x].transform.position, transform.rotation);
+            Instantiate(character, seats[y][x].transform.position, transform.rotation);
         seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;
     }
 
     // 캐릭터 제거
-    public void RemoveCharacter(Vector2 _location)
+    public void RemoveCharacter(Vector2 location)
     {
-        int x = (int)_location.x;
-        int y = (int)_location.y;
+        int x = (int)location.x;
+        int y = (int)location.y;
 
         Destroy(seats[y][x].GetComponent<Seat>().character);
         seats[y][x].GetComponent<Seat>().isCharacterOn = false;
