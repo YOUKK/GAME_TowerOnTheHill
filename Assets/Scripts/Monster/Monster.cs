@@ -24,6 +24,8 @@ public abstract class Monster : MonoBehaviour
         currentSpeed = status.speed;
     }
 
+
+
     protected virtual void Move()
     {
         transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
@@ -44,5 +46,18 @@ public abstract class Monster : MonoBehaviour
     {
         if (currentHP - damage > 0) currentHP -= damage;
         else Dead();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log($"{collision.transform.name}");
+
+        if (collision.transform.CompareTag("Character"))
+        {
+            if (transform.position.x - collision.transform.position.x > status.attackDistance)
+            {
+                target = collision.transform;
+            }
+        }
     }
 }

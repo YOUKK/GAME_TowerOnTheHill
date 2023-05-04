@@ -43,7 +43,7 @@ public class NormalMonster : Monster
         base.Dead();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"{collision.transform.name}");
 
@@ -53,5 +53,5 @@ public class NormalMonster : Monster
             Debug.Log($"{collision.transform.name}");
             target = collision.transform;
         }
-    }
+    }*/
 }
