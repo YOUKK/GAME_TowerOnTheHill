@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4428760754216831668}
   - component: {fileID: 4428760754216831669}
   - component: {fileID: 37543014102644428}
-  - component: {fileID: 4428760754216831658}
   - component: {fileID: 2033592347158318327}
   - component: {fileID: 2773616144863298906}
   m_Layer: 0
@@ -72,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 941133623
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   m_Color: {r: 0, g: 0.35093498, b: 1, a: 1}
@@ -102,20 +101,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &4428760754216831658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4428760754216831659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a984de516d1c154fa416bbe01084c18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 5983870591619238643, guid: 58fee1f301a652d4fa29137e5415e5c0, type: 3}
-  healthPoint: 1
 --- !u!50 &2033592347158318327
 Rigidbody2D:
   serializedVersion: 4
