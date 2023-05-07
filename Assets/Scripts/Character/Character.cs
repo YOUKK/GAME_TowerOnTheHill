@@ -19,8 +19,7 @@ public class Character : MonoBehaviour
 
     IEnumerator AttackCoroutine = null;
 
-    private float pHitDelay = 0f;
-    private float hitDelay = 1.0f; // 타격 시간 1초
+    protected float attackDuration  = 100.0f;       // 공격 유지 시간 100초
 
     public float CoolTime           { get => coolTime; set => coolTime = value; }
     public float Strength           { get => strength; set => strength = value; }
@@ -29,6 +28,7 @@ public class Character : MonoBehaviour
     public float AttackDelay        { get => attackDelay; set => attackDelay = value; }
     public float ProjectileNum      { get => projectileNum; set => projectileNum = value; }
     public float Range              { get => range; set => range = value; }
+    public float AttackDuration     { get => attackDuration; set => attackDuration = value; }
 
     // Start is called before the first frame update
     protected virtual void Start()
