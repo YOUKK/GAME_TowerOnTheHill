@@ -10,17 +10,17 @@ public class Map : MonoBehaviour
     public int              mapX, mapY;
     List<List<GameObject>>  seats = new List<List<GameObject>>();
 
-    void Awake()
-    {
-        if (_map != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        _map = this;
-    }
+	void Awake()
+	{
+		if (_map != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		_map = this;
+	}
 
-    void Start()
+	void Start()
     {
         // Map의 자식 Object들 저장
         Transform[] seatTransform = GetComponentsInChildren<Transform>();
