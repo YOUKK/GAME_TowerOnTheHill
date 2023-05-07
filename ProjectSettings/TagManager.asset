@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Character
   - Enemy
+  - Seat
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Character
+  - Seat
   - 
   - 
   - 
