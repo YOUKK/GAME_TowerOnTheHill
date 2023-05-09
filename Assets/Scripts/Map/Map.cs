@@ -10,17 +10,17 @@ public class Map : MonoBehaviour
     public int              mapX, mapY;
     List<List<GameObject>>  seats = new List<List<GameObject>>();
 
-    void Awake()
-    {
-        if (_map != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        _map = this;
-    }
+	void Awake()
+	{
+		if (_map != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		_map = this;
+	}
 
-    void Start()
+	void Start()
     {
         // Map의 자식 Object들 저장
         Transform[] seatTransform = GetComponentsInChildren<Transform>();
@@ -72,5 +72,17 @@ public class Map : MonoBehaviour
         Destroy(seats[y][x].GetComponent<Seat>().character);
         seats[y][x].GetComponent<Seat>().isCharacterOn = false;
         seats[y][x].GetComponent<Seat>().usable = true; // 좀비가 Seat 위에 있으면 생성 불가하게 수정
+    }
+
+    public float GetLineInfo(int line)
+    {
+        float lineInfo = 0;
+        for(int i = 0; i < seats[line].Count; ++i)
+        {
+            GameObject go = seats[line][i].GetComponent<Seat>().character;
+            if (go) lineInfo += go.GetComponent<Character>().HealthPoint;
+        }
+
+        return lineInfo;
     }
 }

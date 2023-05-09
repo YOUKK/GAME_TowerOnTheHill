@@ -11,6 +11,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("Down");
         _pressed = true;
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragCharacter = Instantiate(character, mousePosition + Vector3.forward, transform.rotation);
@@ -18,10 +19,10 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        Debug.Log("Up");
         _pressed = false;
 
-        Vector3 rayStart = new Vector3(dragCharacter.transform.position.x,
-            dragCharacter.transform.position.y, -1);
+        Vector3 rayStart = new Vector3(dragCharacter.transform.position.x, dragCharacter.transform.position.y, -1);
         Debug.DrawRay(rayStart, Vector3.forward * 10.0f, Color.red, 3.0f);
 
         int layerMask = 1 << LayerMask.NameToLayer("Seat");
