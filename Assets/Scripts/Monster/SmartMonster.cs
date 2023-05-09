@@ -37,7 +37,17 @@ public class SmartMonster : Monster
 
     private void ChangeLine()
     {
-        
+        int upLineNumber = (lineNumber == 4) ? lineNumber : lineNumber + 1;
+        int downLineNumber = (lineNumber == 0) ? lineNumber : lineNumber - 1;
+        float upLine = Map.GetInstance().GetLineInfo(upLineNumber);
+        float downLine = Map.GetInstance().GetLineInfo(downLineNumber);
+
+        // 라인 번호 변경
+        lineNumber = 
+            (upLine > downLine) ? lineNumber = upLineNumber : lineNumber = downLineNumber;
+
+        // 라인 이동
+
     }
 
     protected override void Move()

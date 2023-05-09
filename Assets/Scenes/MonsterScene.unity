@@ -7055,7 +7055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &7957813791727089406
 Animator:
   serializedVersion: 3
@@ -7088,4 +7088,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: 728eaedbf8737064d92b738730714922, type: 2}
-  readyTime: 5
+  changeLineTime: 0
