@@ -42,16 +42,4 @@ public class NormalMonster : Monster
     {
         base.Dead();
     }
-
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log($"{collision.transform.name}");
-
-        if (collision.transform.CompareTag("Character") && 
-            transform.position.x >= collision.transform.position.x)
-        {
-            Debug.Log($"{collision.transform.name}");
-            target = collision.transform;
-        }
-    }*/
 }

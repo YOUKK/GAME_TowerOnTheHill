@@ -15,7 +15,7 @@ public abstract class Monster : MonoBehaviour
     protected int           currentHP;
     protected float         currentSpeed;
 
-    void Start()
+    protected virtual void Start()
     {
         anim = GetComponent<Animator>();
         if (anim == null) anim = GetComponentInChildren<Animator>();
@@ -51,7 +51,6 @@ public abstract class Monster : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log($"{collision.transform.name}");
-
         if (collision.transform.CompareTag("Character"))
         {
             if (transform.position.x - collision.transform.position.x > status.attackDistance)

@@ -5,15 +5,17 @@ using UnityEngine;
 public class SmartMonster : Monster
 {
     [SerializeField]
-    private float   readyTime;
-    private bool    isLaunch = false;
-    public  bool    IsLaunch { get => isLaunch; set => isLaunch = value; }
+    private float   changeLineTime;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        StartCoroutine(ChangeLineCoroutine());
+    }
 
     void Update()
     {
-        if (!isLaunch)
-            return;
-
         if (target == null) Move();
         else
         {
@@ -26,30 +28,16 @@ public class SmartMonster : Monster
         anim.SetBool("isAttack", isAttack);
     }
 
-    public void UniqueTypeLaunch()
+    IEnumerator ChangeLineCoroutine()
     {
-        StartCoroutine(LaunchCoroutine());
+        Debug.Log("ChangeLineCoroutine start");
+        yield return new WaitForSeconds(changeLineTime);
+        ChangeLine();
     }
 
-    IEnumerator LaunchCoroutine()
+    private void ChangeLine()
     {
-        isLaunch = true;
-        yield return new WaitForSeconds(readyTime);
-        // Find way logic
-        int upLine = (lineNumber == 4) ? 3 : lineNumber + 1;
-        int downLine = (lineNumber == 0) ? 1 : lineNumber - 1;
-        float chooseA = Map.GetInstance().GetLineInfo(upLine);
-        float chooseB = Map.GetInstance().GetLineInfo(downLine);
-
-        if (chooseA > chooseB) ChangeLine(chooseB);
-        else ChangeLine(chooseA);
-    }
-
-    private void ChangeLine(float line)
-    {
-        if (lineNumber == line) return;
-
-
+        
     }
 
     protected override void Move()
