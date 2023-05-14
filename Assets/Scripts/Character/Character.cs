@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
 
     IEnumerator AttackCoroutine = null;
 
-    protected float attackDuration  = 100.0f;       // 공격 유지 시간 100초
+    protected float attackDuration  = 10.0f;       // 공격 유지 시간 100초
 
     public float CoolTime           { get => coolTime; set => coolTime = value; }
     public float Strength           { get => strength; set => strength = value; }
@@ -56,13 +56,8 @@ public class Character : MonoBehaviour
         Debug.Log("Start Attack Coroutine");
         while(true)
         {
-            pAttackDelay += Time.deltaTime;
-            if(pAttackDelay >= attackDelay)
-            {
-                Attack();
-                pAttackDelay -= attackDelay;
-            }
-            yield return new WaitForSeconds(0);
+            yield return new WaitForSeconds(attackDelay);
+            Attack();
         }
     }
 }
