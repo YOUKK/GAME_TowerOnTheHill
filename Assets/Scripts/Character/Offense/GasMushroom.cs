@@ -28,7 +28,6 @@ public class GasMushroom : Character
         if (projectile == null)
             return;
 
-        GameObject Pea = Instantiate(projectile, gameObject.transform);
-        Pea.transform.rotation = Quaternion.Euler(new Vector2(0, 0));
+        projectile.SetActive(true);
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Gas : MonoBehaviour
 {
     private GasMushroom mainCharacter;
-    private float pAttackDuration = 0;
+    private bool flag = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,14 +15,15 @@ public class Gas : MonoBehaviour
                                          transform.position.y);
         transform.localScale = new Vector2(mainCharacter.Range, transform.localScale.y);
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        pAttackDuration += Time.deltaTime;
-        if(pAttackDuration >= mainCharacter.AttackDuration)
+        if(gameObject.activeSelf)
         {
-            Destroy(gameObject);
+            Invoke("AttackDuration", mainCharacter.AttackDuration);
         }
+    }
+    void AttackDuration()
+    {
+        gameObject.SetActive(false);
     }
 }
