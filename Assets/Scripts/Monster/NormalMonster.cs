@@ -23,16 +23,13 @@ public class NormalMonster : Monster
         base.Move();
     }
 
-    private IEnumerator AttackCoroutine()
+    /*protected override IEnumerator AttackCoroutine()
     {
-        Debug.Log("Coroutine Start");
-        //anim.SetBool("isAttack", true);
         Attack();
         yield return new WaitForSeconds(status.hitSpeed);
         isAttack = false;
-        Debug.Log("Coroutine End");
-    }
-
+    }*/
+    
     protected override void Attack()
     {
         base.Attack();

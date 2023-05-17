@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct Line
+{
+    public int lineNumber;
+    public float hpSum;
+    public Vector2 location;
+}
+
 public class Map : MonoBehaviour
 {
     static Map              _map;
@@ -74,15 +81,20 @@ public class Map : MonoBehaviour
         seats[y][x].GetComponent<Seat>().usable = true; // 좀비가 Seat 위에 있으면 생성 불가하게 수정
     }
 
-    public float GetLineInfo(int line)
+    public Line GetLineInfo(int lineNum)
     {
-        float lineInfo = 0;
-        for(int i = 0; i < seats[line].Count; ++i)
+        Line line;
+
+        line.lineNumber = lineNum;
+        line.location = seats[lineNum][0].GetComponent<Transform>().position;
+        line.hpSum = 0;
+
+        for(int i = 0; i < seats[lineNum].Count; ++i)
         {
-            GameObject go = seats[line][i].GetComponent<Seat>().character;
-            if (go) lineInfo += go.GetComponent<Character>().HealthPoint;
+            GameObject go = seats[lineNum][i].GetComponent<Seat>().character;
+            if (go) line.hpSum += go.GetComponent<Character>().HealthPoint;
         }
 
-        return lineInfo;
+        return line;
     }
 }

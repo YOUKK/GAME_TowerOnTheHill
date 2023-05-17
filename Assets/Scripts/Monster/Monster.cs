@@ -8,7 +8,7 @@ public abstract class Monster : MonoBehaviour
     protected MonsterStatus status;
     protected Animator      anim;
     protected Transform     target;
-    protected int           lineNumber;
+    protected int           currentLine;
     protected bool          isAttack;
     // 랜덤 머니 관련 변수 추가
 
@@ -24,8 +24,6 @@ public abstract class Monster : MonoBehaviour
         currentSpeed = status.speed;
     }
 
-
-
     protected virtual void Move()
     {
         transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
@@ -34,7 +32,17 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Attack()
     {
+        Character targetCharacter = target.gameObject.GetComponent<Character>();
+        if (targetCharacter != null)
+            targetCharacter.HealthPoint -= status.force;
+        else Debug.Log("target doesn't have Character");
+    }
 
+    protected virtual IEnumerator AttackCoroutine()
+    {
+        Attack();
+        yield return new WaitForSeconds(status.hitSpeed);
+        isAttack = false;
     }
 
     protected virtual void Dead()
@@ -52,11 +60,7 @@ public abstract class Monster : MonoBehaviour
     {
         Debug.Log($"{collision.transform.name}");
         if (collision.transform.CompareTag("Character"))
-        {
             if (transform.position.x - collision.transform.position.x > status.attackDistance)
-            {
                 target = collision.transform;
-            }
-        }
     }
 }

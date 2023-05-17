@@ -5,7 +5,8 @@ using UnityEngine;
 public class SmartMonster : Monster
 {
     [SerializeField]
-    private float   changeLineTime;
+    private float   lineChangeTime;
+    private bool    isMovingLine = false;
 
     protected override void Start()
     {
@@ -14,8 +15,14 @@ public class SmartMonster : Monster
         StartCoroutine(ChangeLineCoroutine());
     }
 
-    void Update()
+    private void Update()
     {
+        if (isMovingLine)
+        {
+            MoveLine();
+            return;
+        }
+
         if (target == null) Move();
         else
         {
@@ -31,42 +38,50 @@ public class SmartMonster : Monster
     IEnumerator ChangeLineCoroutine()
     {
         Debug.Log("ChangeLineCoroutine start");
-        yield return new WaitForSeconds(changeLineTime);
+        yield return new WaitForSeconds(lineChangeTime);
+        
+        if (isAttack) {
+            isAttack = false;
+            StopCoroutine(AttackCoroutine());
+        }
+
+        isMovingLine = true;
         ChangeLine();
     }
 
     private void ChangeLine()
     {
-        int upLineNumber = (lineNumber == 4) ? lineNumber : lineNumber + 1;
-        int downLineNumber = (lineNumber == 0) ? lineNumber : lineNumber - 1;
-        float upLine = Map.GetInstance().GetLineInfo(upLineNumber);
-        float downLine = Map.GetInstance().GetLineInfo(downLineNumber);
+        int upLineNumber = (currentLine == 4) ? currentLine : currentLine + 1;
+        int downLineNumber = (currentLine == 0) ? currentLine : currentLine - 1;
+        Line upLine = Map.GetInstance().GetLineInfo(upLineNumber);
+        Line downLine = Map.GetInstance().GetLineInfo(downLineNumber);
 
         // 라인 번호 변경
-        lineNumber = 
-            (upLine > downLine) ? lineNumber = upLineNumber : lineNumber = downLineNumber;
+        currentLine = (upLine.hpSum > downLine.hpSum) ? 
+            currentLine = upLineNumber : currentLine = downLineNumber;
+    }
 
-        // 라인 이동
-
+    private void MoveLine()
+    {
+        
     }
 
     protected override void Move()
     {
-        base.Move();
+        transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
+            transform.position.y, transform.position.z);
     }
 
     protected override void Attack()
     {
-        throw new System.NotImplementedException();
+        base.Attack();
     }
 
-    private IEnumerator AttackCoroutine()
+    protected override IEnumerator AttackCoroutine()
     {
-        Debug.Log("Coroutine Start");
         Attack();
         yield return new WaitForSeconds(status.hitSpeed);
         isAttack = false;
-        Debug.Log("Coroutine End");
     }
 
     protected override void Dead()
