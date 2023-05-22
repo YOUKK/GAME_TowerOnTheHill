@@ -6,10 +6,14 @@ public class Resource : MonoBehaviour
 {
     private SunFlower mainCharacter;
     private float pAttackDuration = 0;
+
+    private CollectResource resourceUI;
+
     // Start is called before the first frame update
     void Start()
     {
         mainCharacter = transform.GetComponentInParent<SunFlower>();
+        resourceUI = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
     }
 
     // Update is called once per frame
@@ -29,6 +33,8 @@ public class Resource : MonoBehaviour
                                                                        -Input.mousePosition.z));
             if(Vector2.Distance(transform.position, point) < 1f)
             {
+                resourceUI.GetResource(50); // resource의 양을 일단 50이라고 설정함
+
                 //전체 자원 추가 미구현
                 Destroy(gameObject);
             }

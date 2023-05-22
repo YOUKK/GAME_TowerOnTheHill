@@ -15,6 +15,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         _pressed = true;
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragCharacter = Instantiate(character, mousePosition + Vector3.forward, transform.rotation);
+        dragCharacter.tag = "DragCharacter";
     }
 
     public void OnPointerUp(PointerEventData eventData)
