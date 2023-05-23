@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bbd6a76847af4a4f956679266bb12aa, type: 3}
-  m_Name: TempMonster
+  m_Name: AerialMonster
   m_EditorClassIdentifier: 
-  monsterName: Temp
+  monsterName: AerialMonster
   hp: 100
   speed: 1
   force: 10
-  hitSpeed: 1
-  attackDistance: 1
-  type: 0
+  hitSpeed: 3
+  type: 1

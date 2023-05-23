@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct Line
+{
+    public int lineNumber;
+    public float hpSum;
+    public Vector2 location;
+}
+
 public class Map : MonoBehaviour
 {
     static Map              _map;
@@ -10,17 +17,17 @@ public class Map : MonoBehaviour
     public int              mapX, mapY;
     List<List<GameObject>>  seats = new List<List<GameObject>>();
 
-    void Awake()
-    {
-        if (_map != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        _map = this;
-    }
+	void Awake()
+	{
+		if (_map != null)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		_map = this;
+	}
 
-    void Start()
+	void Start()
     {
         // Map의 자식 Object들 저장
         Transform[] seatTransform = GetComponentsInChildren<Transform>();
@@ -52,25 +59,42 @@ public class Map : MonoBehaviour
     }
 
     // 캐릭터 배치
-    public void PutCharacter(Vector2 _location, GameObject _character)
+    public void PutCharacter(Vector2 location, GameObject character)
     {
-        int x = (int)_location.x;
-        int y = (int)_location.y;
+        int x = (int)location.x;
+        int y = (int)location.y;
 
         seats[y][x].GetComponent<Seat>().character =
-            Instantiate(_character, seats[y][x].transform.position, transform.rotation);
+            Instantiate(character, seats[y][x].transform.position, transform.rotation);
         seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;
     }
 
     // 캐릭터 제거
-    public void RemoveCharacter(Vector2 _location)
+    public void RemoveCharacter(Vector2 location)
     {
-        int x = (int)_location.x;
-        int y = (int)_location.y;
+        int x = (int)location.x;
+        int y = (int)location.y;
 
         Destroy(seats[y][x].GetComponent<Seat>().character);
         seats[y][x].GetComponent<Seat>().isCharacterOn = false;
         seats[y][x].GetComponent<Seat>().usable = true; // 좀비가 Seat 위에 있으면 생성 불가하게 수정
+    }
+
+    public Line GetLineInfo(int lineNum)
+    {
+        Line line;
+
+        line.lineNumber = lineNum;
+        line.location = seats[lineNum][0].GetComponent<Transform>().position;
+        line.hpSum = 0;
+
+        for(int i = 0; i < seats[lineNum].Count; ++i)
+        {
+            GameObject go = seats[lineNum][i].GetComponent<Seat>().character;
+            if (go) line.hpSum += go.GetComponent<Character>().HealthPoint;
+        }
+
+        return line;
     }
 }

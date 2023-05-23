@@ -16,6 +16,7 @@ public class Seat : MonoBehaviour
         int y = transform.parent.name[4] - '0';
         int x = name[3] - '0';
         location = new Vector2(x, y);
+        isCharacterOn = false;
         usable = true;
     }
 }
