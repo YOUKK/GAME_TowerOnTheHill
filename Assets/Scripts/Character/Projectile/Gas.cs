@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gas : MonoBehaviour
 {
-    private GasMushroom mainCharacter;
+    private Character mainCharacter;
 
     // Start is called before the first frame update
     void Start()
@@ -13,5 +13,12 @@ public class Gas : MonoBehaviour
         transform.position = new Vector2(transform.position.x + ((1 + mainCharacter.Range) / 2),
                                          transform.position.y);
         transform.localScale = new Vector2(mainCharacter.Range, transform.localScale.y);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
+        }
     }
 }

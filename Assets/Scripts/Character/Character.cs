@@ -45,7 +45,6 @@ public class Character : MonoBehaviour
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
                 projectiles.Enqueue(gameObject.transform.GetChild(i).gameObject);
-                print(gameObject.transform.GetChild(i).gameObject.name);
             }
         }
     }
