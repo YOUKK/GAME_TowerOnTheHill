@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SunFlower : Character
 {
-    private Queue<GameObject> A = new Queue<GameObject>();
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -28,7 +27,7 @@ public class SunFlower : Character
         projectile = projectiles.Dequeue();
         projectiles.Enqueue(projectile);
         activatedProj.Enqueue(projectile);
-        print(projectile.name+","+ projectiles.Count);
+        //print(projectile.name+","+ projectiles.Count);
         projectile.transform.position = new Vector2(gameObject.transform.position.x + Random.Range(-1f, 1f),
                                                     gameObject.transform.position.y + Random.Range(-1f, 1f));
         projectile.SetActive(true);
