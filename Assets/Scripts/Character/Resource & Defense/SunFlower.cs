@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SunFlower : Character
 {
+    private Queue<GameObject> A = new Queue<GameObject>();
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -19,18 +20,24 @@ public class SunFlower : Character
         //투사체 개수 1 (변함 없음)
         //사거리 1 (변함 없음)
         //공격(자원)유지 시간 7초
-        AttackDuration = 7.0f;
+        AttackDuration = 15.0f;
     }
 
     public override void Attack()
     {
-        if (projectile == null)
-            return;
-
-        float randomX = gameObject.transform.position.x + Random.Range(-1f, 1f);
-        float randomY = gameObject.transform.position.y + Random.Range(-1f, 1f);
-
-        GameObject Sun = Instantiate(projectile, gameObject.transform);
-        Sun.transform.position = new Vector2(randomX, randomY);
+        projectile = projectiles.Dequeue();
+        projectiles.Enqueue(projectile);
+        activatedProj.Enqueue(projectile);
+        print(projectile.name+","+ projectiles.Count);
+        projectile.transform.position = new Vector2(gameObject.transform.position.x + Random.Range(-1f, 1f),
+                                                    gameObject.transform.position.y + Random.Range(-1f, 1f));
+        projectile.SetActive(true);
+        Invoke("Duration", attackDuration);
+    }
+    void Duration()
+    {
+        activatedProj.Peek().transform.position = gameObject.transform.position;
+        GameObject T = activatedProj.Dequeue();
+        T.SetActive(false);
     }
 }

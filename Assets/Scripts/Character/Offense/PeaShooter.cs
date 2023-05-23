@@ -27,6 +27,7 @@ public class PeaShooter : Character
     {
         projectile = projectiles.Dequeue();
         projectiles.Enqueue(projectile);
+        activatedProj.Enqueue(projectile);
         projectile.SetActive(true);
 
         projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(projectileSpeed, 0) * 100);
@@ -34,7 +35,8 @@ public class PeaShooter : Character
     }
     void Duration()
     {
-        projectile.transform.position = gameObject.transform.position;
-        projectile.SetActive(false);
+        activatedProj.Peek().transform.position = gameObject.transform.position;
+        GameObject T = activatedProj.Dequeue();
+        T.SetActive(false);
     }
 }

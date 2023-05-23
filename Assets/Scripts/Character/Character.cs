@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected GameObject projectile;
     protected Queue<GameObject> projectiles = new Queue<GameObject>();
+    protected Queue<GameObject> activatedProj = new Queue<GameObject>();
 
     protected float coolTime = 1.0f;                //소환 쿨타임
     protected float projectileSpeed = 1.0f;         //투사체 속도
