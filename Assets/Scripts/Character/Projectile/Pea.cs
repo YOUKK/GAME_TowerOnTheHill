@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Pea : MonoBehaviour
 {
-    private Character myShooter;
+    private Character mainCharacter;
 
     private void Start()
     {
-        myShooter = gameObject.GetComponentInParent<Character>();
+        mainCharacter = gameObject.GetComponentInParent<Character>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if( collision.tag == "Enemy" )
         {
-            collision.gameObject.GetComponent<Monster>().Hit((int)myShooter.Strength);
+            collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
             gameObject.SetActive(false);
         }
     }
