@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4886612449991451531}
   - component: {fileID: 4886612449991451532}
   m_Layer: 0
-  m_Name: AerialMonster
+  m_Name: Aerial_Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
