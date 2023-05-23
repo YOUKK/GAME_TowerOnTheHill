@@ -22,7 +22,6 @@ public class NormalMonster : Monster
     {
         base.Move();
     }
-
     /*protected override IEnumerator AttackCoroutine()
     {
         Attack();
