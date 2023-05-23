@@ -27,7 +27,12 @@ public class GasMushroom : Character
     {
         if (projectile == null)
             return;
-
+        
         projectile.SetActive(true);
+        Invoke("Duration", attackDuration);
+    }
+    void Duration()
+    {
+        projectile.SetActive(false);
     }
 }

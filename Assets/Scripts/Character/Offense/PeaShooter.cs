@@ -20,15 +20,21 @@ public class PeaShooter : Character
         //투사체 개수 1 (변함 없음)
         //사거리 10 (최대 사거리)
         Range = 10f;
+        attackDuration = 2f;
     }
 
     public override void Attack()
     {
-        if (projectile == null)
-            return;
-        
-        GameObject Pea = Instantiate(projectile, gameObject.transform);
-        Pea.transform.rotation = Quaternion.Euler(new Vector2(0, 0));
-        Pea.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
+        projectile = projectiles.Dequeue();
+        projectiles.Enqueue(projectile);
+        projectile.SetActive(true);
+
+        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(projectileSpeed, 0) * 100);
+        Invoke("Duration", attackDuration);
+    }
+    void Duration()
+    {
+        projectile.transform.position = gameObject.transform.position;
+        projectile.SetActive(false);
     }
 }

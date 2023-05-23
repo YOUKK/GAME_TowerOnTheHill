@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 { 
     [SerializeField]
     protected GameObject projectile;
+    protected Queue<GameObject> projectiles = new Queue<GameObject>();
 
     protected float coolTime = 1.0f;                //소환 쿨타임
     protected float projectileSpeed = 1.0f;         //투사체 속도
@@ -37,6 +38,14 @@ public class Character : MonoBehaviour
         {
             AttackCoroutine = AttackCoolTime();
             StartCoroutine(AttackCoroutine);
+        }
+        if (projectile == null)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                projectiles.Enqueue(gameObject.transform.GetChild(i).gameObject);
+                print(gameObject.transform.GetChild(i).gameObject.name);
+            }
         }
     }
 
