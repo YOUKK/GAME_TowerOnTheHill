@@ -42,6 +42,11 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         Destroy(dragCharacter.gameObject);
     }
 
+    void Start()
+	{
+        character = transform.GetComponentInParent<SelectCharacter>().ObjectCha[transform.GetSiblingIndex()];
+	}
+
     void Update()
     {
         if (_pressed)
