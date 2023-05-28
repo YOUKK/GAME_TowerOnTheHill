@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CollectResource : MonoBehaviour
 {
-    private int resource;
+    private int resource = 0;
     public int GetResource() { return resource; }
 
     [SerializeField]

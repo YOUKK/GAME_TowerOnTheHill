@@ -130,14 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 312315799, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 548856487, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 679740036819077331, guid: d07697fdee3897547b5d80f287144619, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -226,49 +218,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterButtonCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 679740036819077335, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 679740037569473091, guid: d07697fdee3897547b5d80f287144619, type: 3}
+      propertyPath: m_Interactable
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1270525838599638352, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_Text
-      value: GasMushroom
-      objectReference: {fileID: 0}
-    - target: {fileID: 1270525838599638352, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1512849889771263547, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3733185777967192884, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4588085963403276299, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_Text
-      value: SunFlower
-      objectReference: {fileID: 0}
-    - target: {fileID: 4588085963403276299, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816288721280308549, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_Text
-      value: PeaShooter
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816288721280308549, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6509737768210100879, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_Text
-      value: Walnut
-      objectReference: {fileID: 0}
-    - target: {fileID: 6509737768210100879, guid: d07697fdee3897547b5d80f287144619, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d07697fdee3897547b5d80f287144619, type: 3}
@@ -554,23 +506,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &953155606 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 679740036819077335, guid: d07697fdee3897547b5d80f287144619, type: 3}
-  m_PrefabInstance: {fileID: 4084859}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &953155607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953155606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56da86a710b11441bc87bcc80baf557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &963715565
 PrefabInstance:
   m_ObjectHideFlags: 0
