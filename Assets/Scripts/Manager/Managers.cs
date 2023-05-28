@@ -21,7 +21,7 @@ public class Managers : MonoBehaviour
 	{
 		get
 		{
-            return instance.timeM;
+            return Instance.timeM;
 		}
 	}
 
