@@ -12,7 +12,7 @@ public class GasMushroom : Character
         CoolTime = 5f;
         //공격력 1 (변함 없음)
         //체력 4
-        HealthPoint = 4f;
+        HealthPoint = 50f;
         //투사체 속도 1 (변함 없음)
         //공격 속도  4
         AttackDelay = 4f;
@@ -21,6 +21,7 @@ public class GasMushroom : Character
         Range = 3f;
         //공격 유지 시간 1.0초
         AttackDuration = 1.0f;
+        Strength = 5f;
     }
 
     public override void Attack()

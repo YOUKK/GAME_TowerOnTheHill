@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a984de516d1c154fa416bbe01084c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 5983870591619238643, guid: 58fee1f301a652d4fa29137e5415e5c0, type: 3}
+  projectile: {fileID: 0}
   healthPoint: 3
 --- !u!50 &-2597260020604531359
 Rigidbody2D:

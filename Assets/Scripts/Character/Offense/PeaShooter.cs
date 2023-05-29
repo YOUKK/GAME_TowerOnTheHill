@@ -12,7 +12,7 @@ public class PeaShooter : Character
         CoolTime = 2f;
         //공격력 1 (변함 없음)
         //체력 3
-        HealthPoint = 3f;
+        HealthPoint = 50f;
         //투사체 속도 3 
         ProjectileSpeed = 3f;
         //공격 속도  2 
@@ -21,6 +21,7 @@ public class PeaShooter : Character
         //사거리 10 (최대 사거리)
         Range = 10f;
         attackDuration = 2f;
+        Strength = 10.0f;
     }
 
     public override void Attack()
