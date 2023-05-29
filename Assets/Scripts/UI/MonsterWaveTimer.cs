@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 몬스터 웨이브 UI 관련 스크립트
 public class MonsterWaveTimer : MonoBehaviour
 {
     private int firstAppearTime = 5; // 첫 몬스터가 나타나기 전까지의 시간
     private int timeCheckInterval = 2; // 시간 체크 간격
-    private int firstWaveTime = 30; // 첫번째 웨이브 = 2분
-    private int secondWaveTime = 60; // 두번째 웨이브 = 4분
+    private int firstWaveTime = 120; // 첫번째 웨이브 = 2분
+    private int secondWaveTime = 240; // 두번째 웨이브 = 4분
     private bool firstAppear = false;
     private bool firstWave = false;
 

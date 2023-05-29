@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     protected float range = 1.0f;                   //투사체 거리
     protected float strength = 1.0f;                //공격력
     [SerializeField]
-    protected float healthPoint = 1.0f;             //체력
+    protected float healthPoint = 50f;             //체력
 
     IEnumerator AttackCoroutine = null;
 
