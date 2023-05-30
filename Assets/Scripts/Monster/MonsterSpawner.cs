@@ -8,6 +8,8 @@ public class MonsterSpawner : MonoBehaviour
     public bool monsterCreate = false;
     public int lineNum;
     public GameObject[] lines = new GameObject[5];
+    private MonsterWave[] waveList;
+    private int index = 0;
 
     void Start()
     {   
@@ -15,14 +17,12 @@ public class MonsterSpawner : MonoBehaviour
         {
             lines[i] = transform.GetChild(i).gameObject;
         }
+
+        //waveList = FindObjectOfType<DataManager>().GetWaveDB.prototypeWave;
     }
 
     void Update()
     {
-        if (monsterCreate)
-        {
-            Instantiate(monster, lines[lineNum].transform.position, transform.rotation);
-            monsterCreate = false;
-        }
+        
     }
 }

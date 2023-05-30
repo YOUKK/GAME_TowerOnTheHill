@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    public TextAsset data;
-    private MonsterWaveDB waveDB;
+    // monsterWave[Phase number][Stage number]
+    public List<List<MonsterWaveSet>> monsterWave = new List<List<MonsterWaveSet>>();
 
-    void Awake()
+    void Start()
     {
-        waveDB = JsonUtility.FromJson<MonsterWaveDB>(data.text);
+        monsterWave.Add(WaveParse("MonsterWaveDB - Phase0"));
 
-        foreach (var item in waveDB.prototypeWave)
+        for(int i = 0; i < monsterWave[0].Count; ++i)
         {
-            Debug.Log("Test time " + item.time);
+            Debug.Log(monsterWave[0][i].waveArray.Length);
+            for(int j = 0; j < monsterWave[0][i].waveArray.Length; ++j)
+            {
+                MonsterWave wave = monsterWave[0][i].waveArray[j];
+                Debug.Log($"stage {wave.stage} , time {wave.time} , monster {wave.monsterInfo.name} , line {wave.line}");
+            }
         }
     }
 
@@ -21,28 +26,73 @@ public class DataManager : MonoBehaviour
     {
         
     }
-}
 
-[System.Serializable]
-public class MonsterWaveDB
-{
-    public MonsterWave[] prototypeWave;
-}
-
-[System.Serializable]
-public class MonsterWave
-{
-    public GameObject   monsterInfo;
-    public string       stage;
-    public float        time;
-    public int          line;
-
-    public MonsterWave(string _stage, float _time, int _monsterInfo, int _line)
+    List<MonsterWaveSet> WaveParse(string _CSVFileName)
     {
-        stage = _stage;
-        time = _time;
-        line = _line;
-        monsterInfo = Resources.Load<GameObject>($"Prefab/{(MonsterName)_monsterInfo}");
-        if (monsterInfo == null) Debug.Log("No Monster Object");
+        List<MonsterWaveSet> res = new List<MonsterWaveSet>();
+
+        TextAsset csvData = Resources.Load<TextAsset>($"Waves/{_CSVFileName}");
+
+        string[] data = csvData.text.Split(new char[] { '\n' });
+
+        int count = data.Length;
+        for(int i = 1; i < count;)
+        {
+            string[] elements = data[i].Split(new char[] { ',' });
+            int currentStage = int.Parse(elements[0]);
+
+            List<MonsterWave> waveList = new List<MonsterWave>();
+            do
+            {
+                MonsterWave wave;
+
+                wave.stage = int.Parse(elements[0]); // Stage
+                wave.time = float.Parse(elements[1]); // time
+                int monsterNum = int.Parse(elements[2]);
+                wave.monsterInfo = Resources.Load<GameObject>($"Prefabs/Monsters/{(MonsterName)monsterNum}"); // monster
+                wave.line = int.Parse(elements[3]); // line
+
+                if (++i < count)
+                {
+                    waveList.Add(wave);
+                    elements = data[i].Split(new char[] { ',' });
+                }
+                else
+                {
+                    waveList.Add(wave);
+                    break;
+                }
+            }
+            while (int.Parse(elements[0]) == currentStage);
+
+            MonsterWaveSet waveSet = new MonsterWaveSet(waveList);
+            res.Add(waveSet);
+        }
+
+        return res;
     }
+}
+
+public class MonsterWaveSet
+{
+    public MonsterWave[] waveArray = null;
+
+    public MonsterWaveSet(MonsterWave[] waves)
+    {
+        waveArray = waves;
+    }
+
+    public MonsterWaveSet(List<MonsterWave> waves)
+    {
+        waveArray = waves.ToArray();
+    }
+}
+
+// 몬스터 하나의 스폰 웨이브 정보
+public struct MonsterWave
+{
+    public int          stage;
+    public float        time;
+    public GameObject   monsterInfo;
+    public int          line;
 }
