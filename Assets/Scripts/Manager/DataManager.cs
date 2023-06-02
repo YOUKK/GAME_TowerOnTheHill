@@ -9,8 +9,10 @@ public class DataManager : MonoBehaviour
 
     public static List<List<StageWave>> monsterWave = new List<List<StageWave>>();
 
-    void Start()
+    void Awake()
     {
+        Init();
+
         monsterWave.Add(WaveParse("MonsterWaveDB - Phase0"));
 
         for(int i = 0; i < monsterWave[0].Count; ++i)
@@ -24,20 +26,15 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
-
     private static void Init()
     {
         if (instance == null)
         {
-            GameObject go = GameObject.Find("Manager");
+            GameObject go = GameObject.Find("DataManager");
             if (go == null)
             {
-                go = new GameObject { name = "Manager" };
-                go.AddComponent<Managers>();
+                go = new GameObject { name = "DataManager" };
+                go.AddComponent<DataManager>();
             }
 
             DontDestroyOnLoad(go);
