@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Gas : MonoBehaviour
 {
-    private GasMushroom mainCharacter;
-    private float pAttackDuration = 0;
+    private Character mainCharacter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,14 +14,11 @@ public class Gas : MonoBehaviour
                                          transform.position.y);
         transform.localScale = new Vector2(mainCharacter.Range, transform.localScale.y);
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        pAttackDuration += Time.deltaTime;
-        if(pAttackDuration >= mainCharacter.AttackDuration)
+        if(collision.tag == "Enemy")
         {
-            Destroy(gameObject);
+            collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
         }
     }
 }

@@ -6,6 +6,8 @@ public class Character : MonoBehaviour
 { 
     [SerializeField]
     protected GameObject projectile;
+    protected Queue<GameObject> projectiles = new Queue<GameObject>();
+    protected Queue<GameObject> activatedProj = new Queue<GameObject>();
 
     protected float coolTime = 1.0f;                //소환 쿨타임
     protected float projectileSpeed = 1.0f;         //투사체 속도
@@ -15,11 +17,11 @@ public class Character : MonoBehaviour
     protected float range = 1.0f;                   //투사체 거리
     protected float strength = 1.0f;                //공격력
     [SerializeField]
-    protected float healthPoint = 1.0f;             //체력
+    protected float healthPoint = 50f;             //체력
 
     IEnumerator AttackCoroutine = null;
 
-    protected float attackDuration  = 100.0f;       // 공격 유지 시간 100초
+    protected float attackDuration  = 10.0f;       // 공격 유지 시간 100초
 
     public float CoolTime           { get => coolTime; set => coolTime = value; }
     public float Strength           { get => strength; set => strength = value; }
@@ -37,6 +39,13 @@ public class Character : MonoBehaviour
         {
             AttackCoroutine = AttackCoolTime();
             StartCoroutine(AttackCoroutine);
+        }
+        if (projectile == null)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                projectiles.Enqueue(gameObject.transform.GetChild(i).gameObject);
+            }
         }
     }
 
@@ -56,13 +65,8 @@ public class Character : MonoBehaviour
         Debug.Log("Start Attack Coroutine");
         while(true)
         {
-            pAttackDelay += Time.deltaTime;
-            if(pAttackDelay >= attackDelay)
-            {
-                Attack();
-                pAttackDelay -= attackDelay;
-            }
-            yield return new WaitForSeconds(0);
+            yield return new WaitForSeconds(attackDelay);
+            Attack();
         }
     }
 }

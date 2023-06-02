@@ -12,7 +12,7 @@ public class PeaShooter : Character
         CoolTime = 2f;
         //공격력 1 (변함 없음)
         //체력 3
-        HealthPoint = 3f;
+        HealthPoint = 50f;
         //투사체 속도 3 
         ProjectileSpeed = 3f;
         //공격 속도  2 
@@ -20,15 +20,24 @@ public class PeaShooter : Character
         //투사체 개수 1 (변함 없음)
         //사거리 10 (최대 사거리)
         Range = 10f;
+        attackDuration = 2f;
+        Strength = 10.0f;
     }
 
     public override void Attack()
     {
-        if (projectile == null)
-            return;
-        
-        GameObject Pea = Instantiate(projectile, gameObject.transform);
-        Pea.transform.rotation = Quaternion.Euler(new Vector2(0, 0));
-        Pea.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
+        projectile = projectiles.Dequeue();
+        projectiles.Enqueue(projectile);
+        activatedProj.Enqueue(projectile);
+        projectile.SetActive(true);
+
+        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(projectileSpeed, 0) * 100);
+        Invoke("Duration", attackDuration);
+    }
+    void Duration()
+    {
+        activatedProj.Peek().transform.position = gameObject.transform.position;
+        GameObject T = activatedProj.Dequeue();
+        T.SetActive(false);
     }
 }

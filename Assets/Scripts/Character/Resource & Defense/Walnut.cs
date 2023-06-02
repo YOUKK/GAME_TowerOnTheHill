@@ -12,7 +12,7 @@ public class Walnut : Character
         CoolTime = 7f;
         //공격력 1 (변함 없음)
         //체력 10
-        HealthPoint = 10f;
+        HealthPoint = 200f;
         //투사체 속도 1 (변함 없음)
         //공격 속도 1 (변함 없음)
         //투사체 개수 1 (변함 없음)
