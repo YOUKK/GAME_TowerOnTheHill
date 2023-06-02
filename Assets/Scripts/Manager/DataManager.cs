@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    // monsterWave[Phase number][Stage number]
-    public List<List<MonsterWaveSet>> monsterWave = new List<List<MonsterWaveSet>>();
+    private static DataManager instance;
+    public static DataManager GetData { get { Init(); return instance; } }
+
+    public static List<List<StageWave>> monsterWave = new List<List<StageWave>>();
 
     void Start()
     {
@@ -27,9 +29,26 @@ public class DataManager : MonoBehaviour
         
     }
 
-    List<MonsterWaveSet> WaveParse(string _CSVFileName)
+    private static void Init()
     {
-        List<MonsterWaveSet> res = new List<MonsterWaveSet>();
+        if (instance == null)
+        {
+            GameObject go = GameObject.Find("Manager");
+            if (go == null)
+            {
+                go = new GameObject { name = "Manager" };
+                go.AddComponent<Managers>();
+            }
+
+            DontDestroyOnLoad(go);
+            instance = go.GetComponent<DataManager>();
+        }
+    }
+
+    // 한 페이즈의 Wave 데이터를 파싱하여 stage 별로 나눈 리스트를 반환.
+    List<StageWave> WaveParse(string _CSVFileName)
+    {
+        List<StageWave> res = new List<StageWave>();
 
         TextAsset csvData = Resources.Load<TextAsset>($"Waves/{_CSVFileName}");
 
@@ -65,7 +84,7 @@ public class DataManager : MonoBehaviour
             }
             while (int.Parse(elements[0]) == currentStage);
 
-            MonsterWaveSet waveSet = new MonsterWaveSet(waveList);
+            StageWave waveSet = new StageWave(waveList);
             res.Add(waveSet);
         }
 
@@ -73,22 +92,23 @@ public class DataManager : MonoBehaviour
     }
 }
 
-public class MonsterWaveSet
+// 한 스테이지의 Monster Wave 정보
+public class StageWave
 {
     public MonsterWave[] waveArray = null;
 
-    public MonsterWaveSet(MonsterWave[] waves)
+    public StageWave(MonsterWave[] waves)
     {
         waveArray = waves;
     }
 
-    public MonsterWaveSet(List<MonsterWave> waves)
+    public StageWave(List<MonsterWave> waves)
     {
         waveArray = waves.ToArray();
     }
 }
 
-// 몬스터 하나의 스폰 웨이브 정보
+// 몬스터 하나의 스폰 Wave 정보
 public struct MonsterWave
 {
     public int          stage;

@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject monster;
-    public bool monsterCreate = false;
-    public int lineNum;
-    public GameObject[] lines = new GameObject[5];
-    private MonsterWave[] waveList;
-    private int index = 0;
+    public  bool         monsterCreate = false;
+    public  int          lineNum;
+    public  GameObject   monster;
+    public  GameObject[] lines = new GameObject[5];
+    private List<List<StageWave>> waveList = null;
 
     void Start()
-    {   
+    {
         for (int i = 0; i < lines.Length; i++)
         {
             lines[i] = transform.GetChild(i).gameObject;
         }
-
-        //waveList = FindObjectOfType<DataManager>().GetWaveDB.prototypeWave;
     }
 
     void Update()
