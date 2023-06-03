@@ -12,7 +12,9 @@ public abstract class Monster : MonoBehaviour
     protected bool          isAttack;
     // 랜덤 머니 관련 변수 추가
 
+    [SerializeField]
     protected int           currentHP;
+    [SerializeField]
     protected float         currentSpeed;
 
     protected virtual void Start()
