@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 4558606462390906036}
+<<<<<<< Updated upstream
   status: {fileID: 11400000, guid: 0ae1c56b7f87e534689253d9fc1dfbce, type: 2}
   coolTime: 1
   projectileSpeed: 1
@@ -144,6 +145,8 @@ MonoBehaviour:
   projectileNum: 1
   range: 1
   strength: 1
+=======
+>>>>>>> Stashed changes
   healthPoint: 4
 --- !u!1001 &2602420877061978770
 PrefabInstance:

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Resource : MonoBehaviour
 {
     private SunFlower mainCharacter;
+    private float pAttackDuration = 0;
 
     private CollectResource resourceUI;
 

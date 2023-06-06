@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 629637003376261272}
   - component: {fileID: 3841452663116219617}
   - component: {fileID: 3022531639716937434}
-  - component: {fileID: 3121677979430418894}
   m_Layer: 0
   m_Name: Walnut
   m_TagString: Character
@@ -122,6 +121,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+<<<<<<< Updated upstream
 --- !u!114 &3121677979430418894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +136,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
   status: {fileID: 11400000, guid: a86e82c5b11743b42874ac9244683444, type: 2}
+=======
+>>>>>>> Stashed changes

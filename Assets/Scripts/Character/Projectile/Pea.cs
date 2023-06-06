@@ -14,7 +14,7 @@ public class Pea : MonoBehaviour
     {
         if( collision.tag == "Enemy" )
         {
-            collision.gameObject.GetComponent<Monster>().Hit(mainCharacter.Strength);
+            collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
             gameObject.SetActive(false);
         }
     }
