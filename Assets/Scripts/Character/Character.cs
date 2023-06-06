@@ -6,13 +6,31 @@ public class Character : MonoBehaviour
 { 
     [SerializeField]
     protected GameObject projectile;
-    [SerializeField]
-    protected CharacterStatus status;
-
     protected Queue<GameObject> projectiles = new Queue<GameObject>();
     protected Queue<GameObject> activatedProj = new Queue<GameObject>();
 
+    protected float coolTime = 1.0f;                //��ȯ ��Ÿ��
+    protected float projectileSpeed = 1.0f;         //���ü �ӵ�
+    protected float attackDelay = 1.0f;             //��� �ӵ�
+    protected float pAttackDelay = 0f;              //��� �ӵ� �ʱ�ȭ ����
+    protected float projectileNum = 1.0f;           //���ü ����
+    protected float range = 1.0f;                   //���ü �Ÿ�
+    protected float strength = 1.0f;                //��ݷ�
+    [SerializeField]
+    protected float healthPoint = 50f;             //ü��
+
     IEnumerator AttackCoroutine = null;
+    /*
+    protected int attackDuration  = 10;       // 공격 유지 시간 100초
+    */
+    public int CoolTime           { get => status.coolTime; set => status.coolTime = value; }
+    public int Strength           { get => status.strength; set => status.strength = value; }
+    public int HealthPoint        { get => status.healthPoint; set => status.healthPoint = value; }
+    public float ProjectileSpeed    { get => status.projectileSpeed; set => status.projectileSpeed = value; }
+    public float AttackDelay        { get => status.attackDelay; set => status.attackDelay = value; }
+    public int ProjectileNum      { get => status.projectileNum; set => status.projectileNum = value; }
+    public int Range              { get => status.range; set => status.range = value; }
+    public int AttackDuration     { get => status.attackDuration; set => status.attackDuration = value; }
 
     protected int coolTime;
     protected float projectileSpeed;
@@ -81,7 +99,7 @@ public class Character : MonoBehaviour
         Debug.Log("Start Attack Coroutine");
         while(true)
         {
-            yield return new WaitForSeconds(status.attackDelay);
+            yield return new WaitForSeconds(attackDelay);
             Attack();
         }
     }

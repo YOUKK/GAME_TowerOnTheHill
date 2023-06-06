@@ -8,6 +8,20 @@ public class PeaShooter : Character
     protected override void Start()
     {
         base.Start();
+        //��ȯ ��Ÿ�� 2��
+        CoolTime = 2f;
+        //��ݷ� 1 (���� ���)
+        //ü�� 3
+        HealthPoint = 50f;
+        //���ü �ӵ� 3 
+        ProjectileSpeed = 3f;
+        //��� �ӵ�  2 
+        AttackDelay = 2f;
+        //���ü ���� 1 (���� ���)
+        //��Ÿ� 10 (�ִ� ��Ÿ�)
+        Range = 10f;
+        attackDuration = 2f;
+        Strength = 10.0f;
     }
 
     public override void Attack()
