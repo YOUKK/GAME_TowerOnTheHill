@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterType
+public enum CharacterName
 {
-    Normal
+    Sun, // SunFlower
+    Wall, // Wallnut
+    PeaSh, // PeaShooter
+    GasMu, // GasMushroom
 }
 
 [CreateAssetMenu(fileName = "Character", menuName = "Character/CharacterStatus")]
@@ -19,5 +22,5 @@ public class CharacterStatus : ScriptableObject
     public int strength = 5;
     public int healthPoint = 50;
     public int attackDuration = 100;
-    public CharacterType type;
+    public CharacterName type;
 }
