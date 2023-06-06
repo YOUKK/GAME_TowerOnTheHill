@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
-  healthPoint: 2
+  status: {fileID: 11400000, guid: 2df94710f088e064dadf5a2fdaf41d99, type: 2}
 --- !u!1001 &95265233023674458
 PrefabInstance:
   m_ObjectHideFlags: 0

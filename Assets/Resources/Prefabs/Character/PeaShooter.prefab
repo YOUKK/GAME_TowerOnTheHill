@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
-  healthPoint: 3
+  status: {fileID: 11400000, guid: 4502ce94f344ea441ad0b5b48b6dd545, type: 2}
 --- !u!50 &-2597260020604531359
 Rigidbody2D:
   serializedVersion: 4
