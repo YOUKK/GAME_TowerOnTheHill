@@ -26,7 +26,6 @@ public class Character : MonoBehaviour
 
     private bool isDragged = false;
     private bool checkMonster = false;
-
     public int CoolTime { get => coolTime; set => coolTime = value; }
     public int Strength { get => strength; set => strength = value; }
     public int HealthPoint { get => healthPoint; set => healthPoint = value; }

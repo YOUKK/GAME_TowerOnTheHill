@@ -48,7 +48,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
             if (hit)
             {
-                if (hit.transform.CompareTag("Seat")) // Seat¿¡ ¿Ã·Á³õÀ½
+                if (hit.transform.CompareTag("Seat")) // SeatÂ¿Â¡ Â¿ÃƒÂ·ÃÂ³ÃµÃ€Â½
                 {
                     Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
 
@@ -73,6 +73,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
              }
          }
          */
+
         if (_pressed)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;

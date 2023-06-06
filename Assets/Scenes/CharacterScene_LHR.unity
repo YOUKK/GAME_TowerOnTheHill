@@ -136,19 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4173541635360795076, guid: 1e10acb0b16bc7547b8902431a82aa1c, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream
       value: -4
-=======
-      value: 0
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 4173541635360795076, guid: 1e10acb0b16bc7547b8902431a82aa1c, type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< Updated upstream
       value: -2
-=======
-      value: 1
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 4173541635360795076, guid: 1e10acb0b16bc7547b8902431a82aa1c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -401,18 +393,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-<<<<<<< Updated upstream
     - target: {fileID: 4173541635360795076, guid: 1e10acb0b16bc7547b8902431a82aa1c, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4173541635360795076, guid: 1e10acb0b16bc7547b8902431a82aa1c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -3.88
       objectReference: {fileID: 0}
     - target: {fileID: 4173541635360795076, guid: 1e10acb0b16bc7547b8902431a82aa1c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -1.33
       objectReference: {fileID: 0}
     - target: {fileID: 4173541635360795076, guid: 1e10acb0b16bc7547b8902431a82aa1c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -447,9 +438,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4173541635360795099, guid: 1e10acb0b16bc7547b8902431a82aa1c, type: 3}
-=======
-    - target: {fileID: 4428760754216831659, guid: 1dfa821413bf87a45ba468d4c9e0fe8d, type: 3}
->>>>>>> Stashed changes
       propertyPath: m_Name
       value: GasMushroom
       objectReference: {fileID: 0}
@@ -639,14 +627,13 @@ PrefabInstance:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: 629637003376261273, guid: ceda5e9387385c742bd0548aeaae487b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 629637003376261273, guid: ceda5e9387385c742bd0548aeaae487b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 629637003376261273, guid: ceda5e9387385c742bd0548aeaae487b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -694,27 +681,16 @@ PrefabInstance:
       value: GasMushroom
       objectReference: {fileID: 0}
     - target: {fileID: 4428760754216831668, guid: 1dfa821413bf87a45ba468d4c9e0fe8d, type: 3}
-=======
-    - target: {fileID: 7609798859454043027, guid: 56b46c34ef857e14d9f9d2174eaebda3, type: 3}
->>>>>>> Stashed changes
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7609798859454043027, guid: 56b46c34ef857e14d9f9d2174eaebda3, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream
       value: -4
-=======
-      value: 0
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7609798859454043027, guid: 56b46c34ef857e14d9f9d2174eaebda3, type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< Updated upstream
-      value: -0
-=======
       value: 0
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7609798859454043027, guid: 56b46c34ef857e14d9f9d2174eaebda3, type: 3}
       propertyPath: m_LocalPosition.z
