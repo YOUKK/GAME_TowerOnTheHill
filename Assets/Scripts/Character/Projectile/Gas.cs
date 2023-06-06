@@ -18,7 +18,7 @@ public class Gas : MonoBehaviour
     {
         if(collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
+            collision.gameObject.GetComponent<Monster>().Hit(mainCharacter.Strength);
         }
     }
 }
