@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee68a7c09cc0b6e43b3ac3e969b5cefe, type: 3}
-  m_Name: PeaShooter
+  m_Name: SunFlower
   m_EditorClassIdentifier: 
   coolTime: 1
-  projectileSpeed: 1.5
-  attackDelay: 2
+  projectileSpeed: 1
+  attackDelay: 4
   pAttackDelay: 0
-  projectileNum: 1
-  range: 8
-  strength: 10
+  projectileNum: 0
+  range: 0
+  strength: 0
   healthPoint: 50
-  attackDuration: 3
+  attackDuration: 10
   type: 0
