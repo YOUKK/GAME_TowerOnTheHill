@@ -135,11 +135,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
-  coolTime: 1
-  projectileSpeed: 1
-  attackDelay: 1
-  pAttackDelay: 0
-  projectileNum: 1
-  range: 1
-  strength: 1
-  healthPoint: 1
+  status: {fileID: 11400000, guid: a86e82c5b11743b42874ac9244683444, type: 2}
