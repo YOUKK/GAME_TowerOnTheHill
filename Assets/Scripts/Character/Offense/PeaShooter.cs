@@ -8,17 +8,17 @@ public class PeaShooter : Character
     protected override void Start()
     {
         base.Start();
-        //¼ÒÈ¯ ÄðÅ¸ÀÓ 2ÃÊ
+        //ï¿½ï¿½È¯ ï¿½ï¿½Å¸ï¿½ï¿½ 2ï¿½ï¿½
         CoolTime = 2f;
-        //°ø°Ý·Â 1 (º¯ÇÔ ¾øÀ½)
-        //Ã¼·Â 3
+        //ï¿½ï¿½Ý·ï¿½ 1 (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
+        //Ã¼ï¿½ï¿½ 3
         HealthPoint = 50f;
-        //Åõ»çÃ¼ ¼Óµµ 3 
+        //ï¿½ï¿½ï¿½Ã¼ ï¿½Óµï¿½ 3 
         ProjectileSpeed = 3f;
-        //°ø°Ý ¼Óµµ  2 
+        //ï¿½ï¿½ï¿½ ï¿½Óµï¿½  2 
         AttackDelay = 2f;
-        //Åõ»çÃ¼ °³¼ö 1 (º¯ÇÔ ¾øÀ½)
-        //»ç°Å¸® 10 (ÃÖ´ë »ç°Å¸®)
+        //ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ 1 (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
+        //ï¿½ï¿½Å¸ï¿½ 10 (ï¿½Ö´ï¿½ ï¿½ï¿½Å¸ï¿½)
         Range = 10f;
         attackDuration = 2f;
         Strength = 10.0f;
@@ -26,18 +26,16 @@ public class PeaShooter : Character
 
     public override void Attack()
     {
-        projectile = projectiles.Dequeue();
-        projectiles.Enqueue(projectile);
-        activatedProj.Enqueue(projectile);
-        projectile.SetActive(true);
+        if (!IsDragged && CheckMonster)
+        {
+            projectile = projectiles.Dequeue();
+            projectiles.Enqueue(projectile);
+            activatedProj.Enqueue(projectile);
+            projectile.SetActive(true);
 
-<<<<<<< Updated upstream
-        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
-        Invoke("Duration", AttackDuration);
-=======
-        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(projectileSpeed, 0) * 100);
-        Invoke("Duration", attackDuration);
->>>>>>> Stashed changes
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
+            Invoke("Duration", AttackDuration);
+        }
     }
     void Duration()
     {

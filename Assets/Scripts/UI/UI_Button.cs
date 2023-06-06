@@ -63,11 +63,31 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     void Update()
     {
+        /*
         if (_pressed)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
             if (dragCharacter != null)
+            {
                 dragCharacter.transform.position = mousePosition;
+            }
+        }
+        */
+        if (_pressed)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
+            if (dragCharacter != null)
+            {
+                dragCharacter.GetComponent<Character>().IsDragged = true;
+                dragCharacter.transform.position = mousePosition;
+            }
+        }
+        else
+        {
+            if (dragCharacter != null)
+            {
+                dragCharacter.GetComponent<Character>().IsDragged = false;
+            }
         }
 
         if(menuCanvas.GetResource() >= price)
