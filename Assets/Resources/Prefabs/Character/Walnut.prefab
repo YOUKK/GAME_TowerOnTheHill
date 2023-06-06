@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 629637003376261272}
   - component: {fileID: 3841452663116219617}
   - component: {fileID: 3022531639716937434}
+  - component: {fileID: 3121677979430418894}
   m_Layer: 0
   m_Name: Walnut
   m_TagString: Character
@@ -261,7 +262,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2928908297297215798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7767ab0c2f02f3b4cb0b8ad4f2668db6, type: 3}
+  m_Script: {fileID: 11500000, guid: 1188b3c1a3e830f4b8adabad81878f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &7075407059237614914
