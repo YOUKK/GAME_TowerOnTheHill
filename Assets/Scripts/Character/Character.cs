@@ -19,19 +19,24 @@ public class Character : MonoBehaviour
     protected float attackDelay;
     protected int pAttackDelay;
     protected int projectileNum;
-    protected int range;
+    protected float range;
     protected int strength;
     protected int healthPoint;
     protected int attackDuration;
+
+    private bool isDragged = false;
+    private bool checkMonster = false;
     
-    public int CoolTime           { get => coolTime; set => coolTime = value; }
-    public int Strength           { get => strength; set => strength = value; }
-    public int HealthPoint        { get => healthPoint; set => healthPoint = value; }
+    public int CoolTime             { get => coolTime; set => coolTime = value; }
+    public int Strength             { get => strength; set => strength = value; }
+    public int HealthPoint          { get => healthPoint; set => healthPoint = value; }
     public float ProjectileSpeed    { get => projectileSpeed; set => projectileSpeed = value; }
     public float AttackDelay        { get => attackDelay; set => attackDelay = value; }
-    public int ProjectileNum      { get => projectileNum; set => projectileNum = value; }
-    public int Range              { get => range; set => range = value; }
-    public int AttackDuration     { get => attackDuration; set => attackDuration = value; }
+    public int ProjectileNum        { get => projectileNum; set => projectileNum = value; }
+    public float Range              { get => range; set => range = value; }
+    public int AttackDuration       { get => attackDuration; set => attackDuration = value; }
+    public bool IsDragged           { get => isDragged; set => isDragged = value; }
+    public bool CheckMonster        { get => checkMonster; set => checkMonster = value; }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -41,10 +46,11 @@ public class Character : MonoBehaviour
         attackDelay     = status.attackDelay    ;
         pAttackDelay    = status.pAttackDelay   ;
         projectileNum   = status.projectileNum  ;
-        range           = status.range          ;
+        range           = status.range          * 1.3f;
         strength        = status.strength       ;
         healthPoint     = status.healthPoint    ;
         attackDuration  = status.attackDuration ;
+
         if (AttackCoroutine == null)
         {
             AttackCoroutine = AttackCoolTime();
@@ -52,9 +58,9 @@ public class Character : MonoBehaviour
         }
         if (projectile == null)
         {
-            for (int i = 0; i < gameObject.transform.childCount; i++)
+            for (int i = 0; i < gameObject.transform.GetChild(0).childCount; i++)
             {
-                projectiles.Enqueue(gameObject.transform.GetChild(i).gameObject);
+                projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
             }
         }
     }

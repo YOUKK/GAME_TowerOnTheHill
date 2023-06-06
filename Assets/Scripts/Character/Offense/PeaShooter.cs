@@ -12,13 +12,16 @@ public class PeaShooter : Character
 
     public override void Attack()
     {
-        projectile = projectiles.Dequeue();
-        projectiles.Enqueue(projectile);
-        activatedProj.Enqueue(projectile);
-        projectile.SetActive(true);
+        if (!IsDragged && CheckMonster)
+        {
+            projectile = projectiles.Dequeue();
+            projectiles.Enqueue(projectile);
+            activatedProj.Enqueue(projectile);
+            projectile.SetActive(true);
 
-        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
-        Invoke("Duration", AttackDuration);
+            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
+            Invoke("Duration", AttackDuration);
+        }
     }
     void Duration()
     {
