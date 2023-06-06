@@ -11,7 +11,7 @@ public class MonsterCheck : MonoBehaviour
         mainCharacter = transform.GetComponentInParent<Character>();
         transform.position = new Vector2(transform.position.x + ((1 + mainCharacter.Range) / 2),
                                          transform.position.y);
-        transform.localScale = new Vector2(mainCharacter.Range, transform.localScale.y);
+        transform.localScale = new Vector2(mainCharacter.Range, transform.localScale.y / 2);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
