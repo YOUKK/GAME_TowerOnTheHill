@@ -13,21 +13,38 @@ public class Character : MonoBehaviour
     protected Queue<GameObject> activatedProj = new Queue<GameObject>();
 
     IEnumerator AttackCoroutine = null;
-    /*
-    protected int attackDuration  = 10;       // 공격 유지 시간 100초
-    */
-    public int CoolTime           { get => status.coolTime; set => status.coolTime = value; }
-    public int Strength           { get => status.strength; set => status.strength = value; }
-    public int HealthPoint        { get => status.healthPoint; set => status.healthPoint = value; }
-    public float ProjectileSpeed    { get => status.projectileSpeed; set => status.projectileSpeed = value; }
-    public float AttackDelay        { get => status.attackDelay; set => status.attackDelay = value; }
-    public int ProjectileNum      { get => status.projectileNum; set => status.projectileNum = value; }
-    public int Range              { get => status.range; set => status.range = value; }
-    public int AttackDuration     { get => status.attackDuration; set => status.attackDuration = value; }
+
+    protected int coolTime;
+    protected float projectileSpeed;
+    protected float attackDelay;
+    protected int pAttackDelay;
+    protected int projectileNum;
+    protected int range;
+    protected int strength;
+    protected int healthPoint;
+    protected int attackDuration;
+    
+    public int CoolTime           { get => coolTime; set => coolTime = value; }
+    public int Strength           { get => strength; set => strength = value; }
+    public int HealthPoint        { get => healthPoint; set => healthPoint = value; }
+    public float ProjectileSpeed    { get => projectileSpeed; set => projectileSpeed = value; }
+    public float AttackDelay        { get => attackDelay; set => attackDelay = value; }
+    public int ProjectileNum      { get => projectileNum; set => projectileNum = value; }
+    public int Range              { get => range; set => range = value; }
+    public int AttackDuration     { get => attackDuration; set => attackDuration = value; }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        coolTime        = status.coolTime       ;
+        projectileSpeed = status.projectileSpeed;
+        attackDelay     = status.attackDelay    ;
+        pAttackDelay    = status.pAttackDelay   ;
+        projectileNum   = status.projectileNum  ;
+        range           = status.range          ;
+        strength        = status.strength       ;
+        healthPoint     = status.healthPoint    ;
+        attackDuration  = status.attackDuration ;
         if (AttackCoroutine == null)
         {
             AttackCoroutine = AttackCoolTime();
