@@ -23,7 +23,7 @@ public class AerialMonster : Monster
         base.Move();
     }
 
-    IEnumerator AttackCoroutine()
+    protected override IEnumerator AttackCoroutine()
     {
         Attack();
         yield return new WaitForSeconds(status.hitSpeed);

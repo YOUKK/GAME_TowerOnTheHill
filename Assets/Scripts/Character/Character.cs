@@ -12,27 +12,9 @@ public class Character : MonoBehaviour
     protected Queue<GameObject> projectiles = new Queue<GameObject>();
     protected Queue<GameObject> activatedProj = new Queue<GameObject>();
 
-    /*
-    [SerializeField]
-    protected int coolTime = 1;                //¼ÒÈ¯ ÄðÅ¸ÀÓ
-    [SerializeField]
-    protected int projectileSpeed = 1;         //Åõ»çÃ¼ ¼Óµµ
-    [SerializeField]
-    protected int attackDelay = 1;             //°ø°Ý ¼Óµµ
-    [SerializeField]
-    protected int pAttackDelay = 0;            //°ø°Ý ¼Óµµ ÃÊ±âÈ­ º¯¼ö
-    [SerializeField]
-    protected int projectileNum = 1;           //Åõ»çÃ¼ °³¼ö
-    [SerializeField]
-    protected int range = 1;                   //Åõ»çÃ¼ °Å¸®
-    [SerializeField]
-    protected int strength = 1;                //°ø°Ý·Â
-    [SerializeField]
-    protected int healthPoint = 1;             //Ã¼·Â
-    */
     IEnumerator AttackCoroutine = null;
     /*
-    protected int attackDuration  = 10;       // °ø°Ý À¯Áö ½Ã°£ 100ÃÊ
+    protected int attackDuration  = 10;       // ê³µê²© ìœ ì§€ ì‹œê°„ 100ì´ˆ
     */
     public int CoolTime           { get => status.coolTime; set => status.coolTime = value; }
     public int Strength           { get => status.strength; set => status.strength = value; }

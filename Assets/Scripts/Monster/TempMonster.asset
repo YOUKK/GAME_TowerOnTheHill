@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Temp
   hp: 100
-  speed: 1
+  speed: 0.5
   force: 10
   hitSpeed: 1
   attackDistance: 1
