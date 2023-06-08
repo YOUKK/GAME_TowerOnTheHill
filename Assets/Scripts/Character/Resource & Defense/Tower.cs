@@ -22,10 +22,23 @@ public class Tower : Character
         }
     }
 
+    public void Hit(int damage)
+    {
+        if(status.healthPoint - damage <= 0)
+        {
+            // 해당 라인 즉사기 공격
+            Destroy(gameObject);
+        }
+        else
+        {
+            
+        }
+    }
+
     IEnumerator CreateResourceCoroutine()
     {
-        yield return new WaitForSeconds(createResourceTime);
         CreateResource();
+        yield return new WaitForSeconds(createResourceTime);
         isCreating = false;
     }
 
@@ -46,6 +59,13 @@ public class Tower : Character
         activatedProj.Peek().transform.position = gameObject.transform.position;
         GameObject T = activatedProj.Dequeue();
         T.SetActive(false);
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        Attack();
+        yield return new WaitForSeconds(0f);
+        
     }
     
     public override void Attack()
