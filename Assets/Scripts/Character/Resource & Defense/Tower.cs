@@ -5,9 +5,17 @@ using UnityEngine;
 public class Tower : Character
 {
     [SerializeField]
+    private Tower_Attacker attacker;
+
+    [SerializeField]
     private int     createResourceTime = 1;
     private bool    isCreating = false;
-    private bool    isDamaged = false;
+    private bool    isAttacking = false;
+
+    protected override void Start()
+    {
+        base.Start();
+    }
 
     void Update()
     {
@@ -16,22 +24,10 @@ public class Tower : Character
             isCreating = true;
             StartCoroutine(CreateResourceCoroutine());
         }
-        if(isDamaged)
+        if (attacker.monsterCount > 0 && !isAttacking)
         {
-            
-        }
-    }
-
-    public void Hit(int damage)
-    {
-        if(status.healthPoint - damage <= 0)
-        {
-            // 해당 라인 즉사기 공격
-            Destroy(gameObject);
-        }
-        else
-        {
-            
+            isAttacking = true;
+            StartCoroutine(AttackCoroutine());
         }
     }
 
@@ -63,13 +59,38 @@ public class Tower : Character
 
     IEnumerator AttackCoroutine()
     {
+        Debug.Log("Tower Attack animation called"); // Attack Animation
+        yield return new WaitForSeconds(status.attackDelay);
         Attack();
-        yield return new WaitForSeconds(0f);
-        
+        isAttacking = false;
     }
-    
+
+    // 공격 방식 : Tower_Attack 클래스의 콜라이더에 몬스터가 카운트 되면 공격 시작, 없으면 공격 중단.
     public override void Attack()
     {
-        
+        List<GameObject> currentMonsterList = attacker.MonsterList;
+        foreach (var item in currentMonsterList)
+        {
+            Debug.Log($"Tower --> {item.name} HIT");
+            item.GetComponent<Monster>().Hit(status.strength);
+        }
+    }
+    //attacker의 tirgger에서 몬스터를 받음(list), triggerExit에서 list를 갱신하며 없는 애를 지움
+    // attacker의 list를 tower에서 받아와서 attack할 때 사용.
+
+    // 새로운 사실 : OnTriggerExit은 탐지된 물체가 빠져나가는 것 뿐만 아니라 Destroy되어도 호출된다.
+    
+
+    public override void Hit(int damage)
+    {
+        if (healthPoint - damage <= 0)
+        {
+            // 해당 라인 즉사기 공격
+            Destroy(gameObject);
+        }
+        else
+        {
+            healthPoint -= damage;
+        }
     }
 }

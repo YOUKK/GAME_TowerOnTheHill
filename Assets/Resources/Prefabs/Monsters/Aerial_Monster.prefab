@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4886612449991451530}
   - component: {fileID: 4886612449991451531}
   - component: {fileID: 4886612449991451532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Aerial_Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4886612450269414756}
   - component: {fileID: 4886612450269414755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 9044934717683362576}
   - component: {fileID: 9044934717683362583}
   - component: {fileID: 9044934717683362581}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MonsterBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}

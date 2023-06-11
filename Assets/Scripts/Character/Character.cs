@@ -66,13 +66,33 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        if(HealthPoint <= 0)
+        /*if(HealthPoint <= 0)
         {
             Debug.Log("Stop Attack Coroutine");
             StopCoroutine(AttackCoroutine);
             Destroy(gameObject);
+        }*/
+    }
+
+    public virtual void Hit(int damage)
+    {
+        if(healthPoint <= 0)
+        {
+            Dead();
+        }
+        else
+        {
+            healthPoint -= damage;
         }
     }
+
+    protected void Dead()
+    {
+        Debug.Log("Stop Attack Coroutine");
+        StopCoroutine(AttackCoroutine);
+        Destroy(gameObject);
+    }
+
     public virtual void Attack(){ }
 
     IEnumerator AttackCoolTime()
