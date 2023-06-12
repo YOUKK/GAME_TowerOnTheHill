@@ -14,7 +14,23 @@ public class Tower : Character
 
     protected override void Start()
     {
-        base.Start();
+        coolTime = status.coolTime;
+        projectileSpeed = status.projectileSpeed;
+        attackDelay = status.attackDelay;
+        pAttackDelay = status.pAttackDelay;
+        projectileNum = status.projectileNum;
+        range = status.range * 1.3f;
+        strength = status.strength;
+        healthPoint = status.healthPoint;
+        attackDuration = status.attackDuration;
+
+        if (projectile == null)
+        {
+            for (int i = 0; i < gameObject.transform.GetChild(0).childCount; i++)
+            {
+                projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
+            }
+        }
     }
 
     void Update()
@@ -68,7 +84,8 @@ public class Tower : Character
     // 공격 방식 : Tower_Attack 클래스의 콜라이더에 몬스터가 카운트 되면 공격 시작, 없으면 공격 중단.
     public override void Attack()
     {
-        List<GameObject> currentMonsterList = attacker.MonsterList;
+        Debug.Log("Tower : Attack() start");
+        GameObject[] currentMonsterList = attacker.MonsterList.ToArray();
         foreach (var item in currentMonsterList)
         {
             Debug.Log($"Tower --> {item.name} HIT");
