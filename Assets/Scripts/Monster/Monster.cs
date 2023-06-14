@@ -36,7 +36,7 @@ public abstract class Monster : MonoBehaviour
     {
         Character targetCharacter = target.gameObject.GetComponent<Character>();
         if (targetCharacter != null)
-            targetCharacter.HealthPoint -= status.force;
+            targetCharacter.Hit(status.force);
         else Debug.Log("target doesn't have Character");
     }
 
@@ -60,7 +60,7 @@ public abstract class Monster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"{collision.transform.name}");
+        //Debug.Log($"{collision.transform.name}");
         if (collision.transform.CompareTag("Character"))
             if (transform.position.x - collision.transform.position.x > status.attackDistance)
                 target = collision.transform;
