@@ -10,6 +10,7 @@ public abstract class Monster : MonoBehaviour
     protected Transform     target;
     protected int           currentLine;
     protected bool          isAttack;
+    protected bool          isDead;
     // 랜덤 머니 관련 변수 추가
 
     [SerializeField]
@@ -19,6 +20,9 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Start()
     {
+        isAttack = false;
+        isDead = false;
+
         anim = GetComponent<Animator>();
         if (anim == null) anim = GetComponentInChildren<Animator>();
 
