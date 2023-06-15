@@ -46,7 +46,7 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual IEnumerator AttackCoroutine()
     {
-        Attack();
+        //Attack();
         yield return new WaitForSeconds(status.hitSpeed);
         isAttack = false;
     }
