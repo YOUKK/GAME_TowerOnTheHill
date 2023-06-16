@@ -9,6 +9,7 @@ public abstract class Monster : MonoBehaviour
     protected Animator      anim;
     protected Transform     target;
     protected int           currentLine;
+    protected bool          isTargetIn;
     protected bool          isAttack;
     protected bool          isDead;
     // 랜덤 머니 관련 변수 추가
@@ -20,6 +21,7 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Start()
     {
+        isTargetIn = false;
         isAttack = false;
         isDead = false;
 
@@ -66,7 +68,12 @@ public abstract class Monster : MonoBehaviour
     {
         //Debug.Log($"{collision.transform.name}");
         if (collision.transform.CompareTag("Character"))
+        {
             if (transform.position.x - collision.transform.position.x > status.attackDistance)
+            {
                 target = collision.transform;
+                isTargetIn = true;
+            }
+        }
     }
 }
