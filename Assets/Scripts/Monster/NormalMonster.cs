@@ -6,6 +6,23 @@ public class NormalMonster : Monster
 {
     void Update()
     {
+        switch (movementState)
+        {
+            case MovementState.IDLE:
+                break;
+            case MovementState.WALK:
+                {
+                    Move();
+                    break;
+                }
+            case MovementState.ATTAC K:
+                break;
+            case MovementState.DEAD:
+                break;
+            default:
+                break;
+        }
+
         // isTargetIn을 사용해 상태 추가하기
         if (target == null)
         {

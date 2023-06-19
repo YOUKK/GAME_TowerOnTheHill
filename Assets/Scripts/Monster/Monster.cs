@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MovementState
+{
+    IDLE, WALK, ATTACK, DEAD,
+}
+
 public abstract class Monster : MonoBehaviour
 {
     [SerializeField]
@@ -12,6 +17,7 @@ public abstract class Monster : MonoBehaviour
     protected bool          isTargetIn;
     protected bool          isAttack;
     protected bool          isDead;
+    protected MovementState movementState;  
     // 랜덤 머니 관련 변수 추가
 
     [SerializeField]
@@ -24,6 +30,7 @@ public abstract class Monster : MonoBehaviour
         isTargetIn = false;
         isAttack = false;
         isDead = false;
+        movementState = MovementState.WALK;
 
         anim = GetComponent<Animator>();
         if (anim == null) anim = GetComponentInChildren<Animator>();
