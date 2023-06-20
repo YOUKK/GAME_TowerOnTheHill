@@ -4,52 +4,10 @@ using UnityEngine;
 
 public class NormalMonster : Monster
 {
-    void Update()
-    {
-        switch (movementState)
-        {
-            case MovementState.IDLE:
-                break;
-            case MovementState.WALK:
-                {
-                    Move();
-                    break;
-                }
-            case MovementState.ATTAC K:
-                break;
-            case MovementState.DEAD:
-                break;
-            default:
-                break;
-        }
-
-        // isTargetIn을 사용해 상태 추가하기
-        if (target == null)
-        {
-            isTargetIn = false;
-            Move();
-        }
-        else
-        {
-            if (!isAttack)
-            {
-                isAttack = true;
-                StartCoroutine(AttackCoroutine());
-            }
-        }
-        anim.SetBool("isAttack", isAttack);
-    }
-
     protected override void Move()
     {
         base.Move();
     }
-    /*protected override IEnumerator AttackCoroutine()
-    {
-        Attack();
-        yield return new WaitForSeconds(status.hitSpeed);
-        isAttack = false;
-    }*/
     
     protected override void Attack()
     {

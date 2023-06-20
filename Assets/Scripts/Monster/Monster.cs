@@ -15,9 +15,9 @@ public abstract class Monster : MonoBehaviour
     protected Transform     target;
     protected int           currentLine;
     protected bool          isTargetIn;
-    protected bool          isAttack;
+    protected bool          attackable;
     protected bool          isDead;
-    protected MovementState movementState;  
+    protected MovementState movementState;
     // 랜덤 머니 관련 변수 추가
 
     [SerializeField]
@@ -28,7 +28,7 @@ public abstract class Monster : MonoBehaviour
     protected virtual void Start()
     {
         isTargetIn = false;
-        isAttack = false;
+        attackable = false;
         isDead = false;
         movementState = MovementState.WALK;
 
@@ -37,6 +37,40 @@ public abstract class Monster : MonoBehaviour
 
         currentHP = status.hp;
         currentSpeed = status.speed;
+    }
+
+    void Update()
+    {
+        switch (movementState)
+        {
+            case MovementState.IDLE:
+                {
+                    // 몬스터 동작 상태 코드 수정함.
+                    // 이걸 반영해서 에니메이션의 파라미터 새로 바꾸고 적용해야 함.
+
+                    break;
+                }
+            case MovementState.WALK:
+                {
+                    Move();
+                    break;
+                }
+            case MovementState.ATTACK:
+                {
+                    break;
+                }
+            case MovementState.DEAD:
+                {
+                    break;
+                }
+            default:
+                break;
+        }
+
+        if (target == null)
+        {
+            
+        }
     }
 
     protected virtual void Move()
@@ -51,13 +85,16 @@ public abstract class Monster : MonoBehaviour
         if (targetCharacter != null)
             targetCharacter.Hit(status.force);
         else Debug.Log("target doesn't have Character");
+
+        StartCoroutine(AttackCoolCoroutine());
     }
 
-    protected virtual IEnumerator AttackCoroutine()
+    protected virtual IEnumerator AttackCoolCoroutine()
     {
-        //Attack();
+        movementState = MovementState.IDLE;
         yield return new WaitForSeconds(status.hitSpeed);
-        isAttack = false;
+        if (target == null) movementState = MovementState.WALK;
+        else movementState = MovementState.ATTACK;
     }
 
     protected virtual void Dead()
@@ -68,7 +105,7 @@ public abstract class Monster : MonoBehaviour
     public void Hit(int damage)
     {
         if (currentHP - damage > 0) currentHP -= damage;
-        else Dead();
+        else Dead(); // 제안 : Dead 함수는 에니메이션 이벤트로 호출하고, state를 DEAD로 바꾸고 에니메이션을 실행시키자.
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -79,6 +116,7 @@ public abstract class Monster : MonoBehaviour
             if (transform.position.x - collision.transform.position.x > status.attackDistance)
             {
                 target = collision.transform;
+                movementState = MovementState.ATTACK;
                 isTargetIn = true;
             }
         }
