@@ -45,9 +45,7 @@ public abstract class Monster : MonoBehaviour
         {
             case MovementState.IDLE:
                 {
-                    // 몬스터 동작 상태 코드 수정함.
-                    // 이걸 반영해서 에니메이션의 파라미터 새로 바꾸고 적용해야 함.
-
+                    anim.SetBool("isTargetIn", true);
                     break;
                 }
             case MovementState.WALK:
@@ -57,19 +55,16 @@ public abstract class Monster : MonoBehaviour
                 }
             case MovementState.ATTACK:
                 {
+                    anim.SetTrigger("attackTrigger");
                     break;
                 }
             case MovementState.DEAD:
                 {
+                    Dead();
                     break;
                 }
             default:
                 break;
-        }
-
-        if (target == null)
-        {
-            
         }
     }
 
@@ -91,14 +86,20 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual IEnumerator AttackCoolCoroutine()
     {
+        // 문제 : 예상대로는 idle 상태에 진입하면 cool time동안 대기 후 if문에 따라 다음 상태가 실행되는데, 그게 안됌.
+        // idle 끝나면 바로 공격 실행함.
         movementState = MovementState.IDLE;
         yield return new WaitForSeconds(status.hitSpeed);
-        if (target == null) movementState = MovementState.WALK;
+        if (target == null) {
+            anim.SetBool("isTargetIn", false); 
+            movementState = MovementState.WALK;
+        }
         else movementState = MovementState.ATTACK;
     }
 
     protected virtual void Dead()
     {
+        anim.SetBool("isDead", true);
         Destroy(gameObject);
     }
 
@@ -116,8 +117,8 @@ public abstract class Monster : MonoBehaviour
             if (transform.position.x - collision.transform.position.x > status.attackDistance)
             {
                 target = collision.transform;
+                anim.SetBool("isTargetIn", true);
                 movementState = MovementState.ATTACK;
-                isTargetIn = true;
             }
         }
     }
