@@ -9,13 +9,13 @@ public class AerialMonster : Monster
         if (target == null) Move();
         else
         {
-            if (!attackable)
+            if (!isAttacking)
             {
-                attackable = true;
+                isAttacking = true;
                 StartCoroutine(AttackCoolCoroutine());
             }
         }
-        anim.SetBool("isAttack", attackable);
+        anim.SetBool("isAttack", isAttacking);
     }
 
     protected override void Move()
@@ -27,7 +27,7 @@ public class AerialMonster : Monster
     {
         Attack();
         yield return new WaitForSeconds(status.hitSpeed);
-        attackable = false;
+        isAttacking = false;
     }
 
     protected override void Attack()

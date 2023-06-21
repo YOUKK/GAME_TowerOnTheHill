@@ -14,10 +14,8 @@ public abstract class Monster : MonoBehaviour
     protected Animator      anim;
     protected Transform     target;
     protected int           currentLine;
-    protected bool          isTargetIn;
-    protected bool          attackable;
+    protected bool          isAttacking;
     protected bool          isDead;
-    protected MovementState movementState;
     // 랜덤 머니 관련 변수 추가
 
     [SerializeField]
@@ -27,10 +25,8 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Start()
     {
-        isTargetIn = false;
-        attackable = false;
+        isAttacking = false;
         isDead = false;
-        movementState = MovementState.WALK;
 
         anim = GetComponent<Animator>();
         if (anim == null) anim = GetComponentInChildren<Animator>();
@@ -41,30 +37,19 @@ public abstract class Monster : MonoBehaviour
 
     void Update()
     {
-        switch (movementState)
+        if (target == null)
         {
-            case MovementState.IDLE:
-                {
-                    anim.SetBool("isTargetIn", true);
-                    break;
-                }
-            case MovementState.WALK:
-                {
-                    Move();
-                    break;
-                }
-            case MovementState.ATTACK:
-                {
-                    anim.SetTrigger("attackTrigger");
-                    break;
-                }
-            case MovementState.DEAD:
-                {
-                    Dead();
-                    break;
-                }
-            default:
-                break;
+            Move();
+            anim.SetBool("isTargetIn", false);
+        }
+        else
+        {
+            anim.SetBool("isTargetIn", true);
+            if (!isAttacking)
+            {
+                anim.SetTrigger("attackTrigger");
+                isAttacking = true;
+            }
         }
     }
 
@@ -88,13 +73,8 @@ public abstract class Monster : MonoBehaviour
     {
         // 문제 : 예상대로는 idle 상태에 진입하면 cool time동안 대기 후 if문에 따라 다음 상태가 실행되는데, 그게 안됌.
         // idle 끝나면 바로 공격 실행함.
-        movementState = MovementState.IDLE;
         yield return new WaitForSeconds(status.hitSpeed);
-        if (target == null) {
-            anim.SetBool("isTargetIn", false); 
-            movementState = MovementState.WALK;
-        }
-        else movementState = MovementState.ATTACK;
+        isAttacking = false;
     }
 
     protected virtual void Dead()
@@ -111,14 +91,11 @@ public abstract class Monster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log($"{collision.transform.name}");
         if (collision.transform.CompareTag("Character"))
         {
             if (transform.position.x - collision.transform.position.x > status.attackDistance)
             {
                 target = collision.transform;
-                anim.SetBool("isTargetIn", true);
-                movementState = MovementState.ATTACK;
             }
         }
     }

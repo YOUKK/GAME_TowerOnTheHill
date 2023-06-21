@@ -26,13 +26,13 @@ public class SmartMonster : Monster
         if (target == null) Move();
         else
         {
-            if (!attackable)
+            if (!isAttacking)
             {
-                attackable = true;
+                isAttacking = true;
                 StartCoroutine(AttackCoolCoroutine());
             }
         }
-        anim.SetBool("isAttack", attackable);
+        anim.SetBool("isAttack", isAttacking);
     }
 
     IEnumerator ChangeLineCoroutine()
@@ -40,8 +40,8 @@ public class SmartMonster : Monster
         Debug.Log("ChangeLineCoroutine start");
         yield return new WaitForSeconds(lineChangeTime);
         
-        if (attackable) {
-            attackable = false;
+        if (isAttacking) {
+            isAttacking = false;
             StopCoroutine(AttackCoolCoroutine());
         }
 
@@ -81,7 +81,7 @@ public class SmartMonster : Monster
     {
         Attack();
         yield return new WaitForSeconds(status.hitSpeed);
-        attackable = false;
+        isAttacking = false;
     }
 
     protected override void Dead()
