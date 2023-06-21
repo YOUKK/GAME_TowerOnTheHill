@@ -59,7 +59,7 @@ public abstract class Monster : MonoBehaviour
             transform.position.y, transform.position.z);
     }
 
-    protected virtual void Attack()
+    protected virtual void Attack() // Animation의 Event에 의해 실행됨.
     {
         Character targetCharacter = target.gameObject.GetComponent<Character>();
         if (targetCharacter != null)
@@ -71,22 +71,19 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual IEnumerator AttackCoolCoroutine()
     {
-        // 문제 : 예상대로는 idle 상태에 진입하면 cool time동안 대기 후 if문에 따라 다음 상태가 실행되는데, 그게 안됌.
-        // idle 끝나면 바로 공격 실행함.
         yield return new WaitForSeconds(status.hitSpeed);
         isAttacking = false;
     }
 
-    protected virtual void Dead()
+    protected virtual void Dead() // Animation의 Event에 의해 실행됨.
     {
-        anim.SetBool("isDead", true);
         Destroy(gameObject);
     }
 
     public void Hit(int damage)
     {
         if (currentHP - damage > 0) currentHP -= damage;
-        else Dead(); // 제안 : Dead 함수는 에니메이션 이벤트로 호출하고, state를 DEAD로 바꾸고 에니메이션을 실행시키자.
+        else anim.SetBool("isDead", true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
