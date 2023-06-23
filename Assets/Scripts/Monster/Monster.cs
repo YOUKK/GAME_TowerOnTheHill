@@ -37,7 +37,7 @@ public abstract class Monster : MonoBehaviour
 
     void Update()
     {
-        if (target == null)
+        if (target == null && !isDead)
         {
             Move();
             anim.SetBool("isTargetIn", false);
@@ -83,7 +83,7 @@ public abstract class Monster : MonoBehaviour
     public void Hit(int damage)
     {
         if (currentHP - damage > 0) currentHP -= damage;
-        else anim.SetBool("isDead", true);
+        else { anim.SetBool("isDead", true); isDead = true; }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

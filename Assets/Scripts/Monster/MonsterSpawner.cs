@@ -33,7 +33,7 @@ public class MonsterSpawner : MonoBehaviour
         {
             Instantiate(currentWave[idx].monsterInfo, 
                 lines[currentWave[idx].line].transform.position, transform.rotation);
-
+            
             ++idx;
         }
     }

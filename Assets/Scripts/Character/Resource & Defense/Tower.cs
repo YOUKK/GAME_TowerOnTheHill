@@ -96,13 +96,21 @@ public class Tower : Character
     // attacker의 list를 tower에서 받아와서 attack할 때 사용.
 
     // 새로운 사실 : OnTriggerExit은 탐지된 물체가 빠져나가는 것 뿐만 아니라 Destroy되어도 호출된다.
-    
+    private void DeadAttack()
+    {
+        RaycastHit2D[] hittedMonster = Physics2D.RaycastAll(transform.position, Vector2.right, 100f, 1 << 8);
+        foreach (var item in hittedMonster)
+        {
+            item.transform.gameObject.GetComponent<Monster>().Hit(1000);
+        }
+    }
 
     public override void Hit(int damage)
     {
         if (healthPoint - damage <= 0)
         {
             // 해당 라인 즉사기 공격
+            DeadAttack();
             Destroy(gameObject);
         }
         else
