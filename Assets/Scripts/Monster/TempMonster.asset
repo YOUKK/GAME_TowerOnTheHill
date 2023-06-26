@@ -16,6 +16,6 @@ MonoBehaviour:
   hp: 100
   speed: 0.5
   force: 10
-  hitSpeed: 1
+  hitSpeed: 3
   attackDistance: 1
   type: 0
