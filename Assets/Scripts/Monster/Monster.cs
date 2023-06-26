@@ -77,6 +77,7 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Dead() // Animation의 Event에 의해 실행됨.
     {
+        GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>().RemoveMonster(gameObject, currentLine);
         Destroy(gameObject);
     }
 
@@ -84,6 +85,11 @@ public abstract class Monster : MonoBehaviour
     {
         if (currentHP - damage > 0) currentHP -= damage;
         else { anim.SetBool("isDead", true); isDead = true; }
+    }
+
+    public void SetLine(int line)
+    {
+        currentLine = line;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
