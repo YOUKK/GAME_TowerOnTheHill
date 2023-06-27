@@ -23,7 +23,7 @@ public class FallingResource : MonoBehaviour
             transform.Translate(Vector3.down * Time.deltaTime); // 내려가기
         else // 리소스가 화면 아래까지 내려오면
         {
-            Debug.Log(time);
+            //Debug.Log(time);
             time += Time.deltaTime;
             if (time > 8f) // 7초 후에 destroy
             {
