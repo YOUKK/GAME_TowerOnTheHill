@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 게임 플레이씬 시작 이후 사용할 타이머
+// 게임 플레이 시작 이후 사용할 타이머
 public class TimeManager
 {
     private bool On = false; // true면 타이머 시작
@@ -28,6 +28,7 @@ public class TimeManager
     public void StartTimer() // 타이머 시작
 	{
         On = true;
+        Debug.Log("타이머 시작");
 	}
 
     public void StopTimer() // 타이머 멈춤(일시정지를 누른 경우)
