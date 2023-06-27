@@ -30,7 +30,7 @@ public class Managers : MonoBehaviour
     {
         Init();
         timeM.InitTimer();
-        timeM.StartTimer();
+        //timeM.StartTimer();
     }
 
     void Update()
