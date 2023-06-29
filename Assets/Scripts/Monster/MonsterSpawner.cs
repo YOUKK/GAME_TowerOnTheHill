@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
+    private static MonsterSpawner instance;
+    public static MonsterSpawner GetInstance { get { Init(); return instance; } }
+
     public int          phase = 1;
     public int          stage = 1;
     public GameObject[] lines = new GameObject[5];
@@ -17,6 +20,8 @@ public class MonsterSpawner : MonoBehaviour
 
     void Start()
     {
+        Init();
+
         if (phase - 1 < 0 || stage - 1 < 0) Debug.LogError("Wrong Phase or Stage number input");
         currentWave = DataManager.monsterWave[phase-1][stage-1].waveArray;
         count = currentWave.Length;
@@ -45,6 +50,21 @@ public class MonsterSpawner : MonoBehaviour
 
             if (obj != null) { monsterList[currentWave[idx].line].AddLast(obj); } // »ðÀÔ
             ++idx;
+        }
+    }
+
+    private static void Init()
+    {
+        if(instance == null)
+        {
+            GameObject go = GameObject.Find("MonsterSpawner");
+            if(go == null)
+            {
+                go = new GameObject("MonsterSpawner");
+                go.AddComponent<MonsterSpawner>();
+            }
+
+            instance = go.GetComponent<MonsterSpawner>();
         }
     }
 

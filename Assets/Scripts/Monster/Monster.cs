@@ -77,7 +77,7 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Dead() // Animation의 Event에 의해 실행됨.
     {
-        GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>().RemoveMonster(gameObject, currentLine);
+        MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
         Destroy(gameObject);
     }
 

@@ -123,7 +123,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   status: {fileID: 11400000, guid: c1843761b93c09c47a9511ce170eee00, type: 2}
   attacker: {fileID: 5043891114440289369}
-  createResourceTime: 1
+  createResourceTime: 5
 --- !u!61 &8054174831963314332
 BoxCollider2D:
   m_ObjectHideFlags: 0
