@@ -22,6 +22,7 @@ public abstract class Monster : MonoBehaviour
     protected int           currentHP;
     [SerializeField]
     protected float         currentSpeed;
+    public int CurrentLine { set => currentLine = value; }
 
     protected virtual void Start()
     {
@@ -85,11 +86,6 @@ public abstract class Monster : MonoBehaviour
     {
         if (currentHP - damage > 0) currentHP -= damage;
         else { anim.SetBool("isDead", true); isDead = true; }
-    }
-
-    public void SetLine(int line)
-    {
-        currentLine = line;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

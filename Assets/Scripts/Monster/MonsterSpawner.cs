@@ -46,7 +46,8 @@ public class MonsterSpawner : MonoBehaviour
             GameObject obj = Instantiate(currentWave[idx].monsterInfo, 
                 lines[currentWave[idx].line].transform.position, transform.rotation);
 
-            obj.GetComponent<Monster>().SetLine(currentWave[idx].line); // 라인 정보 할당
+            obj.GetComponent<Monster>().CurrentLine = currentWave[idx].line; // 라인 정보 할당
+            obj.GetComponent<SpriteRenderer>().sortingOrder = idx;
 
             if (obj != null) { monsterList[currentWave[idx].line].AddLast(obj); } // 삽입
             ++idx;
