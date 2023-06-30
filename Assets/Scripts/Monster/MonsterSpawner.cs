@@ -47,7 +47,8 @@ public class MonsterSpawner : MonoBehaviour
                 lines[currentWave[idx].line].transform.position, transform.rotation);
 
             obj.GetComponent<Monster>().CurrentLine = currentWave[idx].line; // 라인 정보 할당
-            obj.GetComponent<SpriteRenderer>().sortingOrder = idx;
+            obj.GetComponent<SpriteRenderer>().sortingLayerName = $"Line{currentWave[idx].line}";
+            obj.GetComponent<SpriteRenderer>().sortingOrder = idx + 1; // sorting order 0 is for characters
 
             if (obj != null) { monsterList[currentWave[idx].line].AddLast(obj); } // 삽입
             ++idx;

@@ -57,6 +57,18 @@ TagManager:
   - name: Projectile2
     uniqueID: 4249463277
     locked: 0
-  - name: Monster
+  - name: Line4
     uniqueID: 3822976693
+    locked: 0
+  - name: Line3
+    uniqueID: 2928839065
+    locked: 0
+  - name: Line2
+    uniqueID: 123946731
+    locked: 0
+  - name: Line1
+    uniqueID: 2144018253
+    locked: 0
+  - name: Line0
+    uniqueID: 223328553
     locked: 0
