@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6193502405160990734}
   - component: {fileID: 6193502405160990730}
   - component: {fileID: 6193502405160990732}
-  - component: {fileID: 8054174831963314332}
+  - component: {fileID: 1066621689809639148}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Character
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6193502405160990735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4639363893329090697}
   - {fileID: 6016459859546901433}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 941133623
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0, g: 0.17825913, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b6c812097893f0d4c99a62b22e90c729, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &6193502405160990730
 Rigidbody2D:
   serializedVersion: 4
@@ -124,7 +124,7 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: c1843761b93c09c47a9511ce170eee00, type: 2}
   attacker: {fileID: 5043891114440289369}
   createResourceTime: 5
---- !u!61 &8054174831963314332
+--- !u!61 &1066621689809639148
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,18 +137,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.35}
+    oldSize: {x: 2.75, y: 4.75}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.7}
+  m_Size: {x: 2.75, y: 1.7}
   m_EdgeRadius: 0
 --- !u!1 &6312721994528918916
 GameObject:
@@ -195,7 +195,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: -0.15}
+  m_Offset: {x: 1, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -206,7 +206,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.7}
+  m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5043891114440289369
 MonoBehaviour:
