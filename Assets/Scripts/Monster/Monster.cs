@@ -22,6 +22,8 @@ public abstract class Monster : MonoBehaviour
     protected int           currentHP;
     [SerializeField]
     protected float         currentSpeed;
+    [SerializeField]
+    protected int           currentForce; 
     public int CurrentLine { set => currentLine = value; }
 
     protected virtual void Start()
@@ -34,6 +36,7 @@ public abstract class Monster : MonoBehaviour
 
         currentHP = status.hp;
         currentSpeed = status.speed;
+        currentForce = status.force;
     }
 
     void Update()
@@ -64,7 +67,7 @@ public abstract class Monster : MonoBehaviour
     {
         Character targetCharacter = target.gameObject.GetComponent<Character>();
         if (targetCharacter != null)
-            targetCharacter.Hit(status.force);
+            targetCharacter.Hit(currentForce);
         else Debug.Log("target doesn't have Character");
 
         StartCoroutine(AttackCoolCoroutine());
@@ -97,5 +100,18 @@ public abstract class Monster : MonoBehaviour
                 target = collision.transform;
             }
         }
+    }
+
+    public void ChangeStatus(int hp, float speed, int force)
+    {
+        currentHP += hp;
+        currentSpeed += speed;
+        currentForce += force;
+    }
+
+    public void ChangeStatus()
+    {
+        currentSpeed = status.speed;
+        currentForce = status.force;
     }
 }

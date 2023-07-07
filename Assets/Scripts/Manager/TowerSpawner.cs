@@ -14,9 +14,4 @@ public class TowerSpawner : MonoBehaviour
             Map.GetInstance().PutCharacter(new Vector2(0, 4), tower);
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

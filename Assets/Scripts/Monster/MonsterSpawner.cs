@@ -14,6 +14,7 @@ public class MonsterSpawner : MonoBehaviour
     private int           count = 0; // 한 스테이지의 길이(몬스터 생성 수)
     private int           idx = 0;
     private MonsterWave[] currentWave = null;
+    public  float         monsterBuffTime = 0;
 
     [SerializeField]
     private LinkedList<GameObject>[] monsterList = new LinkedList<GameObject>[5];
@@ -74,5 +75,28 @@ public class MonsterSpawner : MonoBehaviour
     {
         if (monsterList[line].Remove(obj))
             Debug.Log("Removed Monster");
+    }
+
+    public void BuffMonsters()
+    {
+        for(int i = 0; i < monsterList.Length; ++i)
+        {
+            foreach (var item in monsterList[i])
+            {
+                item.GetComponent<Monster>().ChangeStatus(10, 0.2f, 500);
+            }
+        }
+        Invoke("NerfMonsters", monsterBuffTime);
+    }
+
+    private void NerfMonsters()
+    {
+        for (int i = 0; i < monsterList.Length; ++i)
+        {
+            foreach (var item in monsterList[i])
+            {
+                item.GetComponent<Monster>().ChangeStatus();
+            }
+        }
     }
 }

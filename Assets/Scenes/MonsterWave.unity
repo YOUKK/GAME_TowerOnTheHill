@@ -1270,6 +1270,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  monsterBuffTime: 5
 --- !u!4 &2065387339
 Transform:
   m_ObjectHideFlags: 0
