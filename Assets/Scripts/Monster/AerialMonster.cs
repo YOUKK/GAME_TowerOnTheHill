@@ -9,13 +9,13 @@ public class AerialMonster : Monster
         if (target == null) Move();
         else
         {
-            if (!isAttack)
+            if (!isAttacking)
             {
-                isAttack = true;
-                StartCoroutine(AttackCoroutine());
+                isAttacking = true;
+                StartCoroutine(AttackCoolCoroutine());
             }
         }
-        anim.SetBool("isAttack", isAttack);
+        anim.SetBool("isAttack", isAttacking);
     }
 
     protected override void Move()
@@ -23,11 +23,11 @@ public class AerialMonster : Monster
         base.Move();
     }
 
-    IEnumerator AttackCoroutine()
+    protected override IEnumerator AttackCoolCoroutine()
     {
         Attack();
         yield return new WaitForSeconds(status.hitSpeed);
-        isAttack = false;
+        isAttacking = false;
     }
 
     protected override void Attack()

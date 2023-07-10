@@ -48,7 +48,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
             if (hit)
             {
-                if (hit.transform.CompareTag("Seat")) // Seatø° ø√∑¡≥ı¿Ω
+                if (hit.transform.CompareTag("Seat")) // Seat¬ø¬° ¬ø√É¬∑√Å¬≥√µ√Ä¬Ω
                 {
                     Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
 
@@ -63,14 +63,35 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     void Update()
     {
+         /*
+         if (_pressed)
+         {
+             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
+             if (dragCharacter != null)
+             {
+                 dragCharacter.transform.position = mousePosition;
+             }
+         }
+         */
+
         if (_pressed)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
             if (dragCharacter != null)
+            {
+                dragCharacter.GetComponent<Character>().IsDragged = true;
                 dragCharacter.transform.position = mousePosition;
+            }
+        }
+        else
+        {
+            if (dragCharacter != null)
+            {
+                dragCharacter.GetComponent<Character>().IsDragged = false;
+            }
         }
 
-        if(menuCanvas.GetResource() >= price)
+        if (menuCanvas.GetResource() >= price)
 		{
             gameObject.GetComponent<Image>().color = new Color(1f, 141/255f, 0, 1f);
             onPrice = true;

@@ -17,7 +17,7 @@ TagManager:
   - UI
   - Character
   - Seat
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -56,4 +56,7 @@ TagManager:
     locked: 0
   - name: Projectile2
     uniqueID: 4249463277
+    locked: 0
+  - name: Monster
+    uniqueID: 3822976693
     locked: 0

@@ -3,38 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
-{ 
+{
     [SerializeField]
     protected GameObject projectile;
+    [SerializeField]
+    protected CharacterStatus status;
+
     protected Queue<GameObject> projectiles = new Queue<GameObject>();
     protected Queue<GameObject> activatedProj = new Queue<GameObject>();
 
-    protected float coolTime = 1.0f;                //소환 쿨타임
-    protected float projectileSpeed = 1.0f;         //투사체 속도
-    protected float attackDelay = 1.0f;             //공격 속도
-    protected float pAttackDelay = 0f;              //공격 속도 초기화 변수
-    protected float projectileNum = 1.0f;           //투사체 개수
-    protected float range = 1.0f;                   //투사체 거리
-    protected float strength = 1.0f;                //공격력
-    [SerializeField]
-    protected float healthPoint = 50f;             //체력
-
     IEnumerator AttackCoroutine = null;
 
-    protected float attackDuration  = 10.0f;       // 공격 유지 시간 100초
+    protected int coolTime;
+    protected float projectileSpeed;
+    protected float attackDelay;
+    protected int pAttackDelay;
+    protected int projectileNum;
+    protected float range;
+    protected int strength;
+    protected int healthPoint;
+    protected int attackDuration;
 
-    public float CoolTime           { get => coolTime; set => coolTime = value; }
-    public float Strength           { get => strength; set => strength = value; }
-    public float HealthPoint        { get => healthPoint; set => healthPoint = value; }
-    public float ProjectileSpeed    { get => projectileSpeed; set => projectileSpeed = value; }
-    public float AttackDelay        { get => attackDelay; set => attackDelay = value; }
-    public float ProjectileNum      { get => projectileNum; set => projectileNum = value; }
-    public float Range              { get => range; set => range = value; }
-    public float AttackDuration     { get => attackDuration; set => attackDuration = value; }
+    private bool isDragged = false;
+    private bool checkMonster = false;
+    public int CoolTime { get => coolTime; set => coolTime = value; }
+    public int Strength { get => strength; set => strength = value; }
+    public int HealthPoint { get => healthPoint; set => healthPoint = value; }
+    public float ProjectileSpeed { get => projectileSpeed; set => projectileSpeed = value; }
+    public float AttackDelay { get => attackDelay; set => attackDelay = value; }
+    public int ProjectileNum { get => projectileNum; set => projectileNum = value; }
+    public float Range { get => range; set => range = value; }
+    public int AttackDuration { get => attackDuration; set => attackDuration = value; }
+    public bool IsDragged { get => isDragged; set => isDragged = value; }
+    public bool CheckMonster { get => checkMonster; set => checkMonster = value; }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        coolTime = status.coolTime;
+        projectileSpeed = status.projectileSpeed;
+        attackDelay = status.attackDelay;
+        pAttackDelay = status.pAttackDelay;
+        projectileNum = status.projectileNum;
+        range = status.range * 1.3f;
+        strength = status.strength;
+        healthPoint = status.healthPoint;
+        attackDuration = status.attackDuration;
+
         if (AttackCoroutine == null)
         {
             AttackCoroutine = AttackCoolTime();
@@ -42,22 +57,42 @@ public class Character : MonoBehaviour
         }
         if (projectile == null)
         {
-            for (int i = 0; i < gameObject.transform.childCount; i++)
+            for (int i = 0; i < gameObject.transform.GetChild(0).childCount; i++)
             {
-                projectiles.Enqueue(gameObject.transform.GetChild(i).gameObject);
+                projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
             }
         }
     }
 
     private void Update()
     {
-        if(HealthPoint <= 0)
+        /*if(HealthPoint <= 0)
         {
             Debug.Log("Stop Attack Coroutine");
             StopCoroutine(AttackCoroutine);
             Destroy(gameObject);
+        }*/
+    }
+
+    public virtual void Hit(int damage)
+    {
+        if(healthPoint <= 0)
+        {
+            Dead();
+        }
+        else
+        {
+            healthPoint -= damage;
         }
     }
+
+    protected void Dead()
+    {
+        Debug.Log("Stop Attack Coroutine");
+        StopCoroutine(AttackCoroutine);
+        Destroy(gameObject);
+    }
+
     public virtual void Attack(){ }
 
     IEnumerator AttackCoolTime()
