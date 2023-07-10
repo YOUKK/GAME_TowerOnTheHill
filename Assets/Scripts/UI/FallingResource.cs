@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// CreateResource.cs에서 랜덤하게 만들어진 리소스가 내려오는 기능
 public class FallingResource : MonoBehaviour
 {
     private Vector3 leftBottomPos;
