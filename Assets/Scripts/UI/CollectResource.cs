@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CollectResource : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class CollectResource : MonoBehaviour
     public int GetResource() { return resource; }
 
     [SerializeField]
-    private Text resourceText;
+    //private Text resourceText;
+    private TMP_Text resourceText;
 
     void Start()
     {
