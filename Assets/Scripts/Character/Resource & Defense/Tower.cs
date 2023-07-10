@@ -6,6 +6,8 @@ public class Tower : Character
 {
     [SerializeField]
     private Tower_Attacker attacker;
+    [SerializeField]
+    private Sprite halfHealthSprite;
 
     [SerializeField]
     private int     createResourceTime = 1;
@@ -117,6 +119,9 @@ public class Tower : Character
         else
         {
             healthPoint -= damage;
+
+            if (healthPoint < status.healthPoint / 2)
+                gameObject.GetComponent<SpriteRenderer>().sprite = halfHealthSprite;
         }
     }
 }
