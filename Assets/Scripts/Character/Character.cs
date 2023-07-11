@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
 
     IEnumerator AttackCoroutine = null;
 
-    protected int coolTime;
+    protected int coolTime;             
     protected float projectileSpeed;
     protected float attackDelay;
     protected int pAttackDelay;
