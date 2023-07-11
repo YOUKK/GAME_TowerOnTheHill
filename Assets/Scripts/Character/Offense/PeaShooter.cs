@@ -14,6 +14,7 @@ public class PeaShooter : Character
     {
         if (!IsDragged && CheckMonster)
         {
+            anim.SetTrigger("canAttack");
             projectile = projectiles.Dequeue();
             projectiles.Enqueue(projectile);
             activatedProj.Enqueue(projectile);

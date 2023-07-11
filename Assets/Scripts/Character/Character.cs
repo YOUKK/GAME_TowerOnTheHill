@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     protected GameObject projectile;
     [SerializeField]
     protected CharacterStatus status;
+    protected Animator anim;
 
     protected Queue<GameObject> projectiles = new Queue<GameObject>();
     protected Queue<GameObject> activatedProj = new Queue<GameObject>();
@@ -17,7 +18,6 @@ public class Character : MonoBehaviour
     protected int coolTime;             
     protected float projectileSpeed;
     protected float attackDelay;
-    protected int pAttackDelay;
     protected int projectileNum;
     protected float range;
     protected int strength;
@@ -40,10 +40,15 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        anim = GetComponent<Animator>();
+        if (anim == null) 
+            anim = GetComponentInChildren<Animator>();
+
+
+
         coolTime = status.coolTime;
         projectileSpeed = status.projectileSpeed;
         attackDelay = status.attackDelay;
-        pAttackDelay = status.pAttackDelay;
         projectileNum = status.projectileNum;
         range = status.range * 1.3f;
         strength = status.strength;
@@ -66,24 +71,25 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        /*if(HealthPoint <= 0)
-        {
-            Debug.Log("Stop Attack Coroutine");
-            StopCoroutine(AttackCoroutine);
-            Destroy(gameObject);
-        }*/
     }
 
     public virtual void Hit(int damage)
     {
         if(healthPoint <= 0)
         {
+            anim.SetBool("isDead", true);
+            Invoke("DeadDelay", 1.0f);
             Dead();
         }
         else
         {
             healthPoint -= damage;
         }
+    }
+
+    void DeadDelay()
+    {
+        Debug.Log("1ÃÊ ´ë±â");
     }
 
     protected void Dead()
