@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 랜덤하게 리소스가 내려오는 기능
+// 랜덤하게 리소스가 만들어지는 기능
 public class CreateResource : MonoBehaviour
 {
     private GameObject resource;
@@ -11,7 +11,7 @@ public class CreateResource : MonoBehaviour
 
     void Start()
     {
-        resource = Resources.Load<GameObject>("Prefabs/Projectile/FallingResource");
+        resource = Resources.Load<GameObject>("Prefabs/Projectile/FallingResource2");
         leftTopPos = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, 10f)); // 왼쪽 위 화면의 좌표
         rightTopPos = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 10f)); // 오른쪽 위 화면의 좌표
 
