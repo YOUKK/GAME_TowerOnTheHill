@@ -19,7 +19,6 @@ public class Tower : Character
         coolTime = status.coolTime;
         projectileSpeed = status.projectileSpeed;
         attackDelay = status.attackDelay;
-        pAttackDelay = status.pAttackDelay;
         projectileNum = status.projectileNum;
         range = status.range * 1.3f;
         strength = status.strength;

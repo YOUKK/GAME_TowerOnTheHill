@@ -10,7 +10,7 @@ public enum CharacterName
     GasMu, // GasMushroom
 }
 
-[CreateAssetMenu(fileName = "Character", menuName = "Character/CharacterStatus")]
+[CreateAssetMenu(fileName = "Character", menuName = "Scripts/Character/CharacterStatus")]
 public class CharacterStatus : ScriptableObject
 {
     public int coolTime = 1;
