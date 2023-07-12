@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MovementState
-{
-    IDLE, WALK, ATTACK, DEAD,
-}
-
 public abstract class Monster : MonoBehaviour
 {
     [SerializeField]
@@ -100,6 +95,11 @@ public abstract class Monster : MonoBehaviour
                 target = collision.transform;
             }
         }
+    }
+
+    public MonsterType GetMonsterType()
+    {
+        return status.type;
     }
 
     public void ChangeStatus(int hp, float speed, int force)
