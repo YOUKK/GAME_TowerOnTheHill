@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// 리소스 획득, 사용과 리소스 수 UI로 보여주는 거 관련 스크립트
 public class CollectResource : MonoBehaviour
 {
     private int resource = 0;
