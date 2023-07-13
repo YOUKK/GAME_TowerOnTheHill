@@ -34,7 +34,7 @@ public abstract class Monster : MonoBehaviour
         currentForce = status.force;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (target == null && !isDead)
         {
