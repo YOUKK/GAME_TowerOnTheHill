@@ -5,32 +5,45 @@ using UnityEngine;
 public class JumpMonster : Monster
 {
     [SerializeField]
-    private bool jumpTime;
+    private float jumpSpeed;
+    [SerializeField]
+    private float runningSpeed;
+    [SerializeField]
+    private float delta = 0.8f;
 
-    private bool isJumped = false;
+    private bool isJumpTried = false;
     private bool isJumping = false;
+    
 
     protected override void Start()
     {
         base.Start();
+        anim.SetBool("isJumpTried", false);
     }
 
     protected override void Update()
     {
         if (target == null && !isDead)
         {
-            Move();
+            Move(currentSpeed);
             anim.SetBool("isTargetIn", false);
         }
-        else
+        else // 타겟을 정했다면
         {
-            if(!isJumped)
-            {
-                isJumping = true;
-                // 점프 모션 및 코드
-                isJumped = true;
-            }
             anim.SetBool("isTargetIn", true);
+
+            if (!isJumpTried) // 뛰어넘기를 아직 안 했으면
+            {
+                Move(runningSpeed);
+                isJumping = true;
+                return;
+            }
+            if(isJumping) // 뛰어넘기 중인 상태면
+            {
+                CheckJumpCleared();
+                Move(jumpSpeed);
+                return;
+            }
             if (!isAttacking)
             {
                 anim.SetTrigger("attackTrigger");
@@ -39,8 +52,16 @@ public class JumpMonster : Monster
         }
     }
 
-    IEnumerator JumpCoroutine()
+    private void CheckJumpCleared()
     {
-        yield return new WaitForSeconds(12);
+        Debug.Log("Out of Target Range");
+        if(target.position.x - transform.position.x > delta)
+        {
+            isJumpTried = true;
+            isJumping = false;
+            target = null;
+            anim.SetBool("isJumpTried", true);
+            anim.SetBool("isTargetIn", false);
+        }
     }
 }

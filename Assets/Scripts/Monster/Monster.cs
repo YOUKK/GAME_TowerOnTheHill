@@ -38,7 +38,7 @@ public abstract class Monster : MonoBehaviour
     {
         if (target == null && !isDead)
         {
-            Move();
+            Move(currentSpeed);
             anim.SetBool("isTargetIn", false);
         }
         else
@@ -52,9 +52,9 @@ public abstract class Monster : MonoBehaviour
         }
     }
 
-    protected virtual void Move()
+    protected virtual void Move(float speed)
     {
-        transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
+        transform.position = new Vector3(transform.position.x + speed * (-1) * Time.deltaTime,
             transform.position.y, transform.position.z);
     }
 

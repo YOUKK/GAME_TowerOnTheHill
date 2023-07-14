@@ -10,9 +10,9 @@ public class AerialMonster : Monster
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f);
     }
 
-    protected override void Move()
+    protected override void Move(float speed)
     {
-        base.Move();
+        base.Move(speed);
     }
 
     protected override void Attack()
