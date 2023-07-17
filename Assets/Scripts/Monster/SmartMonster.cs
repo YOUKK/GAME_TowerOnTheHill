@@ -23,7 +23,7 @@ public class SmartMonster : Monster
             return;
         }
 
-        if (target == null) Move();
+        if (target == null) Move(currentSpeed);
         else
         {
             if (!isAttacking)
@@ -66,7 +66,7 @@ public class SmartMonster : Monster
         
     }
 
-    protected override void Move()
+    protected override void Move(float speed)
     {
         transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
             transform.position.y, transform.position.z);

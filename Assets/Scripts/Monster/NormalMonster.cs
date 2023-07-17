@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NormalMonster : Monster
 {
-    protected override void Move()
+    protected override void Move(float speed)
     {
-        base.Move();
+        base.Move(speed);
     }
-    
+
     protected override void Attack()
     {
         base.Attack();
