@@ -14,6 +14,9 @@ public class SelectCharacter : MonoBehaviour
     private List<int> chaPrice = new List<int>();
     public List<int> ChaPrice { get { return chaPrice; } }
 
+    private List<int> coolTime = new List<int>();
+    public List<int> CoolTime { get { return coolTime; } }
+
     void Start()
     {
         // 아래 4개가 순서대로 선택되었다고 가정
@@ -31,6 +34,11 @@ public class SelectCharacter : MonoBehaviour
         chaPrice.Add(100);
         chaPrice.Add(50);
         chaPrice.Add(75);
+
+        coolTime.Add(7);
+        coolTime.Add(7);
+        coolTime.Add(30);
+        coolTime.Add(7);
     }
 
     void Update()
