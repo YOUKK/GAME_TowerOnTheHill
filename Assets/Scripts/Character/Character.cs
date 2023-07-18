@@ -79,7 +79,6 @@ public class Character : MonoBehaviour
         {
             anim.SetBool("isDead", true);
             Invoke("DeadDelay", 1.0f);
-            Dead();
         }
         else
         {
@@ -89,7 +88,7 @@ public class Character : MonoBehaviour
 
     void DeadDelay()
     {
-        Debug.Log("1√  ¥Î±‚");
+        Dead();
     }
 
     protected void Dead()

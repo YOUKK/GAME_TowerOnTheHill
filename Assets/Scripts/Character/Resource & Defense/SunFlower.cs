@@ -12,6 +12,11 @@ public class SunFlower : Character
 
     public override void Attack()
     {
+        anim.SetTrigger("canAttack");
+        Invoke("attackDelaySet", 0.7f);
+    }
+    void attackDelaySet()
+    {
         projectile = projectiles.Dequeue();
         projectiles.Enqueue(projectile);
         activatedProj.Enqueue(projectile);

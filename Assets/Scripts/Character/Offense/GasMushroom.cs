@@ -16,9 +16,14 @@ public class GasMushroom : Character
             return;
         if (!IsDragged && CheckMonster)
         {
-            projectile.SetActive(true);
-            Invoke("Duration", attackDuration);
+            anim.SetTrigger("canAttack");
+            Invoke("attackDelaySet", 0.7f);
         }
+    }
+    void attackDelaySet()
+    {
+        projectile.SetActive(true);
+        Invoke("Duration", attackDuration);
     }
     void Duration()
     {
