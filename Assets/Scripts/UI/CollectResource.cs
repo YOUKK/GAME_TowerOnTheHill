@@ -26,7 +26,7 @@ public class CollectResource : MonoBehaviour
     }
 
     // 게임 중 자원 얻기
-    public void GetResource(int get) // get은 얻은 자원의 양
+    public void EarnResource(int get) // get은 얻은 자원의 양
 	{
         resource += get;
         ChangeText();

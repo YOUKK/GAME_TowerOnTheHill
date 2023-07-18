@@ -62,31 +62,39 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             int layerMask = 1 << LayerMask.NameToLayer("Seat");
             RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
-            if (hit)
+            if (hit) // seat에 설치
             {
-                if (hit.transform.CompareTag("Seat"))
-                {
-                    Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
-                    //dragCharacter.transform.position = hit.transform.position;
-                    Map.GetInstance().PutCharacter(location, character);
+ 
+                Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
+                //dragCharacter.transform.position = hit.transform.position;
+                Map.GetInstance().PutCharacter(location, character);
 
-                    hit.transform.GetComponent<Seat>().isCharacterOn = true;
-                    hit.transform.GetComponent<Seat>().usable = false;
-                }
+                hit.transform.GetComponent<Seat>().isCharacterOn = true;
+                hit.transform.GetComponent<Seat>().usable = false;
+
+                Destroy(dragCharacter.gameObject);
+                StartCoroutine(CoolTimeColor());
             }
-
-            Destroy(dragCharacter.gameObject);
-            StartCoroutine(CoolTimeColor());
+			else // seat가 아닌 곳에 드래그 했다면 미설치
+			{
+                menuCanvas.EarnResource(price);
+                Destroy(dragCharacter.gameObject);
+            }
         }
     }
 
-    //public void 
 
     void Update()
     {
         if (_pressed)
         {
-            DragCharacter();
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
+            if (dragCharacter != null)
+            {
+                //dragCharacter.GetComponent<Character>().IsDragged = true;
+
+                dragCharacter.transform.position = mousePosition; // 마우스 위치대로 드래그한 캐릭터 이동
+            }
         }
         else
         {
@@ -99,36 +107,6 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         PriceColor();
     }
 
-    private void DragCharacter()
-	{
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
-        if (dragCharacter != null)
-        {
-            //dragCharacter.GetComponent<Character>().IsDragged = true;
-
-            dragCharacter.transform.position = mousePosition; // 마우스 위치대로 드래그한 캐릭터 이동
-
-			//드래그 위치에서 ray 쏘기
-
-            /*
-			Vector3 rayStart = new Vector3(dragCharacter.transform.position.x, dragCharacter.transform.position.y, -2);
-			Debug.DrawRay(rayStart, Vector3.forward * 3.0f, Color.red, 1.0f);
-
-			RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, LayerMask.NameToLayer("Seat"));
-			if (hit)
-			{
-				hit.transform.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-				Debug.Log("색 바꾸기");
-			}
-            */
-		}
-    }
-
-    // 캐릭터 드래그 중 설치 위치 표시
-    private void PrePlacement()
-	{
-
-	}
 
     // 캐릭터 설치 쿨타임
     IEnumerator CoolTimeColor()
