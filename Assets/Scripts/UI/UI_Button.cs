@@ -8,7 +8,8 @@ using UnityEngine.UI;
 // 캐릭터 쿨타임, 가격에 따라 설치 가능 여부 UI 표시
 public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    private bool _pressed = false;
+    public bool _pressed = false;
+    private GameObject sprite;
     private GameObject character;
     private GameObject dragCharacter;
     private CollectResource menuCanvas;
@@ -24,6 +25,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     void Start()
     {
         menuCanvas = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
+        sprite = transform.GetComponentInParent<SelectCharacter>().SpriteCha[transform.GetSiblingIndex()];
         character = transform.GetComponentInParent<SelectCharacter>().ObjectCha[transform.GetSiblingIndex()];
         coolTime = transform.GetComponentInParent<SelectCharacter>().CoolTime[transform.GetSiblingIndex()];
         price = transform.GetComponentInParent<SelectCharacter>().ChaPrice[transform.GetSiblingIndex()];
@@ -38,8 +40,9 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             Debug.Log("Down");
             _pressed = true;
+            Managers.MouseInputM.IsDrag = true;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            dragCharacter = Instantiate(character, mousePosition + Vector3.forward, transform.rotation);
+            dragCharacter = Instantiate(sprite, mousePosition + Vector3.forward, transform.rotation);
             dragCharacter.tag = "DragCharacter";
             menuCanvas.UseResource(price);
         }
@@ -52,72 +55,71 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             Debug.Log("Up");
             _pressed = false;
+            Managers.MouseInputM.IsDrag = false;
 
-            Vector3 rayStart = new Vector3(dragCharacter.transform.position.x, dragCharacter.transform.position.y, -1);
+            Vector3 rayStart = new Vector3(dragCharacter.transform.position.x, dragCharacter.transform.position.y, -2);
             Debug.DrawRay(rayStart, Vector3.forward * 10.0f, Color.red, 3.0f);
 
             int layerMask = 1 << LayerMask.NameToLayer("Seat");
             RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
-            if (hit)
+            if (hit) // seat에 설치
             {
-                if (hit.transform.CompareTag("Seat")) // Seat¿¡ ¿Ã·Á³õÀ½
-                {
-                    Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
+ 
+                Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
+                //dragCharacter.transform.position = hit.transform.position;
+                Map.GetInstance().PutCharacter(location, character);
 
-                    //dragCharacter.transform.position = hit.transform.position;
-                    Map.GetInstance().PutCharacter(location, character);
-                }
+                hit.transform.GetComponent<Seat>().isCharacterOn = true;
+                hit.transform.GetComponent<Seat>().usable = false;
+
+                Destroy(dragCharacter.gameObject);
+                StartCoroutine(CoolTimeColor());
             }
-
-            Destroy(dragCharacter.gameObject);
-            StartCoroutine(CoolTimeColor());
+			else // seat가 아닌 곳에 드래그 했다면 미설치
+			{
+                menuCanvas.EarnResource(price);
+                Destroy(dragCharacter.gameObject);
+            }
         }
     }
 
+
     void Update()
     {
-         /*
-         if (_pressed)
-         {
-             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
-             if (dragCharacter != null)
-             {
-                 dragCharacter.transform.position = mousePosition;
-             }
-         }
-         */
-
         if (_pressed)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Vector3.forward;
             if (dragCharacter != null)
             {
-                dragCharacter.GetComponent<Character>().IsDragged = true;
-                dragCharacter.transform.position = mousePosition;
+                //dragCharacter.GetComponent<Character>().IsDragged = true;
+
+                dragCharacter.transform.position = mousePosition; // 마우스 위치대로 드래그한 캐릭터 이동
             }
         }
         else
         {
             if (dragCharacter != null)
             {
-                dragCharacter.GetComponent<Character>().IsDragged = false;
+                //dragCharacter.GetComponent<Character>().IsDragged = false;
             }
         }
 
         PriceColor();
     }
 
+
+    // 캐릭터 설치 쿨타임
     IEnumerator CoolTimeColor()
 	{
-        Debug.Log("쿨타임 시작");
+        //Debug.Log("쿨타임 시작");
         onCoolTime = true;
 
         float time = coolTime;
-        Debug.Log(time);
+        //Debug.Log(time);
         coolTimeImage.fillAmount = 1f;
         while (time > 0.1f)
         {
-            Debug.Log(time);
+            //Debug.Log(time);
             time -= Time.deltaTime;
             coolTimeImage.fillAmount = time / coolTime;
 
@@ -127,9 +129,10 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         coolTimeImage.fillAmount = 0f;
         yield return new WaitForSeconds(1f);
         onCoolTime = false;
-        Debug.Log("쿨타임 끝");
+        //Debug.Log("쿨타임 끝");
     }
 
+    // 캐릭터 설치 가격
     private void PriceColor()
 	{
         if(menuCanvas.GetResource() >= price && !onCoolTime) // 구매 가능
