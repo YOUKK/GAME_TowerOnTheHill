@@ -21,6 +21,8 @@ public abstract class Monster : MonoBehaviour
     protected int           currentForce; 
     public int CurrentLine { set => currentLine = value; }
 
+    private SpriteRenderer sprite;
+
     protected virtual void Start()
     {
         isAttacking = false;
@@ -28,6 +30,8 @@ public abstract class Monster : MonoBehaviour
 
         anim = GetComponent<Animator>();
         if (anim == null) anim = GetComponentInChildren<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        if (sprite == null) sprite = GetComponentInChildren<SpriteRenderer>();
 
         currentHP = status.hp;
         currentSpeed = status.speed;
@@ -82,7 +86,7 @@ public abstract class Monster : MonoBehaviour
 
     public void Hit(int damage)
     {
-        if (currentHP - damage > 0) currentHP -= damage;
+        if (currentHP - damage > 0) StartCoroutine(HittedCoroutine(damage));
         else { anim.SetBool("isDead", true); isDead = true; }
     }
 
@@ -95,6 +99,14 @@ public abstract class Monster : MonoBehaviour
                 target = collision.transform;
             }
         }
+    }
+
+    private IEnumerator HittedCoroutine(int damage)
+    {
+        currentHP -= damage;
+        sprite.color = new Color(255, 255, 255, 0.6f);
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = new Color(255, 255, 255, 1);
     }
 
     public MonsterType GetMonsterType()
