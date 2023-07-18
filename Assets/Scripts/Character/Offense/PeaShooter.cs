@@ -15,14 +15,18 @@ public class PeaShooter : Character
         if (!IsDragged && CheckMonster)
         {
             anim.SetTrigger("canAttack");
-            projectile = projectiles.Dequeue();
-            projectiles.Enqueue(projectile);
-            activatedProj.Enqueue(projectile);
-            projectile.SetActive(true);
-
-            projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
-            Invoke("Duration", AttackDuration);
+            Invoke("attackDelaySet", 0.7f);
         }
+    }
+    void attackDelaySet()
+    {
+        projectile = projectiles.Dequeue();
+        projectiles.Enqueue(projectile);
+        activatedProj.Enqueue(projectile);
+        projectile.SetActive(true);
+
+        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
+        Invoke("Duration", AttackDuration);
     }
     void Duration()
     {
