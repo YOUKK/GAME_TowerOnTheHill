@@ -2232,5 +2232,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: OverUICamera
       objectReference: {fileID: 0}
+    - target: {fileID: 2567302841343929447, guid: 88787a203cecb1640a01e9cf5ee0d8c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88787a203cecb1640a01e9cf5ee0d8c2, type: 3}
