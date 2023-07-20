@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 242561937794356680, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 242561937794356680, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_AnchorMax.x
@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 242561937794356683, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 945396112}
     - target: {fileID: 242561937794356684, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_Name
       value: MenuCanvas
@@ -598,6 +602,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 803be1b960cc76140a098c11886a7c00, type: 3}
+--- !u!20 &945396112 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 568166868584695412, guid: 803be1b960cc76140a098c11886a7c00, type: 3}
+  m_PrefabInstance: {fileID: 945396111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1146353161
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +805,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 679740036819077330, guid: d07697fdee3897547b5d80f287144619, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 945396112}
     - target: {fileID: 679740036819077331, guid: d07697fdee3897547b5d80f287144619, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1547,7 +1560,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4756393980284217075, guid: 8aeaeea50f3b29d4dac38b38a168a74a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4756393980284217075, guid: 8aeaeea50f3b29d4dac38b38a168a74a, type: 3}
       propertyPath: m_LocalScale.x
