@@ -7,9 +7,18 @@ using UnityEngine.UI;
 public class MonsterWaveTimer : MonoBehaviour
 {
     private int firstAppearTime = 5; // 첫 몬스터가 나타나기 전까지의 시간
+    public int FirstAppearTime { set { firstAppearTime = value; } get { return firstAppearTime; } }
     private int timeCheckInterval = 2; // 시간 체크 간격
-    private int firstWaveTime = 120; // 첫번째 웨이브 = 2분
-    private int secondWaveTime = 240; // 두번째 웨이브 = 4분
+
+    private int firstWaveStart = 0; // 첫번째 웨이브 시작 시간
+    public int FirstWaveStart { set { firstWaveStart = value; } get { return firstWaveStart; } }
+    private int secondWaveStart = 0; // 두번째 웨이브 시작 시간
+    public int SecondWaveStart { set { secondWaveStart = value; } get { return secondWaveStart; } }
+
+    private int firstWaveTime = 120; // 첫번째 웨이브 = 2분(슬라이드 딱 중간 지점)
+    public int FirstwaveTime { set { firstWaveTime = value; } get { return firstWaveTime; } }
+    private int secondWaveTime = 240; // 두번째 웨이브 = 4분(슬라이드 맨 끝)(firstwaveTime의 2배여야함)
+    public int SecondWaveTime { set { secondWaveTime = value; } get { return secondWaveTime; } }
     private bool firstAppear = false;
     private bool firstWave = false;
 
