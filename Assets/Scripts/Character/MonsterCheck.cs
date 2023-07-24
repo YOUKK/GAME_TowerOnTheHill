@@ -7,6 +7,8 @@ public class MonsterCheck : MonoBehaviour
     [SerializeField]
     private Character mainCharacter;
     private bool changeFlag = true;
+    [SerializeField]
+    private GameObject monster;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,22 @@ public class MonsterCheck : MonoBehaviour
             changeFlag = false;
         }
     }
+    public GameObject Monster { get => monster; set => monster = value; }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
+        try
+        {
+            Debug.Log(gameObject.GetComponentInParent<Eater>().CanAttack);
+
+            if (gameObject.GetComponentInParent<Eater>().CanAttack && collision.tag == "Enemy")
+            {
+                monster = collision.gameObject;
+            }
+        }
+        catch
+        {
+        }
         if (collision.tag == "Enemy")
         {
             mainCharacter.CheckMonster = true;
