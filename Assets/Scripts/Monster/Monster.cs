@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MovementState
-{
-    IDLE, WALK, ATTACK, DEAD,
-}
-
 public abstract class Monster : MonoBehaviour
 {
     [SerializeField]
@@ -16,12 +11,17 @@ public abstract class Monster : MonoBehaviour
     protected int           currentLine;
     protected bool          isAttacking;
     protected bool          isDead;
-    // ∑£¥˝ ∏”¥œ ∞¸∑√ ∫Øºˆ √ﬂ∞°
+    // ÎûúÎç§ Î®∏Îãà Í¥ÄÎ†® Î≥ÄÏàò Ï∂îÍ∞Ä
 
     [SerializeField]
     protected int           currentHP;
     [SerializeField]
     protected float         currentSpeed;
+    [SerializeField]
+    protected int           currentForce; 
+    public int CurrentLine { set => currentLine = value; }
+
+    private SpriteRenderer sprite;
 
     protected virtual void Start()
     {
@@ -30,16 +30,19 @@ public abstract class Monster : MonoBehaviour
 
         anim = GetComponent<Animator>();
         if (anim == null) anim = GetComponentInChildren<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        if (sprite == null) sprite = GetComponentInChildren<SpriteRenderer>();
 
         currentHP = status.hp;
         currentSpeed = status.speed;
+        currentForce = status.force;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (target == null && !isDead)
         {
-            Move();
+            Move(currentSpeed);
             anim.SetBool("isTargetIn", false);
         }
         else
@@ -53,17 +56,17 @@ public abstract class Monster : MonoBehaviour
         }
     }
 
-    protected virtual void Move()
+    protected virtual void Move(float speed)
     {
-        transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
+        transform.position = new Vector3(transform.position.x + speed * (-1) * Time.deltaTime,
             transform.position.y, transform.position.z);
     }
 
-    protected virtual void Attack() // Animation¿« Eventø° ¿««ÿ Ω««‡µ .
+    protected virtual void Attack() // AnimationÏùò EventÏóê ÏùòÌï¥ Ïã§ÌñâÎê®.
     {
         Character targetCharacter = target.gameObject.GetComponent<Character>();
         if (targetCharacter != null)
-            targetCharacter.Hit(status.force);
+            targetCharacter.Hit(currentForce);
         else Debug.Log("target doesn't have Character");
 
         StartCoroutine(AttackCoolCoroutine());
@@ -75,15 +78,15 @@ public abstract class Monster : MonoBehaviour
         isAttacking = false;
     }
 
-    protected virtual void Dead() // Animation¿« Eventø° ¿««ÿ Ω««‡µ .
+    protected virtual void Dead() // AnimationÏùò EventÏóê ÏùòÌï¥ Ïã§ÌñâÎê®.
     {
-        GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>().RemoveMonster(gameObject, currentLine);
+        MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
         Destroy(gameObject);
     }
 
     public void Hit(int damage)
     {
-        if (currentHP - damage > 0) currentHP -= damage;
+        if (currentHP - damage > 0) StartCoroutine(HittedCoroutine(damage));
         else { anim.SetBool("isDead", true); isDead = true; }
     }
 
@@ -106,5 +109,31 @@ public abstract class Monster : MonoBehaviour
                 target = collision.transform;
             }
         }
+    }
+
+    private IEnumerator HittedCoroutine(int damage)
+    {
+        currentHP -= damage;
+        sprite.color = new Color(255, 255, 255, 0.6f);
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = new Color(255, 255, 255, 1);
+    }
+
+    public MonsterType GetMonsterType()
+    {
+        return status.type;
+    }
+
+    public void ChangeStatus(int hp, float speed, int force)
+    {
+        currentHP += hp;
+        currentSpeed += speed;
+        currentForce += force;
+    }
+
+    public void ChangeStatus()
+    {
+        currentSpeed = status.speed;
+        currentForce = status.force;
     }
 }

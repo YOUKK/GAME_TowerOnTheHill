@@ -6,6 +6,8 @@ public class Tower : Character
 {
     [SerializeField]
     private Tower_Attacker attacker;
+    [SerializeField]
+    private Sprite halfHealthSprite;
 
     [SerializeField]
     private int     createResourceTime = 1;
@@ -110,11 +112,15 @@ public class Tower : Character
         {
             // 해당 라인 즉사기 공격
             DeadAttack();
+            MonsterSpawner.GetInstance.BuffMonsters();
             Destroy(gameObject);
         }
         else
         {
             healthPoint -= damage;
+
+            if (healthPoint < status.healthPoint / 2)
+                gameObject.GetComponent<SpriteRenderer>().sprite = halfHealthSprite;
         }
     }
 }

@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 295013665429525948}
   - component: {fileID: 1776033464334790535}
   - component: {fileID: 2742617493983917867}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SunFlower
   m_TagString: Character
   m_Icon: {fileID: 0}

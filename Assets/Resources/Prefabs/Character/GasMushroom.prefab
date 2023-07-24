@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 37543014102644428}
   - component: {fileID: 2033592347158318327}
   - component: {fileID: 2773616144863298906}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GasMushroom
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -427,6 +427,10 @@ PrefabInstance:
     - target: {fileID: 1972237519337215526, guid: a8ee83268d17cf24889f491b38d56c62, type: 3}
       propertyPath: m_Name
       value: Gas_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1972237519337215526, guid: a8ee83268d17cf24889f491b38d56c62, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1972237519337215526, guid: a8ee83268d17cf24889f491b38d56c62, type: 3}
       propertyPath: m_IsActive

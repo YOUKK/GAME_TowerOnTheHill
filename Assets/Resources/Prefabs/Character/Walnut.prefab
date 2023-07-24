@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3841452663116219617}
   - component: {fileID: 3022531639716937434}
   - component: {fileID: 3121677979430418894}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walnut
   m_TagString: Character
   m_Icon: {fileID: 0}

@@ -22,6 +22,6 @@ public class MonsterStatus : ScriptableObject
     public float        speed;
     public int          force;
     public float        hitSpeed;
-    public float        attackDistance = 1f;
+    public float        attackDistance = 0.5f;
     public MonsterType  type;
 }

@@ -4,30 +4,15 @@ using UnityEngine;
 
 public class AerialMonster : Monster
 {
-    void Update()
+    protected override void Start()
     {
-        if (target == null) Move();
-        else
-        {
-            if (!isAttacking)
-            {
-                isAttacking = true;
-                StartCoroutine(AttackCoolCoroutine());
-            }
-        }
-        anim.SetBool("isAttack", isAttacking);
+        base.Start();
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f);
     }
 
-    protected override void Move()
+    protected override void Move(float speed)
     {
-        base.Move();
-    }
-
-    protected override IEnumerator AttackCoolCoroutine()
-    {
-        Attack();
-        yield return new WaitForSeconds(status.hitSpeed);
-        isAttacking = false;
+        base.Move(speed);
     }
 
     protected override void Attack()
