@@ -35,4 +35,6 @@ public class StartEndText : MonoBehaviour
         // 시작 텍스트 UI 띄운 후 게임이 시작하므로 이때부터 타이머 시작
         Managers.TimeM.StartTimer();
 	}
+
+    
 }
