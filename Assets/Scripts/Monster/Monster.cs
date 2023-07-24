@@ -87,6 +87,11 @@ public abstract class Monster : MonoBehaviour
         else { anim.SetBool("isDead", true); isDead = true; }
     }
 
+    public void Slow(float speed, Character AttackCharacter)
+    {
+        currentSpeed = status.speed - speed;
+    }
+
     public void SetLine(int line)
     {
         currentLine = line;
