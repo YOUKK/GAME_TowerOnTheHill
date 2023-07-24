@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee68a7c09cc0b6e43b3ac3e969b5cefe, type: 3}
-  m_Name: PeaShooter
+  m_Name: Eater
   m_EditorClassIdentifier: 
-  coolTime: 1
-  projectileSpeed: 1.5
-  attackDelay: 2
+  coolTime: 5
+  projectileSpeed: 0
+  attackDelay: 1
   pAttackDelay: 0
   projectileNum: 1
-  range: 8
-  strength: 10
+  range: 1
+  strength: 5
   healthPoint: 50
-  attackDuration: 3
-  type: 2
+  attackDuration: 5
+  type: 0

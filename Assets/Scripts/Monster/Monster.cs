@@ -11,7 +11,7 @@ public abstract class Monster : MonoBehaviour
     protected int           currentLine;
     protected bool          isAttacking;
     protected bool          isDead;
-    // ·£´ı ¸Ó´Ï °ü·Ã º¯¼ö Ãß°¡
+    // ëœë¤ ë¨¸ë‹ˆ ê´€ë ¨ ë³€ìˆ˜ ì¶”ê°€
 
     [SerializeField]
     protected int           currentHP;
@@ -62,7 +62,7 @@ public abstract class Monster : MonoBehaviour
             transform.position.y, transform.position.z);
     }
 
-    protected virtual void Attack() // AnimationÀÇ Event¿¡ ÀÇÇØ ½ÇÇàµÊ.
+    protected virtual void Attack() // Animationì˜ Eventì— ì˜í•´ ì‹¤í–‰ë¨.
     {
         Character targetCharacter = target.gameObject.GetComponent<Character>();
         if (targetCharacter != null)
@@ -78,7 +78,7 @@ public abstract class Monster : MonoBehaviour
         isAttacking = false;
     }
 
-    protected virtual void Dead() // AnimationÀÇ Event¿¡ ÀÇÇØ ½ÇÇàµÊ.
+    protected virtual void Dead() // Animationì˜ Eventì— ì˜í•´ ì‹¤í–‰ë¨.
     {
         MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
         Destroy(gameObject);
@@ -88,6 +88,16 @@ public abstract class Monster : MonoBehaviour
     {
         if (currentHP - damage > 0) StartCoroutine(HittedCoroutine(damage));
         else { anim.SetBool("isDead", true); isDead = true; }
+    }
+
+    public void Slow(float speed, Character AttackCharacter)
+    {
+        currentSpeed = status.speed - speed;
+    }
+
+    public void SetLine(int line)
+    {
+        currentLine = line;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
