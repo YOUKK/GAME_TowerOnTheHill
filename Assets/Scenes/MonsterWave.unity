@@ -324,6 +324,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+--- !u!114 &32479673 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 242561937794356694, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+  m_PrefabInstance: {fileID: 14146913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f22f6425fd8264e8e9391fedc75487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &147113818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -718,6 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4650f94dfecd084f80fee374e92bc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterWaveTimer: {fileID: 32479673}
 --- !u!4 &1209011710
 Transform:
   m_ObjectHideFlags: 0
