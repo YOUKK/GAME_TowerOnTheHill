@@ -25,10 +25,7 @@ public class Map : MonoBehaviour
 			return;
 		}
 		_map = this;
-	}
 
-	void Start()
-    {
         // Map의 자식 Object들 저장
         Transform[] seatTransform = GetComponentsInChildren<Transform>();
 
@@ -43,19 +40,14 @@ public class Map : MonoBehaviour
         for (int i = 0; i < mapY; ++i)
         {
             seats.Add(new List<GameObject>());
-            for(int j = 0; j < mapX; ++j, ++idx)
+            for (int j = 0; j < mapX; ++j, ++idx)
             {
-                if(tempSeats[idx].CompareTag("Seat"))
+                if (tempSeats[idx].CompareTag("Seat"))
                 {
                     seats[i].Add(tempSeats[idx].gameObject);
                 }
             }
         }
-    }
-
-    void Update()
-    {
-
     }
 
     // 캐릭터 배치

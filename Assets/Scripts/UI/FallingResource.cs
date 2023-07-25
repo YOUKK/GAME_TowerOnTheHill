@@ -7,15 +7,20 @@ public class FallingResource : MonoBehaviour
 {
     private Vector3 leftBottomPos;
     float time = 0f;
+    private Resource resource;
 
     void Start()
     {
         leftBottomPos = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 10f)); // ¿ÞÂÊ ¾Æ·¡ È­¸éÀÇ ÁÂÇ¥
+        resource = GetComponent<Resource>();
     }
 
     void Update()
     {
-        Move();
+        if (!resource.GetIsClick())
+        {
+            Move();
+        }
     }
 
     private void Move()
