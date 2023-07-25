@@ -52,6 +52,7 @@ public abstract class Monster : MonoBehaviour
         {
             Move(currentSpeed);
             anim.SetBool("isTargetIn", false);
+            isAttacking = false;
         }
         else
         {

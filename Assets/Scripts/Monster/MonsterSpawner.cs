@@ -7,6 +7,7 @@ public class MonsterSpawner : MonoBehaviour
     private static MonsterSpawner instance;
     public static MonsterSpawner GetInstance { get { Init(); return instance; } }
 
+    // 페이즈, 스테이지는 인덱스 상으로는 0번부터 시작
     public int          phase = 1;
     public int          stage = 1;
     public GameObject[] lines = new GameObject[5];
