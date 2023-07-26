@@ -7,6 +7,9 @@ public class DataManager : MonoBehaviour
     private static DataManager instance;
     public static DataManager GetData { get { Init(); return instance; } }
 
+    [SerializeField]
+    private MonsterWaveTimer monsterWaveTimer;
+
     public static List<List<StageWave>> monsterWave = new List<List<StageWave>>();
 
     void Awake()
@@ -64,6 +67,20 @@ public class DataManager : MonoBehaviour
 
                 wave.stage = int.Parse(elements[0]); // Stage
                 wave.time = float.Parse(elements[1]); // time
+                if (elements[2] == "first")
+                {
+                    ++i;
+                    monsterWaveTimer.FirstwaveTime = (int)wave.time;
+                    elements = data[i].Split(new char[] { ',' });
+                    continue;
+                }
+                else if (elements[2] == "second")
+                {
+                    ++i;
+                    monsterWaveTimer.SecondWaveTime = (int)wave.time;
+                    elements = data[i].Split(new char[] { ',' });
+                    continue;
+                }
                 int monsterNum = int.Parse(elements[2]);
                 wave.monsterInfo = Resources.Load<GameObject>($"Prefabs/Monsters/{(MonsterName)monsterNum}"); // monster
                 wave.line = int.Parse(elements[3]); // line

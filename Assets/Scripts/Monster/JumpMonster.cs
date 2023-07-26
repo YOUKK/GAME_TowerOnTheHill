@@ -10,6 +10,7 @@ public class JumpMonster : Monster
     private float runningSpeed;
     [SerializeField]
     private float delta = 0.8f;
+    private Transform jumpTarget;
 
     private bool isJumpTried = false;
     private bool isJumping = false;
@@ -42,7 +43,10 @@ public class JumpMonster : Monster
             anim.SetBool("isTargetIn", true);
 
             if (!isJumpTried) // 뛰어넘기를 아직 안 했으면
+            {
                 isJumping = true;
+                jumpTarget = target;
+            }
 
             if(isJumping) // 뛰어넘기 중인 상태면
             {
@@ -60,12 +64,13 @@ public class JumpMonster : Monster
 
     private void ChangeJumpToWalk()
     {
-        if(target.position.x - transform.position.x > delta)
+        if(jumpTarget.position.x - transform.position.x > delta)
         {
             Debug.Log("Out of Target Range");
             isJumpTried = true;
             isJumping = false;
             target = null;
+            jumpTarget = null;
             anim.SetBool("isJumpTried", true);
             anim.SetBool("isTargetIn", false);
         }

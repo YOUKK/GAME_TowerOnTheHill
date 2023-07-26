@@ -170,4 +170,4 @@ MonoBehaviour:
   currentForce: 0
   jumpSpeed: 0.7
   runningSpeed: 0.8
-  delta: 0.8
+  delta: 0.4

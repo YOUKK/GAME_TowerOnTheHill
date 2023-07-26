@@ -61,8 +61,8 @@ public class Tower : Character
         projectiles.Enqueue(projectile);
         activatedProj.Enqueue(projectile);
         //print(projectile.name+","+ projectiles.Count);
-        projectile.transform.position = new Vector2(gameObject.transform.position.x + Random.Range(-1f, 1f),
-                                                    gameObject.transform.position.y + Random.Range(-1f, 1f));
+        projectile.transform.position = new Vector2(gameObject.transform.position.x + Random.Range(0, 1.5f),
+                                                    gameObject.transform.position.y + Random.Range(0, 1.5f));
         projectile.SetActive(true);
         Invoke("Duration", attackDuration);
     }

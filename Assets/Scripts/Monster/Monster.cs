@@ -22,6 +22,9 @@ public abstract class Monster : MonoBehaviour
     public int CurrentLine { set => currentLine = value; }
 
     private SpriteRenderer sprite;
+    private GameObject randomCoin;
+    private int randomPercent = 100;
+    private bool isGetCoin;
 
     protected virtual void Start()
     {
@@ -32,10 +35,15 @@ public abstract class Monster : MonoBehaviour
         if (anim == null) anim = GetComponentInChildren<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         if (sprite == null) sprite = GetComponentInChildren<SpriteRenderer>();
+        randomCoin = Resources.Load<GameObject>("Prefabs/Projectile/ItemGold");
+        if (randomCoin == null) Debug.LogError("Wrond Path Prefab ItemGold");
 
         currentHP = status.hp;
         currentSpeed = status.speed;
         currentForce = status.force;
+        int ran = Random.Range(0, 100);
+        if (ran <= randomPercent) isGetCoin = true;
+        else isGetCoin = false;
     }
 
     protected virtual void Update()
@@ -44,6 +52,7 @@ public abstract class Monster : MonoBehaviour
         {
             Move(currentSpeed);
             anim.SetBool("isTargetIn", false);
+            isAttacking = false;
         }
         else
         {
@@ -80,6 +89,11 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Dead() // Animation의 Event에 의해 실행됨.
     {
+        if (isGetCoin)
+        {
+            Debug.Log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+            Instantiate(randomCoin, transform.position, transform.rotation);
+        }
         MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
         Destroy(gameObject);
     }
