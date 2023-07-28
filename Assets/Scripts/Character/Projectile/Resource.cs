@@ -34,6 +34,8 @@ public class Resource : MonoBehaviour
                 isClick = true;
 
                 resourceUI.EarnResource(50); // resource의 양을 일단 50이라고 설정함
+                //int currentCoin = PlayerPrefs.GetInt("coin");
+                //PlayerPrefs.SetInt("coin", currentCoin + 50);
 
                 StartCoroutine(MovetoUI());
             }

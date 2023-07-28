@@ -20,7 +20,7 @@ TagManager:
   - Seat
   - Enemy
   - OverUI
-  - 
+  - Tower
   - 
   - 
   - 
@@ -75,4 +75,7 @@ TagManager:
     locked: 0
   - name: Projectile2
     uniqueID: 764028293
+    locked: 0
+  - name: UI
+    uniqueID: 1214224605
     locked: 0

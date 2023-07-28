@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Normal
   hp: 100
-  speed: 0.5
+  speed: 0.25
   force: 10
   hitSpeed: 3
   attackDistance: 0.5

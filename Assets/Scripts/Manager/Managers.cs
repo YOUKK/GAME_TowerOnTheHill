@@ -29,6 +29,12 @@ public class Managers : MonoBehaviour
         Init();
         timeM.InitTimer();
         //timeM.StartTimer();
+
+        if (!PlayerPrefs.HasKey("coin"))
+        {
+            PlayerPrefs.SetInt("coin", 0);
+            Debug.Log("Coin 새로 생성!");
+        }
     }
 
     void Update()
