@@ -6,7 +6,7 @@ public class TowerAttackObj : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float distance;
-    private Vector2 initalLocation;
+    private Vector3 initalLocation;
 
     void Start()
     {

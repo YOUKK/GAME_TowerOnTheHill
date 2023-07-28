@@ -54,8 +54,8 @@ public class Tower : Character
 
     IEnumerator CreateResourceCoroutine()
     {
-        CreateResource();
         yield return new WaitForSeconds(createResourceTime);
+        CreateResource();
         isCreating = false;
     }
 
@@ -80,7 +80,7 @@ public class Tower : Character
 
     IEnumerator AttackCoroutine()
     {
-        atteckEffect.SetActive(true); // Attack Animation
+        //atteckEffect.SetActive(true); // Attack Animation
         yield return new WaitForSeconds(status.attackDelay);
         Attack();
         isAttacking = false;
