@@ -15,7 +15,8 @@ public class PeaShooter : Character
         if (!IsDragged && CheckMonster)
         {
             anim.SetTrigger("canAttack");
-            Invoke("attackDelaySet", 0.7f);
+            Invoke("attackDelaySet", 0.1f);
+            Debug.Log("HHHHHHHHHHHH");
         }
     }
     void attackDelaySet()

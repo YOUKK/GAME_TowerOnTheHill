@@ -15,7 +15,7 @@ public class IceShooter : Character
         if (!IsDragged && CheckMonster)
         {
             anim.SetTrigger("canAttack");
-            Invoke("attackDelaySet", 0.7f);
+            Invoke("attackDelaySet", 0.3f);
         }
     }
     void attackDelaySet()
