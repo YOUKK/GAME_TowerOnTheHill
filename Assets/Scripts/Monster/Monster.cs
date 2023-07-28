@@ -91,7 +91,6 @@ public abstract class Monster : MonoBehaviour
     {
         if (isGetCoin)
         {
-            Debug.Log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
             Instantiate(randomCoin, transform.position, transform.rotation);
         }
         MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
