@@ -90,10 +90,8 @@ public abstract class Monster : MonoBehaviour
     protected virtual void Dead() // Animation의 Event에 의해 실행됨.
     {
         if (isGetCoin)
-        {
-            Debug.Log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
             Instantiate(randomCoin, transform.position, transform.rotation);
-        }
+
         MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
         Destroy(gameObject);
     }
@@ -101,7 +99,12 @@ public abstract class Monster : MonoBehaviour
     public void Hit(int damage)
     {
         if (currentHP - damage > 0) StartCoroutine(HittedCoroutine(damage));
-        else { anim.SetBool("isDead", true); isDead = true; }
+        else 
+        {
+            Destroy(gameObject.GetComponent<BoxCollider2D>());
+            anim.SetBool("isDead", true); 
+            isDead = true; 
+        }
     }
 
     public void Slow(float speed, Character AttackCharacter)
