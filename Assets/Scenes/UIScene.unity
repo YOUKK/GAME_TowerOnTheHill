@@ -1088,6 +1088,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   monsterBuffTime: 10
+  isAllMonsterDead: 0
+  textVictory: {fileID: 1425759102}
 --- !u!4 &593107342
 Transform:
   m_ObjectHideFlags: 0
@@ -2679,8 +2681,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1214224605
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 28a3f9188654c40b48be1087fc7d19eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
