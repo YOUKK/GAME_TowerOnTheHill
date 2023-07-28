@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Shield2
   hp: 150
-  speed: 0.4
+  speed: 0.2
   force: 10
   hitSpeed: 3
   attackDistance: 0.5
