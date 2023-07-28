@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4650f94dfecd084f80fee374e92bc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterWaveTimer: {fileID: 0}
+  monsterWaveTimer: {fileID: 242561938830919559}
 --- !u!4 &698874020
 Transform:
   m_ObjectHideFlags: 0
@@ -4218,6 +4218,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+--- !u!114 &242561938830919559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 242561937794356694, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+  m_PrefabInstance: {fileID: 242561938830919558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f22f6425fd8264e8e9391fedc75487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &568166868874441442
 PrefabInstance:
   m_ObjectHideFlags: 0
