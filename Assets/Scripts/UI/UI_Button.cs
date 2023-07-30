@@ -62,9 +62,8 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             int layerMask = 1 << LayerMask.NameToLayer("Seat");
             RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
-            if (hit) // seat에 설치
+            if (hit.transform.GetComponent<Seat>().usable) // seat에 설치
             {
- 
                 Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
                 //dragCharacter.transform.position = hit.transform.position;
                 Map.GetInstance().PutCharacter(location, character);
@@ -75,7 +74,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 Destroy(dragCharacter.gameObject);
                 StartCoroutine(CoolTimeColor());
             }
-			else // seat가 아닌 곳에 드래그 했다면 미설치
+			else // seat가 아닌 곳에 드래그 / seat 위에 캐릭터가 이미 있는 경우 미설치
 			{
                 menuCanvas.EarnResource(price);
                 Destroy(dragCharacter.gameObject);
