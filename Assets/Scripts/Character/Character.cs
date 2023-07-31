@@ -45,7 +45,6 @@ public class Character : MonoBehaviour
             anim = GetComponentInChildren<Animator>();
 
 
-
         coolTime = status.coolTime;
         projectileSpeed = status.projectileSpeed;
         attackDelay = status.attackDelay;
@@ -67,10 +66,6 @@ public class Character : MonoBehaviour
                 projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
             }
         }
-    }
-
-    private void Update()
-    {
     }
 
     public virtual void Hit(int damage)
