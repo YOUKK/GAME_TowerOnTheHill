@@ -78,7 +78,7 @@ public class Character : MonoBehaviour
         if(healthPoint <= 0)
         {
             anim.SetBool("isDead", true);
-            Invoke("DeadDelay", 1.0f);
+            Invoke("DeadDelay", 2.0f);
         }
         else
         {
