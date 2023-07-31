@@ -8,6 +8,8 @@ public class Tower : Character
     private Tower_Attacker attacker;
     [SerializeField]
     private Sprite halfHealthSprite;
+    [SerializeField]
+    GameObject atteckEffect;
 
     [SerializeField]
     private int     createResourceTime = 1;
@@ -32,6 +34,8 @@ public class Tower : Character
                 projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
             }
         }
+
+        atteckEffect.SetActive(false);
     }
 
     void Update()
@@ -50,8 +54,8 @@ public class Tower : Character
 
     IEnumerator CreateResourceCoroutine()
     {
-        CreateResource();
         yield return new WaitForSeconds(createResourceTime);
+        CreateResource();
         isCreating = false;
     }
 
@@ -76,7 +80,7 @@ public class Tower : Character
 
     IEnumerator AttackCoroutine()
     {
-        Debug.Log("Tower Attack animation called"); // Attack Animation
+        //atteckEffect.SetActive(true); // Attack Animation
         yield return new WaitForSeconds(status.attackDelay);
         Attack();
         isAttacking = false;

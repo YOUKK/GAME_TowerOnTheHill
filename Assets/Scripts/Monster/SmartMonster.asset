@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Smart
   hp: 70
-  speed: 1
+  speed: 0.25
   force: 10
   hitSpeed: 1
+  attackDistance: 0.5
   type: 2

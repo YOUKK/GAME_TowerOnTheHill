@@ -20,6 +20,12 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField]
     private LinkedList<GameObject>[] monsterList = new LinkedList<GameObject>[5];
 
+    [SerializeField]
+    private bool isAllMonsterDead = false;
+    public bool IsAllMonsterDead { get => isAllMonsterDead; }
+
+    [SerializeField] GameObject textVictory;
+
     void Start()
     {
         Init();
@@ -41,7 +47,16 @@ public class MonsterSpawner : MonoBehaviour
 
     void Update()
     {
-        if (idx >= count) return;
+        if (idx >= count)
+        {
+            for (int i = 0; i < monsterList.Length; ++i)
+            {
+                if (monsterList[i].Count != 0) return;
+            }
+            isAllMonsterDead = true;
+            textVictory.SetActive(true);
+            return;
+        }
 
         if (currentWave[idx].time < Managers.TimeM.Sec)
         {
