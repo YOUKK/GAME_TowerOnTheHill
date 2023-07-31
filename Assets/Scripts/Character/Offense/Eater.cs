@@ -10,6 +10,7 @@ public class Eater : Character
     {
         base.Start();
     }
+
     public bool CanAttack { get => canAttack; set => canAttack = value; }
     // Update is called once per frame
     public override void Attack()

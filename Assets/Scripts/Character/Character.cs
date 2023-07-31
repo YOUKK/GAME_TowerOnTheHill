@@ -37,7 +37,7 @@ public class Character : MonoBehaviour
     public bool IsDragged { get => isDragged; set => isDragged = value; }
     public bool CheckMonster { get => checkMonster; set => checkMonster = value; }
 
-    // seat Á¤º¸
+    // seat ï¿½ï¿½ï¿½ï¿½
     protected Vector2 location;
     public Vector2 Location { get => location; set => location = value; }
 
@@ -47,7 +47,6 @@ public class Character : MonoBehaviour
         anim = GetComponent<Animator>();
         if (anim == null) 
             anim = GetComponentInChildren<Animator>();
-
 
 
         coolTime = status.coolTime;
@@ -73,18 +72,14 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-    }
-
     public virtual void Hit(int damage)
     {
         if(healthPoint <= 0)
         {
             anim.SetBool("isDead", true);
-            Invoke("DeadDelay", 1.0f);
+            Invoke("DeadDelay", 2.0f);
 
-            // seat Á¤º¸ ¾÷µ¥ÀÌÆ®
+            // seat ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
             Map.GetInstance().RemoveCharacter(location);
         }
         else
