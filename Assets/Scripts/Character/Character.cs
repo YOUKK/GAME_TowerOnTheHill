@@ -45,7 +45,6 @@ public class Character : MonoBehaviour
             anim = GetComponentInChildren<Animator>();
 
 
-
         coolTime = status.coolTime;
         projectileSpeed = status.projectileSpeed;
         attackDelay = status.attackDelay;
@@ -69,16 +68,12 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-    }
-
     public virtual void Hit(int damage)
     {
         if(healthPoint <= 0)
         {
             anim.SetBool("isDead", true);
-            Invoke("DeadDelay", 1.0f);
+            Invoke("DeadDelay", 2.0f);
         }
         else
         {

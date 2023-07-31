@@ -16,7 +16,6 @@ public class PeaShooter : Character
         {
             anim.SetTrigger("canAttack");
             Invoke("attackDelaySet", 0.1f);
-            Debug.Log("HHHHHHHHHHHH");
         }
     }
     void attackDelaySet()
