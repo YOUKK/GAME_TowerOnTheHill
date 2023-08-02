@@ -58,6 +58,7 @@ public class Map : MonoBehaviour
 
         seats[y][x].GetComponent<Seat>().character =
             Instantiate(character, seats[y][x].transform.position, transform.rotation);
+        seats[y][x].GetComponent<Seat>().character.GetComponent<Character>().Location = new Vector2(x, y);
         if(character.GetComponent<Tower>() == null) // tower가 아닌 경우
             seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;

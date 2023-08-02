@@ -47,8 +47,8 @@ public class Pickax : MonoBehaviour
                         Vector2 location = hitSeat[i].transform.gameObject.GetComponent<Seat>().location;
                         Map.GetInstance().RemoveCharacter(location);
 
-                        hitSeat[i].transform.GetComponent<Seat>().isCharacterOn = false;
-                        hitSeat[i].transform.GetComponent<Seat>().usable = true;
+                        //hitSeat[i].transform.GetComponent<Seat>().isCharacterOn = false;
+                        //hitSeat[i].transform.GetComponent<Seat>().usable = true;
 
                         ClickButton(); // Piackax ±â´É ²ô±â
                         break;

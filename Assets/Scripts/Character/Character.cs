@@ -44,6 +44,10 @@ public class Character : MonoBehaviour
     public bool IsDragged { get => isDragged; set => isDragged = value; }
     public bool CheckMonster { get => checkMonster; set => checkMonster = value; }
 
+    // seat ����
+    protected Vector2 location;
+    public Vector2 Location { get => location; set => location = value; }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -81,6 +85,9 @@ public class Character : MonoBehaviour
         {
             anim.SetBool("isDead", true);
             Invoke("DeadDelay", 2.0f);
+
+            // seat ���� ������Ʈ
+            Map.GetInstance().RemoveCharacter(location);
         }
         else
         {
