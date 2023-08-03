@@ -19,12 +19,14 @@ public abstract class Monster : MonoBehaviour
     protected float         currentSpeed;
     [SerializeField]
     protected int           currentForce; 
-    public int CurrentLine { set => currentLine = value; }
+    public    int           CurrentLine { set => currentLine = value; }
 
-    private SpriteRenderer sprite;
-    private GameObject randomCoin;
-    private int randomPercent = 100;
-    private bool isGetCoin;
+    [SerializeField]
+    private ParticleSystem  monsterBuffEffect;
+    private SpriteRenderer  sprite;
+    private GameObject      randomCoin;
+    private int             randomPercent = 100;
+    private bool            isGetCoin;
 
     protected virtual void Start()
     {
@@ -37,6 +39,8 @@ public abstract class Monster : MonoBehaviour
         if (sprite == null) sprite = GetComponentInChildren<SpriteRenderer>();
         randomCoin = Resources.Load<GameObject>("Prefabs/Projectile/ItemGold");
         if (randomCoin == null) Debug.LogError("Wrond Path Prefab ItemGold");
+
+        monsterBuffEffect.Stop();
 
         currentHP = status.hp;
         currentSpeed = status.speed;
@@ -143,6 +147,7 @@ public abstract class Monster : MonoBehaviour
 
     public void ChangeStatus(int hp, float speed, int force)
     {
+        monsterBuffEffect.Play();
         currentHP += hp;
         currentSpeed += speed;
         currentForce += force;
@@ -150,6 +155,7 @@ public abstract class Monster : MonoBehaviour
 
     public void ChangeStatus()
     {
+        monsterBuffEffect.Stop();
         currentSpeed = status.speed;
         currentForce = status.force;
     }
