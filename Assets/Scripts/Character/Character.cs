@@ -14,14 +14,21 @@ public class Character : MonoBehaviour
     protected Queue<GameObject> activatedProj = new Queue<GameObject>();
 
     IEnumerator AttackCoroutine = null;
-
-    protected int coolTime;             
+    [SerializeField]
+    protected int coolTime;
+    [SerializeField]
     protected float projectileSpeed;
+    [SerializeField]
     protected float attackDelay;
+    [SerializeField]
     protected int projectileNum;
+    [SerializeField]
     protected float range;
+    [SerializeField]
     protected int strength;
+    [SerializeField]
     protected int healthPoint;
+    [SerializeField]
     protected int attackDuration;
 
     private bool isDragged = false;
