@@ -8,11 +8,9 @@ public class Tower : Character
     private Tower_Attacker attacker;
     [SerializeField]
     private Sprite halfHealthSprite;
-    [SerializeField]
-    GameObject atteckEffect;
 
     [SerializeField]
-    private int     createResourceTime = 1;
+    private int     createResourceTime;
     private bool    isCreating = false;
     private bool    isAttacking = false;
 
@@ -34,8 +32,6 @@ public class Tower : Character
                 projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
             }
         }
-
-        atteckEffect.SetActive(false);
     }
 
     void Update()

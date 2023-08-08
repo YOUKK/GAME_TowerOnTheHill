@@ -9,6 +9,8 @@ TagManager:
   - Seat
   - DragCharacter
   - Pickax
+  - Gem
+  - Coin
   layers:
   - Default
   - TransparentFX

@@ -10,8 +10,9 @@ public class JumpMonster : Monster
     private float runningSpeed;
     [SerializeField]
     private float delta = 0.8f;
-    private Transform jumpTarget;
+    private Vector3 jumpTargetPos;
 
+    private BoxCollider2D boxCollider;
     private bool isJumpTried = false;
     private bool isJumping = false;
     
@@ -28,13 +29,17 @@ public class JumpMonster : Monster
     {
         base.Start();
         anim.SetBool("isJumpTried", false);
+        boxCollider = GetComponent<BoxCollider2D>();
     }
+
+    // 중간에 target이 null이 되면 if문이 실행됨. 그럼 isJumpTried가 false이므로 기본 속도로 슬라이딩 함.
 
     protected override void Update()
     {
         if (target == null && !isDead)
         {
             if (isJumpTried) Move(currentSpeed);
+            else if(isJumping) ChangeJumpToWalk(); 
             else Move(runningSpeed);
             anim.SetBool("isTargetIn", false);
         }
@@ -42,19 +47,19 @@ public class JumpMonster : Monster
         {
             anim.SetBool("isTargetIn", true);
 
-            if (!isJumpTried) // 뛰어넘기를 아직 안 했으면
+            if (!isJumping) // 뛰어넘기를 아직 안 했으면
             {
                 isJumping = true;
-                jumpTarget = target;
+                jumpTargetPos = target.position;
             }
-
-            if(isJumping) // 뛰어넘기 중인 상태면
+            else if(!isJumpTried) // 뛰어넘기 중인 상태면
             {
+                boxCollider.enabled = false;
                 ChangeJumpToWalk();
                 Move(jumpSpeed);
                 return;
             }
-            if (!isAttacking)
+            else if (!isAttacking)
             {
                 anim.SetTrigger("attackTrigger");
                 isAttacking = true;
@@ -64,13 +69,13 @@ public class JumpMonster : Monster
 
     private void ChangeJumpToWalk()
     {
-        if(jumpTarget.position.x - transform.position.x > delta)
+        if(jumpTargetPos.x - transform.position.x > delta || target == null)
         {
             Debug.Log("Out of Target Range");
+            target = null;
+            boxCollider.enabled = true;
             isJumpTried = true;
             isJumping = false;
-            target = null;
-            jumpTarget = null;
             anim.SetBool("isJumpTried", true);
             anim.SetBool("isTargetIn", false);
         }
