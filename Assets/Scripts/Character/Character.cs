@@ -72,22 +72,19 @@ public class Character : MonoBehaviour
         }
         if (projectile == null)
         {
-            for (int i = 0; i < gameObject.transform.GetChild(0).childCount; i++)
+            for (int i = 0; i < gameObject.transform.GetChild(1).childCount; i++)
             {
-                projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
+                projectiles.Enqueue(gameObject.transform.GetChild(1).GetChild(i).gameObject);
             }
         }
     }
 
     public virtual void Hit(int damage)
     {
-        if(healthPoint <= 0)
+        if(healthPoint < 0)
         {
             anim.SetBool("isDead", true);
-            Invoke("DeadDelay", 2.0f);
-
-            // seat ���� ������Ʈ
-            Map.GetInstance().RemoveCharacter(location);
+            Invoke("DeadDelay", 1.0f);
         }
         else
         {
@@ -98,6 +95,8 @@ public class Character : MonoBehaviour
     void DeadDelay()
     {
         Dead();
+        // seat ���� ������Ʈ
+        Map.GetInstance().RemoveCharacter(location);
     }
 
     protected void Dead()

@@ -62,6 +62,7 @@ public class Map : MonoBehaviour
         if(character.GetComponent<Tower>() == null) // tower가 아닌 경우
             seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;
+        seats[y][x].GetComponent<Seat>().character.GetComponentInChildren<SpriteRenderer>().sortingOrder = y * (-1);
     }
 
     // 캐릭터 제거
