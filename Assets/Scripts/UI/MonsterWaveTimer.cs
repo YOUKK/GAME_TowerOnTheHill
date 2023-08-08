@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 몬스터 웨이브 UI 관련 스크립트
+// menuCanavas에 부착되어 있음
 public class MonsterWaveTimer : MonoBehaviour
 {
     private int firstAppearTime = 5; // 첫 몬스터가 나타나기 전까지의 시간
@@ -11,9 +12,9 @@ public class MonsterWaveTimer : MonoBehaviour
     private int timeCheckInterval = 2; // 시간 체크 간격
 
     private int firstWaveStart = 0; // 첫번째 웨이브 시작 시간
-    public int FirstWaveStart { set { firstWaveStart = value; } get { return firstWaveStart; } }
+    //public int FirstWaveStart { set { firstWaveStart = value; } get { return firstWaveStart; } }
     private int secondWaveStart = 0; // 두번째 웨이브 시작 시간
-    public int SecondWaveStart { set { secondWaveStart = value; } get { return secondWaveStart; } }
+    //public int SecondWaveStart { set { secondWaveStart = value; } get { return secondWaveStart; } }
 
     private int firstWaveTime = 120; // 첫번째 웨이브 = 2분(슬라이드 딱 중간 지점)
     public int FirstwaveTime { set { firstWaveTime = value; } get { return firstWaveTime; } }
@@ -27,14 +28,20 @@ public class MonsterWaveTimer : MonoBehaviour
 
     private float moveInterval = 0; // 핸들이 움직여야 하는 값
     private int moveNum = 0; // 움직일 횟수
+    private bool firstPopUp = false;
+    private bool secondPopUp = false;
 
     [SerializeField]
     private GameObject waveBar;
     private Slider waveSlider;
+    [SerializeField]
+    private GameObject monsterWaveText;
 
     void Start()
     {
         waveSlider = waveBar.GetComponent<Slider>();
+        firstWaveStart = firstWaveTime - 5;
+        secondWaveStart = secondWaveTime - 5;
 
         //SetTime();
         StartCoroutine(Call2f());
@@ -43,7 +50,34 @@ public class MonsterWaveTimer : MonoBehaviour
 
     void Update()
     {
-        
+        if (!firstPopUp)
+        {
+            if (Managers.TimeM.Sec > firstWaveStart)
+            {
+                firstPopUp = true;
+                Debug.Log("첫번째 웨이브 시작!");
+                StartCoroutine(MonsterWaveTextPopUp());
+            }
+        }
+
+		if (!secondPopUp)
+		{
+            if(Managers.TimeM.Sec > secondWaveStart)
+			{
+                secondPopUp = true;
+                Debug.Log("두번째 웨이브 시작!");
+                StartCoroutine(MonsterWaveTextPopUp());
+            }
+		}
+    }
+
+    IEnumerator MonsterWaveTextPopUp()
+	{
+        monsterWaveText.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        monsterWaveText.SetActive(false);
     }
 
 	IEnumerator Call2f()
