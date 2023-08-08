@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 // 리소스를 클릭했을 때의 기능 - 리소스 UI로 이동하고 사라짐
 public class Resource : MonoBehaviour
@@ -52,7 +53,9 @@ public class Resource : MonoBehaviour
                             coinBox.SetActive(true);
                             int currentCoin = PlayerPrefs.GetInt("coin");
                             PlayerPrefs.SetInt("coin", currentCoin + 50);
-                            // 텍스트 갱신 필요
+                            TextMeshProUGUI textMeshPro = coinBox.GetComponentInChildren<TextMeshProUGUI>();
+                            textMeshPro.text = (currentCoin + 50).ToString();
+
                             StartCoroutine(MovetoUI(iconCoin.position));
                             break;
                         }
@@ -72,7 +75,11 @@ public class Resource : MonoBehaviour
             yield return null;
         }
 
-        if (type == RecourceType.Coin) coinBox.SetActive(false);
+        if (type == RecourceType.Coin)
+        {
+            yield return new WaitForSeconds(1);
+            coinBox.SetActive(false);
+        }
         gameObject.SetActive(false);
     }
 }
