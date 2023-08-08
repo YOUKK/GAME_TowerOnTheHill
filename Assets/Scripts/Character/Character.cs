@@ -72,9 +72,9 @@ public class Character : MonoBehaviour
         }
         if (projectile == null)
         {
-            for (int i = 0; i < gameObject.transform.GetChild(0).childCount; i++)
+            for (int i = 0; i < gameObject.transform.GetChild(1).childCount; i++)
             {
-                projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
+                projectiles.Enqueue(gameObject.transform.GetChild(1).GetChild(i).gameObject);
             }
         }
     }
