@@ -114,5 +114,7 @@ public class MonsterSpawner : MonoBehaviour
                 item.GetComponent<Monster>().ChangeStatus();
             }
         }
+
+
     }
 }

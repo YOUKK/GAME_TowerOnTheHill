@@ -37,8 +37,8 @@ public abstract class Monster : MonoBehaviour
         if (anim == null) anim = GetComponentInChildren<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         if (sprite == null) sprite = GetComponentInChildren<SpriteRenderer>();
-        randomCoin = Resources.Load<GameObject>("Prefabs/Projectile/ItemGold");
-        if (randomCoin == null) Debug.LogError("Wrond Path Prefab ItemGold");
+        randomCoin = Resources.Load<GameObject>("Prefabs/Projectile/Coin");
+        if (randomCoin == null) Debug.LogError("Wrond Path Prefab Coin");
 
         monsterBuffEffect.Stop();
 

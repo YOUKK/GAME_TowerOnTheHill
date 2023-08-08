@@ -11,7 +11,7 @@ public class CreateResource : MonoBehaviour
 
     void Start()
     {
-        resource = Resources.Load<GameObject>("Prefabs/Projectile/FallingResource2");
+        resource = Resources.Load<GameObject>("Prefabs/Projectile/FallingGem");
         leftTopPos = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, 10f)); // 왼쪽 위 화면의 좌표
         rightTopPos = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 10f)); // 오른쪽 위 화면의 좌표
 
