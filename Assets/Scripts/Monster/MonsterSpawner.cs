@@ -5,12 +5,12 @@ using UnityEngine;
 public class MonsterSpawner : MonoBehaviour
 {
     private static MonsterSpawner instance;
-    public static MonsterSpawner GetInstance { get { Init(); return instance; } }
+    public  static MonsterSpawner GetInstance { get { Init(); return instance; } }
 
     // 페이즈, 스테이지는 인덱스 상으로는 0번부터 시작
-    public int          phase = 1;
-    public int          stage = 1;
-    public GameObject[] lines = new GameObject[5];
+    public  int           phase = 1;
+    public  int           stage = 1;
+    public  GameObject[]  lines = new GameObject[5];
 
     private int           count = 0; // 한 스테이지의 길이(몬스터 생성 수)
     private int           idx = 0;
@@ -22,7 +22,7 @@ public class MonsterSpawner : MonoBehaviour
 
     [SerializeField]
     private bool isAllMonsterDead = false;
-    public bool IsAllMonsterDead { get => isAllMonsterDead; }
+    public  bool IsAllMonsterDead { get => isAllMonsterDead; }
 
     [SerializeField] GameObject textVictory;
 
@@ -85,6 +85,12 @@ public class MonsterSpawner : MonoBehaviour
 
             instance = go.GetComponent<MonsterSpawner>();
         }
+    }
+
+    public bool IsMonstersInLine(int line)
+    {
+        if (monsterList[line].Count == 0) return false;
+        else return true;
     }
 
     public void RemoveMonster(GameObject obj, int line)
