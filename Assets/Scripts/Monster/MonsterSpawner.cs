@@ -17,7 +17,6 @@ public class MonsterSpawner : MonoBehaviour
     private MonsterWave[] currentWave = null;
     public  float         monsterBuffTime = 0;
 
-    [SerializeField]
     private LinkedList<GameObject>[] monsterList = new LinkedList<GameObject>[5];
 
     [SerializeField]
@@ -87,10 +86,17 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    public bool IsMonstersInLine(int line)
+    public GameObject[] GetLineMonstersInfo(int line)
     {
-        if (monsterList[line].Count == 0) return false;
-        else return true;
+        if (monsterList[line].Count == 0) return null;
+
+
+        List<GameObject> tempMonsterList = new List<GameObject>();
+        foreach (var item in monsterList[line])
+        {
+            tempMonsterList.Add(item);
+        }
+        return tempMonsterList.ToArray();
     }
 
     public void RemoveMonster(GameObject obj, int line)
