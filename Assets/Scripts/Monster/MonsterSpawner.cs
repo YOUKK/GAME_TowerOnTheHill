@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -17,18 +18,22 @@ public class MonsterSpawner : MonoBehaviour
     private MonsterWave[] currentWave = null;
     public  float         monsterBuffTime = 0;
 
-    [SerializeField]
     private LinkedList<GameObject>[] monsterList = new LinkedList<GameObject>[5];
 
     [SerializeField]
     private bool isAllMonsterDead = false;
     public  bool IsAllMonsterDead { get => isAllMonsterDead; }
+    [SerializeField]
+    private int rewardCoin = 100;
 
     [SerializeField] GameObject textVictory;
+    private CollectResource resourceUI;
+    private GameObject coinBox;
 
     void Start()
     {
         Init();
+        PlayerPrefs.SetInt("coin", 0);
 
         if (phase - 1 < 0 || stage - 1 < 0) Debug.LogError("Wrong Phase or Stage number input");
         currentWave = DataManager.monsterWave[phase-1][stage-1].waveArray;
@@ -43,6 +48,9 @@ public class MonsterSpawner : MonoBehaviour
         {
             monsterList[i] = new LinkedList<GameObject>();
         }
+
+        resourceUI = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
+        coinBox = resourceUI.transform.GetChild(1).gameObject;
     }
 
     void Update()
@@ -87,10 +95,17 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    public bool IsMonstersInLine(int line)
+    public GameObject[] GetLineMonstersInfo(int line)
     {
-        if (monsterList[line].Count == 0) return false;
-        else return true;
+        if (monsterList[line].Count == 0) return null;
+
+
+        List<GameObject> tempMonsterList = new List<GameObject>();
+        foreach (var item in monsterList[line])
+        {
+            tempMonsterList.Add(item);
+        }
+        return tempMonsterList.ToArray();
     }
 
     public void RemoveMonster(GameObject obj, int line)
@@ -121,6 +136,25 @@ public class MonsterSpawner : MonoBehaviour
             }
         }
 
+        StartCoroutine(CoinRewardCoroutine());
+    }
 
+    IEnumerator CoinRewardCoroutine()
+    {
+        coinBox.SetActive(true);
+        int initialCoin = PlayerPrefs.GetInt("coin");
+        PlayerPrefs.SetInt("coin", initialCoin + rewardCoin);
+
+        TextMeshProUGUI textMeshPro = coinBox.GetComponentInChildren<TextMeshProUGUI>();
+        for (int i = 0; i <= 8; ++i)
+        {
+            int afterCoin = PlayerPrefs.GetInt("coin");
+            float lerpCoin = Mathf.Lerp(initialCoin, afterCoin, (float)i/8);
+            textMeshPro.text = ((int)lerpCoin).ToString();
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        coinBox.SetActive(false);
     }
 }
