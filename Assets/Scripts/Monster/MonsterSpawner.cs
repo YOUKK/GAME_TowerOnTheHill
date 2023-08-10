@@ -150,7 +150,6 @@ public class MonsterSpawner : MonoBehaviour
         {
             int afterCoin = PlayerPrefs.GetInt("coin");
             float lerpCoin = Mathf.Lerp(initialCoin, afterCoin, (float)i/8);
-            Debug.Log(lerpCoin + "  ,  " + (float)i/8);
             textMeshPro.text = ((int)lerpCoin).ToString();
             yield return new WaitForSeconds(0.25f);
         }

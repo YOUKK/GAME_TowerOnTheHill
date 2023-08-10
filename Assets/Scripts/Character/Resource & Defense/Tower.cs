@@ -113,6 +113,7 @@ public class Tower : Character
             // 해당 라인 즉사기 공격
             DeadAttack();
             MonsterSpawner.GetInstance.BuffMonsters();
+            Map.GetInstance().RemoveCharacter(location);
             Destroy(gameObject);
         }
         else
