@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bbd6a76847af4a4f956679266bb12aa, type: 3}
-  m_Name: Shield_Monster3
+  m_Name: Fast_Monster
   m_EditorClassIdentifier: 
-  monsterName: Shield3
-  hp: 160
-  speed: 0.25
-  force: 15
+  monsterName: Fast
+  hp: 80
+  speed: 0.4
+  force: 10
   hitSpeed: 2
   attackDistance: 0.5
   type: 0

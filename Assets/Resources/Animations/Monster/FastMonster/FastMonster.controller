@@ -70,7 +70,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: aa9728474f783374aa6ce68ed91937af, type: 2}
+  m_Motion: {fileID: 7400000, guid: 763a57710dd3f4949aa4104a36d51988, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -123,7 +123,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9369ba17d955b6a4388e5e5020de2865, type: 2}
+  m_Motion: {fileID: 7400000, guid: aec79959023bd2f4682c403612603d1f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -160,7 +160,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShieldMonster3
+  m_Name: FastMonster
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: attackTrigger
@@ -267,7 +267,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: dfb06df3bdeab3e498b1ded181706abb, type: 2}
+  m_Motion: {fileID: 7400000, guid: 988f7e358d27395408caa82c8b20d55a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -353,7 +353,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6cb4223a72ce4a649baeb742602602b3, type: 2}
+  m_Motion: {fileID: 7400000, guid: dac09c19b915f5e4e96b8973ab2550a7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
