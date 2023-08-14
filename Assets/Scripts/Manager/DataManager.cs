@@ -16,17 +16,7 @@ public class DataManager : MonoBehaviour
     {
         Init();
 
-        monsterWave.Add(WaveParse("MonsterWaveDB - Phase0"));
-
-        for(int i = 0; i < monsterWave[0].Count; ++i)
-        {
-            Debug.Log(monsterWave[0][i].waveArray.Length);
-            for(int j = 0; j < monsterWave[0][i].waveArray.Length; ++j)
-            {
-                MonsterWave wave = monsterWave[0][i].waveArray[j];
-                Debug.Log($"stage {wave.stage} , time {wave.time} , monster {wave.monsterInfo.name} , line {wave.line}");
-            }
-        }
+        TryParse();
     }
 
     private static void Init()
@@ -42,6 +32,21 @@ public class DataManager : MonoBehaviour
 
             DontDestroyOnLoad(go);
             instance = go.GetComponent<DataManager>();
+        }
+    }
+
+    private void TryParse()
+    {
+        monsterWave.Add(WaveParse("MonsterWaveDB - Phase0"));
+
+        for (int i = 0; i < monsterWave[0].Count; ++i)
+        {
+            Debug.Log(monsterWave[0][i].waveArray.Length);
+            for (int j = 0; j < monsterWave[0][i].waveArray.Length; ++j)
+            {
+                MonsterWave wave = monsterWave[0][i].waveArray[j];
+                Debug.Log($"stage {wave.stage} , time {wave.time} , monster {wave.monsterInfo.name} , line {wave.line}");
+            }
         }
     }
 

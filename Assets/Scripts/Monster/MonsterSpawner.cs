@@ -33,7 +33,6 @@ public class MonsterSpawner : MonoBehaviour
     void Start()
     {
         Init();
-        PlayerPrefs.SetInt("coin", 0);
 
         if (phase - 1 < 0 || stage - 1 < 0) Debug.LogError("Wrong Phase or Stage number input");
         currentWave = DataManager.monsterWave[phase-1][stage-1].waveArray;
