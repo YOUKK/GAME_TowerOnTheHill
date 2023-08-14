@@ -1,6 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.IO;
+
+[System.Serializable]
+public class ShopData
+{
+    public bool buyHammer;
+    public bool buySeatExpansion;
+    public int slotLevel;
+    public CharacterLv[] chLvs;
+}
+
+[System.Serializable]
+public struct CharacterLv
+{
+    public string characterName;
+    public int level;
+}
+
+// 한 스테이지의 Monster Wave 정보
+public class StageWave
+{
+    public MonsterWave[] waveArray = null;
+
+    public StageWave(MonsterWave[] waves)
+    {
+        waveArray = waves;
+    }
+
+    public StageWave(List<MonsterWave> waves)
+    {
+        waveArray = waves.ToArray();
+    }
+}
+
+// 몬스터 하나의 스폰 Wave 정보
+public struct MonsterWave
+{
+    public int stage;
+    public float time;
+    public GameObject monsterInfo;
+    public int line;
+}
+
 
 public class DataManager : MonoBehaviour
 {
@@ -16,7 +60,12 @@ public class DataManager : MonoBehaviour
     {
         Init();
 
-        TryParse();
+        Scene currScene = SceneManager.GetActiveScene();
+        if(currScene.name == "Shop")
+        {
+
+        }
+        else TryParse();
     }
 
     private static void Init()
@@ -50,6 +99,16 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public static void SaveShopData(ShopData shopData)
+    {
+        // json 형태로 된 문자열 생성
+        string json = JsonUtility.ToJson(shopData);
+        // 데이터를 저장할 경로 지정(Asset/)
+        string path = Path.Combine(Application.dataPath, "shopData.json");
+        // 파일 생성 및 저장
+        File.WriteAllText(path, json);
+    }
+    
     // 한 페이즈의 Wave 데이터를 파싱하여 stage 별로 나눈 리스트를 반환.
     List<StageWave> WaveParse(string _CSVFileName)
     {
@@ -111,27 +170,3 @@ public class DataManager : MonoBehaviour
     }
 }
 
-// 한 스테이지의 Monster Wave 정보
-public class StageWave
-{
-    public MonsterWave[] waveArray = null;
-
-    public StageWave(MonsterWave[] waves)
-    {
-        waveArray = waves;
-    }
-
-    public StageWave(List<MonsterWave> waves)
-    {
-        waveArray = waves.ToArray();
-    }
-}
-
-// 몬스터 하나의 스폰 Wave 정보
-public struct MonsterWave
-{
-    public int          stage;
-    public float        time;
-    public GameObject   monsterInfo;
-    public int          line;
-}

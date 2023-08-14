@@ -10,7 +10,7 @@ public class ShopManager : MonoBehaviour
     TextMeshProUGUI currentCoin;
     [SerializeField]
     GameObject[] buttons;
-
+    
     void Start()
     {
         
@@ -28,9 +28,14 @@ public class ShopManager : MonoBehaviour
         else Debug.LogError("No Coin Data!");
     }
 
-    public void ExitShop()
+    // 함수 오버로딩하자. 각 아이템 버튼을 누르면 실행시킬 함수.
+    public void SaveShopInfo(bool _buyHammer, bool _buySeatExpansion)
     {
-        gameObject.SetActive(false);
+        ShopData shopData = new ShopData();
+
+        // shopData 초기화
+
+        DataManager.SaveShopData(shopData);
     }
 
     public void ActivateHammer(GameObject hammerUI)
