@@ -63,6 +63,7 @@ public class Map : MonoBehaviour
             seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;
         seats[y][x].GetComponent<Seat>().character.GetComponentInChildren<SpriteRenderer>().sortingOrder = y * (-1);
+        seats[y][x].GetComponent<Seat>().character.GetComponentInChildren<MonsterCheck>().LocalPos = location;
     }
 
     // 캐릭터 제거
