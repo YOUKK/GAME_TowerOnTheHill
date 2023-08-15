@@ -72,10 +72,10 @@ public class Resource : MonoBehaviour
 		while (Vector2.Distance(transform.position, destination) > 0.1f)
 		{
 			transform.position = Vector2.Lerp(transform.position, destination, 0.05f);
-            yield return null;
-        }
+			yield return null;
+		}
 
-        if (type == RecourceType.Coin)
+		if (type == RecourceType.Coin)
         {
             yield return new WaitForSeconds(1);
             coinBox.SetActive(false);
