@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Eater : Character
 {
-    private bool canAttack = true;
+    [SerializeField]
+    private bool canAttack;
     // Start is called before the first frame update
     protected override void Start()
     {
+        canAttack = true;
         base.Start();
     }
 
@@ -15,10 +17,10 @@ public class Eater : Character
     // Update is called once per frame
     public override void Attack()
     {
-        if (!IsDragged && CheckMonster && canAttack)
+        if (!IsDragged && canAttack)
         {
             anim.SetTrigger("canAttack");
-            canAttack = false;
+            //canAttack = false;
             Invoke("attackDelaySet", 1.7f);
         }
     }
@@ -29,8 +31,15 @@ public class Eater : Character
     }
     void Duration()
     {
-        Destroy(gameObject.GetComponentInChildren<MonsterCheck>().Monster);
-        gameObject.GetComponentInChildren<MonsterCheck>().Monster = null;
-        canAttack = true;
+        if (healthPoint < 0)
+        {
+            gameObject.GetComponentInChildren<MonsterCheck>().Monster.SetActive(true);
+        }
+        else
+        {
+            Destroy(gameObject.GetComponentInChildren<MonsterCheck>().Monster);
+            gameObject.GetComponentInChildren<MonsterCheck>().Monster = null;
+            canAttack = true;
+        }
     }
 }
