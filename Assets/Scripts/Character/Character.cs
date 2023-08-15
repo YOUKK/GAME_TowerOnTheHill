@@ -7,6 +7,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected GameObject projectile;
     [SerializeField]
+    protected GameObject projectileSecond;
+    [SerializeField]
     protected CharacterStatus status;
     protected Animator anim;
 
