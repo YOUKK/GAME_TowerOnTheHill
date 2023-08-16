@@ -12,10 +12,22 @@ public class PeaShooter2 : Character
 
     public override void Attack()
     {
+        anim.SetTrigger("canAttack");
+        Invoke("attackDelaySet", 0.1f);
         if (!IsDragged && CheckMonster)
         {
             anim.SetTrigger("canAttack");
             Invoke("attackDelaySet", 0.1f);
+        }
+    }
+    private void Update()
+    {
+        for (int i = 0; i < gameObject.transform.GetChild(1).childCount; i++)
+        {
+            if(!gameObject.transform.GetChild(1).GetChild(i).gameObject.activeSelf)
+            {
+                gameObject.transform.GetChild(1).GetChild(i).position = gameObject.transform.position;
+            }
         }
     }
     void attackDelaySet()
@@ -23,29 +35,25 @@ public class PeaShooter2 : Character
         projectile = projectiles.Dequeue();
         projectiles.Enqueue(projectile);
         activatedProj.Enqueue(projectile);
+        projectileSecond = projectiles.Dequeue();
+        projectiles.Enqueue(projectileSecond);
+        activatedProj.Enqueue(projectileSecond);
         projectile.SetActive(true);
+        projectileSecond.SetActive(true);
 
         projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
         Invoke("attackDelaySet2", 0.15f);
     }
     void attackDelaySet2()
     {
-        activatedProj.Peek().transform.position = gameObject.transform.position;
-        GameObject T = activatedProj.Dequeue();
-        T.SetActive(false);
-
-        projectile = projectiles.Dequeue();
-        projectiles.Enqueue(projectile);
-        activatedProj.Enqueue(projectile);
-        projectile.SetActive(true);
-
-        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
+        projectileSecond.GetComponent<Rigidbody2D>().AddForce(new Vector2(ProjectileSpeed, 0) * 100);
         Invoke("Duration", AttackDuration);
     }
     void Duration()
     {
-        activatedProj.Peek().transform.position = gameObject.transform.position;
         GameObject T = activatedProj.Dequeue();
+        T.SetActive(false);
+        T = activatedProj.Dequeue();
         T.SetActive(false);
     }
 }

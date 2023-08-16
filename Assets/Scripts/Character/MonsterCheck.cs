@@ -9,59 +9,33 @@ public class MonsterCheck : MonoBehaviour
     private bool changeFlag = true;
     [SerializeField]
     private GameObject monster;
+
+    private MonsterSpawner A;
+    [SerializeField]
+    private Vector2 localPos;
+
+    [SerializeField] float Range;
+
+    public Vector2 LocalPos { get => localPos; set => localPos = value; }
+    public GameObject Monster { get => monster; set => monster = value; }
+
     // Start is called before the first frame update
     void Start()
     {
         mainCharacter = transform.GetComponentInParent<Character>();
+        A = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>();
+        //Range = LocalPos.x + (float)mainCharacter.Range;
     }
+
     private void Update()
     {
-        if (changeFlag && mainCharacter.Range != 0)
+        if (A.GetLineMonstersInfo((int)LocalPos.y) != null)
         {
-            transform.position = new Vector2(transform.position.x + ((1 + mainCharacter.Range) / 2),
-                                             transform.position.y);
-            transform.localScale = new Vector2(mainCharacter.Range, transform.localScale.y / 2);
-            changeFlag = false;
-        }
-    }
-    public GameObject Monster { get => monster; set => monster = value; }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        try
-        {
-            Debug.Log(gameObject.GetComponentInParent<Eater>().CanAttack);
-
-            if (gameObject.GetComponentInParent<Eater>().CanAttack && collision.tag == "Enemy")
+            if (A.GetLineMonstersInfo((int)LocalPos.y)[0].transform.position.x - mainCharacter.transform.position.x <= (float)mainCharacter.Range)
             {
-                monster = collision.gameObject;
+                monster = A.GetLineMonstersInfo((int)LocalPos.y)[0];
+                mainCharacter.CheckMonster = true;
             }
         }
-        catch
-        {
-        }
-        if (collision.tag == "Enemy")
-        {
-            mainCharacter.CheckMonster = true;
-        }
-        else
-        {
-            mainCharacter.CheckMonster = false;
-        }
     }
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Enemy")
-        {
-            mainCharacter.CheckMonster = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Enemy")
-        {
-            mainCharacter.CheckMonster = false;
-        }
-    }*/
 }
