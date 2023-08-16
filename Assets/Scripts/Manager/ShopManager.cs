@@ -16,11 +16,6 @@ public class ShopManager : MonoBehaviour
         
     }
 
-    void Update()
-    {
-        
-    }
-
     public void OnEnable()
     {
         if (PlayerPrefs.HasKey("coin"))
@@ -28,19 +23,30 @@ public class ShopManager : MonoBehaviour
         else Debug.LogError("No Coin Data!");
     }
 
-    // 함수 오버로딩하자. 각 아이템 버튼을 누르면 실행시킬 함수.
-    public void SaveShopInfo(bool _buyHammer, bool _buySeatExpansion)
+    public void SaveShopInfo(string itemName)
     {
         ShopData shopData = new ShopData();
 
-        // shopData 초기화
+        if (itemName == "Hammer")
+        {
+            shopData.buyHammer = true;
+        }
+        else if (itemName == "SeatExpansion")
+        {
+            shopData.buySeatExpansion = true;
+        }
+        else if (itemName == "SlotExpansion")
+        {
+            shopData.slotLevel++;
+        }
+        else if (itemName == "CharacterTraining")
+        {
+            Debug.Log("Character Training Button is On");
+        }
+        else return;
+
+
 
         DataManager.SaveShopData(shopData);
-    }
-
-    public void ActivateHammer(GameObject hammerUI)
-    {
-        hammerUI.SetActive(true);
-        // 코인 감소
     }
 }

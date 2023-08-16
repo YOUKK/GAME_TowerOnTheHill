@@ -11,6 +11,13 @@ public class ShopData
     public bool buySeatExpansion;
     public int slotLevel;
     public CharacterLv[] chLvs;
+    public ShopData()
+    {
+        buyHammer = false;
+        buySeatExpansion = false;
+        slotLevel = 0;
+        chLvs = null;
+    }
 }
 
 [System.Serializable]
@@ -53,6 +60,7 @@ public class DataManager : MonoBehaviour
 
     [SerializeField]
     private MonsterWaveTimer monsterWaveTimer;
+    private static string shopDataPath;
 
     public static List<List<StageWave>> monsterWave = new List<List<StageWave>>();
 
@@ -63,9 +71,11 @@ public class DataManager : MonoBehaviour
         Scene currScene = SceneManager.GetActiveScene();
         if(currScene.name == "Shop")
         {
-
+            
         }
         else TryParse();
+
+        shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
     }
 
     private static void Init()
@@ -99,14 +109,29 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public static ShopData GetShopData()
+    {
+        ShopData shopData = new ShopData();
+
+        if (File.Exists(shopDataPath))
+        {
+            string jsonString = Resources.Load<TextAsset>(shopDataPath).text;
+            shopData = JsonUtility.FromJson<ShopData>(jsonString);
+        }
+        else
+        {
+            SaveShopData(shopData);
+        }
+        
+        return shopData;
+    }
+
     public static void SaveShopData(ShopData shopData)
     {
         // json 형태로 된 문자열 생성
         string json = JsonUtility.ToJson(shopData);
-        // 데이터를 저장할 경로 지정(Asset/)
-        string path = Path.Combine(Application.dataPath, "shopData.json");
         // 파일 생성 및 저장
-        File.WriteAllText(path, json);
+        File.WriteAllText(shopDataPath, json);
     }
     
     // 한 페이즈의 Wave 데이터를 파싱하여 stage 별로 나눈 리스트를 반환.
@@ -114,7 +139,7 @@ public class DataManager : MonoBehaviour
     {
         List<StageWave> res = new List<StageWave>();
 
-        TextAsset csvData = Resources.Load<TextAsset>($"Waves/{_CSVFileName}");
+        TextAsset csvData = Resources.Load<TextAsset>($"Data/{_CSVFileName}");
 
         string[] data = csvData.text.Split(new char[] { '\n' });
 
