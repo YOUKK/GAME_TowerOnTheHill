@@ -34,6 +34,15 @@ public class CharacterSelectButton : MonoBehaviour
         
     }
 
+    // SelectedCanvas에서 빈공간 땡기는 기능
+    public void PullCanvas(GameObject mother)
+	{
+        transform.SetParent(mother.transform);
+        temp.y -= 100; // 한칸 위로 당겨지면서 anchoredPosition의 PosY가 -100 더해짐
+        StartCoroutine(MoveGo(Vector2.zero));
+	}
+
+
     // 버튼 클릭하면 인벤토리 캔버스 <-> 캐릭터 선택 캔버스 왔다갔다 하는 기능
     public void MoveCanvas()
 	{

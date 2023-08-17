@@ -41,13 +41,16 @@ public class SelectedCharacter : MonoBehaviour
 		}
 	}
 
+    // 리스트 당기는 기능 & 당겨지는 오브젝트들의 myLocation-1
     public void PullButtonList(int index)
 	{
-        // 리스트 당기는 기능 & 당겨지는 오브젝트들의 myLocation-1
         for(int i = index; i < turn - 1; i++)
 		{
             buttonList[i] = buttonList[i + 1];
             characterInventory.enumPerButtonDic[buttonList[i]].GetComponent<CharacterSelectButton>().MyLocation--;
+
+            // 당겨지는 버튼의 부모 오브젝트를 위에 있는 프레임 오브젝트로 교체하기
+            characterInventory.enumPerButtonDic[buttonList[i + 1]].GetComponent<CharacterSelectButton>().PullCanvas(characterFrames[i]);
 		}
         buttonList[turn - 1] = CharacterButtonList.None; // 마지막칸 None이 됨
 
