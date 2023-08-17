@@ -7,23 +7,62 @@ using UnityEngine;
 
 public class SelectedCharacter : MonoBehaviour
 {
-    private int turn = 0; // 현재 채워져야 할 번호
+    private CharacterInventory characterInventory;
+
+    [SerializeField]
+    private int turn = 0; // SelectedCanvas에서 현재 채워져야 할 번호
     public int Turn { get { return turn; } set { turn = value;} }
+
     private List<GameObject> characterFrames = new List<GameObject>();
     public List<GameObject> CharacterFrames { get { return characterFrames; } }
-    //private Dictionary<>
+    [SerializeField]
+    private List<CharacterButtonList> buttonList = new List<CharacterButtonList>(); // 현재 SelectCanvas에 있는 버튼들의 리스트
 
     void Start()
     {
-        for (int i = 0; i < 8; i++) {
+        characterInventory = GameObject.Find("InventoryCanvas").GetComponent<CharacterInventory>();
+
+        for (int i = 0; i < 8; i++)
             characterFrames.Add(gameObject.transform.GetChild(i).gameObject);
-        }
+        for(int i = 0; i < 4; i++)
+            buttonList.Add(CharacterButtonList.None); // 모든 칸이 비어있음
     }
 
     void Update()
     {
         
     }
+
+    public void PrintDic()
+	{
+        for(int i=0;i<4; i++)
+		{
+            Debug.Log(i + " " + buttonList[i]);
+		}
+	}
+
+    // 리스트 당기는 기능 & 당겨지는 오브젝트들의 myLocation-1
+    public void PullButtonList(int index)
+	{
+        for(int i = index; i < turn - 1; i++)
+		{
+            buttonList[i] = buttonList[i + 1];
+            characterInventory.enumPerButtonDic[buttonList[i]].GetComponent<CharacterSelectButton>().MyLocation--;
+
+            // 당겨지는 버튼의 부모 오브젝트를 위에 있는 프레임 오브젝트로 교체하기
+            characterInventory.enumPerButtonDic[buttonList[i + 1]].GetComponent<CharacterSelectButton>().PullCanvas(characterFrames[i]);
+		}
+        buttonList[turn - 1] = CharacterButtonList.None; // 마지막칸 None이 됨
+
+        PrintDic();
+	}
+
+    public void SetButtonOnList(int index, CharacterButtonList cha)
+	{
+        buttonList[index] = cha;
+
+        PrintDic();
+	}
 
     // 추가해야할 frame 오브젝트를 알려주는 함수
     public GameObject GetNextTurn()
