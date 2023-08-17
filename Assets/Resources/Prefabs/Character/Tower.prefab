@@ -136,6 +136,7 @@ MonoBehaviour:
   attackDuration: 0
   attacker: {fileID: 5043891114440289369}
   attackEffect: {fileID: 9216536392675399662}
+  DeadEffect: {fileID: 4601287612186502302}
   halfHealthSprite: {fileID: 21300000, guid: 2a38a3daa8568574bb71614d156f0099, type: 3}
   createResourceTime: 20
 --- !u!61 &1066621689809639148
