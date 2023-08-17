@@ -9,7 +9,6 @@ public class Tower_Attacker : MonoBehaviour
     {
         get
         {
-            Debug.Log("Attacker : getter Access");
             for (int i = 0; i < monsterList.Count; ++i)
                 if (monsterList[i] == null)
                 {
@@ -20,16 +19,6 @@ public class Tower_Attacker : MonoBehaviour
         }
     }
     public int monsterCount = 0;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

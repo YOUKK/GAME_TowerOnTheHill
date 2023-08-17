@@ -7,6 +7,8 @@ public class Tower : Character
     [SerializeField]
     private Tower_Attacker attacker;
     [SerializeField]
+    private ParticleSystem attackEffect;
+    [SerializeField]
     private Sprite halfHealthSprite;
 
     [SerializeField]
@@ -24,6 +26,7 @@ public class Tower : Character
         strength = status.strength;
         healthPoint = status.healthPoint;
         attackDuration = status.attackDuration;
+        attackEffect.Stop();
 
         if (projectile == null)
         {
@@ -78,6 +81,8 @@ public class Tower : Character
     {
         //atteckEffect.SetActive(true); // Attack Animation
         yield return new WaitForSeconds(status.attackDelay);
+        attackEffect.Play();
+        yield return new WaitForSeconds(0.5f);
         Attack();
         isAttacking = false;
     }
@@ -97,6 +102,16 @@ public class Tower : Character
     // attacker의 list를 tower에서 받아와서 attack할 때 사용.
 
     // 새로운 사실 : OnTriggerExit은 탐지된 물체가 빠져나가는 것 뿐만 아니라 Destroy되어도 호출된다.
+    private IEnumerator DeadCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        DeadAttack();
+        yield return new WaitForSeconds(0.7f);
+        MonsterSpawner.GetInstance.BuffMonsters();
+        Map.GetInstance().RemoveCharacter(location);
+        Destroy(gameObject);
+    }
+
     private void DeadAttack()
     {
         RaycastHit2D[] hittedMonster = Physics2D.RaycastAll(transform.position, Vector2.right, 100f, 1 << 8);
@@ -111,10 +126,7 @@ public class Tower : Character
         if (healthPoint - damage <= 0)
         {
             // 해당 라인 즉사기 공격
-            DeadAttack();
-            MonsterSpawner.GetInstance.BuffMonsters();
-            Map.GetInstance().RemoveCharacter(location);
-            Destroy(gameObject);
+            StartCoroutine(DeadCoroutine());
         }
         else
         {
