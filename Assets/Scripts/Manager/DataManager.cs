@@ -115,7 +115,7 @@ public class DataManager : MonoBehaviour
 
         if (File.Exists(shopDataPath))
         {
-            string jsonString = Resources.Load<TextAsset>(shopDataPath).text;
+            string jsonString = File.ReadAllText(shopDataPath);
             shopData = JsonUtility.FromJson<ShopData>(jsonString);
         }
         else

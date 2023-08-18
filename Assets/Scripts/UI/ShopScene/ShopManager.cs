@@ -4,20 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : ShopBase
 {
+    ShopData shopData;
+
     [SerializeField]
     TextMeshProUGUI currentCoin;
     [SerializeField]
     GameObject[] buttons;
+
+    enum Buttons { HammerButton, SeatButton, SlotButton, TrainingButton }
+    enum Texts { PointText, ScoreText }
+    enum Images { ItemIcon, }
+    enum GameObjects { TestObject }
+
+    const int hammerCost = 100;
+    const int seatExpansionCost = 300;
+    readonly int[] slotExpansionCost = { 100, 200, 300, 400 };
+    readonly int[] trainingCost = { 100, 200, 400, 800 };
     
     void Start()
     {
-        
-    }
+        shopData = DataManager.GetShopData();
 
-    public void OnEnable()
-    {
+        Bind<Button>(typeof(Buttons));
+        GetButton((int)Buttons.HammerButton).GetComponentInChildren<TextMeshProUGUI>().text = 
+            hammerCost.ToString();
+        GetButton((int)Buttons.SeatButton).GetComponentInChildren<TextMeshProUGUI>().text = 
+            seatExpansionCost.ToString();
+        GetButton((int)Buttons.SlotButton).GetComponentInChildren<TextMeshProUGUI>().text = 
+            slotExpansionCost[shopData.slotLevel].ToString();
+
+
         if (PlayerPrefs.HasKey("coin"))
             currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
         else Debug.LogError("No Coin Data!");
