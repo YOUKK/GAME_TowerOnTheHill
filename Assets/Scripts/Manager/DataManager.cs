@@ -27,6 +27,8 @@ public struct CharacterLv
     public int level;
 }
 
+public enum CharacterKind { Offense, Defense, Support }
+
 // 한 스테이지의 Monster Wave 정보
 public class StageWave
 {
@@ -51,7 +53,6 @@ public struct MonsterWave
     public GameObject monsterInfo;
     public int line;
 }
-
 
 public class DataManager : MonoBehaviour
 {
