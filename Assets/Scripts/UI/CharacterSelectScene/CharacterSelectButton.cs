@@ -11,6 +11,7 @@ public class CharacterSelectButton : MonoBehaviour
     private CharacterInventory characterInventory;
     [SerializeField]
     private CharacterButtonList character; // 캐릭터 버튼 enum, 하이어라키창에서 설정
+    private StartButton startButton;
 
 
     public bool isSelect = false;
@@ -26,6 +27,8 @@ public class CharacterSelectButton : MonoBehaviour
         selectedCharacter = GameObject.Find("SelectedCanvas").GetComponent<SelectedCharacter>();
         characterInventory = GameObject.Find("InventoryCanvas").GetComponent<CharacterInventory>();
         characterInventory.enumPerButtonDic.Add(character, gameObject);
+        startButton = GameObject.Find("InventoryCanvas").transform.GetChild(0).transform.GetChild(3).gameObject.GetComponent<StartButton>();
+
         motherObject = transform.parent;
     }
 
@@ -42,21 +45,24 @@ public class CharacterSelectButton : MonoBehaviour
         StartCoroutine(MoveGo(Vector2.zero));
 	}
 
-
+    // 버튼 눌렀을 때 실행하는 함수
     // 버튼 클릭하면 인벤토리 캔버스 <-> 캐릭터 선택 캔버스 왔다갔다 하는 기능
     public void MoveCanvas()
-	{
+    {
         if (!isSelect) // 인벤토리 캔버스 -> 캐릭터 선택 캔버스
         {
-            transform.SetParent(selectedCharacter.GetNextTurn().transform);
-            // temp는 인벤토리 캔버스에 있으면서 캐릭터 선택 캔버스의 자식 오브젝트일 때의 anchoredPosition
-            temp = gameObject.GetComponent<RectTransform>().anchoredPosition;
-			StartCoroutine(MoveGo(Vector2.zero));
+            if (selectedCharacter.CanAddButton())
+            {
+                transform.SetParent(selectedCharacter.GetNextTurn().transform);
+                // temp는 인벤토리 캔버스에 있으면서 캐릭터 선택 캔버스의 자식 오브젝트일 때의 anchoredPosition
+                temp = gameObject.GetComponent<RectTransform>().anchoredPosition;
+                StartCoroutine(MoveGo(Vector2.zero));
 
-            myLocation = selectedCharacter.Turn;
-            selectedCharacter.SetButtonOnList(myLocation, character);
-            selectedCharacter.Turn++;
-            isSelect = true;
+                myLocation = selectedCharacter.Turn;
+                selectedCharacter.SetButtonOnList(myLocation, character);
+                selectedCharacter.Turn++;
+                isSelect = true;
+            }
         }
         else // 인벤토리 캔버스 -> 캐릭터 선택 캔버스
         {
@@ -65,7 +71,18 @@ public class CharacterSelectButton : MonoBehaviour
             selectedCharacter.PullButtonList(myLocation);
             selectedCharacter.Turn--;
             isSelect = false;
-		}
+        }
+
+        // startButton 체크
+        CheckStartButton();
+    }
+
+    private void CheckStartButton()
+	{
+		if (!selectedCharacter.CanAddButton()) // start 가능
+            startButton.CanPressButton();
+		else // start 불가능
+            startButton.CannotPressButton();
 	}
 
 	IEnumerator MoveGo(Vector2 des)

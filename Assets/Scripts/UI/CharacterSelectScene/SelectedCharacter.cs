@@ -12,6 +12,9 @@ public class SelectedCharacter : MonoBehaviour
     [SerializeField]
     private int turn = 0; // SelectedCanvas에서 현재 채워져야 할 번호
     public int Turn { get { return turn; } set { turn = value;} }
+    private int max = 3; // SelectedCanvas에서 채울 수 있는 최대 프레임 수(활성화된 프레임 오브젝트 수)
+    private bool canStart = false;
+
 
     private List<GameObject> characterFrames = new List<GameObject>();
     public List<GameObject> CharacterFrames { get { return characterFrames; } }
@@ -30,7 +33,7 @@ public class SelectedCharacter : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void PrintDic()
@@ -68,5 +71,16 @@ public class SelectedCharacter : MonoBehaviour
     public GameObject GetNextTurn()
 	{
         return characterFrames[turn];
+	}
+
+    // 빈 characterFrame이 있으면 true, 다 채워지면 false
+    public bool CanAddButton()
+	{
+        if (turn < max)
+            canStart = true;
+        else
+            canStart = false;
+
+        return canStart;
 	}
 }
