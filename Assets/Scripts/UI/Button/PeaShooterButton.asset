@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74516f5c0a93c954d89a9f17b64ee73e, type: 3}
   m_Name: PeaShooterButton
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  characterObject: {fileID: 0}
-  coolTime: 0
-  price: 0
+  sprite: {fileID: 6636745304348197278, guid: bf1df2d080d4f0e4dbb892c4d288d4fc, type: 3}
+  characterObject: {fileID: 7609798859454043020, guid: b40bad040f7aaa34e9af11235cbc26ed, type: 3}
+  coolTime: 7
+  price: 100

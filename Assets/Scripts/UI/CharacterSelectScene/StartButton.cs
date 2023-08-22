@@ -7,16 +7,25 @@ using TMPro;
 public class StartButton : MonoBehaviour
 {
     private TextMeshProUGUI text;
+    private SelectedCharacter selectedCharacter;
 
     void Start()
     {
         text = transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
+        selectedCharacter = GameObject.Find("SelectedCanvas").GetComponent<SelectedCharacter>();
     }
 
     void Update()
     {
         
     }
+
+    // StartButton 클릭시 1. 캐릭터 선택 정보 json으로 저장됨 2. 게임플레이씬으로 전환
+    public void ClickButton()
+	{
+        // json 파일 저장
+        selectedCharacter.SaveButtonListToJson();
+	}
 
     public void CanPressButton()
 	{

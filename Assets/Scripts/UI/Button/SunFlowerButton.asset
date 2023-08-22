@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74516f5c0a93c954d89a9f17b64ee73e, type: 3}
   m_Name: SunFlowerButton
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  characterObject: {fileID: 0}
-  coolTime: 0
-  price: 0
+  sprite: {fileID: 1263070830574623625, guid: 44d2a33c4c244204085fcd95466cd2b1, type: 3}
+  characterObject: {fileID: 4173541635360795099, guid: 8b278794c7fe1e44493711b7c996b512, type: 3}
+  coolTime: 7
+  price: 50

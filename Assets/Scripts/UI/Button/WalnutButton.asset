@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74516f5c0a93c954d89a9f17b64ee73e, type: 3}
   m_Name: WalnutButton
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  characterObject: {fileID: 0}
-  coolTime: 0
-  price: 0
+  sprite: {fileID: 6810032414370782573, guid: f7b3d9365045f9745b71a1d66076b92d, type: 3}
+  characterObject: {fileID: 629637003376261254, guid: 33959377fcbc7f34f929f6ee5c89bcb1, type: 3}
+  coolTime: 30
+  price: 50

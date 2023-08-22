@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74516f5c0a93c954d89a9f17b64ee73e, type: 3}
   m_Name: GasMushroomButton
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  characterObject: {fileID: 0}
-  coolTime: 0
-  price: 0
+  sprite: {fileID: 8492439900741784191, guid: 0c5ae18931356f846a7f441bc63205fc, type: 3}
+  characterObject: {fileID: 4428760754216831659, guid: 726c5b85e67b3c544a664abe7ddb0acd, type: 3}
+  coolTime: 7
+  price: 75
