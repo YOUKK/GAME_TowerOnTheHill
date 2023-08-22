@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 게임 플레이에 쓸 캐릭터를 고르는 기능 관련 스크립트
+// CharacterButtonCanvas에 붙음
+
 public class SelectCharacter : MonoBehaviour
 {
     //private List<chaType> selectedCha = new List<chaType>(); // 선택된 캐릭터 리스트

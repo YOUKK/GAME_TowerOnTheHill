@@ -27,7 +27,7 @@ public class SelectedCharacter : MonoBehaviour
 
         for (int i = 0; i < 8; i++)
             characterFrames.Add(gameObject.transform.GetChild(i).gameObject);
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 8; i++)
             buttonList.Add(CharacterButtonList.None); // 모든 칸이 비어있음
     }
 
