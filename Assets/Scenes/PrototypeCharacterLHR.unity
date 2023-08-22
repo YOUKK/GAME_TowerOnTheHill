@@ -1111,6 +1111,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   monsterBuffTime: 10
+  isAllMonsterDead: 0
+  rewardCoin: 100
+  textVictory: {fileID: 0}
 --- !u!4 &1188786199
 Transform:
   m_ObjectHideFlags: 0
