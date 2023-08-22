@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6141855859215221122}
   - component: {fileID: 4824299314194119201}
   m_Layer: 0
-  m_Name: WideArea
+  m_Name: GasMushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
