@@ -27,7 +27,24 @@ public struct CharacterLv
     public int level;
 }
 
-public enum CharacterKind { Offense, Defense, Support }
+public enum UpgradeKind { Force, SkillSpeed, Health }
+
+[System.Serializable]
+public class UpgradeData
+{
+    public string chName;
+    public float[] statIncrease;
+    public UpgradeKind kind;
+
+    public UpgradeData(string _name, float[] _statArray, UpgradeKind _kind)
+    {
+        chName = _name;
+        statIncrease = _statArray;
+        kind = _kind;
+    }
+}
+
+
 
 // 한 스테이지의 Monster Wave 정보
 public class StageWave
@@ -135,6 +152,33 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(shopDataPath, json);
     }
     
+    public static UpgradeData[] LoadCharacterUpgradeData()
+    {
+        string path = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
+        UpgradeData[] datas;
+
+        if (!File.Exists(path))
+        {
+            Debug.Log("Character Upgrade Data File is Created");
+            datas = new UpgradeData[3];
+
+            datas[0] = new UpgradeData("Pea", new float[] { 1.0f, 2.0f, 3.0f, 4.0f }, UpgradeKind.Force);
+            datas[1] = new UpgradeData("Gas", new float[] { 1.1f, 2.1f, 3.1f, 4.1f }, UpgradeKind.Health);
+            datas[2] = new UpgradeData("Sun", new float[] { 1.2f, 2.2f, 3.2f, 4.2f }, UpgradeKind.SkillSpeed);
+
+            string json = JsonHelper.ToJson(datas, true);
+            Debug.Log(json);
+            File.WriteAllText(path, json);
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            datas = JsonHelper.FromJson<UpgradeData>(json);
+        }
+
+        return datas;
+    }
+
     // 한 페이즈의 Wave 데이터를 파싱하여 stage 별로 나눈 리스트를 반환.
     List<StageWave> WaveParse(string _CSVFileName)
     {

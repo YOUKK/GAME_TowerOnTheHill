@@ -13,6 +13,8 @@ public class ShopManager : ShopBase
     [SerializeField]
     GameObject[] buttons;
 
+    private UpgradeData[] characterUpgradeDatas;
+
     enum Buttons { HammerButton, SeatButton, SlotButton, TrainingButton }
     enum Texts { PointText, ScoreText }
     enum Images { ItemIcon, }
@@ -26,6 +28,9 @@ public class ShopManager : ShopBase
     void Start()
     {
         shopData = DataManager.GetShopData();
+        characterUpgradeDatas = DataManager.LoadCharacterUpgradeData();
+        if (characterUpgradeDatas != null)
+            Debug.Log(characterUpgradeDatas[0].chName);
 
         Bind<Button>(typeof(Buttons));
         GetButton((int)Buttons.HammerButton).GetComponentInChildren<TextMeshProUGUI>().text = 
