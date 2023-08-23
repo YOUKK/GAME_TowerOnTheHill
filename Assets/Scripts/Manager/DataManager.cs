@@ -159,7 +159,6 @@ public class DataManager : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            Debug.Log("Character Upgrade Data File is Created");
             datas = new UpgradeData[3];
 
             datas[0] = new UpgradeData("Pea", new float[] { 1.0f, 2.0f, 3.0f, 4.0f }, UpgradeKind.Force);
