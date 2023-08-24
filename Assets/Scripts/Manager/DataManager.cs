@@ -4,24 +4,26 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
 
+// 스크립트 직렬화 가능한 클래스
+#region
 [System.Serializable]
 public class ShopData
 {
-    public bool buyHammer;
-    public bool buySeatExpansion;
-    public int slotLevel;
-    public CharacterLv[] chLvs;
+    public bool             hasHammer;
+    public bool             hasSeatExpansion;
+    public int              slotLevel;
+    public CharacterLvls[]  characterLvls;
     public ShopData()
     {
-        buyHammer = false;
-        buySeatExpansion = false;
+        hasHammer = false;
+        hasSeatExpansion = false;
         slotLevel = 0;
-        chLvs = null;
+        characterLvls = null;
     }
 }
 
 [System.Serializable]
-public struct CharacterLv
+public struct CharacterLvls
 {
     public string characterName;
     public int level;
@@ -43,8 +45,7 @@ public class UpgradeData
         kind = _kind;
     }
 }
-
-
+#endregion
 
 // 한 스테이지의 Monster Wave 정보
 public class StageWave
@@ -71,6 +72,7 @@ public struct MonsterWave
     public int line;
 }
 
+
 public class DataManager : MonoBehaviour
 {
     private static DataManager instance;
@@ -79,6 +81,7 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private MonsterWaveTimer monsterWaveTimer;
     private static string shopDataPath;
+    private static UpgradeData[] upgradeDatas;
 
     public static List<List<StageWave>> monsterWave = new List<List<StageWave>>();
 
@@ -89,11 +92,16 @@ public class DataManager : MonoBehaviour
         Scene currScene = SceneManager.GetActiveScene();
         if(currScene.name == "Shop")
         {
-            
+            // 캐릭터의 스텟을 정하는 시점 : 게임 시작 시가 적당한 것 같다.
+            // 이유 : 상점을 이용하여 바뀔 수 있는 데이터들을 불러오기 때문에 매 게임 시작마다 불러와주는 것이 효율적이다.
+            // 어떤 정보를 불러와야 할까?
+            // 해당 캐릭터의 레벨의 수치 정보를 가져와야 함. 즉, UpgradeData가 필요함.
+            // Idea : UpgradeData를 플레이어의 이름을 Key로 갖고 현재 status 값을 value로 갖는...
         }
         else TryParse();
 
         shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
+        LoadCharacterUpgradeData();
     }
 
     private static void Init()
@@ -152,30 +160,39 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(shopDataPath, json);
     }
     
-    public static UpgradeData[] LoadCharacterUpgradeData()
+    public static Dictionary<string, UpgradeData> GetUpgradeDataDic()
+    {
+        if (upgradeDatas == null) LoadCharacterUpgradeData();
+        
+        Dictionary<string, UpgradeData> dic = new Dictionary<string, UpgradeData>();
+
+        for(int i = 0; i < upgradeDatas.Length; ++i)
+            dic.Add(upgradeDatas[i].chName, upgradeDatas[i]);
+        
+        return dic;
+    }
+
+    private static void LoadCharacterUpgradeData()
     {
         string path = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
-        UpgradeData[] datas;
 
         if (!File.Exists(path))
         {
-            datas = new UpgradeData[3];
+            upgradeDatas = new UpgradeData[3];
 
-            datas[0] = new UpgradeData("Pea", new float[] { 1.0f, 2.0f, 3.0f, 4.0f }, UpgradeKind.Force);
-            datas[1] = new UpgradeData("Gas", new float[] { 1.1f, 2.1f, 3.1f, 4.1f }, UpgradeKind.Health);
-            datas[2] = new UpgradeData("Sun", new float[] { 1.2f, 2.2f, 3.2f, 4.2f }, UpgradeKind.SkillSpeed);
+            upgradeDatas[0] = new UpgradeData("Pea", new float[] { 1.0f, 2.0f, 3.0f, 4.0f }, UpgradeKind.Force);
+            upgradeDatas[1] = new UpgradeData("Gas", new float[] { 1.1f, 2.1f, 3.1f, 4.1f }, UpgradeKind.Health);
+            upgradeDatas[2] = new UpgradeData("Sun", new float[] { 1.2f, 2.2f, 3.2f, 4.2f }, UpgradeKind.SkillSpeed);
 
-            string json = JsonHelper.ToJson(datas, true);
+            string json = JsonHelper.ToJson(upgradeDatas, true);
             Debug.Log(json);
             File.WriteAllText(path, json);
         }
         else
         {
             string json = File.ReadAllText(path);
-            datas = JsonHelper.FromJson<UpgradeData>(json);
+            upgradeDatas = JsonHelper.FromJson<UpgradeData>(json);
         }
-
-        return datas;
     }
 
     // 한 페이즈의 Wave 데이터를 파싱하여 stage 별로 나눈 리스트를 반환.

@@ -28,9 +28,9 @@ public class ShopManager : ShopBase
     void Start()
     {
         shopData = DataManager.GetShopData();
-        characterUpgradeDatas = DataManager.LoadCharacterUpgradeData();
-        if (characterUpgradeDatas != null)
-            Debug.Log(characterUpgradeDatas[0].chName);
+
+        var characterDic = DataManager.GetUpgradeDataDic();
+        Debug.Log(characterDic["Pea"].kind + " and " + characterDic["Pea"].statIncrease[0]);
 
         Bind<Button>(typeof(Buttons));
         GetButton((int)Buttons.HammerButton).GetComponentInChildren<TextMeshProUGUI>().text = 
@@ -52,11 +52,11 @@ public class ShopManager : ShopBase
 
         if (itemName == "Hammer")
         {
-            shopData.buyHammer = true;
+            shopData.hasHammer = true;
         }
         else if (itemName == "SeatExpansion")
         {
-            shopData.buySeatExpansion = true;
+            shopData.hasSeatExpansion = true;
         }
         else if (itemName == "SlotExpansion")
         {

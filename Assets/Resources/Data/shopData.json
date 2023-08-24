@@ -1,1 +1,6 @@
-{"buyHammer":false,"buySeatExpansion":false,"slotLevel":0,"chLvs":[]}
+{
+  "hasHammer": false,
+  "hasSeatExpansion": false,
+  "slotLevel": 0,
+  "characterLvls": []
+}
