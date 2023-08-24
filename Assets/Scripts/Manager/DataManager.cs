@@ -4,29 +4,20 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
 
-// 스크립트 직렬화 가능한 클래스
-#region
+
+#region Shop Data
 [System.Serializable]
 public class ShopData
 {
     public bool             hasHammer;
     public bool             hasSeatExpansion;
     public int              slotLevel;
-    public CharacterLvls[]  characterLvls;
     public ShopData()
     {
         hasHammer = false;
         hasSeatExpansion = false;
         slotLevel = 0;
-        characterLvls = null;
     }
-}
-
-[System.Serializable]
-public struct CharacterLvls
-{
-    public string characterName;
-    public int level;
 }
 
 public enum UpgradeKind { Force, SkillSpeed, Health }
@@ -36,11 +27,13 @@ public class UpgradeData
 {
     public string chName;
     public float[] statIncrease;
+    public int currentLevel;
     public UpgradeKind kind;
 
-    public UpgradeData(string _name, float[] _statArray, UpgradeKind _kind)
+    public UpgradeData(string _name, int _currLevel, float[] _statArray, UpgradeKind _kind)
     {
         chName = _name;
+        currentLevel = _currLevel;
         statIncrease = _statArray;
         kind = _kind;
     }
@@ -180,9 +173,9 @@ public class DataManager : MonoBehaviour
         {
             upgradeDatas = new UpgradeData[3];
 
-            upgradeDatas[0] = new UpgradeData("Pea", new float[] { 1.0f, 2.0f, 3.0f, 4.0f }, UpgradeKind.Force);
-            upgradeDatas[1] = new UpgradeData("Gas", new float[] { 1.1f, 2.1f, 3.1f, 4.1f }, UpgradeKind.Health);
-            upgradeDatas[2] = new UpgradeData("Sun", new float[] { 1.2f, 2.2f, 3.2f, 4.2f }, UpgradeKind.SkillSpeed);
+            upgradeDatas[0] = new UpgradeData("Pea", 0, new float[] { 1, 1.0f, 2.0f, 3.0f, 4.0f }, UpgradeKind.Force);
+            upgradeDatas[1] = new UpgradeData("Gas", 0, new float[] { 1, 1.1f, 2.1f, 3.1f, 4.1f }, UpgradeKind.Health);
+            upgradeDatas[2] = new UpgradeData("Sun", 0, new float[] { 1, 1.2f, 2.2f, 3.2f, 4.2f }, UpgradeKind.SkillSpeed);
 
             string json = JsonHelper.ToJson(upgradeDatas, true);
             Debug.Log(json);

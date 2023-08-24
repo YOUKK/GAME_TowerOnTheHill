@@ -7,6 +7,7 @@ using TMPro;
 public class ShopManager : ShopBase
 {
     ShopData shopData;
+    Dictionary<string, UpgradeData> characterDic;
 
     [SerializeField]
     TextMeshProUGUI currentCoin;
@@ -20,17 +21,22 @@ public class ShopManager : ShopBase
     enum Images { ItemIcon, }
     enum GameObjects { TestObject }
 
+    #region Costs
     const int hammerCost = 100;
     const int seatExpansionCost = 300;
     readonly int[] slotExpansionCost = { 100, 200, 300, 400 };
     readonly int[] trainingCost = { 100, 200, 400, 800 };
-    
+    #endregion
+
     void Start()
     {
         shopData = DataManager.GetShopData();
 
-        var characterDic = DataManager.GetUpgradeDataDic();
-        Debug.Log(characterDic["Pea"].kind + " and " + characterDic["Pea"].statIncrease[0]);
+        characterDic = DataManager.GetUpgradeDataDic();
+        UpgradeData currenCaracterData = characterDic["Pea"];
+
+        Debug.Log(currenCaracterData.kind + " and " + 
+            currenCaracterData.statIncrease[currenCaracterData.currentLevel]);
 
         Bind<Button>(typeof(Buttons));
         GetButton((int)Buttons.HammerButton).GetComponentInChildren<TextMeshProUGUI>().text = 
