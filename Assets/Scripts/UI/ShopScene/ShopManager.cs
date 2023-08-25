@@ -16,7 +16,7 @@ public class ShopManager : ShopBase
 
     private UpgradeData[] characterUpgradeDatas;
 
-    enum Buttons { HammerButton, SeatButton, SlotButton, TrainingButton }
+    enum Buttons { HammerButton, SeatButton, SlotButton, UpgradeButton }
     enum Texts { PointText, ScoreText }
     enum Images { ItemIcon, }
     enum GameObjects { TestObject }
@@ -74,8 +74,6 @@ public class ShopManager : ShopBase
         }
         else return;
 
-
-
-        DataManager.SaveShopData(shopData);
+        DataManager.SaveShopData(shopData); 
     }
 }
