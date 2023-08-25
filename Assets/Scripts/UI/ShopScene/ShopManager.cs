@@ -33,9 +33,9 @@ public class ShopManager : ShopBase
         shopData = DataManager.GetShopData();
 
         characterDic = DataManager.GetUpgradeDataDic();
-        UpgradeData currenCaracterData = characterDic["Pea"];
+        UpgradeData currenCaracterData = characterDic["PeaShooter"];
 
-        Debug.Log(currenCaracterData.kind + " and " + 
+        Debug.Log(currenCaracterData.chName + " and " + currenCaracterData.kind + " and " + 
             currenCaracterData.statIncrease[currenCaracterData.currentLevel]);
 
         Bind<Button>(typeof(Buttons));
