@@ -10,6 +10,8 @@ public class ShopManager : ShopBase
     Dictionary<string, UpgradeData> characterDic;
 
     [SerializeField]
+    GameObject characterUpgradePopup;
+    [SerializeField]
     TextMeshProUGUI currentCoin;
     [SerializeField]
     GameObject[] buttons;
@@ -46,10 +48,18 @@ public class ShopManager : ShopBase
         GetButton((int)Buttons.SlotButton).GetComponentInChildren<TextMeshProUGUI>().text = 
             slotExpansionCost[shopData.slotLevel].ToString();
 
+        characterUpgradePopup.SetActive(false);
+
+        GetButton((int)Buttons.UpgradeButton).onClick.AddListener(ActivateUpgradePopup);
 
         if (PlayerPrefs.HasKey("coin"))
             currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
         else Debug.LogError("No Coin Data!");
+    }
+
+    public void ActivateUpgradePopup()
+    {
+        characterUpgradePopup.SetActive(true);
     }
 
     public void SaveShopInfo(string itemName)
