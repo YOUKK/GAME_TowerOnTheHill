@@ -8,7 +8,7 @@ using System.IO;
 
 public class SelectCharacter : MonoBehaviour
 {
-    private ButtonList loadButtonList;
+    private ButtonList loadButtonList = new ButtonList();
 
     //private List<chaType> selectedCha = new List<chaType>(); // 선택된 캐릭터 리스트
     //public List<chaType> SelectedCha { get { return selectedCha; } }
@@ -56,15 +56,17 @@ public class SelectCharacter : MonoBehaviour
 
 	private void Awake()
 	{
-        LoadButtonListFromJson();
-        SetButton();
-    }
+		LoadButtonListFromJson();
+		SetButton();
+	}
 
 	private void LoadButtonListFromJson()
 	{
         string path = Path.Combine(Application.dataPath, "buttonList.json");
         string jsonData = File.ReadAllText(path);
         loadButtonList = JsonUtility.FromJson<ButtonList>(jsonData);
+        Debug.Log("json데이터 읽어오기!");
+        Debug.Log(jsonData);
     }
 
     private void SetButton()
@@ -78,25 +80,32 @@ public class SelectCharacter : MonoBehaviour
                 case CharacterButtonList.Sunflower:
                     GameObject button = Instantiate(Resources.Load<GameObject>("Prefabs/CharacterButton/SunFlowerButton"), transform.position, Quaternion.identity);
                     button.transform.SetParent(transform.GetChild(i));
+                    button.transform.localPosition = Vector3.zero;
+                    button.transform.localScale = Vector3.one;
                     break;
                 case CharacterButtonList.PeaShooter:
                     button = Instantiate(Resources.Load<GameObject>("Prefabs/CharacterButton/PeaShooterButton"), transform.position, Quaternion.identity);
                     button.transform.SetParent(transform.GetChild(i));
+                    button.transform.localPosition = Vector3.zero;
+                    button.transform.localScale = Vector3.one;
                     break;
                 case CharacterButtonList.Walnut:
                     button = Instantiate(Resources.Load<GameObject>("Prefabs/CharacterButton/WalnutButton"), transform.position, Quaternion.identity);
                     button.transform.SetParent(transform.GetChild(i));
+                    button.transform.localPosition = Vector3.zero;
+                    button.transform.localScale = Vector3.one;
                     break;
                 case CharacterButtonList.GasMushroom:
                     button = Instantiate(Resources.Load<GameObject>("Prefabs/CharacterButton/GasMushroomButton"), transform.position, Quaternion.identity);
                     button.transform.SetParent(transform.GetChild(i));
+                    button.transform.localPosition = Vector3.zero;
+                    button.transform.localScale = Vector3.one;
                     break;
             }
-
 
 			i++;
 		}
 
-
+        Debug.Log("버튼 설정하기!");
 	}
 }
