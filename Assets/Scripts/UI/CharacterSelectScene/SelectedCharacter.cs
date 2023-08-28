@@ -20,7 +20,7 @@ public class SelectedCharacter : MonoBehaviour
     [SerializeField]
     private int turn = 0; // SelectedCanvas에서 현재 채워져야 할 번호
     public int Turn { get { return turn; } set { turn = value;} }
-    private int max = 4; // SelectedCanvas에서 채울 수 있는 최대 프레임 수(활성화된 프레임 오브젝트 수)
+    private int max = 6; // SelectedCanvas에서 채울 수 있는 최대 프레임 수(활성화된 프레임 오브젝트 수)
     private bool canStart = false;
 
 
@@ -76,14 +76,14 @@ public class SelectedCharacter : MonoBehaviour
 		}
         saveButtonList.list[turn - 1] = CharacterButtonList.None; // 마지막칸 None이 됨
 
-        PrintDic();
+        //PrintDic();
 	}
 
     public void SetButtonOnList(int index, CharacterButtonList cha)
 	{
         saveButtonList.list[index] = cha;
 
-        PrintDic();
+        //PrintDic();
 	}
 
     // 추가해야할 frame 오브젝트를 알려주는 함수
