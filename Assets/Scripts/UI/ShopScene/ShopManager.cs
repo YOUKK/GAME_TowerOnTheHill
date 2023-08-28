@@ -16,8 +16,6 @@ public class ShopManager : ShopBase
     [SerializeField]
     GameObject[] buttons;
 
-    private UpgradeData[] characterUpgradeDatas;
-
     enum Buttons { HammerButton, SeatButton, SlotButton, UpgradeButton }
     enum Texts { PointText, ScoreText }
     enum Images { ItemIcon, }
@@ -27,7 +25,6 @@ public class ShopManager : ShopBase
     const int hammerCost = 100;
     const int seatExpansionCost = 300;
     readonly int[] slotExpansionCost = { 100, 200, 300, 400 };
-    readonly int[] trainingCost = { 100, 200, 400, 800 };
     #endregion
 
     void Start()
