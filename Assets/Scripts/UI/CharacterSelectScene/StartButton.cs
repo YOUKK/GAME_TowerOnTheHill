@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class StartButton : MonoBehaviour
 	{
         // json 파일 저장
         selectedCharacter.SaveButtonListToJson();
+
+        // 씬 이동
+        SceneManager.LoadScene("UIScene");
 	}
 
     public void CanPressButton()
