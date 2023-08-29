@@ -14,6 +14,8 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private GameObject dragCharacter;
     private CollectResource menuCanvas;
 
+    [SerializeField]
+    private CharacterButtonData data; // ScriptableObject
     private float coolTime;
     private int price;
     private bool onCoolTime = false;
@@ -25,10 +27,16 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     void Start()
     {
         menuCanvas = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
-        sprite = transform.GetComponentInParent<SelectCharacter>().SpriteCha[transform.GetSiblingIndex()];
-        character = transform.GetComponentInParent<SelectCharacter>().ObjectCha[transform.GetSiblingIndex()];
-        coolTime = transform.GetComponentInParent<SelectCharacter>().CoolTime[transform.GetSiblingIndex()];
-        price = transform.GetComponentInParent<SelectCharacter>().ChaPrice[transform.GetSiblingIndex()];
+
+        // button에 필요한 정보
+        //sprite = transform.GetComponentInParent<SelectCharacter>().SpriteCha[transform.GetSiblingIndex()];
+        sprite = data.Sprite;
+        //character = transform.GetComponentInParent<SelectCharacter>().ObjectCha[transform.GetSiblingIndex()];
+        character = data.CharacterObject;
+        //coolTime = transform.GetComponentInParent<SelectCharacter>().CoolTime[transform.GetSiblingIndex()];
+        coolTime = data.CoolTime;
+        //price = transform.GetComponentInParent<SelectCharacter>().ChaPrice[transform.GetSiblingIndex()];
+        price = data.Price;
         coolTimeImage = transform.GetChild(2).GetComponent<Image>();
         priceImage = transform.GetChild(3).gameObject;
     }
