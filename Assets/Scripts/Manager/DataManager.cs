@@ -74,6 +74,7 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private MonsterWaveTimer monsterWaveTimer;
     private static string shopDataPath;
+    private static string characterDataPath;
     private static UpgradeData[] upgradeDatas;
 
     public static List<List<StageWave>> monsterWave = new List<List<StageWave>>();
@@ -94,6 +95,7 @@ public class DataManager : MonoBehaviour
         else TryParse();
 
         shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
+        characterDataPath = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
         LoadCharacterUpgradeData();
     }
 
@@ -165,11 +167,15 @@ public class DataManager : MonoBehaviour
         return dic;
     }
 
+    public static void SaveCharacterUpgradeData()
+    {
+        string json = JsonHelper.ToJson(upgradeDatas, true);
+        File.WriteAllText(characterDataPath, json);
+    }
+
     private static void LoadCharacterUpgradeData()
     {
-        string path = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
-
-        if (!File.Exists(path))
+        if (!File.Exists(characterDataPath))
         {
             upgradeDatas = new UpgradeData[7];
 
@@ -184,11 +190,11 @@ public class DataManager : MonoBehaviour
 
             string json = JsonHelper.ToJson(upgradeDatas, true);
             Debug.Log(json);
-            File.WriteAllText(path, json);
+            File.WriteAllText(characterDataPath, json);
         }
         else
         {
-            string json = File.ReadAllText(path);
+            string json = File.ReadAllText(characterDataPath);
             upgradeDatas = JsonHelper.FromJson<UpgradeData>(json);
         }
     }

@@ -58,5 +58,4 @@ public class ShopBase : MonoBehaviour
         }
         return null;
     }
-    
 }

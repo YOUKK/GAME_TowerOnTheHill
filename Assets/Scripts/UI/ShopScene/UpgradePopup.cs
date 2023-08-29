@@ -11,14 +11,14 @@ public class UpgradePopup : ShopBase
         public Button upgradeButton;
         public Slider slider;
         public TextMeshProUGUI costText;
-        public TextMeshProUGUI increaseValueText;
+        public TextMeshProUGUI increaseText;
 
         public UpgradeUIInfo(Button ub, Slider s, TextMeshProUGUI ct, TextMeshProUGUI ivt)
         {
             upgradeButton = ub;
             slider = s;
             costText = ct;
-            increaseValueText = ivt;
+            increaseText = ivt;
         }
     }
 
@@ -27,7 +27,8 @@ public class UpgradePopup : ShopBase
 
     [SerializeField]
     Button closeButton;
-
+    [SerializeField]
+    TextMeshProUGUI currentCoin;
     [SerializeField]
     GameObject[] characterUpgradeUI;
 
@@ -38,6 +39,7 @@ public class UpgradePopup : ShopBase
     void Start()
     {
         characterDic = DataManager.GetUpgradeDataDic();
+        currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
 
         // 캐릭터 각각에 대한 업그레이드 UI 정보들을 불러와 캐릭터 이름에 따라 딕셔너리에 저장.
         foreach (var item in characterUpgradeUI)
@@ -46,42 +48,83 @@ public class UpgradePopup : ShopBase
             Button upgradeButton = FindChild<Button>(item, "Button_Upgrade");
             Slider slider = FindChild<Slider>(item, "Slider", true);
             TextMeshProUGUI costText = FindChild<TextMeshProUGUI>(item, "Text_Cost", true);
+            TextMeshProUGUI increaseText = FindChild<TextMeshProUGUI>(item, "IncreaseValue", true);
 
-            int currLevel = characterDic[chName].currentLevel;
+
+            // UI initalization
+            int currentLevel = characterDic[chName].currentLevel;
+
             upgradeButton.onClick.AddListener(() => UpgradeCharacter(chName));
-            slider.value = characterDic[chName].currentLevel / 5.0f;
-            if (characterDic[chName].currentLevel < trainingCost.Length)
+
+            slider.value = (currentLevel + 1) / 5.0f;
+            if (currentLevel < MAX_LEVEL)
             {
-                costText.text = trainingCost[characterDic[chName].currentLevel].ToString();
+                if (PlayerPrefs.GetInt("coin") < trainingCost[currentLevel])
+                    upgradeButton.interactable = false;
+                else upgradeButton.interactable = true;
+
+                costText.text = trainingCost[currentLevel].ToString();
+                increaseText.text = $"({characterDic[chName].statIncrease[currentLevel]} -> {characterDic[chName].statIncrease[currentLevel + 1]})";
             }
             else
             {
-                costText.text = "MAX";
+                upgradeButton.interactable = false;
+                increaseText.text = "(MAX)";
+                costText.text = "---";
             }
-            TextMeshProUGUI increaseText = FindChild<TextMeshProUGUI>(item, "IncreaseValue", true);
-            //increaseText.text = $"({characterDic[chName].statIncrease[newLevel - 1]} + {characterDic[chName].statIncrease[newLevel]})";
 
             UpgradeUIInfo upgradeInfoUI = new UpgradeUIInfo(upgradeButton, slider, costText, increaseText);
             upgradeUIDic.Add(chName, upgradeInfoUI);
         }
-
-        
     }
 
+    /// 문제. 현재 상태에서 800원짜리 업그레이드를 누르면 currentLevel이 1 증가해서 4가 됨.
+    /// UpdateButtonAction()에서 trainingCost[characterDic[item.Key].currentLevel = 4]라서 초과됨.
+    /// 이후 같은 버튼을 다시 누르면 currentLevel은 이미 4인 상태라서 
+    /// Debug.Log에 걸리고 다시 오류 남.
+    /// 문제2 : MAX_Value가 아닐 때, 돈이 부족해도 버튼이 눌림.
     void UpgradeCharacter(string name)
     {
+        if (characterDic[name].currentLevel == 4) Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        int cost = PlayerPrefs.GetInt("coin") - trainingCost[characterDic[name].currentLevel]; // Error
+        PlayerPrefs.SetInt("coin", cost);
+        UpdateButtonActive();
+
         int newLevel = characterDic[name].currentLevel + 1;
-        if (newLevel > MAX_LEVEL) return;
 
+        characterDic[name].currentLevel = newLevel;
 
-        
-        // 업그레이드 후 업데이트 되는 UI들
-        upgradeUIDic[name].slider.value = newLevel / 5.0f;
-        if (newLevel < trainingCost.Length)
+        // UI update
+        upgradeUIDic[name].slider.value = (newLevel + 1) / 5.0f;
+        if (newLevel < MAX_LEVEL)
+        {
             upgradeUIDic[name].costText.text = trainingCost[newLevel].ToString();
-        else upgradeUIDic[name].costText.text = "MAX";
-        upgradeUIDic[name].increaseValueText.text = 
-            $"({characterDic[name].statIncrease[newLevel - 1]} + {characterDic[name].statIncrease[newLevel]})";
+            upgradeUIDic[name].increaseText.text = $"({characterDic[name].statIncrease[newLevel]} -> {characterDic[name].statIncrease[newLevel + 1]})";
+        }
+        else
+        {
+            upgradeUIDic[name].upgradeButton.interactable = false;
+            upgradeUIDic[name].increaseText.text = "(MAX)";
+            upgradeUIDic[name].costText.text = "---";
+        }
+
+        currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
+
+        DataManager.SaveCharacterUpgradeData();
+    }
+
+    void UpdateButtonActive()
+    {
+        foreach(KeyValuePair<string, UpgradeUIInfo> item in upgradeUIDic)
+        {
+            if (characterDic[item.Key].currentLevel < MAX_LEVEL)
+            {
+                if (PlayerPrefs.GetInt("coin") < trainingCost[characterDic[item.Key].currentLevel]) // Error
+                    item.Value.upgradeButton.interactable = false;
+                else item.Value.upgradeButton.interactable = true;
+            }
+            else item.Value.upgradeButton.interactable = false;
+        }
     }
 
     public void ClosePopup()
