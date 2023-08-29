@@ -29,7 +29,6 @@ public class ShopManager : ShopBase
 
     void Start()
     {
-        PlayerPrefs.SetInt("coin", 900);
         shopData = DataManager.GetShopData();
         characterDic = DataManager.GetUpgradeDataDic();
         UpgradeData currenCaracterData = characterDic["PeaShooter"];

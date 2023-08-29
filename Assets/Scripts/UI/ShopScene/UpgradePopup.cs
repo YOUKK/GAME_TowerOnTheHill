@@ -78,26 +78,20 @@ public class UpgradePopup : ShopBase
         }
     }
 
-    /// 문제. 현재 상태에서 800원짜리 업그레이드를 누르면 currentLevel이 1 증가해서 4가 됨.
-    /// UpdateButtonAction()에서 trainingCost[characterDic[item.Key].currentLevel = 4]라서 초과됨.
-    /// 이후 같은 버튼을 다시 누르면 currentLevel은 이미 4인 상태라서 
-    /// Debug.Log에 걸리고 다시 오류 남.
-    /// 문제2 : MAX_Value가 아닐 때, 돈이 부족해도 버튼이 눌림.
     void UpgradeCharacter(string name)
     {
         if (characterDic[name].currentLevel < MAX_LEVEL)
         {
-            int cost = PlayerPrefs.GetInt("coin") - trainingCost[characterDic[name].currentLevel]; // Error
+            int cost = PlayerPrefs.GetInt("coin") - trainingCost[characterDic[name].currentLevel];
             PlayerPrefs.SetInt("coin", cost);
         }
-        UpdateButtonActive();
 
         int newLevel = characterDic[name].currentLevel + 1;
-
         characterDic[name].currentLevel = newLevel;
 
         // UI update
         upgradeUIDic[name].slider.value = (newLevel + 1) / 5.0f;
+
         if (newLevel < MAX_LEVEL)
         {
             upgradeUIDic[name].costText.text = trainingCost[newLevel].ToString();
@@ -111,6 +105,7 @@ public class UpgradePopup : ShopBase
         }
 
         currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
+        UpdateButtonActive();
 
         DataManager.SaveCharacterUpgradeData();
     }
@@ -121,7 +116,7 @@ public class UpgradePopup : ShopBase
         {
             if (characterDic[item.Key].currentLevel < MAX_LEVEL)
             {
-                if (PlayerPrefs.GetInt("coin") < trainingCost[characterDic[item.Key].currentLevel]) // Error
+                if (PlayerPrefs.GetInt("coin") < trainingCost[characterDic[item.Key].currentLevel])
                     item.Value.upgradeButton.interactable = false;
                 else item.Value.upgradeButton.interactable = true;
             }
