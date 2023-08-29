@@ -85,9 +85,11 @@ public class UpgradePopup : ShopBase
     /// 문제2 : MAX_Value가 아닐 때, 돈이 부족해도 버튼이 눌림.
     void UpgradeCharacter(string name)
     {
-        if (characterDic[name].currentLevel == 4) Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        int cost = PlayerPrefs.GetInt("coin") - trainingCost[characterDic[name].currentLevel]; // Error
-        PlayerPrefs.SetInt("coin", cost);
+        if (characterDic[name].currentLevel < MAX_LEVEL)
+        {
+            int cost = PlayerPrefs.GetInt("coin") - trainingCost[characterDic[name].currentLevel]; // Error
+            PlayerPrefs.SetInt("coin", cost);
+        }
         UpdateButtonActive();
 
         int newLevel = characterDic[name].currentLevel + 1;
