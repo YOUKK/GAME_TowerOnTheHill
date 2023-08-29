@@ -20,7 +20,7 @@ public class SelectedCharacter : MonoBehaviour
     [SerializeField]
     private int turn = 0; // SelectedCanvas에서 현재 채워져야 할 번호
     public int Turn { get { return turn; } set { turn = value;} }
-    private int max = 3; // SelectedCanvas에서 채울 수 있는 최대 프레임 수(활성화된 프레임 오브젝트 수)
+    private int max = 0; // SelectedCanvas에서 채울 수 있는 최대 프레임 수(활성화된 프레임 오브젝트 수)
     private bool canStart = false;
 
 
@@ -28,9 +28,16 @@ public class SelectedCharacter : MonoBehaviour
     public List<GameObject> CharacterFrames { get { return characterFrames; } }
     //[SerializeField]
     //private List<CharacterButtonList> buttonList = new List<CharacterButtonList>(); // 현재 SelectCanvas에 있는 버튼들의 리스트
-    private ButtonList saveButtonList;
+    private ButtonList saveButtonList = new ButtonList();
 
-    void Start()
+	private void Awake()
+	{
+        max = Managers.Instance.slotNum;
+        //max = DataManager.GetShopData().slotLevel;
+        SetSlot();
+    }
+
+	void Start()
     {
         characterInventory = GameObject.Find("InventoryCanvas").GetComponent<CharacterInventory>();
 
@@ -45,12 +52,22 @@ public class SelectedCharacter : MonoBehaviour
 
     }
 
+    private void SetSlot()
+	{
+        for(int i = 0; i < max; i++)
+		{
+            transform.GetChild(i).gameObject.SetActive(true);
+		}
+	}
+
     // buttonList를 json 파일로 저장하기
     public void SaveButtonListToJson()
 	{
         string jsonData = JsonUtility.ToJson(saveButtonList, true);
         string path = Path.Combine(Application.dataPath, "buttonList.json");
         File.WriteAllText(path, jsonData);
+
+        Debug.Log(jsonData);
 	}
 
     public void PrintDic()
@@ -74,14 +91,14 @@ public class SelectedCharacter : MonoBehaviour
 		}
         saveButtonList.list[turn - 1] = CharacterButtonList.None; // 마지막칸 None이 됨
 
-        PrintDic();
+        //PrintDic();
 	}
 
     public void SetButtonOnList(int index, CharacterButtonList cha)
 	{
         saveButtonList.list[index] = cha;
 
-        PrintDic();
+        //PrintDic();
 	}
 
     // 추가해야할 frame 오브젝트를 알려주는 함수

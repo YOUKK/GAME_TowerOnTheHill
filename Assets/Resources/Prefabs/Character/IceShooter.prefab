@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
+  projectileSecond: {fileID: 0}
   status: {fileID: 11400000, guid: 4502ce94f344ea441ad0b5b48b6dd545, type: 2}
   coolTime: 0
   projectileSpeed: 0
@@ -253,7 +254,7 @@ SpriteRenderer:
   m_SortingLayerID: 941133623
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 25abb081d6d3d5c4da0004d24fdcdba8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b10300a2cc4ed414cb50684cee336b77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -393,6 +394,7 @@ MonoBehaviour:
   mainCharacter: {fileID: 0}
   monster: {fileID: 0}
   localPos: {x: 0, y: 0}
+  Range: 0
 --- !u!1001 &755533629862581729
 PrefabInstance:
   m_ObjectHideFlags: 0
