@@ -33,6 +33,7 @@ public class SelectedCharacter : MonoBehaviour
 	private void Awake()
 	{
         max = Managers.Instance.slotNum;
+        //max = DataManager.GetShopData().slotLevel;
         SetSlot();
     }
 

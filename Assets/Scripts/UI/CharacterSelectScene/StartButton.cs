@@ -28,7 +28,7 @@ public class StartButton : MonoBehaviour
         selectedCharacter.SaveButtonListToJson();
 
         // æ¿ ¿Ãµø
-        SceneManager.LoadScene("UIScene");
+        SceneManager.LoadScene("GamePlayScene");
 	}
 
     public void CanPressButton()
