@@ -10,13 +10,13 @@ public class ShopManager : ShopBase
     Dictionary<string, UpgradeData> characterDic;
 
     [SerializeField]
+    GameObject characterUpgradePopup;
+    [SerializeField]
     TextMeshProUGUI currentCoin;
     [SerializeField]
     GameObject[] buttons;
 
-    private UpgradeData[] characterUpgradeDatas;
-
-    enum Buttons { HammerButton, SeatButton, SlotButton, TrainingButton }
+    enum Buttons { HammerButton, SeatButton, SlotButton, UpgradeButton }
     enum Texts { PointText, ScoreText }
     enum Images { ItemIcon, }
     enum GameObjects { TestObject }
@@ -25,17 +25,15 @@ public class ShopManager : ShopBase
     const int hammerCost = 100;
     const int seatExpansionCost = 300;
     readonly int[] slotExpansionCost = { 100, 200, 300, 400 };
-    readonly int[] trainingCost = { 100, 200, 400, 800 };
     #endregion
 
     void Start()
     {
         shopData = DataManager.GetShopData();
-
         characterDic = DataManager.GetUpgradeDataDic();
-        UpgradeData currenCaracterData = characterDic["Pea"];
+        UpgradeData currenCaracterData = characterDic["PeaShooter"];
 
-        Debug.Log(currenCaracterData.kind + " and " + 
+        Debug.Log(currenCaracterData.chName + " and " + currenCaracterData.kind + " and " + 
             currenCaracterData.statIncrease[currenCaracterData.currentLevel]);
 
         Bind<Button>(typeof(Buttons));
@@ -46,10 +44,18 @@ public class ShopManager : ShopBase
         GetButton((int)Buttons.SlotButton).GetComponentInChildren<TextMeshProUGUI>().text = 
             slotExpansionCost[shopData.slotLevel].ToString();
 
+        characterUpgradePopup.SetActive(false);
+
+        GetButton((int)Buttons.UpgradeButton).onClick.AddListener(ActivateUpgradePopup);
 
         if (PlayerPrefs.HasKey("coin"))
             currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
         else Debug.LogError("No Coin Data!");
+    }
+
+    public void ActivateUpgradePopup()
+    {
+        characterUpgradePopup.SetActive(true);
     }
 
     public void SaveShopInfo(string itemName)
@@ -74,8 +80,6 @@ public class ShopManager : ShopBase
         }
         else return;
 
-
-
-        DataManager.SaveShopData(shopData);
+        DataManager.SaveShopData(shopData); 
     }
 }

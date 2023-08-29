@@ -74,6 +74,7 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private MonsterWaveTimer monsterWaveTimer;
     private static string shopDataPath;
+    private static string characterDataPath;
     private static UpgradeData[] upgradeDatas;
 
     public static List<List<StageWave>> monsterWave = new List<List<StageWave>>();
@@ -94,6 +95,7 @@ public class DataManager : MonoBehaviour
         else TryParse();
 
         shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
+        characterDataPath = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
         LoadCharacterUpgradeData();
     }
 
@@ -165,25 +167,34 @@ public class DataManager : MonoBehaviour
         return dic;
     }
 
+    public static void SaveCharacterUpgradeData()
+    {
+        string json = JsonHelper.ToJson(upgradeDatas, true);
+        File.WriteAllText(characterDataPath, json);
+    }
+
     private static void LoadCharacterUpgradeData()
     {
-        string path = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
-
-        if (!File.Exists(path))
+        if (!File.Exists(characterDataPath))
         {
-            upgradeDatas = new UpgradeData[3];
+            upgradeDatas = new UpgradeData[7];
 
-            upgradeDatas[0] = new UpgradeData("Pea", 0, new float[] { 1, 1.0f, 2.0f, 3.0f, 4.0f }, UpgradeKind.Force);
-            upgradeDatas[1] = new UpgradeData("Gas", 0, new float[] { 1, 1.1f, 2.1f, 3.1f, 4.1f }, UpgradeKind.Health);
-            upgradeDatas[2] = new UpgradeData("Sun", 0, new float[] { 1, 1.2f, 2.2f, 3.2f, 4.2f }, UpgradeKind.SkillSpeed);
+            upgradeDatas[0] = new UpgradeData("PeaShooter", 0, new float[] { 10, 12, 14, 17, 20 }, UpgradeKind.Force);
+            upgradeDatas[1] = new UpgradeData("PeaShooter2", 0, new float[] { 7, 9, 11, 13, 15 }, UpgradeKind.Force);
+            upgradeDatas[2] = new UpgradeData("SunFlower", 0, new float[] { 10, 9.5f, 9, 8, 7 }, UpgradeKind.SkillSpeed);
+            upgradeDatas[3] = new UpgradeData("Walnut", 0, new float[] { 200, 210, 220, 230, 240 }, UpgradeKind.Health);
+            upgradeDatas[4] = new UpgradeData("Eater", 0, new float[] { 5, 4.6f, 4.2f, 3.8f, 3.2f }, UpgradeKind.SkillSpeed);
+            upgradeDatas[5] = new UpgradeData("GasMushroom", 0, new float[] { 5, 6, 7, 8, 10 }, UpgradeKind.Force);
+            upgradeDatas[6] = new UpgradeData("IceShooter", 0, new float[] { 10, 11, 12, 13, 14 }, UpgradeKind.Force);
+
 
             string json = JsonHelper.ToJson(upgradeDatas, true);
             Debug.Log(json);
-            File.WriteAllText(path, json);
+            File.WriteAllText(characterDataPath, json);
         }
         else
         {
-            string json = File.ReadAllText(path);
+            string json = File.ReadAllText(characterDataPath);
             upgradeDatas = JsonHelper.FromJson<UpgradeData>(json);
         }
     }
