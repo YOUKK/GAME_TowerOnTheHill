@@ -28,16 +28,16 @@ public class Map : MonoBehaviour
 		}
 		_map = this;
 
-        // MapÀÇ ÀÚ½Ä Objectµé ÀúÀå
+        // Mapì˜ ìì‹ Objectë“¤ ì €ì¥
         Transform[] seatTransform = GetComponentsInChildren<Transform>();
 
-        // ÀÚ½Ä Object Áß Seat¸¸ ÀúÀå
+        // ìì‹ Object ì¤‘ Seatë§Œ ì €ì¥
         List<GameObject> tempSeats = new List<GameObject>();
         for (int i = 0; i < seatTransform.Length; i++)
             if (seatTransform[i].CompareTag("Seat"))
                 tempSeats.Add(seatTransform[i].gameObject);
 
-        // 1Â÷¿ø ¹è¿­ÀÇ Seat ObjectµéÀ» 2Â÷¿ø List·Î º¯È¯
+        // 1ì°¨ì› ë°°ì—´ì˜ Seat Objectë“¤ì„ 2ì°¨ì› Listë¡œ ë³€í™˜
         int idx = 0;
         for (int i = 0; i < mapY; ++i)
         {
@@ -52,7 +52,7 @@ public class Map : MonoBehaviour
         }
     }
 
-    // Ä³¸¯ÅÍ ¹èÄ¡
+    // ìºë¦­í„° ë°°ì¹˜
     public void PutCharacter(Vector2 location, GameObject character)
     {
         int x = (int)location.x;
@@ -61,14 +61,14 @@ public class Map : MonoBehaviour
         seats[y][x].GetComponent<Seat>().character =
             Instantiate(character, seats[y][x].transform.position, transform.rotation);
         seats[y][x].GetComponent<Seat>().character.GetComponent<Character>().Location = new Vector2(x, y);
-        if(character.GetComponent<Tower>() == null) // tower°¡ ¾Æ´Ñ °æ¿ì
+        if(character.GetComponent<Tower>() == null) // towerê°€ ì•„ë‹Œ ê²½ìš°
             seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;
         seats[y][x].GetComponent<Seat>().character.GetComponentInChildren<SpriteRenderer>().sortingOrder = y * (-1);
         seats[y][x].GetComponent<Seat>().character.GetComponentInChildren<MonsterCheck>().LocalPos = location;
     }
 
-    // Ä³¸¯ÅÍ Á¦°Å
+    // ìºë¦­í„° ì œê±°
     public void RemoveCharacter(Vector2 location)
     {
         int x = (int)location.x;
@@ -76,7 +76,7 @@ public class Map : MonoBehaviour
 
         Destroy(seats[y][x].GetComponent<Seat>().character);
         seats[y][x].GetComponent<Seat>().isCharacterOn = false;
-        seats[y][x].GetComponent<Seat>().usable = true; // Á»ºñ°¡ Seat À§¿¡ ÀÖÀ¸¸é »ı¼º ºÒ°¡ÇÏ°Ô ¼öÁ¤
+        seats[y][x].GetComponent<Seat>().usable = true; // ì¢€ë¹„ê°€ Seat ìœ„ì— ìˆìœ¼ë©´ ìƒì„± ë¶ˆê°€í•˜ê²Œ ìˆ˜ì •
     }
 
     public Line GetLineInfo(int lineNum)
