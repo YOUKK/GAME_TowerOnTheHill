@@ -17,6 +17,7 @@ public class Map : MonoBehaviour
     public int              mapX, mapY;
     List<List<GameObject>>  seats = new List<List<GameObject>>();
 
+    public List<List<GameObject>> Seats { get => seats; set => seats = value; }
 	void Awake()
 	{
 		if (_map != null)
