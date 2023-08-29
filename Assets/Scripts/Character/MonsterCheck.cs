@@ -37,5 +37,9 @@ public class MonsterCheck : MonoBehaviour
                 mainCharacter.CheckMonster = true;
             }
         }
+        else
+        {
+            mainCharacter.CheckMonster = false;
+        }
     }
 }
