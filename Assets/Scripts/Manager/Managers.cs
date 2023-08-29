@@ -4,6 +4,8 @@ using UnityEngine;
 
 // 모든 매니저 클래스의 집합 클래스. 대표 매니저 클래스이다.
 // 이 클래스를 통해 다른 매니저 클래스에 접근한다.
+// 여러 씬에서 공유하는 변수는 여기에 static 변수로 선언한다.
+
 public class Managers : MonoBehaviour
 {
     private static Managers instance;
@@ -22,7 +24,8 @@ public class Managers : MonoBehaviour
     private MouseInputManager mouseInputM = new MouseInputManager();
     public static MouseInputManager MouseInputM { get { return instance.mouseInputM; } }
 
-
+    // 공유 변수
+    public int slotNum = 6;
 
 	void Start()
     {

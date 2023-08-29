@@ -20,7 +20,7 @@ public class SelectedCharacter : MonoBehaviour
     [SerializeField]
     private int turn = 0; // SelectedCanvas에서 현재 채워져야 할 번호
     public int Turn { get { return turn; } set { turn = value;} }
-    private int max = 6; // SelectedCanvas에서 채울 수 있는 최대 프레임 수(활성화된 프레임 오브젝트 수)
+    private int max = 0; // SelectedCanvas에서 채울 수 있는 최대 프레임 수(활성화된 프레임 오브젝트 수)
     private bool canStart = false;
 
 
@@ -30,7 +30,13 @@ public class SelectedCharacter : MonoBehaviour
     //private List<CharacterButtonList> buttonList = new List<CharacterButtonList>(); // 현재 SelectCanvas에 있는 버튼들의 리스트
     private ButtonList saveButtonList = new ButtonList();
 
-    void Start()
+	private void Awake()
+	{
+        max = Managers.Instance.slotNum;
+        SetSlot();
+    }
+
+	void Start()
     {
         characterInventory = GameObject.Find("InventoryCanvas").GetComponent<CharacterInventory>();
 
@@ -44,6 +50,14 @@ public class SelectedCharacter : MonoBehaviour
     {
 
     }
+
+    private void SetSlot()
+	{
+        for(int i = 0; i < max; i++)
+		{
+            transform.GetChild(i).gameObject.SetActive(true);
+		}
+	}
 
     // buttonList를 json 파일로 저장하기
     public void SaveButtonListToJson()
