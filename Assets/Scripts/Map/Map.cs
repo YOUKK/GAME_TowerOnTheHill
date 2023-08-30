@@ -14,10 +14,15 @@ public class Map : MonoBehaviour
     static Map              _map;
     public static Map GetInstance() { return _map; }
 
-    public int              mapX, mapY;
+    private int mapX = 9, mapY = 5;
     List<List<GameObject>>  seats = new List<List<GameObject>>();
-
     public List<List<GameObject>> Seats { get => seats; set => seats = value; }
+
+    // 추가 방어선 오브젝트
+    [SerializeField]
+    private GameObject heightLine4;
+    [SerializeField]
+    private GameObject Line9;
 
 	void Awake()
 	{
@@ -50,6 +55,31 @@ public class Map : MonoBehaviour
 			}
 		}
     }
+
+    // AddLine() 테스트 코드
+    public bool flag = false;
+	private void Update()
+	{
+        if (flag)
+		{
+            AddLine();
+            flag = false;
+		}
+	}
+    
+
+	// (상점에서 구매시) 방어선 증가 기능
+	private void AddLine()
+	{
+        // seats에 새로운 방어선 seat 추가
+        seats.Add(new List<GameObject>());
+        for(int i = 0; i < mapY; i++)
+            seats[i].Add(Line9.transform.GetChild(i).gameObject);
+
+        // UI상 방어선 활성화
+        Line9.SetActive(true);
+        heightLine4.SetActive(true);
+	}
 
     // 캐릭터 배치
     public void PutCharacter(Vector2 location, GameObject character)
