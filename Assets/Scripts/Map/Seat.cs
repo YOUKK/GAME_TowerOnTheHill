@@ -13,8 +13,8 @@ public class Seat : MonoBehaviour
     // 부모 Object의 이름을 통해 행 확인, 자기 Object의 이름을 통해 열 확인
     void Start()
     {
-        int y = transform.parent.name[4] - '0';
-        int x = name[3] - '0';
+        int y = transform.GetSiblingIndex();
+        int x = transform.parent.GetSiblingIndex();
         location = new Vector2(x, y);
         isCharacterOn = false;
         usable = true;
