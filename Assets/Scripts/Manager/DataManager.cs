@@ -130,7 +130,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public static ShopData GetShopData()
+    public ShopData GetShopData()
     {
         ShopData shopData = new ShopData();
 
@@ -147,7 +147,7 @@ public class DataManager : MonoBehaviour
         return shopData;
     }
 
-    public static void SaveShopData(ShopData shopData)
+    public void SaveShopData(ShopData shopData)
     {
         // json 형태로 된 문자열 생성
         string json = JsonUtility.ToJson(shopData);
@@ -155,7 +155,7 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(shopDataPath, json);
     }
     
-    public static Dictionary<string, UpgradeData> GetUpgradeDataDic()
+    public Dictionary<string, UpgradeData> GetUpgradeDataDic()
     {
         if (upgradeDatas == null) LoadCharacterUpgradeData();
         
@@ -167,13 +167,13 @@ public class DataManager : MonoBehaviour
         return dic;
     }
 
-    public static void SaveCharacterUpgradeData()
+    public void SaveCharacterUpgradeData()
     {
         string json = JsonHelper.ToJson(upgradeDatas, true);
         File.WriteAllText(characterDataPath, json);
     }
 
-    private static void LoadCharacterUpgradeData()
+    private void LoadCharacterUpgradeData()
     {
         if (!File.Exists(characterDataPath))
         {
@@ -200,7 +200,7 @@ public class DataManager : MonoBehaviour
     }
 
     // 한 페이즈의 Wave 데이터를 파싱하여 stage 별로 나눈 리스트를 반환.
-    List<StageWave> WaveParse(string _CSVFileName)
+    private List<StageWave> WaveParse(string _CSVFileName)
     {
         List<StageWave> res = new List<StageWave>();
 
