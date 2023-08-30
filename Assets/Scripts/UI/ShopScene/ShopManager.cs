@@ -29,8 +29,8 @@ public class ShopManager : ShopBase
 
     void Start()
     {
-        shopData = DataManager.GetShopData();
-        characterDic = DataManager.GetUpgradeDataDic();
+        shopData = DataManager.GetData.GetShopData();
+        characterDic = DataManager.GetData.GetUpgradeDataDic();
         UpgradeData currenCaracterData = characterDic["PeaShooter"];
 
         Debug.Log(currenCaracterData.chName + " and " + currenCaracterData.kind + " and " + 
@@ -80,6 +80,6 @@ public class ShopManager : ShopBase
         }
         else return;
 
-        DataManager.SaveShopData(shopData); 
+        DataManager.GetData.SaveShopData(shopData); 
     }
 }

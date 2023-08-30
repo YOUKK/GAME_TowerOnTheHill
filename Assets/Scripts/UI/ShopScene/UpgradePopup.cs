@@ -38,7 +38,7 @@ public class UpgradePopup : ShopBase
     // 캐릭터 업글 관련 UI 모두 찾기, 
     void Start()
     {
-        characterDic = DataManager.GetUpgradeDataDic();
+        characterDic = DataManager.GetData.GetUpgradeDataDic();
         currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
 
         // 캐릭터 각각에 대한 업그레이드 UI 정보들을 불러와 캐릭터 이름에 따라 딕셔너리에 저장.
@@ -107,7 +107,7 @@ public class UpgradePopup : ShopBase
         currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
         UpdateButtonActive();
 
-        DataManager.SaveCharacterUpgradeData();
+        DataManager.GetData.SaveCharacterUpgradeData();
     }
 
     void UpdateButtonActive()
