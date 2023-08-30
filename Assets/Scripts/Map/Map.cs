@@ -39,17 +39,16 @@ public class Map : MonoBehaviour
 
         // 1차원 배열의 Seat Object들을 2차원 List로 변환
         int idx = 0;
-        for (int i = 0; i < mapY; ++i)
-        {
+        for(int i = 0; i < mapY; i++)
             seats.Add(new List<GameObject>());
-            for (int j = 0; j < mapX; ++j, ++idx)
-            {
-                if (tempSeats[idx].CompareTag("Seat"))
-                {
-                    seats[i].Add(tempSeats[idx].gameObject);
-                }
-            }
-        }
+        for(int i = 0; i < mapX; i++)
+		{
+            for(int j = 0; j < mapY; j++)
+			{
+                seats[j].Add(tempSeats[idx].gameObject);
+                idx++;
+			}
+		}
     }
 
     // 캐릭터 배치
@@ -58,9 +57,9 @@ public class Map : MonoBehaviour
         int x = (int)location.x;
         int y = (int)location.y;
 
-        seats[y][x].GetComponent<Seat>().character =
-            Instantiate(character, seats[y][x].transform.position, transform.rotation);
+        seats[y][x].GetComponent<Seat>().character = Instantiate(character, seats[y][x].transform.position, transform.rotation);
         seats[y][x].GetComponent<Seat>().character.GetComponent<Character>().Location = new Vector2(x, y);
+        
         if(character.GetComponent<Tower>() == null) // tower가 아닌 경우
             seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;
