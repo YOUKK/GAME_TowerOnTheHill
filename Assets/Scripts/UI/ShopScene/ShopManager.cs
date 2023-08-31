@@ -25,6 +25,7 @@ public class ShopManager : ShopBase
 
     void Start()
     {
+        PlayerPrefs.SetInt("coin", 1000);
         shopData = DataManager.GetData.GetShopData();
 
         Bind<Button>(typeof(Buttons));
@@ -39,6 +40,9 @@ public class ShopManager : ShopBase
         characterUpgradePopup.SetActive(false);
         UpdateShopButtons();
 
+        GetButton((int)Buttons.HammerButton).onClick.AddListener(BuyHammerItem);
+        GetButton((int)Buttons.SeatButton).onClick.AddListener(BuySeatExpansionItem);
+        GetButton((int)Buttons.SlotButton).onClick.AddListener(BuySlotExpansionItem);
         GetButton((int)Buttons.UpgradeButton).onClick.AddListener(ActivateUpgradePopup);
 
         if (PlayerPrefs.HasKey("coin"))
@@ -50,7 +54,7 @@ public class ShopManager : ShopBase
     {
         int currentCoin = PlayerPrefs.GetInt("coin");
 
-        if(currentCoin < hammerCost || shopData.hasHammer == true)
+        if (currentCoin < hammerCost || shopData.hasHammer == true)
         {
             GetButton((int)Buttons.HammerButton).interactable = false;
         }
@@ -62,11 +66,16 @@ public class ShopManager : ShopBase
         }
         else GetButton((int)Buttons.SeatButton).interactable = true;
 
-        if (currentCoin < slotExpansionCost[shopData.slotLevel] || shopData.slotLevel == slotExpansionCost.Length)
+        if (shopData.slotLevel == slotExpansionCost.Length)
         {
             GetButton((int)Buttons.SlotButton).interactable = false;
         }
-        else GetButton((int)Buttons.SlotButton).interactable = true;
+        else
+        {
+            if (currentCoin < slotExpansionCost[shopData.slotLevel])
+                GetButton((int)Buttons.SlotButton).interactable = false;
+            else GetButton((int)Buttons.SlotButton).interactable = true;
+        }
     }
     
     private bool Buy(int cost)
@@ -92,6 +101,7 @@ public class ShopManager : ShopBase
 
         shopData.hasHammer = true;
         UpdateShopButtons();
+        DataManager.GetData.SaveShopData(shopData);
     }
 
     public void BuySeatExpansionItem()
@@ -100,6 +110,7 @@ public class ShopManager : ShopBase
 
         shopData.hasSeatExpansion = true;
         UpdateShopButtons();
+        DataManager.GetData.SaveShopData(shopData);
     }
 
     public void BuySlotExpansionItem()
@@ -110,6 +121,7 @@ public class ShopManager : ShopBase
         slotLevelText.text = $"{shopData.slotLevel}/4";
 
         UpdateShopButtons();
+        DataManager.GetData.SaveShopData(shopData);
     }
 
     public void SaveShopInfo(string itemName)
