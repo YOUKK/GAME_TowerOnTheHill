@@ -109,6 +109,7 @@ public class ShopManager : ShopBase
         if (Buy(seatExpansionCost) == false) return;
 
         shopData.hasSeatExpansion = true;
+        Map.GetInstance().flag = true; // Map에서 방어선 증가시키는 함수 AddLine 실행
         UpdateShopButtons();
         DataManager.GetData.SaveShopData(shopData);
     }
