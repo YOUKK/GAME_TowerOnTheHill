@@ -7,19 +7,15 @@ using TMPro;
 public class ShopManager : ShopBase
 {
     ShopData shopData;
-    Dictionary<string, UpgradeData> characterDic;
 
     [SerializeField]
     GameObject characterUpgradePopup;
     [SerializeField]
-    TextMeshProUGUI currentCoin;
+    TextMeshProUGUI currentCoinText;
     [SerializeField]
-    GameObject[] buttons;
+    TextMeshProUGUI slotLevelText;
 
     enum Buttons { HammerButton, SeatButton, SlotButton, UpgradeButton }
-    enum Texts { PointText, ScoreText }
-    enum Images { ItemIcon, }
-    enum GameObjects { TestObject }
 
     #region Costs
     const int hammerCost = 100;
@@ -29,12 +25,8 @@ public class ShopManager : ShopBase
 
     void Start()
     {
+        PlayerPrefs.SetInt("coin", 1000);
         shopData = DataManager.GetData.GetShopData();
-        characterDic = DataManager.GetData.GetUpgradeDataDic();
-        UpgradeData currenCaracterData = characterDic["PeaShooter"];
-
-        Debug.Log(currenCaracterData.chName + " and " + currenCaracterData.kind + " and " + 
-            currenCaracterData.statIncrease[currenCaracterData.currentLevel]);
 
         Bind<Button>(typeof(Buttons));
         GetButton((int)Buttons.HammerButton).GetComponentInChildren<TextMeshProUGUI>().text = 
@@ -43,42 +35,99 @@ public class ShopManager : ShopBase
             seatExpansionCost.ToString();
         GetButton((int)Buttons.SlotButton).GetComponentInChildren<TextMeshProUGUI>().text = 
             slotExpansionCost[shopData.slotLevel].ToString();
+        slotLevelText.text = $"({shopData.slotLevel}/4)";
 
         characterUpgradePopup.SetActive(false);
+        UpdateShopButtons();
 
+        GetButton((int)Buttons.HammerButton).onClick.AddListener(BuyHammerItem);
+        GetButton((int)Buttons.SeatButton).onClick.AddListener(BuySeatExpansionItem);
+        GetButton((int)Buttons.SlotButton).onClick.AddListener(BuySlotExpansionItem);
         GetButton((int)Buttons.UpgradeButton).onClick.AddListener(ActivateUpgradePopup);
 
         if (PlayerPrefs.HasKey("coin"))
-            currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
+            currentCoinText.text = PlayerPrefs.GetInt("coin").ToString();
         else Debug.LogError("No Coin Data!");
     }
 
-    public void ActivateUpgradePopup()
+    private void UpdateShopButtons()
+    {
+        int currentCoin = PlayerPrefs.GetInt("coin");
+
+        if (currentCoin < hammerCost || shopData.hasHammer == true)
+        {
+            GetButton((int)Buttons.HammerButton).interactable = false;
+        }
+        else GetButton((int)Buttons.HammerButton).interactable = true;
+
+        if (currentCoin < seatExpansionCost || shopData.hasSeatExpansion == true)
+        {
+            GetButton((int)Buttons.SeatButton).interactable = false;
+        }
+        else GetButton((int)Buttons.SeatButton).interactable = true;
+
+        if (shopData.slotLevel == slotExpansionCost.Length)
+        {
+            GetButton((int)Buttons.SlotButton).interactable = false;
+        }
+        else
+        {
+            if (currentCoin < slotExpansionCost[shopData.slotLevel])
+                GetButton((int)Buttons.SlotButton).interactable = false;
+            else GetButton((int)Buttons.SlotButton).interactable = true;
+        }
+    }
+    
+    private bool Buy(int cost)
+    {
+        int currentCoin = PlayerPrefs.GetInt("coin");
+        if (currentCoin < hammerCost) return false;
+
+        currentCoin -= cost;
+        PlayerPrefs.SetInt("coin", currentCoin);
+        currentCoinText.text = currentCoin.ToString();
+
+        return true;
+    }
+
+    private void ActivateUpgradePopup()
     {
         characterUpgradePopup.SetActive(true);
+    }
+
+    public void BuyHammerItem()
+    {
+        if (Buy(hammerCost) == false) return;
+
+        shopData.hasHammer = true;
+        UpdateShopButtons();
+        DataManager.GetData.SaveShopData(shopData);
+    }
+
+    public void BuySeatExpansionItem()
+    {
+        if (Buy(seatExpansionCost) == false) return;
+
+        shopData.hasSeatExpansion = true;
+        Map.GetInstance().flag = true; // Map에서 방어선 증가시키는 함수 AddLine 실행
+        UpdateShopButtons();
+        DataManager.GetData.SaveShopData(shopData);
+    }
+
+    public void BuySlotExpansionItem()
+    {
+        if (Buy(slotExpansionCost[shopData.slotLevel]) == false) return;
+
+        shopData.slotLevel++;
+        slotLevelText.text = $"{shopData.slotLevel}/4";
+
+        UpdateShopButtons();
+        DataManager.GetData.SaveShopData(shopData);
     }
 
     public void SaveShopInfo(string itemName)
     {
         ShopData shopData = new ShopData();
-
-        if (itemName == "Hammer")
-        {
-            shopData.hasHammer = true;
-        }
-        else if (itemName == "SeatExpansion")
-        {
-            shopData.hasSeatExpansion = true;
-        }
-        else if (itemName == "SlotExpansion")
-        {
-            shopData.slotLevel++;
-        }
-        else if (itemName == "CharacterTraining")
-        {
-            Debug.Log("Character Training Button is On");
-        }
-        else return;
 
         DataManager.GetData.SaveShopData(shopData); 
     }
