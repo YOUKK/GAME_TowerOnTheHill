@@ -14,10 +14,15 @@ public class Map : MonoBehaviour
     static Map              _map;
     public static Map GetInstance() { return _map; }
 
-    public int              mapX, mapY;
+    private int mapX = 9, mapY = 5;
     List<List<GameObject>>  seats = new List<List<GameObject>>();
-
     public List<List<GameObject>> Seats { get => seats; set => seats = value; }
+
+    // 추가 방어선 오브젝트
+    [SerializeField]
+    private GameObject heightLine4;
+    [SerializeField]
+    private GameObject Line9;
 
 	void Awake()
 	{
@@ -39,18 +44,42 @@ public class Map : MonoBehaviour
 
         // 1차원 배열의 Seat Object들을 2차원 List로 변환
         int idx = 0;
-        for (int i = 0; i < mapY; ++i)
-        {
+        for(int i = 0; i < mapY; i++)
             seats.Add(new List<GameObject>());
-            for (int j = 0; j < mapX; ++j, ++idx)
-            {
-                if (tempSeats[idx].CompareTag("Seat"))
-                {
-                    seats[i].Add(tempSeats[idx].gameObject);
-                }
-            }
-        }
+        for(int i = 0; i < mapX; i++)
+		{
+            for(int j = 0; j < mapY; j++)
+			{
+                seats[j].Add(tempSeats[idx].gameObject);
+                idx++;
+			}
+		}
     }
+
+    // AddLine() 테스트 코드
+    public bool flag = false;
+	private void Update()
+	{
+        if (flag)
+		{
+            AddLine();
+            flag = false;
+		}
+	}
+    
+
+	// (상점에서 구매시) 방어선 증가 기능
+	private void AddLine()
+	{
+        // seats에 새로운 방어선 seat 추가
+        seats.Add(new List<GameObject>());
+        for(int i = 0; i < mapY; i++)
+            seats[i].Add(Line9.transform.GetChild(i).gameObject);
+
+        // UI상 방어선 활성화
+        Line9.SetActive(true);
+        heightLine4.SetActive(true);
+	}
 
     // 캐릭터 배치
     public void PutCharacter(Vector2 location, GameObject character)
@@ -58,9 +87,9 @@ public class Map : MonoBehaviour
         int x = (int)location.x;
         int y = (int)location.y;
 
-        seats[y][x].GetComponent<Seat>().character =
-            Instantiate(character, seats[y][x].transform.position, transform.rotation);
+        seats[y][x].GetComponent<Seat>().character = Instantiate(character, seats[y][x].transform.position, transform.rotation);
         seats[y][x].GetComponent<Seat>().character.GetComponent<Character>().Location = new Vector2(x, y);
+        
         if(character.GetComponent<Tower>() == null) // tower가 아닌 경우
             seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;
