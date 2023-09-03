@@ -11,6 +11,7 @@ TagManager:
   - Pickax
   - Gem
   - Coin
+  - Character2
   layers:
   - Default
   - TransparentFX
