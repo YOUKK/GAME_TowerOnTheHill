@@ -14,7 +14,7 @@ public class Ice : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
-            collision.gameObject.GetComponent<Monster>().Slow(0.15f, mainCharacter);
+            collision.gameObject.GetComponent<Monster>().Slow(0.5f, mainCharacter);
             gameObject.SetActive(false);
         }
     }
