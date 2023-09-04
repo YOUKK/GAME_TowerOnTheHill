@@ -35,7 +35,7 @@ public class MonsterSpawner : MonoBehaviour
         Init();
 
         if (phase - 1 < 0 || stage - 1 < 0) Debug.LogError("Wrong Phase or Stage number input");
-        currentWave = DataManager.monsterWave[phase-1][stage-1].waveArray;
+        currentWave = DataManager.GetData.monsterWave[phase-1][stage-1].waveArray;
         count = currentWave.Length;
 
         for (int i = 0; i < lines.Length; i++)

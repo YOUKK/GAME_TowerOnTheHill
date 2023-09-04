@@ -77,7 +77,7 @@ public class DataManager : MonoBehaviour
     private static string characterDataPath;
     private static UpgradeData[] upgradeDatas;
 
-    public static List<List<StageWave>> monsterWave = new List<List<StageWave>>();
+    public List<List<StageWave>> monsterWave = new List<List<StageWave>>();
 
     void Awake()
     {
