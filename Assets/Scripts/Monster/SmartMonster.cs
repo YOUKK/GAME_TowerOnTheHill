@@ -8,62 +8,37 @@ public class SmartMonster : Monster
     private float   lineChangeTime;
     private bool    isMovingLine = false;
 
+    private Transform startPosition;
+    private Transform endPosition;
+    [SerializeField]
+    private float moveDuration = 120.0f; // 2 minutes in seconds
+
+    private float lineMoveStartTime;
+    private float startTime;
+
     protected override void Start()
     {
         base.Start();
 
-        StartCoroutine(ChangeLineCoroutine());
-    }
-
-    private void Update()
-    {
-        if (isMovingLine)
-        {
-            MoveLine();
-            return;
-        }
-
-        if (target == null) Move(currentSpeed);
-        else
-        {
-            if (!isAttacking)
-            {
-                isAttacking = true;
-                StartCoroutine(AttackCoolCoroutine());
-            }
-        }
-        anim.SetBool("isAttack", isAttacking);
-    }
-
-    IEnumerator ChangeLineCoroutine()
-    {
-        Debug.Log("ChangeLineCoroutine start");
-        yield return new WaitForSeconds(lineChangeTime);
         
-        if (isAttacking) {
-            isAttacking = false;
-            StopCoroutine(AttackCoolCoroutine());
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    IEnumerator MovePlayerOverTime()
+    {
+        while (Time.time - startTime < moveDuration)
+        {
+            float normalizedTime = (Time.time - startTime) / moveDuration;
+            transform.position = Vector3.Lerp(startPosition.position, endPosition.position, normalizedTime);
+            yield return null;
         }
 
-        isMovingLine = true;
-        ChangeLine();
-    }
-
-    private void ChangeLine()
-    {
-        int upLineNumber = (currentLine == 4) ? currentLine : currentLine + 1;
-        int downLineNumber = (currentLine == 0) ? currentLine : currentLine - 1;
-        Line upLine = Map.GetInstance().GetLineInfo(upLineNumber);
-        Line downLine = Map.GetInstance().GetLineInfo(downLineNumber);
-
-        // 라인 번호 변경
-        currentLine = (upLine.hpSum > downLine.hpSum) ? 
-            currentLine = upLineNumber : currentLine = downLineNumber;
-    }
-
-    private void MoveLine()
-    {
-        
+        // Ensure the player reaches the exact end position
+        transform.position = endPosition.position;
     }
 
     protected override void Move(float speed)
@@ -87,5 +62,27 @@ public class SmartMonster : Monster
     protected override void Dead()
     {
         base.Dead();
+    }
+
+    private void DecideWhereToMove()
+    {
+        Line way1, way2;
+        if (currentLine == 4)
+        {
+            way1 = Map.GetInstance().GetLineInfo(currentLine - 1);
+            way2 = Map.GetInstance().GetLineInfo(currentLine - 2);
+        }
+        else if(currentLine == 0)
+        {
+            way1 = Map.GetInstance().GetLineInfo(currentLine + 1);
+            way2 = Map.GetInstance().GetLineInfo(currentLine + 2);
+        }
+        else
+        {
+            way1 = Map.GetInstance().GetLineInfo(currentLine - 1);
+            way2 = Map.GetInstance().GetLineInfo(currentLine + 1);
+        }
+
+
     }
 }
