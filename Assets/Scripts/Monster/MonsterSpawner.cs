@@ -113,6 +113,11 @@ public class MonsterSpawner : MonoBehaviour
             Debug.Log("Removed Monster");
     }
 
+    public void InsertMonster(GameObject obj, int line)
+    {
+        monsterList[line].AddLast(obj);
+    }
+
     public void BuffMonsters()
     {
         for(int i = 0; i < monsterList.Length; ++i)
