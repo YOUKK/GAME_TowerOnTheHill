@@ -118,6 +118,7 @@ public class DataManager : MonoBehaviour
     private void TryParse()
     {
         monsterWave.Add(WaveParse("MonsterWaveDB - Phase0"));
+        monsterWave.Add(WaveParse("MonsterWaveDB - Phase1"));
 
         for (int i = 0; i < monsterWave[0].Count; ++i)
         {

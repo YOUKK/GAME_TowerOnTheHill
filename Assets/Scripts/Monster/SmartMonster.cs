@@ -100,29 +100,4 @@ public class SmartMonster : Monster
             return new Vector3(transform.position.x, way2.location.y, transform.position.z);
         }
     }
-
-    protected override void Move(float speed)
-    {
-        transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
-            transform.position.y, transform.position.z);
-    }
-
-    protected override void Attack()
-    {
-        base.Attack();
-    }
-
-    protected override IEnumerator AttackCoolCoroutine()
-    {
-        Attack();
-        yield return new WaitForSeconds(status.hitSpeed);
-        isAttacking = false;
-    }
-
-    protected override void Dead()
-    {
-        base.Dead();
-    }
-
-    
 }
