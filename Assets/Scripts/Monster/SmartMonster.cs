@@ -65,6 +65,7 @@ public class SmartMonster : Monster
         transform.position = endPosition;
 
         MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
+        currentLine = destinationLine;
         MonsterSpawner.GetInstance.InsertMonster(gameObject, destinationLine);
         isLineMoving = false;
         isFinishedLineMoving = true;
