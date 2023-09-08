@@ -15,15 +15,6 @@ public class JumpMonster : Monster
     private BoxCollider2D boxCollider;
     private bool isJumpTried = false;
     private bool isJumping = false;
-    
-    // 캐릭터가 빈 간격 없이 라인 따라 나열되어있을 때,
-    // Jump몬스터가 패스할 타겟을 지나치는 도중 바로 뒤에 있는 캐릭터를 타겟으로 다시 잡아버려서
-    // (거리가 너무 좁아서 앞 타겟을 지나치기도 전에 뒤에 있는 캐릭터랑 Trigger되어서 타겟으로 만듬.)
-    // 타겟과 거리가 멀어져도 슬라이딩 모션을 종료하지 못함. (타겟이 계속 뒤에 캐릭터로 갱신됨.)
-    // 캐릭터들이 빈 간격 없이 일렬로 나열되어 있으면 빈 간격이 나올 때까지 계속 슬라이딩한다는 뜻.
-
-    // 방안1: 첫 타겟만을 위한 Transform 변수를 따로 만듦. 계속 타겟을 갱신하는 문제를 해결할 수 있음.
-    // 방안2: Map의 크기를 키워서 캐릭터들을 띄워놓음.
 
     protected override void Start()
     {
@@ -31,8 +22,6 @@ public class JumpMonster : Monster
         anim.SetBool("isJumpTried", false);
         boxCollider = GetComponent<BoxCollider2D>();
     }
-
-    // 중간에 target이 null이 되면 if문이 실행됨. 그럼 isJumpTried가 false이므로 기본 속도로 슬라이딩 함.
 
     protected override void Update()
     {

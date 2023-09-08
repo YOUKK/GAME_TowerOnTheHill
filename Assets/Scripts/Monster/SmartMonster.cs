@@ -6,86 +6,98 @@ public class SmartMonster : Monster
 {
     [SerializeField]
     private float   lineChangeTime;
-    private bool    isMovingLine = false;
+    private int     destinationLine;
+    private bool    isFinishedLineMoving = false;
+    private bool    isLineMoving = false;
+
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+    [SerializeField]
+    private float moveDuration = 3.0f; // 라인 이동 시간
+
+    [SerializeField]
+    private float lineMoveStartTime = 3.5f; // 라인 이동을 시작하는 시간
+    private float monsterCreatedTime;       // 몬스터가 생성된 시간
+
+    [SerializeField]
+    private DetectAreaScript detectObj;
 
     protected override void Start()
     {
         base.Start();
-
-        StartCoroutine(ChangeLineCoroutine());
+        monsterCreatedTime = Time.time;
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if (isMovingLine)
+        if (isLineMoving == false && isFinishedLineMoving == false)
         {
-            MoveLine();
-            return;
-        }
-
-        if (target == null) Move(currentSpeed);
-        else
-        {
-            if (!isAttacking)
+            if (detectObj.IsDetectedCharacter == true || Time.time - monsterCreatedTime > lineMoveStartTime)
             {
-                isAttacking = true;
-                StartCoroutine(AttackCoolCoroutine());
+                isLineMoving = true;
+                MoveLine();
+                return;
             }
         }
-        anim.SetBool("isAttack", isAttacking);
-    }
 
-    IEnumerator ChangeLineCoroutine()
-    {
-        Debug.Log("ChangeLineCoroutine start");
-        yield return new WaitForSeconds(lineChangeTime);
-        
-        if (isAttacking) {
-            isAttacking = false;
-            StopCoroutine(AttackCoolCoroutine());
-        }
-
-        isMovingLine = true;
-        ChangeLine();
-    }
-
-    private void ChangeLine()
-    {
-        int upLineNumber = (currentLine == 4) ? currentLine : currentLine + 1;
-        int downLineNumber = (currentLine == 0) ? currentLine : currentLine - 1;
-        Line upLine = Map.GetInstance().GetLineInfo(upLineNumber);
-        Line downLine = Map.GetInstance().GetLineInfo(downLineNumber);
-
-        // 라인 번호 변경
-        currentLine = (upLine.hpSum > downLine.hpSum) ? 
-            currentLine = upLineNumber : currentLine = downLineNumber;
+        if(isLineMoving == false) base.Update();
     }
 
     private void MoveLine()
     {
-        
+        lineMoveStartTime = Time.time;
+        startPosition = transform.position;
+        endPosition = DecideWhereToMove();
+
+        StartCoroutine(MoveMonsterOverTime());
     }
 
-    protected override void Move(float speed)
+    IEnumerator MoveMonsterOverTime()
     {
-        transform.position = new Vector3(transform.position.x + currentSpeed * (-1) * Time.deltaTime,
-            transform.position.y, transform.position.z);
+        while (Time.time - lineMoveStartTime < moveDuration)
+        {
+            float normalizedTime = (Time.time - lineMoveStartTime) / moveDuration;
+            transform.position = Vector3.Lerp(startPosition, endPosition, normalizedTime);
+            yield return null;
+        }
+
+        // Ensure the player reaches the exact end position
+        transform.position = endPosition;
+
+        MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
+        MonsterSpawner.GetInstance.InsertMonster(gameObject, destinationLine);
+        isLineMoving = false;
+        isFinishedLineMoving = true;
     }
 
-    protected override void Attack()
+    private Vector3 DecideWhereToMove()
     {
-        base.Attack();
-    }
+        Line way1, way2;
+        if (currentLine == 4)
+        {
+            way1 = Map.GetInstance().GetLineInfo(currentLine - 1);
+            way2 = Map.GetInstance().GetLineInfo(currentLine - 2);
+        }
+        else if (currentLine == 0)
+        {
+            way1 = Map.GetInstance().GetLineInfo(currentLine + 1);
+            way2 = Map.GetInstance().GetLineInfo(currentLine + 2);
+        }
+        else
+        {
+            way1 = Map.GetInstance().GetLineInfo(currentLine - 1);
+            way2 = Map.GetInstance().GetLineInfo(currentLine + 1);
+        }
 
-    protected override IEnumerator AttackCoolCoroutine()
-    {
-        Attack();
-        yield return new WaitForSeconds(status.hitSpeed);
-        isAttacking = false;
-    }
-
-    protected override void Dead()
-    {
-        base.Dead();
+        if (way1.hpSum < way2.hpSum)
+        {
+            destinationLine = way1.lineNumber;
+            return new Vector3(transform.position.x, way1.location.y, transform.position.z);
+        }
+        else
+        {
+            destinationLine = way2.lineNumber;
+            return new Vector3(transform.position.x, way2.location.y, transform.position.z);
+        }
     }
 }

@@ -110,7 +110,16 @@ public class MonsterSpawner : MonoBehaviour
     public void RemoveMonster(GameObject obj, int line)
     {
         if (monsterList[line].Remove(obj))
-            Debug.Log("Removed Monster");
+            Debug.Log("Monster is removed");
+            //for(int i = 0; i < 5; ++i)
+            //    Debug.Log("Line : " + i + " " + monsterList[i].Count);
+    }
+
+    public void InsertMonster(GameObject obj, int line)
+    {
+        monsterList[line].AddLast(obj);
+        //for (int i = 0; i < 5; ++i)
+        //    Debug.Log("Line : " + i + " " + monsterList[i].Count);
     }
 
     public void BuffMonsters()

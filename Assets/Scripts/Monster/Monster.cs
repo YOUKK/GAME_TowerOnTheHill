@@ -19,6 +19,7 @@ public abstract class Monster : MonoBehaviour
     protected float         currentSpeed;
     [SerializeField]
     protected int           currentForce; 
+    [SerializeField]
     public    int           CurrentLine { set => currentLine = value; }
 
     [SerializeField]
