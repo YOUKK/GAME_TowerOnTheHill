@@ -222,6 +222,12 @@ public class DataManager : MonoBehaviour
 
                 wave.stage = int.Parse(elements[0]); // Stage
                 wave.time = float.Parse(elements[1]); // time
+
+                // FirstwaveTime, SecondWaveTime의 값이 do 블럭 실행시킬 때마다 바뀌며 결국 마지막에 실행된 값으로 설정됨.
+                // 스테이지 5의 웨이브 시간으로 설정된다는 말
+                // 방법 1 : 하나의 stage wave만 파싱하도록 바꾸기
+                // 방법 2 : stage 개수만큼 웨이브 시간을 저장할 배열 만들기
+
                 if (elements[2] == "first")
                 {
                     ++i;
