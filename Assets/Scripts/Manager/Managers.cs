@@ -24,6 +24,9 @@ public class Managers : MonoBehaviour
     private MouseInputManager mouseInputM = new MouseInputManager();
     public static MouseInputManager MouseInputM { get { return instance.mouseInputM; } }
 
+    [SerializeField]
+    private GameObject hammerItem;
+
     // 공유 변수
     public int slotNum = 6;
 
@@ -32,7 +35,7 @@ public class Managers : MonoBehaviour
         Init();
         timeM.InitTimer();
         //timeM.StartTimer();
-
+        ApplyShopItem();
         if (!PlayerPrefs.HasKey("coin"))
         {
             PlayerPrefs.SetInt("coin", 0);
@@ -62,4 +65,11 @@ public class Managers : MonoBehaviour
             instance = go.GetComponent<Managers>();
 		}
 	}
+
+    private void ApplyShopItem()
+    {
+        if (DataManager.GetData.GetShopData().hasHammer)
+            hammerItem.SetActive(true);
+        else hammerItem.SetActive(false);
+    }
 }
