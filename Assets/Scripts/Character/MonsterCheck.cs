@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterCheck : MonoBehaviour
@@ -29,11 +27,13 @@ public class MonsterCheck : MonoBehaviour
 
     private void Update()
     {
-        if (A.GetLineMonstersInfo((int)LocalPos.y) != null)
+        var T = A.GetLineMonstersInfo((int)LocalPos.y);
+        if (T != null)
         {
-            if (A.GetLineMonstersInfo((int)LocalPos.y)[0].transform.position.x - mainCharacter.transform.position.x <= (float)mainCharacter.Range)
+            Debug.Log(T[0].transform.position.x);
+            if (T[0].transform.position.x - mainCharacter.transform.position.x <= (float)mainCharacter.Range)
             {
-                monster = A.GetLineMonstersInfo((int)LocalPos.y)[0];
+                monster = T[0];
                 mainCharacter.CheckMonster = true;
             }
         }

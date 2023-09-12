@@ -5,17 +5,20 @@ using UnityEngine;
 public class Ice : MonoBehaviour
 {
     private Character mainCharacter;
+    Collider2D collision;
     private void Start()
     {
         mainCharacter = gameObject.GetComponentInParent<Character>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.tag == "Enemy")
+        if (col.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
-            collision.gameObject.GetComponent<Monster>().Slow(0.5f, mainCharacter);
+            collision = col;
+            col.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
+            col.gameObject.GetComponent<Monster>().Slow(0.5f, mainCharacter);
             gameObject.SetActive(false);
         }
     }
+
 }
