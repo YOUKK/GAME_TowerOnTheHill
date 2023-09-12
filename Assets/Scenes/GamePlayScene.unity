@@ -561,7 +561,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 568166868584695413, guid: 803be1b960cc76140a098c11886a7c00, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 568166868584695413, guid: 803be1b960cc76140a098c11886a7c00, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1074,6 +1074,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &706818426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3714441676939484761, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+  m_PrefabInstance: {fileID: 911702282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &721369238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ad8ace49d8f6a469addb383437e725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hammerItem: {fileID: 706818426}
   slotNum: 6
 --- !u!4 &749402590
 Transform:
@@ -2005,7 +2011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2567302841343929445, guid: 88787a203cecb1640a01e9cf5ee0d8c2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2567302841343929445, guid: 88787a203cecb1640a01e9cf5ee0d8c2, type: 3}
       propertyPath: m_LocalPosition.x
