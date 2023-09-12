@@ -56,7 +56,7 @@ public class Character : MonoBehaviour
     protected virtual void Start()
     {
         anim = GetComponent<Animator>();
-        if (anim == null) 
+        if (anim == null)
             anim = GetComponentInChildren<Animator>();
 
 
@@ -86,7 +86,7 @@ public class Character : MonoBehaviour
     public virtual void Hit(int damage, Monster attackMonster)
     {
         AttackMonster = attackMonster;
-        if(healthPoint < 0)
+        if (healthPoint < 0)
         {
             anim.SetBool("isDead", true);
             Invoke("DeadDelay", 1.0f);
@@ -117,15 +117,26 @@ public class Character : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public virtual void Attack(){ }
+    public virtual void Attack() { }
 
     IEnumerator AttackCoolTime()
     {
         Debug.Log("Start Attack Coroutine");
-        while(true)
+        if (this.status.type == CharacterName.Eater)
         {
-            yield return new WaitForSeconds(attackDelay);
-            Attack();
+            while (true)
+            {
+                yield return new WaitForSeconds(0.1f);
+                Attack();
+            }
+        }
+        else
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(attackDelay);
+                Attack();
+            }
         }
     }
 }
