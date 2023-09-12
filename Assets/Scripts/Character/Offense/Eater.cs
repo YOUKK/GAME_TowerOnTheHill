@@ -17,29 +17,15 @@ public class Eater : Character
     // Update is called once per frame
     public override void Attack()
     {
-        if (!IsDragged && canAttack)
+        while (!CheckMonster) { }
+        if (!IsDragged && canAttack && CheckMonster)
         {
             anim.SetTrigger("canAttack");
-            //canAttack = false;
             Invoke("attackDelaySet", 1.7f);
         }
     }
     void attackDelaySet()
     {
-        gameObject.GetComponentInChildren<MonsterCheck>().Monster.SetActive(false);
-        Invoke("Duration", AttackDuration);
-    }
-    void Duration()
-    {
-        if (healthPoint < 0)
-        {
-            gameObject.GetComponentInChildren<MonsterCheck>().Monster.SetActive(true);
-        }
-        else
-        {
-            Destroy(gameObject.GetComponentInChildren<MonsterCheck>().Monster);
-            gameObject.GetComponentInChildren<MonsterCheck>().Monster = null;
-            canAttack = true;
-        }
+        gameObject.GetComponentInChildren<MonsterCheck>().Monster.GetComponent<Monster>().Hit(10000000);
     }
 }

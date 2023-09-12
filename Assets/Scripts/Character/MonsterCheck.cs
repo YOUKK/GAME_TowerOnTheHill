@@ -4,15 +4,12 @@ public class MonsterCheck : MonoBehaviour
 {
     [SerializeField]
     private Character mainCharacter;
-    private bool changeFlag = true;
     [SerializeField]
     private GameObject monster;
 
     private MonsterSpawner A;
     [SerializeField]
     private Vector2 localPos;
-
-    [SerializeField] float Range;
 
     public Vector2 LocalPos { get => localPos; set => localPos = value; }
     public GameObject Monster { get => monster; set => monster = value; }
@@ -34,11 +31,30 @@ public class MonsterCheck : MonoBehaviour
             {
                 monster = T[0];
                 mainCharacter.CheckMonster = true;
+                if (mainCharacter.status.type == CharacterName.Eater)
+                {
+                    Invoke("EatingLate", 0.3f);
+                    Invoke("Eating", mainCharacter.AttackDuration);
+                }
+            }
+            else
+            {
+                mainCharacter.CheckMonster = false;
             }
         }
         else
         {
             mainCharacter.CheckMonster = false;
         }
+    }
+
+    void EatingLate()
+    { 
+        mainCharacter.GetComponent<Eater>().CanAttack = false;
+    }
+
+    void Eating()
+    {
+        mainCharacter.GetComponent<Eater>().CanAttack = true;
     }
 }

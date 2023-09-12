@@ -8,6 +8,7 @@ public enum CharacterName
     Wall, // Wallnut
     PeaSh, // PeaShooter
     GasMu, // GasMushroom
+    Eater,
 }
 
 [CreateAssetMenu(fileName = "Character", menuName = "Scripts/Character/CharacterStatus")]
