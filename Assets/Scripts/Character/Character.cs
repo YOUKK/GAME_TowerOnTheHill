@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected GameObject projectileSecond;
     [SerializeField]
-    protected CharacterStatus status;
+    public CharacterStatus status;
     protected Animator anim;
 
     protected Queue<GameObject> projectiles = new Queue<GameObject>();
@@ -32,6 +32,8 @@ public class Character : MonoBehaviour
     protected int healthPoint;
     [SerializeField]
     protected int attackDuration;
+
+    private Monster AttackMonster;
 
     private bool isDragged = false;
     private bool checkMonster = false;
@@ -81,17 +83,24 @@ public class Character : MonoBehaviour
         }
     }
 
-    public virtual void Hit(int damage)
+    public virtual void Hit(int damage, Monster attackMonster)
     {
+        AttackMonster = attackMonster;
         if(healthPoint < 0)
         {
             anim.SetBool("isDead", true);
             Invoke("DeadDelay", 1.0f);
+
+            Invoke("SlowDelay", AttackDuration);
         }
         else
         {
             healthPoint -= damage;
         }
+    }
+    void SlowDelay()
+    {
+        AttackMonster.Slow(0f, this);
     }
 
     void DeadDelay()

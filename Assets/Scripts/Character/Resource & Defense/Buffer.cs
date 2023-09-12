@@ -17,7 +17,6 @@ public class Buffer : Character
     }
     void attackDelaySet()
     {
-        Debug.Log("HI");
         projectiles.Clear();
 
         projectile = gameObject.transform.Find("Projectiles").transform.GetChild(Random.Range(0, 3)).gameObject;

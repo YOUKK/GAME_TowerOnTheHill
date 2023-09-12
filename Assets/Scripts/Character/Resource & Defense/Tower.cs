@@ -125,7 +125,7 @@ public class Tower : Character
         }
     }
 
-    public override void Hit(int damage)
+    public override void Hit(int damage, Monster monster)
     {
         if (healthPoint - damage <= 0)
         {

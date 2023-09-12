@@ -81,7 +81,7 @@ public abstract class Monster : MonoBehaviour
     {
         Character targetCharacter = target.gameObject.GetComponent<Character>();
         if (targetCharacter != null)
-            targetCharacter.Hit(currentForce);
+            targetCharacter.Hit(currentForce, this);
         else Debug.Log("target doesn't have Character");
 
         StartCoroutine(AttackCoolCoroutine());
@@ -115,7 +115,7 @@ public abstract class Monster : MonoBehaviour
 
     public void Slow(float speed, Character AttackCharacter)
     {
-        currentSpeed = status.speed - speed;
+        currentSpeed = status.speed - speed;    
     }
 
     public void SetLine(int line)
