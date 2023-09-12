@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected GameObject projectileSecond;
     [SerializeField]
-    protected CharacterStatus status;
+    public CharacterStatus status;
     protected Animator anim;
 
     protected Queue<GameObject> projectiles = new Queue<GameObject>();

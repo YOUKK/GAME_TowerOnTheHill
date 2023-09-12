@@ -30,7 +30,6 @@ public class MonsterCheck : MonoBehaviour
         var T = A.GetLineMonstersInfo((int)LocalPos.y);
         if (T != null)
         {
-            Debug.Log(T[0].transform.position.x);
             if (T[0].transform.position.x - mainCharacter.transform.position.x <= (float)mainCharacter.Range)
             {
                 monster = T[0];
