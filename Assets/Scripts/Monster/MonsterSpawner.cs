@@ -15,7 +15,7 @@ public class MonsterSpawner : MonoBehaviour
 
     private int           count = 0; // 한 스테이지의 길이(몬스터 생성 수)
     private int           idx = 0;
-    private MonsterWave[] currentWave = null;
+    private MonsterSpawnData[] currentWave = null;
     public  float         monsterBuffTime = 0;
 
     private LinkedList<GameObject>[] monsterList = new LinkedList<GameObject>[5];

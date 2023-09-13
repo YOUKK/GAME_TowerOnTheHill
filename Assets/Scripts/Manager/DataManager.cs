@@ -43,21 +43,21 @@ public class UpgradeData
 // 한 스테이지의 Monster Wave 정보
 public class StageWave
 {
-    public MonsterWave[] waveArray = null;
+    public MonsterSpawnData[] waveArray = null;
 
-    public StageWave(MonsterWave[] waves)
+    public StageWave(MonsterSpawnData[] waves)
     {
         waveArray = waves;
     }
 
-    public StageWave(List<MonsterWave> waves)
+    public StageWave(List<MonsterSpawnData> waves)
     {
         waveArray = waves.ToArray();
     }
 }
 
 // 몬스터 하나의 스폰 Wave 정보
-public struct MonsterWave
+public struct MonsterSpawnData
 {
     public int stage;
     public float time;
@@ -77,6 +77,11 @@ public class DataManager : MonoBehaviour
     private static string characterDataPath;
     private static UpgradeData[] upgradeDatas;
 
+
+    private string[] phaseFileNames = 
+        {"MonsterWaveDB - Phase0", "MonsterWaveDB - Phase1", "MonsterWaveDB - Phase2",
+        "MonsterWaveDB - Phase3", "MonsterWaveDB - Phase4"};
+
     public List<List<StageWave>> monsterWave = new List<List<StageWave>>();
 
     void Awake()
@@ -84,15 +89,6 @@ public class DataManager : MonoBehaviour
         Init();
 
         Scene currScene = SceneManager.GetActiveScene();
-        if(currScene.name == "Shop")
-        {
-            // 캐릭터의 스텟을 정하는 시점 : 게임 시작 시가 적당한 것 같다.
-            // 이유 : 상점을 이용하여 바뀔 수 있는 데이터들을 불러오기 때문에 매 게임 시작마다 불러와주는 것이 효율적이다.
-            // 어떤 정보를 불러와야 할까?
-            // 해당 캐릭터의 레벨의 수치 정보를 가져와야 함. 즉, UpgradeData가 필요함.
-            // Idea : UpgradeData를 플레이어의 이름을 Key로 갖고 현재 status 값을 value로 갖는...
-        }
-        else TryParse();
 
         shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
         characterDataPath = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
@@ -112,22 +108,6 @@ public class DataManager : MonoBehaviour
 
             DontDestroyOnLoad(go);
             instance = go.GetComponent<DataManager>();
-        }
-    }
-
-    private void TryParse()
-    {
-        monsterWave.Add(WaveParse("MonsterWaveDB - Phase0"));
-        monsterWave.Add(WaveParse("MonsterWaveDB - Phase1"));
-
-        for (int i = 0; i < monsterWave[0].Count; ++i)
-        {
-            Debug.Log(monsterWave[0][i].waveArray.Length);
-            for (int j = 0; j < monsterWave[0][i].waveArray.Length; ++j)
-            {
-                MonsterWave wave = monsterWave[0][i].waveArray[j];
-                Debug.Log($"stage {wave.stage} , time {wave.time} , monster {wave.monsterInfo.name} , line {wave.line}");
-            }
         }
     }
 
@@ -200,33 +180,34 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // 한 페이즈의 Wave 데이터를 파싱하여 stage 별로 나눈 리스트를 반환.
-    private List<StageWave> WaveParse(string _CSVFileName)
+    public StageWave TryParse(int phase, int stage)
     {
-        List<StageWave> res = new List<StageWave>();
-
-        TextAsset csvData = Resources.Load<TextAsset>($"Data/{_CSVFileName}");
-
+        TextAsset csvData = Resources.Load<TextAsset>($"Data/{phaseFileNames[phase]}");
         string[] data = csvData.text.Split(new char[] { '\n' });
 
+        StageWave stageWave = WaveParse(data, stage);
+
+        return stageWave;
+    }
+
+    // _CSVFileName에서 파라미터로 받은 stage에 해당하는 Wave를 StageWave로 만들어 반환.
+    private StageWave WaveParse(string[] data, int stage)
+    {
         int count = data.Length;
         for(int i = 1; i < count;)
         {
             string[] elements = data[i].Split(new char[] { ',' });
             int currentStage = int.Parse(elements[0]);
+            if (currentStage != stage) { ++i; continue; }
 
-            List<MonsterWave> waveList = new List<MonsterWave>();
-            do
+            List<MonsterSpawnData> waveList = new List<MonsterSpawnData>();
+
+            while (int.Parse(elements[0]) == currentStage)
             {
-                MonsterWave wave;
+                MonsterSpawnData wave;
 
                 wave.stage = int.Parse(elements[0]); // Stage
                 wave.time = float.Parse(elements[1]); // time
-
-                // FirstwaveTime, SecondWaveTime의 값이 do 블럭 실행시킬 때마다 바뀌며 결국 마지막에 실행된 값으로 설정됨.
-                // 스테이지 5의 웨이브 시간으로 설정된다는 말
-                // 방법 1 : 하나의 stage wave만 파싱하도록 바꾸기
-                // 방법 2 : stage 개수만큼 웨이브 시간을 저장할 배열 만들기
 
                 if (elements[2] == "first")
                 {
@@ -242,6 +223,7 @@ public class DataManager : MonoBehaviour
                     elements = data[i].Split(new char[] { ',' });
                     continue;
                 }
+
                 int monsterNum = int.Parse(elements[2]);
                 wave.monsterInfo = Resources.Load<GameObject>($"Prefabs/Monsters/{(MonsterName)monsterNum}"); // monster
                 wave.line = int.Parse(elements[3]); // line
@@ -257,13 +239,12 @@ public class DataManager : MonoBehaviour
                     break;
                 }
             }
-            while (int.Parse(elements[0]) == currentStage);
 
             StageWave waveSet = new StageWave(waveList);
-            res.Add(waveSet);
+            return waveSet;
         }
 
-        return res;
+        return null;
     }
 }
 
