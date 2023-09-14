@@ -8,14 +8,13 @@ public class MonsterSpawner : MonoBehaviour
     private static MonsterSpawner instance;
     public  static MonsterSpawner GetInstance { get { Init(); return instance; } }
 
-    // 페이즈, 스테이지는 인덱스 상으로는 0번부터 시작
     public  int           phase = 1;
     public  int           stage = 1;
     public  GameObject[]  lines = new GameObject[5];
 
     private int           count = 0; // 한 스테이지의 길이(몬스터 생성 수)
     private int           idx = 0;
-    private MonsterWave[] currentWave = null;
+    private MonsterSpawnData[] currentWave = null;
     public  float         monsterBuffTime = 0;
 
     private LinkedList<GameObject>[] monsterList = new LinkedList<GameObject>[5];
@@ -34,8 +33,8 @@ public class MonsterSpawner : MonoBehaviour
     {
         Init();
 
-        if (phase - 1 < 0 || stage - 1 < 0) Debug.LogError("Wrong Phase or Stage number input");
-        currentWave = DataManager.GetData.monsterWave[phase-1][stage-1].waveArray;
+        if (phase < 1 || stage  < 1) { phase = 1; stage = 1; }
+        currentWave = DataManager.GetData.TryParse(phase, stage).waveArray;
         count = currentWave.Length;
 
         for (int i = 0; i < lines.Length; i++)
