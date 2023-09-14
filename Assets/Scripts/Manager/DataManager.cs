@@ -79,8 +79,8 @@ public class DataManager : MonoBehaviour
 
 
     private string[] phaseFileNames = 
-        {"MonsterWaveDB - Phase0", "MonsterWaveDB - Phase1", "MonsterWaveDB - Phase2",
-        "MonsterWaveDB - Phase3", "MonsterWaveDB - Phase4"};
+        {"", "MonsterWaveDB - Phase1", "MonsterWaveDB - Phase2", "MonsterWaveDB - Phase3",
+        "MonsterWaveDB - Phase4", "MonsterWaveDB - Phase5"};
 
     public List<List<StageWave>> monsterWave = new List<List<StageWave>>();
 
@@ -187,6 +187,7 @@ public class DataManager : MonoBehaviour
 
         StageWave stageWave = WaveParse(data, stage);
 
+        if (stageWave == null) Debug.LogError("STAGE WAVE IS NULL");
         return stageWave;
     }
 
