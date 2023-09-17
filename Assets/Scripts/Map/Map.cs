@@ -108,6 +108,28 @@ public class Map : MonoBehaviour
         seats[y][x].GetComponent<Seat>().usable = true; // 좀비가 Seat 위에 있으면 생성 불가하게 수정
     }
 
+    public Vector2[] GetCharacterPlacedSeats()
+    {
+        List<Vector2> seatMatrix = new List<Vector2>();
+
+        for (int i = 0; i < mapX; i++)
+        {
+            for (int j = 0; j < mapY; j++)
+            {
+                if (seats[j][i].GetComponent<Seat>().isCharacterOn)
+                    seatMatrix.Add(seats[j][i].GetComponent<Seat>().location);
+            }
+        }
+
+        return seatMatrix.ToArray();
+    }
+
+    public void ChangeCharacterSeat(Vector2 seat1, Vector2 seat2)
+    {
+        // 구현해야 함
+        // 다른 몬스터가 공격중인 캐릭터가 자리를 바꾸면 어떻게 해야할까
+    }
+
     public Line GetLineInfo(int lineNum)
     {
         Line line;

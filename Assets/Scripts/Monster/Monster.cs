@@ -25,9 +25,10 @@ public abstract class Monster : MonoBehaviour
     [SerializeField]
     private ParticleSystem  monsterBuffEffect;
     private SpriteRenderer  sprite;
-    private GameObject      randomCoin;
-    private int             randomPercent = 100;
-    private bool            isGetCoin;
+
+    protected int           randomPercent = 100;
+    protected bool          isGetCoin;
+    protected GameObject    randomCoin;
 
     protected virtual void Start()
     {

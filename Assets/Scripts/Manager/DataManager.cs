@@ -40,18 +40,19 @@ public class UpgradeData
 }
 #endregion
 
-// ÇÑ ½ºÅ×ÀÌÁöÀÇ Monster Wave Á¤º¸
+// í•œ ìŠ¤í…Œì´ì§€ì˜ Monster Wave ì •ë³´
 public class StageWave
 {
     public MonsterWave[] waveArray = null;
     public TutorialLine[] waveTuArray = null;
+    public MonsterSpawnData[] waveArray = null;
 
-    public StageWave(MonsterWave[] waves)
+    public StageWave(MonsterSpawnData[] waves)
     {
         waveArray = waves;
     }
 
-    public StageWave(List<MonsterWave> waves)
+    public StageWave(List<MonsterSpawnData> waves)
     {
         waveArray = waves.ToArray();
     }
@@ -62,8 +63,8 @@ public class StageWave
     }
 }
 
-// ¸ó½ºÅÍ ÇÏ³ªÀÇ ½ºÆù Wave Á¤º¸
-public struct MonsterWave
+// ëª¬ìŠ¤í„° í•˜ë‚˜ì˜ ìŠ¤í° Wave ì •ë³´
+public struct MonsterSpawnData
 {
     public int stage;
     public float time;
@@ -93,6 +94,11 @@ public class DataManager : MonoBehaviour
     private static string characterDataPath;
     private static UpgradeData[] upgradeDatas;
 
+
+    private string[] phaseFileNames = 
+        {"", "MonsterWaveDB - Phase1", "MonsterWaveDB - Phase2", "MonsterWaveDB - Phase3",
+        "MonsterWaveDB - Phase4", "MonsterWaveDB - Phase5"};
+
     public List<List<StageWave>> monsterWave = new List<List<StageWave>>();
     public List<List<StageWave>> tutorial = new List<List<StageWave>>();
 
@@ -101,15 +107,6 @@ public class DataManager : MonoBehaviour
         Init();
 
         Scene currScene = SceneManager.GetActiveScene();
-        if(currScene.name == "Shop")
-        {
-            // Ä³¸¯ÅÍÀÇ ½ºÅİÀ» Á¤ÇÏ´Â ½ÃÁ¡ : °ÔÀÓ ½ÃÀÛ ½Ã°¡ Àû´çÇÑ °Í °°´Ù.
-            // ÀÌÀ¯ : »óÁ¡À» ÀÌ¿ëÇÏ¿© ¹Ù²ğ ¼ö ÀÖ´Â µ¥ÀÌÅÍµéÀ» ºÒ·¯¿À±â ¶§¹®¿¡ ¸Å °ÔÀÓ ½ÃÀÛ¸¶´Ù ºÒ·¯¿ÍÁÖ´Â °ÍÀÌ È¿À²ÀûÀÌ´Ù.
-            // ¾î¶² Á¤º¸¸¦ ºÒ·¯¿Í¾ß ÇÒ±î?
-            // ÇØ´ç Ä³¸¯ÅÍÀÇ ·¹º§ÀÇ ¼öÄ¡ Á¤º¸¸¦ °¡Á®¿Í¾ß ÇÔ. Áï, UpgradeData°¡ ÇÊ¿äÇÔ.
-            // Idea : UpgradeData¸¦ ÇÃ·¹ÀÌ¾îÀÇ ÀÌ¸§À» Key·Î °®°í ÇöÀç status °ªÀ» value·Î °®´Â...
-        }
-        else TryParse();
 
         shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
         characterDataPath = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
@@ -132,22 +129,6 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private void TryParse()
-    {
-        monsterWave.Add(WaveParse("MonsterWaveDB - Phase0"));
-        monsterWave.Add(WaveParse("MonsterWaveDB - Phase1"));
-
-        for (int i = 0; i < monsterWave[0].Count; ++i)
-        {
-            Debug.Log(monsterWave[0][i].waveArray.Length);
-            for (int j = 0; j < monsterWave[0][i].waveArray.Length; ++j)
-            {
-                MonsterWave wave = monsterWave[0][i].waveArray[j];
-                Debug.Log($"stage {wave.stage} , time {wave.time} , monster {wave.monsterInfo.name} , line {wave.line}");
-            }
-        }
-    }
-
     public ShopData GetShopData()
     {
         ShopData shopData = new ShopData();
@@ -167,9 +148,9 @@ public class DataManager : MonoBehaviour
 
     public void SaveShopData(ShopData shopData)
     {
-        // json ÇüÅÂ·Î µÈ ¹®ÀÚ¿­ »ı¼º
+        // json í˜•íƒœë¡œ ëœ ë¬¸ìì—´ ìƒì„±
         string json = JsonUtility.ToJson(shopData);
-        // ÆÄÀÏ »ı¼º ¹× ÀúÀå
+        // íŒŒì¼ ìƒì„± ë° ì €ì¥
         File.WriteAllText(shopDataPath, json);
     }
     
@@ -217,28 +198,36 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // ÇÑ ÆäÀÌÁîÀÇ Wave µ¥ÀÌÅÍ¸¦ ÆÄ½ÌÇÏ¿© stage º°·Î ³ª´« ¸®½ºÆ®¸¦ ¹İÈ¯.
-    private List<StageWave> WaveParse(string _CSVFileName)
+    public StageWave TryParse(int phase, int stage)
     {
-        List<StageWave> res = new List<StageWave>();
-
-        TextAsset csvData = Resources.Load<TextAsset>($"Data/{_CSVFileName}");
-
+        TextAsset csvData = Resources.Load<TextAsset>($"Data/{phaseFileNames[phase]}");
         string[] data = csvData.text.Split(new char[] { '\n' });
 
+        StageWave stageWave = WaveParse(data, stage);
+
+        if (stageWave == null) Debug.LogError("STAGE WAVE IS NULL");
+        return stageWave;
+    }
+
+    // _CSVFileNameì—ì„œ íŒŒë¼ë¯¸í„°ë¡œ ë°›ì€ stageì— í•´ë‹¹í•˜ëŠ” Waveë¥¼ StageWaveë¡œ ë§Œë“¤ì–´ ë°˜í™˜.
+    private StageWave WaveParse(string[] data, int stage)
+    {
         int count = data.Length;
         for(int i = 1; i < count;)
         {
             string[] elements = data[i].Split(new char[] { ',' });
             int currentStage = int.Parse(elements[0]);
+            if (currentStage != stage) { ++i; continue; }
 
-            List<MonsterWave> waveList = new List<MonsterWave>();
-            do
+            List<MonsterSpawnData> waveList = new List<MonsterSpawnData>();
+
+            while (int.Parse(elements[0]) == currentStage)
             {
-                MonsterWave wave;
+                MonsterSpawnData wave;
 
                 wave.stage = int.Parse(elements[0]); // Stage
                 wave.time = float.Parse(elements[1]); // time
+
                 if (elements[2] == "first")
                 {
                     ++i;
@@ -253,6 +242,7 @@ public class DataManager : MonoBehaviour
                     elements = data[i].Split(new char[] { ',' });
                     continue;
                 }
+
                 int monsterNum = int.Parse(elements[2]);
                 wave.monsterInfo = Resources.Load<GameObject>($"Prefabs/Monsters/{(MonsterName)monsterNum}"); // monster
                 wave.line = int.Parse(elements[3]); // line
@@ -268,13 +258,12 @@ public class DataManager : MonoBehaviour
                     break;
                 }
             }
-            while (int.Parse(elements[0]) == currentStage);
 
             StageWave waveSet = new StageWave(waveList);
-            res.Add(waveSet);
+            return waveSet;
         }
 
-        return res;
+        return null;
     }
 }
 
