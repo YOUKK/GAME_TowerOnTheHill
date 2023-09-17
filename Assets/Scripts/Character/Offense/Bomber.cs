@@ -14,13 +14,11 @@ public class Bomber : Character
 
     public override void Attack()
     {
-        Debug.Log("HH");
         //anim.SetTrigger("canAttack");
         Invoke("Duration", attackDuration);
     }
     void Duration()
     {
-        Debug.Log("HHH");
         Bomb();
         //anim.SetBool("isDead", true);
         Invoke("DeadDelay", 1.0f);

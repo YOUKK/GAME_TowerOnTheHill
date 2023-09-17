@@ -44,6 +44,7 @@ public class UpgradeData
 public class StageWave
 {
     public MonsterWave[] waveArray = null;
+    public TutorialLine[] waveTuArray = null;
 
     public StageWave(MonsterWave[] waves)
     {
@@ -54,6 +55,11 @@ public class StageWave
     {
         waveArray = waves.ToArray();
     }
+
+    public StageWave(List<TutorialLine> waves)
+    {
+        waveTuArray = waves.ToArray();
+    }
 }
 
 // 몬스터 하나의 스폰 Wave 정보
@@ -63,6 +69,16 @@ public struct MonsterWave
     public float time;
     public GameObject monsterInfo;
     public int line;
+}
+
+public struct TutorialLine
+{
+    public int stage;
+    public float time;
+    public int startPosX;
+    public int startPosY;
+    public int lineCount;
+    public string lines;
 }
 
 
@@ -78,6 +94,7 @@ public class DataManager : MonoBehaviour
     private static UpgradeData[] upgradeDatas;
 
     public List<List<StageWave>> monsterWave = new List<List<StageWave>>();
+    public List<List<StageWave>> tutorial = new List<List<StageWave>>();
 
     void Awake()
     {
