@@ -34,7 +34,7 @@ public class ShopManager : ShopBase
         GetButton((int)Buttons.SeatButton).GetComponentInChildren<TextMeshProUGUI>().text = 
             seatExpansionCost.ToString();
         GetButton((int)Buttons.SlotButton).GetComponentInChildren<TextMeshProUGUI>().text = 
-            slotExpansionCost[shopData.slotLevel].ToString();
+            slotExpansionCost[Mathf.Clamp(shopData.slotLevel, 0, 3)].ToString();
         slotLevelText.text = $"({shopData.slotLevel}/4)";
 
         characterUpgradePopup.SetActive(false);

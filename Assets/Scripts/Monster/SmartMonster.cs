@@ -6,12 +6,12 @@ public class SmartMonster : Monster
 {
     [SerializeField]
     private float   lineChangeTime;
-    private int     destinationLine;
+    private int     destinationLine; // 라인 변경 목적지
     private bool    isFinishedLineMoving = false;
     private bool    isLineMoving = false;
 
-    private Vector3 startPosition;
-    private Vector3 endPosition;
+    private Vector3 startPosition; // 라인 이동 시작 위치
+    private Vector3 endPosition;   // 라인 이동 종료 위치
     [SerializeField]
     private float moveDuration = 3.0f; // 라인 이동 시간
 
@@ -65,6 +65,7 @@ public class SmartMonster : Monster
         transform.position = endPosition;
 
         MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
+        currentLine = destinationLine;
         MonsterSpawner.GetInstance.InsertMonster(gameObject, destinationLine);
         isLineMoving = false;
         isFinishedLineMoving = true;

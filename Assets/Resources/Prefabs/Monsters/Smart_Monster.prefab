@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7764280182231738928}
   - component: {fileID: 6538416923647333003}
   - component: {fileID: 8424900153248940091}
+  - component: {fileID: 5200184759193482819}
   m_Layer: 0
   m_Name: DetectArea
   m_TagString: Untagged
@@ -70,6 +71,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef1496c2e9db5e44a2a98b91102771e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &5200184759193482819
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266512201885529976}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3711471821286508279
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +265,7 @@ MonoBehaviour:
   monsterBuffEffect: {fileID: 1033159827419419319}
   lineChangeTime: 0
   moveDuration: 3
-  lineMoveStartTime: 3.5
+  lineMoveStartTime: 20
   detectObj: {fileID: 8424900153248940091}
 --- !u!1001 &7074969487740888729
 PrefabInstance:
