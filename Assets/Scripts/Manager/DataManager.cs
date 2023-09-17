@@ -40,9 +40,11 @@ public class UpgradeData
 }
 #endregion
 
-// ÇÑ ½ºÅ×ÀÌÁöÀÇ Monster Wave Á¤º¸
+// í•œ ìŠ¤í…Œì´ì§€ì˜ Monster Wave ì •ë³´
 public class StageWave
 {
+    public MonsterWave[] waveArray = null;
+    public TutorialLine[] waveTuArray = null;
     public MonsterSpawnData[] waveArray = null;
 
     public StageWave(MonsterSpawnData[] waves)
@@ -54,15 +56,30 @@ public class StageWave
     {
         waveArray = waves.ToArray();
     }
+
+    public StageWave(List<TutorialLine> waves)
+    {
+        waveTuArray = waves.ToArray();
+    }
 }
 
-// ¸ó½ºÅÍ ÇÏ³ªÀÇ ½ºÆù Wave Á¤º¸
+// ëª¬ìŠ¤í„° í•˜ë‚˜ì˜ ìŠ¤í° Wave ì •ë³´
 public struct MonsterSpawnData
 {
     public int stage;
     public float time;
     public GameObject monsterInfo;
     public int line;
+}
+
+public struct TutorialLine
+{
+    public int stage;
+    public float time;
+    public int startPosX;
+    public int startPosY;
+    public int lineCount;
+    public string lines;
 }
 
 
@@ -83,6 +100,7 @@ public class DataManager : MonoBehaviour
         "MonsterWaveDB - Phase4", "MonsterWaveDB - Phase5"};
 
     public List<List<StageWave>> monsterWave = new List<List<StageWave>>();
+    public List<List<StageWave>> tutorial = new List<List<StageWave>>();
 
     void Awake()
     {
@@ -130,9 +148,9 @@ public class DataManager : MonoBehaviour
 
     public void SaveShopData(ShopData shopData)
     {
-        // json ÇüÅÂ·Î µÈ ¹®ÀÚ¿­ »ı¼º
+        // json í˜•íƒœë¡œ ëœ ë¬¸ìì—´ ìƒì„±
         string json = JsonUtility.ToJson(shopData);
-        // ÆÄÀÏ »ı¼º ¹× ÀúÀå
+        // íŒŒì¼ ìƒì„± ë° ì €ì¥
         File.WriteAllText(shopDataPath, json);
     }
     
@@ -191,7 +209,7 @@ public class DataManager : MonoBehaviour
         return stageWave;
     }
 
-    // _CSVFileName¿¡¼­ ÆÄ¶ó¹ÌÅÍ·Î ¹ŞÀº stage¿¡ ÇØ´çÇÏ´Â Wave¸¦ StageWave·Î ¸¸µé¾î ¹İÈ¯.
+    // _CSVFileNameì—ì„œ íŒŒë¼ë¯¸í„°ë¡œ ë°›ì€ stageì— í•´ë‹¹í•˜ëŠ” Waveë¥¼ StageWaveë¡œ ë§Œë“¤ì–´ ë°˜í™˜.
     private StageWave WaveParse(string[] data, int stage)
     {
         int count = data.Length;
