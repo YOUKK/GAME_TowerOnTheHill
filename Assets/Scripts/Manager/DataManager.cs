@@ -43,7 +43,6 @@ public class UpgradeData
 // 한 스테이지의 Monster Wave 정보
 public class StageWave
 {
-    public MonsterWave[] waveArray = null;
     public TutorialLine[] waveTuArray = null;
     public MonsterSpawnData[] waveArray = null;
 
