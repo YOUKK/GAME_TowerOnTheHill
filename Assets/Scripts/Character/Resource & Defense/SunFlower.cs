@@ -21,7 +21,7 @@ public class SunFlower : Character
         projectiles.Enqueue(projectile);
         activatedProj.Enqueue(projectile);
         //print(projectile.name+","+ projectiles.Count);
-        projectile.transform.position = new Vector2(gameObject.transform.position.x + Random.Range(-1f, 1f),
+        projectile.transform.position = new Vector2(gameObject.transform.position.x + Random.Range(0f, 1f),
                                                     gameObject.transform.position.y + Random.Range(-1f, 1f));
         projectile.SetActive(true);
         Invoke("Duration", attackDuration);

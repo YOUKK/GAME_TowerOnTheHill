@@ -16,7 +16,7 @@ public class Ice : MonoBehaviour
         {
             collision = col;
             col.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
-            col.gameObject.GetComponent<Monster>().Slow(0.5f, mainCharacter);
+            col.gameObject.GetComponent<Monster>().Slow(2.0f, mainCharacter);
             gameObject.SetActive(false);
         }
     }
