@@ -241,7 +241,7 @@ Transform:
   m_GameObject: {fileID: 8552929937083278397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 1.2, y: 0.6, z: 1}
   m_Children:
   - {fileID: 2142222427020613485}
   - {fileID: 4603223084873753831}
@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
+  projectileSecond: {fileID: 0}
   status: {fileID: 11400000, guid: 03d9438ff205ffa45b6f7414e0fa0628, type: 2}
   coolTime: 0
   projectileSpeed: 0
@@ -307,3 +308,4 @@ MonoBehaviour:
   strength: 0
   healthPoint: 0
   attackDuration: 0
+  canAttack: 0
