@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // 모든 매니저 클래스의 집합 클래스. 대표 매니저 클래스이다.
 // 이 클래스를 통해 다른 매니저 클래스에 접근한다.
@@ -35,7 +36,8 @@ public class Managers : MonoBehaviour
         Init();
         timeM.InitTimer();
         //timeM.StartTimer();
-        ApplyShopItem();
+        if(SceneManager.GetActiveScene().name == "GamePlayScene")
+            ApplyShopItem();
         if (!PlayerPrefs.HasKey("coin"))
         {
             PlayerPrefs.SetInt("coin", 0);
