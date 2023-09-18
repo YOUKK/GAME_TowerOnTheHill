@@ -5,27 +5,44 @@ using UnityEngine;
 public class Eater : Character
 {
     [SerializeField]
-    private bool canAttack;
+    private int pSec = 0;
+    [SerializeField]
+    private bool eating = false;
+    [SerializeField]
+    private int A = 0;
     // Start is called before the first frame update
     protected override void Start()
     {
-        canAttack = true;
         base.Start();
     }
-
-    public bool CanAttack { get => canAttack; set => canAttack = value; }
     // Update is called once per frame
     public override void Attack()
     {
-        if (!IsDragged && canAttack && CheckMonster)
+        if(!eating)
         {
-            anim.SetTrigger("canAttack");
-            Invoke("attackDelaySet", 1.7f);
+            if (!IsDragged && CheckMonster)
+            {
+                eating = true;
+                anim.SetTrigger("canAttack");
+                Invoke("attackDelaySet", 1.3f);
+            }
+            A = Managers.TimeM.Sec + AttackDuration;
+            return;
+        }
+        if(pSec <= A)
+        {
+            pSec = Managers.TimeM.Sec;
+            return;
+        }
+        else
+        {
+            eating = false;
+            pSec = 0;
         }
     }
     void attackDelaySet()
     {
-        gameObject.GetComponentInChildren<MonsterCheck>().Monster.GetComponent<Monster>().Hit(10000000);
-        gameObject.GetComponentInChildren<MonsterCheck>().Monster.GetComponent<Monster>().gameObject.SetActive(false);
+        gameObject.GetComponentInChildren<MonsterCheck>().Monster.GetComponent<Monster>().Hit(100000);
+        gameObject.GetComponentInChildren<MonsterCheck>().Monster.GetComponent<SpriteRenderer>().enabled = false;
     }
 }

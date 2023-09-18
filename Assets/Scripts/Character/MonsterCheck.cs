@@ -31,11 +31,6 @@ public class MonsterCheck : MonoBehaviour
             {
                 monster = T[0];
                 mainCharacter.CheckMonster = true;
-                if (mainCharacter.status.type == CharacterName.Eater)
-                {
-                    Invoke("EatingLate", 0.3f);
-                    Invoke("Eating", mainCharacter.AttackDuration);
-                }
             }
             else
             {
@@ -46,15 +41,5 @@ public class MonsterCheck : MonoBehaviour
         {
             mainCharacter.CheckMonster = false;
         }
-    }
-
-    void EatingLate()
-    { 
-        mainCharacter.GetComponent<Eater>().CanAttack = false;
-    }
-
-    void Eating()
-    {
-        mainCharacter.GetComponent<Eater>().CanAttack = true;
     }
 }
