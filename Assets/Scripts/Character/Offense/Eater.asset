@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coolTime: 5
   projectileSpeed: 0
-  attackDelay: 5
+  attackDelay: 0.1
   pAttackDelay: 0
   projectileNum: 1
   range: 1

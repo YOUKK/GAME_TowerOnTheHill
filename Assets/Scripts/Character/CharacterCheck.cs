@@ -6,7 +6,6 @@ public class CharacterCheck : MonoBehaviour
 {
     [SerializeField]
     private Character mainCharacter;
-    private bool changeFlag = true;
     [SerializeField]
     private GameObject monster;
 
