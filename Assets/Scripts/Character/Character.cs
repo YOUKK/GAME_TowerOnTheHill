@@ -100,7 +100,7 @@ public class Character : MonoBehaviour
     }
     void SlowDelay()
     {
-        AttackMonster.Slow(0f, this);
+        AttackMonster.Slow(1, this);
     }
 
     void DeadDelay()
