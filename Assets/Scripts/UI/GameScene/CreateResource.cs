@@ -30,7 +30,7 @@ public class CreateResource : MonoBehaviour
         {
             yield return new WaitForSeconds(4f);
 
-            Vector3 createPos = new Vector3(Random.Range(leftTopPos.x + 1.5f, rightTopPos.x - 1.5f), leftTopPos.y + 1, 0); // startPos와 endPos 사이의 랜덤 좌표
+            Vector3 createPos = new Vector3(Random.Range(leftTopPos.x + 5f, rightTopPos.x - 1.5f), leftTopPos.y + 1, 0); // startPos와 endPos 사이의 랜덤 좌표
 
             Instantiate(resource, createPos, Quaternion.identity);
 

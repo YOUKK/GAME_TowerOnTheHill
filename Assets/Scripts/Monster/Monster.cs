@@ -115,7 +115,13 @@ public abstract class Monster : MonoBehaviour
 
     public void Slow(float speed, Character AttackCharacter)
     {
-        currentSpeed = status.speed / speed;    
+        currentSpeed = status.speed / speed;
+        if(AttackCharacter != null)
+            Invoke("SlowDelay",2.0f);
+    }
+    void SlowDelay()
+    {
+        Slow(1.0f, null);
     }
 
     public void SetLine(int line)
