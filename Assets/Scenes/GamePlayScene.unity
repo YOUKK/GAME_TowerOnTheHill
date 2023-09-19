@@ -3425,7 +3425,7 @@ MonoBehaviour:
   monsterBuffTime: 10
   isAllMonsterDead: 0
   rewardCoin: 100
-  textVictory: {fileID: 0}
+  textVictory: {fileID: 913324959}
 --- !u!4 &1144570283
 Transform:
   m_ObjectHideFlags: 0
