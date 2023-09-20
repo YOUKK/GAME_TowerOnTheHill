@@ -55,7 +55,9 @@ public class MonsterWaveTimer : MonoBehaviour
             if (Managers.TimeM.Sec > firstWaveStart)
             {
                 firstPopUp = true;
-                Debug.Log("첫번째 웨이브 시작!");
+                Debug.Log("첫번째 웨이브 시작! " + Managers.TimeM.Sec);
+                Debug.Log("firstwavetime" + firstWaveTime);
+                Debug.Log("firstwavestart " + firstWaveStart);
                 StartCoroutine(MonsterWaveTextPopUp());
             }
         }

@@ -115,7 +115,7 @@ public abstract class Monster : MonoBehaviour
 
     public void Slow(float speed, Character AttackCharacter)
     {
-        currentSpeed = status.speed - speed;    
+        currentSpeed = status.speed / speed;    
     }
 
     public void SetLine(int line)

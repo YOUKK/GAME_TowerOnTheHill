@@ -100,7 +100,7 @@ public class Character : MonoBehaviour
     }
     void SlowDelay()
     {
-        AttackMonster.Slow(0f, this);
+        AttackMonster.Slow(1, this);
     }
 
     void DeadDelay()
@@ -122,21 +122,12 @@ public class Character : MonoBehaviour
     IEnumerator AttackCoolTime()
     {
         Debug.Log("Start Attack Coroutine");
-        if (this.status.type == CharacterName.Eater)
+
+        while (true)
         {
-            while (true)
-            {
-                yield return new WaitForSeconds(0.1f);
-                Attack();
-            }
+            yield return new WaitForSeconds(attackDelay);
+            Attack();
         }
-        else
-        {
-            while (true)
-            {
-                yield return new WaitForSeconds(attackDelay);
-                Attack();
-            }
-        }
+
     }
 }
