@@ -107,11 +107,8 @@ public class DataManager : MonoBehaviour
     {
         Init();
 
-        Scene currScene = SceneManager.GetActiveScene();
-
         shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
         characterDataPath = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
-        LoadCharacterUpgradeData();
     }
 
     private static void Init()
