@@ -13,6 +13,9 @@ public class CollectResource : MonoBehaviour
     [SerializeField]
     //private Text resourceText;
     private TMP_Text resourceText;
+    [SerializeField]
+    private GameObject coinBox;
+    private TMP_Text coinText;
 
     void Start()
     {
