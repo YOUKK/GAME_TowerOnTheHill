@@ -1047,7 +1047,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceText: {fileID: 1281830005}
-  coinBox: {fileID: 0}
+  coinBox: {fileID: 7753783274649732125}
+  coinText: {fileID: 4733896777251152477}
 --- !u!114 &242561937794356694
 MonoBehaviour:
   m_ObjectHideFlags: 0

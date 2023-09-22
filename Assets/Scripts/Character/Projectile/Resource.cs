@@ -58,12 +58,7 @@ public class Resource : MonoBehaviour
                     case ResourceType.Coin:
                         {
                             isClick = true;
-                            coinBox.SetActive(true);
-                            int currentCoin = PlayerPrefs.GetInt("coin");
-                            PlayerPrefs.SetInt("coin", currentCoin + 50);
-                            TextMeshProUGUI textMeshPro = coinBox.GetComponentInChildren<TextMeshProUGUI>();
-                            textMeshPro.text = (currentCoin + 50).ToString();
-
+                            resourceUI.EarnCoin();
                             StartCoroutine(MovetoUI(iconCoin.position));
                             break;
                         }
@@ -83,11 +78,6 @@ public class Resource : MonoBehaviour
 			yield return null;
 		}
 
-		if (type == ResourceType.Coin)
-        {
-            yield return new WaitForSeconds(1);
-            coinBox.SetActive(false);
-        }
         gameObject.SetActive(false);
     }
 }

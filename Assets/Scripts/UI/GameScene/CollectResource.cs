@@ -15,7 +15,10 @@ public class CollectResource : MonoBehaviour
     private TMP_Text resourceText;
     [SerializeField]
     private GameObject coinBox;
+    [SerializeField]
     private TMP_Text coinText;
+    private float coinBoxActiveTimer = 1.5f;
+    private bool isCoinItemPressed = false;
 
     void Start()
     {
@@ -25,7 +28,10 @@ public class CollectResource : MonoBehaviour
 
     void Update()
     {
-
+        if(isCoinItemPressed)
+        {
+            CloseCoinBox();
+        }
     }
 
     // 게임 중 자원 얻기
@@ -46,4 +52,26 @@ public class CollectResource : MonoBehaviour
 	{
         resourceText.text = resource.ToString();
 	}
+
+    private void CloseCoinBox()
+    {
+        coinBoxActiveTimer -= Time.deltaTime;
+        if (coinBoxActiveTimer < 0)
+        {
+            isCoinItemPressed = false;
+            coinBoxActiveTimer = 1.5f;
+            coinBox.SetActive(false);
+        }
+    }
+
+    public void EarnCoin()
+    {
+        isCoinItemPressed = true;
+        coinBoxActiveTimer = 1.5f;
+        coinBox.SetActive(true);
+        
+        int currentCoin = PlayerPrefs.GetInt("coin");
+        PlayerPrefs.SetInt("coin", currentCoin + 50);
+        coinText.text = (currentCoin + 50).ToString();
+    }
 }
