@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ShopManager : ShopBase
@@ -130,5 +131,11 @@ public class ShopManager : ShopBase
         ShopData shopData = new ShopData();
 
         DataManager.GetData.SaveShopData(shopData); 
+    }
+
+    public void BackToTitle()
+    {
+        DataManager.GetData.SaveShopData(shopData);
+        SceneManager.LoadScene("Title");
     }
 }
