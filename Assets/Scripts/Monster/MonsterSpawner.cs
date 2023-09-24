@@ -63,7 +63,7 @@ public class MonsterSpawner : MonoBehaviour
             return;
         }
 
-        if (currentWave[idx].time < Managers.TimeM.Sec)
+        if (currentWave[idx].time < GamePlayManagers.TimeM.Sec)
         {
             GameObject obj = Instantiate(currentWave[idx].monsterInfo, 
                 lines[currentWave[idx].line].transform.position, transform.rotation);

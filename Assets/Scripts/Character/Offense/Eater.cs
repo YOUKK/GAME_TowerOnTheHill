@@ -26,12 +26,12 @@ public class Eater : Character
                 anim.SetTrigger("canAttack");
                 Invoke("attackDelaySet", 1.3f);
             }
-            A = Managers.TimeM.Sec + AttackDuration;
+            A = GamePlayManagers.TimeM.Sec + AttackDuration;
             return;
         }
         if(pSec <= A)
         {
-            pSec = Managers.TimeM.Sec;
+            pSec = GamePlayManagers.TimeM.Sec;
             return;
         }
         else
