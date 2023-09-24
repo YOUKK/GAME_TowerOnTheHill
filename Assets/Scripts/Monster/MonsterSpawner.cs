@@ -60,7 +60,6 @@ public class MonsterSpawner : MonoBehaviour
                 if (monsterList[i].Count != 0) return;
             }
             isAllMonsterDead = true;
-            textVictory.SetActive(true);
             return;
         }
 
