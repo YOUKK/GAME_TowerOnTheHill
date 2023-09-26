@@ -143,8 +143,9 @@ public class Map : MonoBehaviour
         // 기존 캐릭터들의 이름으로 같은 종류의 새로운 캐릭터 프리팹을 찾음
         string characterName1 = prevCharacter1.name;
         string characterName2 = prevCharacter2.name;
-        GameObject newCharacter1 = Resources.Load<GameObject>($"/Prefabs/Character/{characterName1}");
-        GameObject newCharacter2 = Resources.Load<GameObject>($"/Prefabs/Character/{characterName2}");
+
+        GameObject newCharacter1 = Resources.Load<GameObject>($"Prefabs/Character/{characterName1}");
+        GameObject newCharacter2 = Resources.Load<GameObject>($"Prefabs/Character/{characterName2}");
         // 기존 캐릭터들의 health point
         int prevCharacter1Health = prevCharacter1.GetComponent<Character>().HealthPoint;
         int prevCharacter2Health = prevCharacter2.GetComponent<Character>().HealthPoint;

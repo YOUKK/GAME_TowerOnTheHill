@@ -26,6 +26,7 @@ public class ManiMonster : Monster
             if (detectObj.IsDetectedCharacter == true || Time.time - monsterCreatedTime > skillStartTime)
             {
                 isSkillUsing = true;
+                anim.SetBool("isSkillUsing", true);
                 ManipulateCharacterPosition();
                 return;
             }
@@ -60,9 +61,15 @@ public class ManiMonster : Monster
         { random1Idx = 0; random2Idx = 1; }
 
         // ¿Ã∆—∆Æ Ω««‡
+
+
         yield return new WaitForSeconds(1.5f);
 
         Map.GetInstance().ChangeCharacterSeat(characterOnSeats[random1Idx], characterOnSeats[random2Idx]);
         // ¿Ã∆Â∆Æ ¡æ∑·
+
+        anim.SetBool("isSkillUsing", false);
+        isSkillUsing = false;
+        isSkillUsed = true;
     }
 }
