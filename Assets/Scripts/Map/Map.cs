@@ -125,23 +125,41 @@ public class Map : MonoBehaviour
         return seatMatrix.ToArray();
     }
 
+    // ManiMonster의 스킬(랜덤 두 캐릭터 위치 바꾸기) 구현 함수
+    // 이미 존재하는 캐릭터의 위치를 바꾸지 않고, 존재하는 두 캐릭터를 죽이고
+    // 같은 종류의 새로운 캐릭터를 자리만 바꿔서 다시 생성한다.
     public void ChangeCharacterSeat(Vector2 seat1, Vector2 seat2)
     {
-        // 다른 몬스터가 공격중인 캐릭터가 자리를 바꾸면 어떻게 해야할까
-        // 이미 존재하는 캐릭터의 위치를 바꾸지 말고, 존재하는 두 캐릭터를 죽이고
-        // 같은 종류의 새로운 캐릭터를 자리만 바꿔서 다시 생성한다.
         // 이때, 원래 캐릭터의 체력 정보를 저장했다가 새로 생성된 애들한테 적용해줘야 함.
+        // 캐릭터를 죽이면 Dead 애니메이션 뜨니까 이것도 Dead 함수를 바꿈으로써 조정해야 할 듯
         int x1 = (int)seat1.x;
         int y1 = (int)seat1.y;
         int x2 = (int)seat2.x;
         int y2 = (int)seat2.y;
 
-        string characterName1 = seats[y1][x1].GetComponent<Seat>().character.name;
-        string characterName2 = seats[y2][x2].GetComponent<Seat>().character.name;
+        // 위치 바뀌기 전의 두 캐릭터 정보
+        GameObject prevCharacter1 = seats[y1][x1].GetComponent<Seat>().character;
+        GameObject prevCharacter2 = seats[y2][x2].GetComponent<Seat>().character;
+        // 기존 캐릭터들의 이름으로 같은 종류의 새로운 캐릭터 프리팹을 찾음
+        string characterName1 = prevCharacter1.name;
+        string characterName2 = prevCharacter2.name;
         GameObject newCharacter1 = Resources.Load<GameObject>($"/Prefabs/Character/{characterName1}");
         GameObject newCharacter2 = Resources.Load<GameObject>($"/Prefabs/Character/{characterName2}");
+        // 기존 캐릭터들의 health point
+        int prevCharacter1Health = prevCharacter1.GetComponent<Character>().HealthPoint;
+        int prevCharacter2Health = prevCharacter2.GetComponent<Character>().HealthPoint;
 
+        // 기존 캐릭터 삭제
+        prevCharacter1.GetComponent<Character>().Hit(100000);
+        prevCharacter2.GetComponent<Character>().Hit(100000);
 
+        // 새로운 캐릭터 생성
+        PutCharacter(seat1, newCharacter2);
+        PutCharacter(seat2, newCharacter1);
+
+        // 기존 캐릭터의 health point 값 적용
+        newCharacter1.GetComponent<Character>().HealthPoint = prevCharacter1Health;
+        newCharacter2.GetComponent<Character>().HealthPoint = prevCharacter2Health;
     }
 
     public Line GetLineInfo(int lineNum)
