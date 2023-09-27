@@ -7,6 +7,10 @@ public class ManiMonster : Monster
     [SerializeField]
     private DetectAreaScript detectObj;
     [SerializeField]
+    private GameObject skillEffect;
+    private GameObject skillEffectPos1; // 스킬 효과가 생성되는 위치의 스킬 오브젝트
+    private GameObject skillEffectPos2; // 스킬 효과가 생성되는 위치의 스킬 오브젝트
+    [SerializeField]
     private float skillStartTime;
 
     private bool isSkillUsing = false;
@@ -17,6 +21,7 @@ public class ManiMonster : Monster
     {
         base.Start();
         monsterCreatedTime = Time.time;
+        skillEffect.SetActive(false);
     }
 
     protected override void Update()
@@ -58,12 +63,21 @@ public class ManiMonster : Monster
             while (random1Idx == random2Idx);
         }
         else if (characterOnSeats.Length == 2)
-        { random1Idx = 0; random2Idx = 1; }
+        { 
+            random1Idx = 0; random2Idx = 1; 
+        }
+        else
+        {
+            anim.SetBool("isSkillUsing", false);
+            isSkillUsing = false;
+            isSkillUsed = true;
+            yield break;
+        }
 
         // 이팩트 실행
+        EnableSkillEffects(characterOnSeats[random1Idx], characterOnSeats[random2Idx]);
 
-
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         Map.GetInstance().ChangeCharacterSeat(characterOnSeats[random1Idx], characterOnSeats[random2Idx]);
         // 이펙트 종료
@@ -71,5 +85,27 @@ public class ManiMonster : Monster
         anim.SetBool("isSkillUsing", false);
         isSkillUsing = false;
         isSkillUsed = true;
+    }
+
+    private void EnableSkillEffects(Vector2 seat1, Vector2 seat2)
+    {
+        skillEffect.SetActive(true);
+        skillEffect.GetComponent<ParticleSystem>().Play();
+        Vector3 skillPos1 = Map.GetInstance().GetSeatPosition(seat1);
+        Vector3 skillPos2 = Map.GetInstance().GetSeatPosition(seat2);
+
+        Quaternion newRotation = Quaternion.Euler(-84, 0, 0);
+
+        skillEffectPos1 = Instantiate(skillEffect, skillPos1, newRotation);
+        skillEffectPos2 = Instantiate(skillEffect, skillPos2, newRotation);
+        skillEffectPos1.GetComponent<ParticleSystem>().Play();
+        skillEffectPos2.GetComponent<ParticleSystem>().Play();
+    }
+
+    private void DisableSkillEffects()
+    {
+        skillEffect.SetActive(false);
+        skillEffectPos1 = null;
+        skillEffectPos2 = null;
     }
 }

@@ -130,8 +130,6 @@ public class Map : MonoBehaviour
     // 같은 종류의 새로운 캐릭터를 자리만 바꿔서 다시 생성한다.
     public void ChangeCharacterSeat(Vector2 seat1, Vector2 seat2)
     {
-        // 이때, 원래 캐릭터의 체력 정보를 저장했다가 새로 생성된 애들한테 적용해줘야 함.
-        // 캐릭터를 죽이면 Dead 애니메이션 뜨니까 이것도 Dead 함수를 바꿈으로써 조정해야 할 듯
         int x1 = (int)seat1.x;
         int y1 = (int)seat1.y;
         int x2 = (int)seat2.x;
@@ -151,8 +149,11 @@ public class Map : MonoBehaviour
         int prevCharacter2Health = prevCharacter2.GetComponent<Character>().HealthPoint;
 
         // 기존 캐릭터 삭제
-        prevCharacter1.GetComponent<Character>().Hit(100000);
-        prevCharacter2.GetComponent<Character>().Hit(100000);
+        //prevCharacter1.GetComponent<Character>().Hit(100000);
+        //prevCharacter2.GetComponent<Character>().Hit(100000);
+        RemoveCharacter(seat1);
+        RemoveCharacter(seat2);
+
 
         // 새로운 캐릭터 생성
         PutCharacter(seat1, newCharacter2);
@@ -161,6 +162,15 @@ public class Map : MonoBehaviour
         // 기존 캐릭터의 health point 값 적용
         newCharacter1.GetComponent<Character>().HealthPoint = prevCharacter1Health;
         newCharacter2.GetComponent<Character>().HealthPoint = prevCharacter2Health;
+    }
+
+    public Vector3 GetSeatPosition(Vector2 seat)
+    {
+        int x = (int)seat.x;
+        int y = (int)seat.y;
+        GameObject seatObj = seats[y][x];
+
+        return seatObj.transform.position;
     }
 
     public Line GetLineInfo(int lineNum)
