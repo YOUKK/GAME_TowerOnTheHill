@@ -86,7 +86,7 @@ public class Character : MonoBehaviour
     public virtual void Hit(int damage, Monster attackMonster)
     {
         AttackMonster = attackMonster;
-        if (healthPoint < 0)
+        if (healthPoint - damage <= 0)
         {
             anim.SetBool("isDead", true);
             Invoke("DeadDelay", 1.0f);
@@ -100,7 +100,7 @@ public class Character : MonoBehaviour
     }
     public virtual void Hit(int damage)
     {
-        if (healthPoint < 0)
+        if (healthPoint - damage <= 0)
         {
             anim.SetBool("isDead", true);
             Invoke("DeadDelay", 1.0f);
