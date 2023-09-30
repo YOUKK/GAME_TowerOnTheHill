@@ -173,7 +173,8 @@ MonoBehaviour:
   currentForce: 0
   monsterBuffEffect: {fileID: 1033159827419419319}
   detectObj: {fileID: 5026018102628280260}
-  skillEffect: {fileID: 1147347580186070547}
+  monsterPosEffect: {fileID: 1147347580186070547}
+  skillEffectPrerfab: {fileID: 100000, guid: 7b56cd9b663f23f429e131a54ec87db0, type: 3}
   skillStartTime: 5
 --- !u!1 &8510242042297466874
 GameObject:
