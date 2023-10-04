@@ -7,9 +7,9 @@ public class Tower : Character
     [SerializeField]
     private Tower_Attacker attacker;
     [SerializeField]
-    private ParticleSystem attackEffect;
+    private GameObject attackEffect;
     [SerializeField]
-    private ParticleSystem DeadEffect;
+    private GameObject DeadEffect;
     [SerializeField]
     private Sprite halfHealthSprite;
 
@@ -28,8 +28,8 @@ public class Tower : Character
         strength = status.strength;
         healthPoint = status.healthPoint;
         attackDuration = status.attackDuration;
-        attackEffect.Stop();
-        DeadEffect.Stop();
+        attackEffect.SetActive(false);
+        DeadEffect.SetActive(false);
 
         if (projectile == null)
         {
@@ -84,8 +84,9 @@ public class Tower : Character
     {
         //atteckEffect.SetActive(true); // Attack Animation
         yield return new WaitForSeconds(status.attackDelay);
-        attackEffect.Play();
-        yield return new WaitForSeconds(0.5f);
+        attackEffect.SetActive(true);
+        attackEffect.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(1);
         Attack();
         isAttacking = false;
     }
@@ -107,8 +108,9 @@ public class Tower : Character
     // 새로운 사실 : OnTriggerExit은 탐지된 물체가 빠져나가는 것 뿐만 아니라 Destroy되어도 호출된다.
     private IEnumerator DeadCoroutine()
     {
-        DeadEffect.Play();
-        yield return new WaitForSeconds(0.3f);
+        DeadEffect.SetActive(true);
+        DeadEffect.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(0.7f);
         DeadAttack();
         yield return new WaitForSeconds(0.7f);
         MonsterSpawner.GetInstance.BuffMonsters();
