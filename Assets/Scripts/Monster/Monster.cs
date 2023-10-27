@@ -9,6 +9,7 @@ public abstract class Monster : MonoBehaviour
     protected Animator      anim;
     protected Transform     target;
     protected int           currentLine;
+    protected float         ignoreDistance;
     protected bool          isAttacking;
     protected bool          isDead;
     // 랜덤 머니 관련 변수 추가
@@ -44,6 +45,8 @@ public abstract class Monster : MonoBehaviour
 
         monsterBuffEffect.Stop();
 
+        // 스테이터스 세팅
+        ignoreDistance = 0.5f;
         currentHP = status.hp;
         currentSpeed = status.speed;
         currentForce = status.force;
@@ -127,7 +130,7 @@ public abstract class Monster : MonoBehaviour
     {
         if (collision.transform.CompareTag("Character"))
         {
-            if (transform.position.x - collision.transform.position.x > status.attackDistance)
+            if (transform.position.x - collision.transform.position.x > ignoreDistance)
             {
                 target = collision.transform;
             }

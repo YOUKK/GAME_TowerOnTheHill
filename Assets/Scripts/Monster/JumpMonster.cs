@@ -25,30 +25,25 @@ public class JumpMonster : Monster
 
     protected override void Update()
     {
+        if (isJumping) return;
+
         if (target == null && !isDead)
         {
             if (isJumpTried) Move(currentSpeed);
-            else if(isJumping) ChangeJumpToWalk(); 
             else Move(runningSpeed);
             anim.SetBool("isTargetIn", false);
+            isAttacking = false;
         }
         else // 타겟을 정했다면
         {
-            anim.SetBool("isTargetIn", true);
+            // 점프 진행
+            if(!isJumpTried && !isJumping)
+            {
+                StartCoroutine(JumpCoroutine());
+            }
 
-            if (!isJumping) // 뛰어넘기를 아직 안 했으면
-            {
-                isJumping = true;
-                jumpTargetPos = target.position;
-            }
-            else if(!isJumpTried) // 뛰어넘기 중인 상태면
-            {
-                boxCollider.enabled = false;
-                ChangeJumpToWalk();
-                Move(jumpSpeed);
-                return;
-            }
-            else if (!isAttacking)
+            anim.SetBool("isTargetIn", true);
+            if (!isAttacking)
             {
                 anim.SetTrigger("attackTrigger");
                 isAttacking = true;
@@ -56,11 +51,32 @@ public class JumpMonster : Monster
         }
     }
 
+    private IEnumerator JumpCoroutine()
+    {
+        isJumpTried = true;
+        isJumping = true;
+        jumpTargetPos = target.position;
+        boxCollider.enabled = false;
+
+        while (jumpTargetPos.x - transform.position.x <= delta && target != null)
+        {
+            Move(jumpSpeed);
+            yield return null;
+        }
+
+        target = null;
+        boxCollider.enabled = true;
+        isJumpTried = true;
+        isJumping = false;
+        anim.SetBool("isJumpTried", true);
+        anim.SetBool("isTargetIn", false);
+    }
+
+    // 점프하는 시간동안의 Update를 코루틴에서 하는게 어떤가? 그동안 update는 if문을 통해 중지시키고...
     private void ChangeJumpToWalk()
     {
         if(jumpTargetPos.x - transform.position.x > delta || target == null)
         {
-            Debug.Log("Out of Target Range");
             target = null;
             boxCollider.enabled = true;
             isJumpTried = true;
