@@ -57,7 +57,9 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (target == null && !isDead)
+        if (isDead) return;
+
+        if (target == null)
         {
             Move(currentSpeed);
             anim.SetBool("isTargetIn", false);

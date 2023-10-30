@@ -26,8 +26,9 @@ public class JumpMonster : Monster
     protected override void Update()
     {
         if (isJumping) return;
+        if (isDead) return;
 
-        if (target == null && !isDead)
+        if (target == null)
         {
             if (isJumpTried) Move(currentSpeed);
             else Move(runningSpeed);
@@ -70,19 +71,5 @@ public class JumpMonster : Monster
         isJumping = false;
         anim.SetBool("isJumpTried", true);
         anim.SetBool("isTargetIn", false);
-    }
-
-    // 점프하는 시간동안의 Update를 코루틴에서 하는게 어떤가? 그동안 update는 if문을 통해 중지시키고...
-    private void ChangeJumpToWalk()
-    {
-        if(jumpTargetPos.x - transform.position.x > delta || target == null)
-        {
-            target = null;
-            boxCollider.enabled = true;
-            isJumpTried = true;
-            isJumping = false;
-            anim.SetBool("isJumpTried", true);
-            anim.SetBool("isTargetIn", false);
-        }
     }
 }
