@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackType { NORMAL, SLOW, STUN, CRAZY, DEAD}
+
 public abstract class Monster : MonoBehaviour
 {
     [SerializeField]
@@ -107,14 +109,36 @@ public abstract class Monster : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Hit(int damage)
+    public void Hit(int damage, AttackType type = AttackType.NORMAL)
     {
-        if (currentHP - damage > 0) StartCoroutine(HittedCoroutine(damage));
-        else 
+        if (currentHP - damage > 0)
+        {
+            StartCoroutine(HittedCoroutine(damage));
+
+            switch (type)
+            {
+                case AttackType.NORMAL:
+                    break;
+                case AttackType.SLOW:
+                    {
+                        // Slow();
+                        break;
+                    }
+                case AttackType.STUN:
+                    break;
+                case AttackType.CRAZY:
+                    break;
+                case AttackType.DEAD:
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
         {
             Destroy(gameObject.GetComponent<BoxCollider2D>());
-            anim.SetBool("isDead", true); 
-            isDead = true; 
+            anim.SetBool("isDead", true);
+            isDead = true;
         }
     }
 
