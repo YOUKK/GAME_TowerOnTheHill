@@ -25,7 +25,7 @@ public class ExitManager : MonoBehaviour
         {
             Time.timeScale = 0;
 
-            Managers.TimeM.StopTimer();
+            GamePlayManagers.TimeM.StopTimer();
 
             Pause.SetActive(true);
 
@@ -37,23 +37,23 @@ public class ExitManager : MonoBehaviour
     {
         Time.timeScale = 1;
         TimeState = true;
-        Managers.TimeM.StartTimer();
+        GamePlayManagers.TimeM.StartTimer();
         Pause.SetActive(false);
     }
     public void FinishButton()
     {
         Time.timeScale = 1;
         TimeState = true;
-        Managers.TimeM.StartTimer();
-        Managers.TimeM.InitTimer();
+        GamePlayManagers.TimeM.StartTimer();
+        GamePlayManagers.TimeM.InitTimer();
         Pause.SetActive(false);
     }
     public void RestartButton()
     {
         Time.timeScale = 1;
         TimeState = true;
-        Managers.TimeM.StartTimer();
-        Managers.TimeM.InitTimer();
+        GamePlayManagers.TimeM.StartTimer();
+        GamePlayManagers.TimeM.InitTimer();
         SceneManager.LoadScene("GamePlayScene");
     }
 }
