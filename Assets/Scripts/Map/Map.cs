@@ -71,6 +71,8 @@ public class Map : MonoBehaviour
 	// (상점에서 구매시) 방어선 증가 기능
 	private void AddLine()
 	{
+        //mapX++;
+
         // seats에 새로운 방어선 seat 추가
         seats.Add(new List<GameObject>());
         for(int i = 0; i < mapY; i++)
