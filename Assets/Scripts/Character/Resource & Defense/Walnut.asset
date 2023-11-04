@@ -19,6 +19,6 @@ MonoBehaviour:
   projectileNum: 1
   range: 0
   strength: 5
-  healthPoint: 200
+  healthPoint: 150
   attackDuration: 100
   type: 1
