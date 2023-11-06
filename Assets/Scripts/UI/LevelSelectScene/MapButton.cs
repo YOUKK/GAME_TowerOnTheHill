@@ -31,9 +31,14 @@ public class MapButton : MonoBehaviour
     private Color selectColor = new Color(226 / 255f, 199 / 255f, 153 / 255f);
     private Color unselectColor = new Color(135 / 255f, 120 / 255f, 98 / 255f);
 
+    private GameObject currentStageButton; // 현재 띄어져있는 스테이지 버튼
+
+    private List<string> animList = new List<string>();
+
     void Start()
     {
-        
+        currentStageButton = map1Stage;
+        currentStageButton.GetComponent<Animation>().Play("GoDown");
     }
 
     void Update()
@@ -53,7 +58,12 @@ public class MapButton : MonoBehaviour
             mapButton2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
             mapButton3.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
 
-
+            if (currentStageButton != map1Stage)
+            {
+                currentStageButton.GetComponent<Animation>().Play("GoUp");
+                currentStageButton = map1Stage;
+                currentStageButton.GetComponent<Animation>().Play("GoDown");
+            }
         }
         else if(EventSystem.current.currentSelectedGameObject.name == "Map2Button") // Map2버튼 클릭
 		{
@@ -64,6 +74,13 @@ public class MapButton : MonoBehaviour
             mapButton1.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
             mapButton2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = selectColor;
             mapButton3.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
+
+            if (currentStageButton != map2Stage)
+            {
+                currentStageButton.GetComponent<Animation>().Play("GoUp");
+                currentStageButton = map2Stage;
+                currentStageButton.GetComponent<Animation>().Play("GoDown");
+            }
         }
 		else // Map3버튼 클릭
 		{
@@ -74,6 +91,13 @@ public class MapButton : MonoBehaviour
             mapButton1.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
             mapButton2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
             mapButton3.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = selectColor;
+
+            if (currentStageButton != map3Stage)
+            {
+                currentStageButton.GetComponent<Animation>().Play("GoUp");
+                currentStageButton = map3Stage;
+                currentStageButton.GetComponent<Animation>().Play("GoDown");
+            }
         }
 	}
 }
