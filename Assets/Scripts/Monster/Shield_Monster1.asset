@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield_Monster1
   m_EditorClassIdentifier: 
   monsterName: Shield1
-  hp: 125
+  hp: 180
   speed: 0.25
   force: 10
   hitSpeed: 3

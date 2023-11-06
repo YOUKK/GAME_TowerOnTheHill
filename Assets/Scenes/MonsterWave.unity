@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phase: 2
-  stage: 4
+  stage: 1
   lines:
   - {fileID: 0}
   - {fileID: 0}
