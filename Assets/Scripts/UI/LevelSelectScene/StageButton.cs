@@ -16,7 +16,7 @@ public class PhaseStage
 
 public class StageButton : MonoBehaviour
 {
-    private PhaseStage phaseStage = new PhaseStage();
+    private PhaseStage selectPhaseStage = new PhaseStage();
 
     void Start()
     {
@@ -29,18 +29,18 @@ public class StageButton : MonoBehaviour
     }
 
     // phaseStage를 json으로 저장하는 함수
-    public void SavePhaseStageToJson()
+    private void SavePhaseStageToJson()
 	{
-        string jsonData = JsonUtility.ToJson(phaseStage, true);
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "PhaseStage.json");
+        string jsonData = JsonUtility.ToJson(selectPhaseStage, true);
+        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
         File.WriteAllText(path, jsonData);
 	}
 
     // stage 버튼에 연결되는 OnClick 함수
     public void stageButtonClick(string level)
 	{
-        phaseStage.phase = level[0] - '0';
-        phaseStage.stage = level[1] - '0';
+        selectPhaseStage.phase = level[0] - '0';
+        selectPhaseStage.stage = level[1] - '0';
 
         SavePhaseStageToJson();
         LoadCharacterSelectScene();
