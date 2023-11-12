@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class MonsterSpawner : MonoBehaviour
@@ -34,6 +35,9 @@ public class MonsterSpawner : MonoBehaviour
         Init();
 
         if (phase < 1 || stage  < 1) { phase = 1; stage = 1; }
+
+        // if (phase == 1 && stage == 1) SceneManager.LoadScene("TutorialScene");
+
         currentWave = DataManager.GetData.TryParse(phase, stage).waveArray;
         count = currentWave.Length;
 
@@ -95,7 +99,6 @@ public class MonsterSpawner : MonoBehaviour
     public GameObject[] GetLineMonstersInfo(int line)
     {
         if (monsterList[line].Count == 0) return null;
-
 
         List<GameObject> tempMonsterList = new List<GameObject>();
         foreach (var item in monsterList[line])

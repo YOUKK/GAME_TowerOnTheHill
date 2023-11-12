@@ -98,7 +98,7 @@ public class DataManager : MonoBehaviour
 
     private string[] phaseFileNames = 
         {"", "MonsterWaveDB - Phase1", "MonsterWaveDB - Phase2", "MonsterWaveDB - Phase3",
-        "MonsterWaveDB - Phase4", "MonsterWaveDB - Phase5"};
+        "MonsterWaveDB - Phase4", "MonsterWaveDB - Phase5","","","","MonsterWaveDB - Phase9"};
 
     public List<List<StageWave>> monsterWave = new List<List<StageWave>>();
     public List<List<StageWave>> tutorial = new List<List<StageWave>>();
@@ -203,6 +203,7 @@ public class DataManager : MonoBehaviour
     public StageWave TryParse(int phase, int stage)
     {
         TextAsset csvData = Resources.Load<TextAsset>($"Data/{phaseFileNames[phase]}");
+        print(csvData);
         string[] data = csvData.text.Split(new char[] { '\n' });
 
         StageWave stageWave = WaveParse(data, stage);
