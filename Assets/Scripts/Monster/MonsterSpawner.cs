@@ -58,6 +58,7 @@ public class MonsterSpawner : MonoBehaviour
         // stage 정보에 따라 몬스터스포너 설정
         LoadSelectPhaseStageFromJson();
         SetPhaseStage();
+        Debug.Log("phase: " + phase + " stage: " + stage);
     }
 
     void Update()

@@ -14,18 +14,17 @@ public class StageUnlock : MonoBehaviour
     void Start()
     {
         //stageButtons = new List<GameObject>();
-        for(int i = 0; i < winPS.phase; i++)
-		{
+        LoadWinPhaseStageFromJson();
+        for (int i = 0; i < winPS.phase; i++)
+        {
             GameObject mapButton = gameObject.transform.GetChild(i).gameObject;
-            for(int j = 0; j < winPS.stage; j++)
-			{
+            for (int j = 0; j < winPS.stage; j++)
+            {
                 //stageButtons.Add(mapButton.transform.GetChild(j).gameObject);
 
-                //mapButton.transform.GetChild(j).GetComponent<DoUnlock>().UnLock();
-			}
-		}
-
-        LoadWinPhaseStageFromJson();
+                mapButton.transform.GetChild(j).GetComponent<DoUnlock>().UnLock();
+            }
+        }
     }
 
     void Update()

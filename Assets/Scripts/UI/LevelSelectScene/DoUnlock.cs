@@ -19,5 +19,9 @@ public class DoUnlock : MonoBehaviour
     public void UnLock()
 	{
         GetComponent<Button>().interactable = true;
-	}
+        gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true); // monster
+        gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false); // lock
+        gameObject.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.SetActive(true); // character
+        gameObject.transform.GetChild(0).GetChild(2).GetChild(1).gameObject.SetActive(false); // lock
+    }
 }
