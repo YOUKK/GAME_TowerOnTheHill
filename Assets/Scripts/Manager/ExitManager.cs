@@ -46,7 +46,7 @@ public class ExitManager : MonoBehaviour
         TimeState = true;
         Managers.TimeM.StartTimer();
         Managers.TimeM.InitTimer();
-        Pause.SetActive(false);
+        SceneManager.LoadScene("Shop");
     }
     public void RestartButton()
     {
