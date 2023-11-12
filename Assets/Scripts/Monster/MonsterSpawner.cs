@@ -36,6 +36,8 @@ public class MonsterSpawner : MonoBehaviour
 
         if (phase < 1 || stage  < 1) { phase = 1; stage = 1; }
 
+        // if (phase == 1 && stage == 1) SceneManager.LoadScene("TutorialScene");
+
         currentWave = DataManager.GetData.TryParse(phase, stage).waveArray;
         count = currentWave.Length;
 
