@@ -95,8 +95,8 @@ public class DataManager : MonoBehaviour
 
 
     private string[] phaseFileNames = 
-        {"TutorialWaveDB - Phase0", "MonsterWaveDB - Phase1", "MonsterWaveDB - Phase2", "MonsterWaveDB - Phase3",
-        "MonsterWaveDB - Phase4", "MonsterWaveDB - Phase5"};
+        {"", "MonsterWaveDB - Phase1", "MonsterWaveDB - Phase2", "MonsterWaveDB - Phase3",
+        "MonsterWaveDB - Phase4", "MonsterWaveDB - Phase5","","","","MonsterWaveDB - Phase9"};
 
     public List<List<StageWave>> monsterWave = new List<List<StageWave>>();
     public List<List<StageWave>> tutorial = new List<List<StageWave>>();
