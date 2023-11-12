@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackType { NORMAL, SLOW, STUN, CRAZY, DEAD}
+
 public abstract class Monster : MonoBehaviour
 {
     [SerializeField]
@@ -9,6 +11,7 @@ public abstract class Monster : MonoBehaviour
     protected Animator      anim;
     protected Transform     target;
     protected int           currentLine;
+    protected float         ignoreDistance;
     protected bool          isAttacking;
     protected bool          isDead;
     // 랜덤 머니 관련 변수 추가
@@ -44,6 +47,8 @@ public abstract class Monster : MonoBehaviour
 
         monsterBuffEffect.Stop();
 
+        // 스테이터스 세팅
+        ignoreDistance = 0.5f;
         currentHP = status.hp;
         currentSpeed = status.speed;
         currentForce = status.force;
@@ -54,7 +59,9 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (target == null && !isDead)
+        if (isDead) return;
+
+        if (target == null)
         {
             Move(currentSpeed);
             anim.SetBool("isTargetIn", false);
@@ -102,14 +109,36 @@ public abstract class Monster : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Hit(int damage)
+    public void Hit(int damage, AttackType type = AttackType.NORMAL)
     {
-        if (currentHP - damage > 0) StartCoroutine(HittedCoroutine(damage));
-        else 
+        if (currentHP - damage > 0)
+        {
+            StartCoroutine(HittedCoroutine(damage));
+
+            switch (type)
+            {
+                case AttackType.NORMAL:
+                    break;
+                case AttackType.SLOW:
+                    {
+                        // Slow();
+                        break;
+                    }
+                case AttackType.STUN:
+                    break;
+                case AttackType.CRAZY:
+                    break;
+                case AttackType.DEAD:
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
         {
             Destroy(gameObject.GetComponent<BoxCollider2D>());
-            anim.SetBool("isDead", true); 
-            isDead = true; 
+            anim.SetBool("isDead", true);
+            isDead = true;
         }
     }
 
@@ -127,7 +156,7 @@ public abstract class Monster : MonoBehaviour
     {
         if (collision.transform.CompareTag("Character"))
         {
-            if (transform.position.x - collision.transform.position.x > status.attackDistance)
+            if (transform.position.x - collision.transform.position.x > ignoreDistance)
             {
                 target = collision.transform;
             }

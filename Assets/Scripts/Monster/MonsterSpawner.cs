@@ -64,11 +64,10 @@ public class MonsterSpawner : MonoBehaviour
                 if (monsterList[i].Count != 0) return;
             }
             isAllMonsterDead = true;
-            textVictory.SetActive(true);
             return;
         }
 
-        if (currentWave[idx].time < Managers.TimeM.Sec)
+        if (currentWave[idx].time < GamePlayManagers.TimeM.Sec)
         {
             GameObject obj = Instantiate(currentWave[idx].monsterInfo, 
                 lines[currentWave[idx].line].transform.position, transform.rotation);

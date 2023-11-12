@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Fast_Monster
   m_EditorClassIdentifier: 
   monsterName: Fast
-  hp: 80
+  hp: 100
   speed: 0.4
   force: 10
-  hitSpeed: 2
+  hitSpeed: 2.5
   attackDistance: 0.5
   type: 0
