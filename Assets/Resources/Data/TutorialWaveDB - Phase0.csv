@@ -1,8 +1,4 @@
-stage,time,startPosX,startPosY,lineCount,lines,Data
-1,0,2,10,4,,
-,,,,,Put down the falling resource to collect it!,Resource
-,,,,,Keep on collecting resource!\nYou'll need it to put more Characters!,Message
-,,,,,Put the character to protect home!,Ground
-,,,,,Don¡¯t let the monsters reach your home! ,Message
-2,14.5,0,10,1,,
-,,,,,It's a ShieldMonster! \nI recommand putting the Eater or Ice Magician,Character
+stage,time,monsterInfo,line
+1,20,0,2
+1,40,first,2
+1,41,second,2
