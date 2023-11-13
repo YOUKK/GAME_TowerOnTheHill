@@ -9,22 +9,26 @@ public class StageUnlock : MonoBehaviour
 {
     private PhaseStage winPS = new PhaseStage();
 
-    //private List<GameObject> stageButtons;
-
     void Start()
     {
-        //stageButtons = new List<GameObject>();
         LoadWinPhaseStageFromJson();
+
+        // 클리어한 스테이지까지 버튼을 unlock시킨다
         for (int i = 0; i < winPS.phase; i++)
         {
             GameObject mapButton = gameObject.transform.GetChild(i).gameObject;
-            for (int j = 0; j < winPS.stage; j++)
+            if (i < winPS.phase - 1)
             {
-                //stageButtons.Add(mapButton.transform.GetChild(j).gameObject);
-
-                mapButton.transform.GetChild(j).GetComponent<DoUnlock>().UnLock();
+                for(int j = 0; j < 5; j++)
+                    mapButton.transform.GetChild(j).GetComponent<DoUnlock>().UnLock();
+            }
+            else
+            {
+                for (int j = 0; j < winPS.stage; j++)
+                    mapButton.transform.GetChild(j).GetComponent<DoUnlock>().UnLock();
             }
         }
+        
     }
 
     void Update()
@@ -32,6 +36,7 @@ public class StageUnlock : MonoBehaviour
         
     }
 
+    // 클리어한 스테이지의 정보 가져오기
     private void LoadWinPhaseStageFromJson()
     {
         string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");
