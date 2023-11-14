@@ -38,8 +38,9 @@ public class MonsterSpawner : MonoBehaviour
     void Start()
     {
         Init();
-
-        if (phase < 1 || stage  < 1) { phase = 1; stage = 1; }
+        // stage 정보에 따라 몬스터스포너 설정
+        SetPhaseStage();
+        Debug.Log("phase: " + phase + " stage: " + stage);
 
         // if (phase == 1 && stage == 1) SceneManager.LoadScene("TutorialScene");
 
@@ -58,11 +59,6 @@ public class MonsterSpawner : MonoBehaviour
 
         resourceUI = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
         coinBox = resourceUI.transform.GetChild(1).gameObject;
-
-        // stage 정보에 따라 몬스터스포너 설정
-        LoadSelectPhaseStageFromJson();
-        SetPhaseStage();
-        Debug.Log("phase: " + phase + " stage: " + stage);
     }
 
     void Update()
@@ -91,21 +87,6 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    //  json을 phaseStage로 로드하는 함수
-    // 이 함수를 씬 로드할 때마다 호출하기
-    private void LoadSelectPhaseStageFromJson()
-    {
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
-        string jsonData = File.ReadAllText(path);
-        selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
-    }
-    // 이 함수를 씬 로드할 때마다 호출하기
-    private void SetPhaseStage()
-	{
-        phase = selectPS.phase;
-        stage = selectPS.stage;
-	}
-
     private static void Init()
     {
         if(instance == null)
@@ -118,6 +99,24 @@ public class MonsterSpawner : MonoBehaviour
             }
 
             instance = go.GetComponent<MonsterSpawner>();
+        }
+    }
+
+    // json을 phaseStage로 로드하는 함수
+    // 이 함수를 씬 로드할 때마다 호출하기
+    private void SetPhaseStage()
+    {
+        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
+        string jsonData = File.ReadAllText(path);
+        selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
+
+        phase = selectPS.phase;
+        stage = selectPS.stage;
+
+        if (phase < 1 || stage < 1) 
+        { 
+            phase = 1; 
+            stage = 1; 
         }
     }
 
