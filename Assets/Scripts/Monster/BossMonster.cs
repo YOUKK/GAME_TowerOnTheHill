@@ -13,17 +13,18 @@ public class BossMonster : Monster
     private List<MonsterSpawnData> monsterSpawns;
 
     private float patternDuration;
+    private bool isPatternCool;
 
     protected override void Start()
     {
         base.Start();
+        pattern = AttackPattern.Normal;
     }
 
     protected override void Update()
     {
-        if(!isAttacking)
+        if(!isPatternCool)
         {
-            isAttacking = true;
             switch (pattern)
             {
                 case AttackPattern.Normal:
@@ -46,6 +47,10 @@ public class BossMonster : Monster
                     break;
             }
         }
+        else
+        {
+            Move(currentSpeed);
+        }
     }
 
     protected override void Move(float speed)
@@ -55,12 +60,31 @@ public class BossMonster : Monster
 
     private void ChangeAttackPattern()
     {
-        
+        if(currentHP >= (float)status.hp * 2/3)
+        {
+
+        }
+        else if(currentHP >= (float)status.hp * 1/3)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    private IEnumerator WalkCoroutine()
+    {
+        // Walk animation
+        isPatternCool = false;
+        yield return null;
     }
 
     private IEnumerator NormalAttackCoroutine()
     {
         yield return null;
+        StartCoroutine(WalkCoroutine());
     }
 
     private IEnumerator FirstAttackCoroutine()
