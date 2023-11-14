@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 // 이 클래스를 통해 다른 매니저 클래스에 접근한다.
 // 여러 씬에서 공유하는 변수는 여기에 static 변수로 선언한다.
 
-public class Managers : MonoBehaviour
+public class GamePlayManagers : MonoBehaviour
 {
-    private static Managers instance;
-    public static Managers Instance // get 프로퍼티
+    private static GamePlayManagers instance;
+    public static GamePlayManagers Instance // get 프로퍼티
 	{
 		get
 		{
@@ -60,11 +60,11 @@ public class Managers : MonoBehaviour
             if(go == null)
 			{
                 go = new GameObject { name = "Manager" };
-                go.AddComponent<Managers>();
+                go.AddComponent<GamePlayManagers>();
 			}
 
-            DontDestroyOnLoad(go);
-            instance = go.GetComponent<Managers>();
+            //DontDestroyOnLoad(go);
+            instance = go.GetComponent<GamePlayManagers>();
 		}
 	}
 

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
+using System.IO;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -29,11 +31,18 @@ public class MonsterSpawner : MonoBehaviour
     private CollectResource resourceUI;
     private GameObject coinBox;
 
+    // 선택한 스테이지 정보
+    private PhaseStage selectPS = new PhaseStage();
+
+
     void Start()
     {
         Init();
 
         if (phase < 1 || stage  < 1) { phase = 1; stage = 1; }
+
+        // if (phase == 1 && stage == 1) SceneManager.LoadScene("TutorialScene");
+
         currentWave = DataManager.GetData.TryParse(phase, stage).waveArray;
         count = currentWave.Length;
 
@@ -49,6 +58,11 @@ public class MonsterSpawner : MonoBehaviour
 
         resourceUI = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
         coinBox = resourceUI.transform.GetChild(1).gameObject;
+
+        // stage 정보에 따라 몬스터스포너 설정
+        LoadSelectPhaseStageFromJson();
+        SetPhaseStage();
+        Debug.Log("phase: " + phase + " stage: " + stage);
     }
 
     void Update()
@@ -60,11 +74,10 @@ public class MonsterSpawner : MonoBehaviour
                 if (monsterList[i].Count != 0) return;
             }
             isAllMonsterDead = true;
-            textVictory.SetActive(true);
             return;
         }
 
-        if (currentWave[idx].time < Managers.TimeM.Sec)
+        if (currentWave[idx].time < GamePlayManagers.TimeM.Sec)
         {
             GameObject obj = Instantiate(currentWave[idx].monsterInfo, 
                 lines[currentWave[idx].line].transform.position, transform.rotation);
@@ -77,6 +90,21 @@ public class MonsterSpawner : MonoBehaviour
             ++idx;
         }
     }
+
+    //  json을 phaseStage로 로드하는 함수
+    // 이 함수를 씬 로드할 때마다 호출하기
+    private void LoadSelectPhaseStageFromJson()
+    {
+        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
+        string jsonData = File.ReadAllText(path);
+        selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
+    }
+    // 이 함수를 씬 로드할 때마다 호출하기
+    private void SetPhaseStage()
+	{
+        phase = selectPS.phase;
+        stage = selectPS.stage;
+	}
 
     private static void Init()
     {
@@ -96,7 +124,6 @@ public class MonsterSpawner : MonoBehaviour
     public GameObject[] GetLineMonstersInfo(int line)
     {
         if (monsterList[line].Count == 0) return null;
-
 
         List<GameObject> tempMonsterList = new List<GameObject>();
         foreach (var item in monsterList[line])
