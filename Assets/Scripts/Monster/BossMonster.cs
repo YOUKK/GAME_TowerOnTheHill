@@ -39,6 +39,7 @@ public class BossMonster : Monster
 
     protected override void Move(float speed)
     {
+        // TODO : 위아래 이동으로 변경
         base.Move(speed);
     }
 
@@ -91,33 +92,76 @@ public class BossMonster : Monster
         yield return null;
     }
 
-    private IEnumerator NormalAttackCoroutine()
+    //Attack animation에 의해 호출
+    protected override void Attack()
     {
-        for(int i = 0; i < 10; ++i)
+        switch (pattern)
         {
-            isMove = false;
-            NormalAttack(); // Attack anim은 하나. Attack 함수는 4개? 어떻게 합치지?
-            yield return new WaitForSeconds(2.0f);
-            isMove = true;
+            case AttackPattern.Normal:
+                {
+                    NormalAttack();
+                    break;
+                }
+            case AttackPattern.First:
+                {
+                    FirstAttack();
+                    break;
+                }
+            case AttackPattern.Second:
+                {
+                    SecondAttack();
+                    break;
+                }
+            case AttackPattern.Third:
+                {
+                    ThirdAttack();
+                    break;
+                }
+            default:
+                break;
         }
     }
+
     private void NormalAttack()
     {
-        // TODO : 랜덤한 라인에 몬스터 생성
+        // TODO : 랜덤한 라인에 몬스터 생성 (한 공격 당 2마리씩 호출)
+    }
+    private void FirstAttack()
+    {
+
+    }
+    private void SecondAttack()
+    {
+
+    }
+    private void ThirdAttack()
+    {
+
     }
 
+    private IEnumerator NormalAttackCoroutine()
+    {
+        
+        for (int i = 0; i < 5; ++i)
+        {
+            isMove = false;
+            anim.SetTrigger("AttackTrigger");
+            yield return new WaitForSeconds(1.0f);
+            isMove = true;
+            yield return new WaitForSeconds(3.0f);
+        }
+        StartCoroutine(Think());
+    }
     private IEnumerator FirstPatternCoroutine()
     {
         yield return null;
         StartCoroutine(Think());
     }
-
     private IEnumerator SecondPatternCoroutine()
     {
         yield return null;
         StartCoroutine(Think());
     }
-
     private IEnumerator ThirdPatternCoroutine()
     {
         yield return null;
