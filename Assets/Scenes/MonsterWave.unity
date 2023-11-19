@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21352010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: -2.85, z: 1}
+  m_LocalPosition: {x: 0.27, y: -2.85, z: 0}
   m_LocalScale: {x: 3.7, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 611943273}
@@ -2109,7 +2109,7 @@ MonoBehaviour:
   currentHP: 0
   currentSpeed: 0
   currentForce: 0
-  monsterBuffEffect: {fileID: 0}
+  monsterBuffEffect: {fileID: 7816509664032207918, guid: 98cb5643a597e384496c9c7a0a91e2d7, type: 3}
 --- !u!1 &689293738
 GameObject:
   m_ObjectHideFlags: 0
