@@ -28,6 +28,7 @@ public class Tower : Character
         strength = status.strength;
         healthPoint = status.healthPoint;
         attackDuration = status.attackDuration;
+        type = status.type;
         attackEffect.SetActive(false);
         DeadEffect.SetActive(false);
 
