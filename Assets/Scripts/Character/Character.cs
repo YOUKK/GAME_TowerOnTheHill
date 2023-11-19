@@ -33,6 +33,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected int attackDuration;
 
+    private GameObject monster;
     private Monster AttackMonster;
 
     private bool isDragged = false;
@@ -47,6 +48,8 @@ public class Character : MonoBehaviour
     public int AttackDuration { get => attackDuration; set => attackDuration = value; }
     public bool IsDragged { get => isDragged; set => isDragged = value; }
     public bool CheckMonster { get => checkMonster; set => checkMonster = value; }
+
+    public GameObject Monster { get => monster; set => monster = value; }
 
     // seat ����
     protected Vector2 location;
@@ -81,6 +84,8 @@ public class Character : MonoBehaviour
                 projectiles.Enqueue(gameObject.transform.GetChild(1).GetChild(i).gameObject);
             }
         }
+
+        monster = gameObject.GetComponentInChildren<MonsterCheck>().Monster;
     }
 
     public virtual void Hit(int damage, Monster attackMonster)
@@ -100,7 +105,7 @@ public class Character : MonoBehaviour
     }
     void SlowDelay()
     {
-        AttackMonster.Slow(0f, this);
+        AttackMonster.Slow(0.9f, this);
     }
 
     void DeadDelay()
@@ -118,7 +123,10 @@ public class Character : MonoBehaviour
     }
 
     public virtual void Attack() { }
-
+    private void Update()
+    {
+        monster = gameObject.GetComponentInChildren<MonsterCheck>().Monster;
+    }
     IEnumerator AttackCoolTime()
     {
         Debug.Log("Start Attack Coroutine");
@@ -126,8 +134,14 @@ public class Character : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(attackDelay);
-            Attack();
+            if(status.type == CharacterType.Normal)
+                if(monster.GetComponent<MonsterStatus>().type != MonsterType.Aerial)
+                    Attack();
+            else if (status.type == CharacterType.Aerial)
+                Attack();
+            else if (status.type == CharacterType.UnTouch)
+                if (monster.GetComponent<MonsterStatus>().type == MonsterType.Normal)
+                    Attack();
         }
-
     }
 }
