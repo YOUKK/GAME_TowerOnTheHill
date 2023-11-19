@@ -32,6 +32,8 @@ public class Character : MonoBehaviour
     protected int healthPoint;
     [SerializeField]
     protected int attackDuration;
+    [SerializeField]
+    protected CharacterType type;
 
     private GameObject monster;
     private Monster AttackMonster;
@@ -62,7 +64,7 @@ public class Character : MonoBehaviour
         if (anim == null)
             anim = GetComponentInChildren<Animator>();
 
-
+        type = status.type;
         coolTime = status.coolTime;
         projectileSpeed = status.projectileSpeed;
         attackDelay = status.attackDelay;
@@ -148,14 +150,20 @@ public class Character : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(attackDelay);
-            if(status.type == CharacterType.Normal)
-                if(monster.GetComponent<MonsterStatus>().type != MonsterType.Aerial)
+            if (type == CharacterType.Normal)
+            {
+                if (monster.GetComponent<MonsterStatus>().type != MonsterType.Aerial)
                     Attack();
-            else if (status.type == CharacterType.Aerial)
+            }
+            if (type == CharacterType.Aerial)
+            {
                 Attack();
-            else if (status.type == CharacterType.UnTouch)
+            }
+            if (type == CharacterType.UnTouch)
+            {
                 if (monster.GetComponent<MonsterStatus>().type == MonsterType.Normal)
                     Attack();
+            }
         }
     }
 }
