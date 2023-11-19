@@ -11,6 +11,8 @@ public class GameVictory : MonoBehaviour
     private PhaseStage winPS = new PhaseStage();
     private PhaseStage selectPS = new PhaseStage();
 
+    public bool gameClear = false;
+
     void Start()
     {
         
@@ -19,6 +21,7 @@ public class GameVictory : MonoBehaviour
     void Update()
     {
 		if (MonsterSpawner.GetInstance.IsAllMonsterDead)
+        //if(gameClear)
 		{
             victoryText.SetActive(true);
             Debug.Log("½Â¸®!!!!");
