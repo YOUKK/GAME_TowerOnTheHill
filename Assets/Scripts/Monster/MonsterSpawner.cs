@@ -40,9 +40,9 @@ public class MonsterSpawner : MonoBehaviour
         Init();
         // stage 정보에 따라 몬스터스포너 설정
         SetPhaseStage();
+        if (SceneManager.GetActiveScene().name == "TutorialScene") { phase = 9; stage = 1; }
+        
         Debug.Log("phase: " + phase + " stage: " + stage);
-
-        // if (phase == 1 && stage == 1) SceneManager.LoadScene("TutorialScene");
 
         currentWave = DataManager.GetData.TryParse(phase, stage).waveArray;
         count = currentWave.Length;
