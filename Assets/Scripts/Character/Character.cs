@@ -152,8 +152,10 @@ public class Character : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
             if (type == CharacterType.Normal)
             {
-                if (monster.GetComponent<MonsterStatus>().type != MonsterType.Aerial)
+                if (monster.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
+                {
                     Attack();
+                }
             }
             if (type == CharacterType.Aerial)
             {
@@ -161,7 +163,7 @@ public class Character : MonoBehaviour
             }
             if (type == CharacterType.UnTouch)
             {
-                if (monster.GetComponent<MonsterStatus>().type == MonsterType.Normal)
+                if (monster.GetComponent<Monster>().GetMonsterType() == MonsterType.Normal)
                     Attack();
             }
         }
