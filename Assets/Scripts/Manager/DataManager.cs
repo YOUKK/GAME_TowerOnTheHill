@@ -203,9 +203,8 @@ public class DataManager : MonoBehaviour
     public StageWave TryParse(int phase, int stage)
     {
         TextAsset csvData = Resources.Load<TextAsset>($"Data/{phaseFileNames[phase]}");
-        print(csvData);
+        // print(csvData);
         string[] data = csvData.text.Split(new char[] { '\n' });
-
         StageWave stageWave = WaveParse(data, stage);
 
         if (stageWave == null) Debug.LogError("STAGE WAVE IS NULL");
@@ -230,7 +229,7 @@ public class DataManager : MonoBehaviour
 
                 wave.stage = int.Parse(elements[0]); // Stage
                 wave.time = float.Parse(elements[1]); // time
-
+                
                 if (elements[2] == "first")
                 {
                     ++i;
