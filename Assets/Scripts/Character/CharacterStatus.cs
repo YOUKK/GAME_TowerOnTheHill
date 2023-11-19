@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterName
+public enum CharacterType
 {
-    Sun, // SunFlower
-    Wall, // Wallnut
-    PeaSh, // PeaShooter
-    GasMu, // GasMushroom
-    Eater,
+    Normal, // 지상만 공격 가능
+    Aerial, // 전체 공격 가능
+    UnTouch, // 보스는 공격 불가
 }
 
 [CreateAssetMenu(fileName = "Character", menuName = "Scripts/Character/CharacterStatus")]
@@ -23,5 +21,5 @@ public class CharacterStatus : ScriptableObject
     public int strength = 5;
     public int healthPoint = 50;
     public int attackDuration = 100;
-    public CharacterName type;
+    public CharacterType type;
 }

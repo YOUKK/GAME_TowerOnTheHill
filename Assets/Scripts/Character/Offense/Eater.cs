@@ -10,6 +10,7 @@ public class Eater : Character
     private bool eating = false;
     [SerializeField]
     private int A = 0;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -42,7 +43,7 @@ public class Eater : Character
     }
     void attackDelaySet()
     {
-        gameObject.GetComponentInChildren<MonsterCheck>().Monster.GetComponent<Monster>().Hit(100000);
-        gameObject.GetComponentInChildren<MonsterCheck>().Monster.GetComponent<SpriteRenderer>().enabled = false;
+        Monster.GetComponent<Monster>().Hit(100000);
+        Monster.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
