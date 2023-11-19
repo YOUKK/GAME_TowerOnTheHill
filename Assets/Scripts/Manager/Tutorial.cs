@@ -34,9 +34,10 @@ public class Tutorial : MonoBehaviour
 
             Pause.SetActive(true);
 
+            Debug.Log("H");
             tutorialText.text = dataset[1];
         }
-
+        
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Time.timeScale = 1;
