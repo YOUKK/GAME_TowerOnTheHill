@@ -29,7 +29,7 @@ public class GameVictory : MonoBehaviour
             // 스테이지 clear 정보 업데이트
             LoadWinPhaseStageFromJson();
             LoadSelectPhaseStageFromJson();
-            if(selectPS.phase >= winPS.phase && selectPS.stage > winPS.stage)
+            if(selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
 			{
                 winPS.phase = selectPS.phase;
                 winPS.stage = selectPS.stage;
