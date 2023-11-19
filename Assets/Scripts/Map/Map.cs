@@ -71,6 +71,8 @@ public class Map : MonoBehaviour
 	// (상점에서 구매시) 방어선 증가 기능
 	private void AddLine()
 	{
+        //mapX++;
+
         // seats에 새로운 방어선 seat 추가
         seats.Add(new List<GameObject>());
         for(int i = 0; i < mapY; i++)
@@ -89,8 +91,9 @@ public class Map : MonoBehaviour
 
         seats[y][x].GetComponent<Seat>().character = Instantiate(character, seats[y][x].transform.position, transform.rotation);
         seats[y][x].GetComponent<Seat>().character.GetComponent<Character>().Location = new Vector2(x, y);
-        
-        if(character.GetComponent<Tower>() == null) // tower가 아닌 경우
+        seats[y][x].GetComponent<Seat>().character.name = character.name;
+
+        if (character.GetComponent<Tower>() == null) // tower가 아닌 경우
             seats[y][x].GetComponent<Seat>().isCharacterOn = true;
         seats[y][x].GetComponent<Seat>().usable = false;
         seats[y][x].GetComponent<Seat>().character.GetComponentInChildren<SpriteRenderer>().sortingOrder = y * (-1);
@@ -124,10 +127,52 @@ public class Map : MonoBehaviour
         return seatMatrix.ToArray();
     }
 
+    // ManiMonster의 스킬(랜덤 두 캐릭터 위치 바꾸기) 구현 함수
+    // 이미 존재하는 캐릭터의 위치를 바꾸지 않고, 존재하는 두 캐릭터를 죽이고
+    // 같은 종류의 새로운 캐릭터를 자리만 바꿔서 다시 생성한다.
     public void ChangeCharacterSeat(Vector2 seat1, Vector2 seat2)
     {
-        // 구현해야 함
-        // 다른 몬스터가 공격중인 캐릭터가 자리를 바꾸면 어떻게 해야할까
+        int x1 = (int)seat1.x;
+        int y1 = (int)seat1.y;
+        int x2 = (int)seat2.x;
+        int y2 = (int)seat2.y;
+
+        // 위치 바뀌기 전의 두 캐릭터 정보
+        GameObject prevCharacter1 = seats[y1][x1].GetComponent<Seat>().character;
+        GameObject prevCharacter2 = seats[y2][x2].GetComponent<Seat>().character;
+        // 기존 캐릭터들의 이름으로 같은 종류의 새로운 캐릭터 프리팹을 찾음
+        string characterName1 = prevCharacter1.name;
+        string characterName2 = prevCharacter2.name;
+
+        GameObject newCharacter1 = Resources.Load<GameObject>($"Prefabs/Character/{characterName1}");
+        GameObject newCharacter2 = Resources.Load<GameObject>($"Prefabs/Character/{characterName2}");
+        // 기존 캐릭터들의 health point
+        int prevCharacter1Health = prevCharacter1.GetComponent<Character>().HealthPoint;
+        int prevCharacter2Health = prevCharacter2.GetComponent<Character>().HealthPoint;
+
+        // 기존 캐릭터 삭제
+        //prevCharacter1.GetComponent<Character>().Hit(100000);
+        //prevCharacter2.GetComponent<Character>().Hit(100000);
+        RemoveCharacter(seat1);
+        RemoveCharacter(seat2);
+
+
+        // 새로운 캐릭터 생성
+        PutCharacter(seat1, newCharacter2);
+        PutCharacter(seat2, newCharacter1);
+
+        // 기존 캐릭터의 health point 값 적용
+        newCharacter1.GetComponent<Character>().HealthPoint = prevCharacter1Health;
+        newCharacter2.GetComponent<Character>().HealthPoint = prevCharacter2Health;
+    }
+
+    public Vector3 GetSeatPosition(Vector2 seat)
+    {
+        int x = (int)seat.x;
+        int y = (int)seat.y;
+        GameObject seatObj = seats[y][x];
+
+        return seatObj.transform.position;
     }
 
     public Line GetLineInfo(int lineNum)

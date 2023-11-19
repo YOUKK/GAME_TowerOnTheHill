@@ -18,7 +18,7 @@ public class PrePlacement : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
 	{
-        if (Managers.MouseInputM.IsDrag)
+        if (GamePlayManagers.MouseInputM.IsDrag)
         {
             if (transform.GetComponent<Seat>().usable)
                 transform.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.7f);

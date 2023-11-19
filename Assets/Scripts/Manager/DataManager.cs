@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
 
+// 상점 데이터, 상점 캐릭터 업데이트 데이터 => json
+// 몬스터 웨이브 데이터 => csv
 
 #region Shop Data
 [System.Serializable]
@@ -105,11 +107,8 @@ public class DataManager : MonoBehaviour
     {
         Init();
 
-        Scene currScene = SceneManager.GetActiveScene();
-
         shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
         characterDataPath = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
-        LoadCharacterUpgradeData();
     }
 
     private static void Init()
@@ -145,6 +144,7 @@ public class DataManager : MonoBehaviour
         return shopData;
     }
 
+    // json save
     public void SaveShopData(ShopData shopData)
     {
         // json 형태로 된 문자열 생성
@@ -153,6 +153,7 @@ public class DataManager : MonoBehaviour
         File.WriteAllText(shopDataPath, json);
     }
     
+    // json load
     public Dictionary<string, UpgradeData> GetUpgradeDataDic()
     {
         if (upgradeDatas == null) LoadCharacterUpgradeData();
@@ -165,12 +166,14 @@ public class DataManager : MonoBehaviour
         return dic;
     }
 
+    // json save
     public void SaveCharacterUpgradeData()
     {
         string json = JsonHelper.ToJson(upgradeDatas, true);
         File.WriteAllText(characterDataPath, json);
     }
 
+    // json load
     private void LoadCharacterUpgradeData()
     {
         if (!File.Exists(characterDataPath))

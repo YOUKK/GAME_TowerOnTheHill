@@ -25,30 +25,26 @@ public class JumpMonster : Monster
 
     protected override void Update()
     {
-        if (target == null && !isDead)
+        if (isJumping) return;
+        if (isDead) return;
+
+        if (target == null)
         {
             if (isJumpTried) Move(currentSpeed);
-            else if(isJumping) ChangeJumpToWalk(); 
             else Move(runningSpeed);
             anim.SetBool("isTargetIn", false);
+            isAttacking = false;
         }
         else // 타겟을 정했다면
         {
-            anim.SetBool("isTargetIn", true);
+            // 점프 진행
+            if(!isJumpTried && !isJumping)
+            {
+                StartCoroutine(JumpCoroutine());
+            }
 
-            if (!isJumping) // 뛰어넘기를 아직 안 했으면
-            {
-                isJumping = true;
-                jumpTargetPos = target.position;
-            }
-            else if(!isJumpTried) // 뛰어넘기 중인 상태면
-            {
-                boxCollider.enabled = false;
-                ChangeJumpToWalk();
-                Move(jumpSpeed);
-                return;
-            }
-            else if (!isAttacking)
+            anim.SetBool("isTargetIn", true);
+            if (!isAttacking)
             {
                 anim.SetTrigger("attackTrigger");
                 isAttacking = true;
@@ -56,17 +52,24 @@ public class JumpMonster : Monster
         }
     }
 
-    private void ChangeJumpToWalk()
+    private IEnumerator JumpCoroutine()
     {
-        if(jumpTargetPos.x - transform.position.x > delta || target == null)
+        isJumpTried = true;
+        isJumping = true;
+        jumpTargetPos = target.position;
+        boxCollider.enabled = false;
+
+        while (jumpTargetPos.x - transform.position.x <= delta && target != null)
         {
-            Debug.Log("Out of Target Range");
-            target = null;
-            boxCollider.enabled = true;
-            isJumpTried = true;
-            isJumping = false;
-            anim.SetBool("isJumpTried", true);
-            anim.SetBool("isTargetIn", false);
+            Move(jumpSpeed);
+            yield return null;
         }
+
+        target = null;
+        boxCollider.enabled = true;
+        isJumpTried = true;
+        isJumping = false;
+        anim.SetBool("isJumpTried", true);
+        anim.SetBool("isTargetIn", false);
     }
 }

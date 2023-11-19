@@ -52,10 +52,10 @@ public class MonsterWaveTimer : MonoBehaviour
     {
         if (!firstPopUp)
         {
-            if (Managers.TimeM.Sec > firstWaveStart)
+            if (GamePlayManagers.TimeM.Sec > firstWaveStart)
             {
                 firstPopUp = true;
-                Debug.Log("첫번째 웨이브 시작! " + Managers.TimeM.Sec);
+                Debug.Log("첫번째 웨이브 시작! " + GamePlayManagers.TimeM.Sec);
                 Debug.Log("firstwavetime" + firstWaveTime);
                 Debug.Log("firstwavestart " + firstWaveStart);
                 StartCoroutine(MonsterWaveTextPopUp());
@@ -64,7 +64,7 @@ public class MonsterWaveTimer : MonoBehaviour
 
 		if (!secondPopUp)
 		{
-            if(Managers.TimeM.Sec > secondWaveStart)
+            if(GamePlayManagers.TimeM.Sec > secondWaveStart)
 			{
                 secondPopUp = true;
                 Debug.Log("두번째 웨이브 시작!");
@@ -105,18 +105,18 @@ public class MonsterWaveTimer : MonoBehaviour
 
 	private void CheckTime()
 	{
-        if(!firstAppear && Managers.TimeM.Sec >= firstAppearTime)
+        if(!firstAppear && GamePlayManagers.TimeM.Sec >= firstAppearTime)
 		{
             firstAppear = true;
             waveBar.SetActive(true);
             moveNum = (firstWaveTime - firstAppearTime) / timeCheckInterval;
             moveInterval = 0.5f / moveNum;
         }
-        else if(firstAppear && !firstWave && Managers.TimeM.Sec < firstWaveTime)
+        else if(firstAppear && !firstWave && GamePlayManagers.TimeM.Sec < firstWaveTime)
 		{
             HandleMove();
         }
-        else if(firstAppear && !firstWave && Managers.TimeM.Sec >= firstWaveTime)
+        else if(firstAppear && !firstWave && GamePlayManagers.TimeM.Sec >= firstWaveTime)
 		{
             firstWave = true;
             moveNum = (secondWaveTime - firstWaveTime) / timeCheckInterval;

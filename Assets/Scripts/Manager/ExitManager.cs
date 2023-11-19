@@ -20,12 +20,12 @@ public class ExitManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ½Ã°£ÀÌ Èå¸£°í ÀÖÀ» ¶§
+        // Â½ÃƒÂ°Â£Ã€ÃŒ ÃˆÃ¥Â¸Â£Â°Ã­ Ã€Ã–Ã€Â» Â¶Â§
         if (TimeState && Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
 
-            Managers.TimeM.StopTimer();
+            GamePlayManagers.TimeM.StopTimer();
 
             Pause.SetActive(true);
 
@@ -37,7 +37,7 @@ public class ExitManager : MonoBehaviour
     {
         Time.timeScale = 1;
         TimeState = true;
-        Managers.TimeM.StartTimer();
+        GamePlayManagers.TimeM.StartTimer();
         Pause.SetActive(false);
     }
     public void FinishButton()
@@ -52,8 +52,8 @@ public class ExitManager : MonoBehaviour
     {
         Time.timeScale = 1;
         TimeState = true;
-        Managers.TimeM.StartTimer();
-        Managers.TimeM.InitTimer();
+        GamePlayManagers.TimeM.StartTimer();
+        GamePlayManagers.TimeM.InitTimer();
         SceneManager.LoadScene("GamePlayScene");
     }
 }
