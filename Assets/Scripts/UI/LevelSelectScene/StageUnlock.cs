@@ -13,15 +13,17 @@ public class StageUnlock : MonoBehaviour
     void Start()
     {
         LoadWinPhaseStageFromJson();
-		// 클리어한 스테이지의 다음 스테이지 구하기
-		if (winPS.stage + 1 > 5)
-		{
-			winPS.phase++;
-			winPS.stage = 0;
-		}
-		else
-			winPS.stage++;
-
+        // 클리어한 스테이지의 다음 스테이지 구하기
+        if (!(winPS.phase == 3 && winPS.stage == 5))
+        {
+            if (winPS.stage + 1 > 5)
+            {
+                winPS.phase++;
+                winPS.stage = 1;
+            }
+            else
+                winPS.stage++;
+        }
 
 		// 클리어한 스테이지까지 버튼을 unlock시킨다
 		for (int i = 0; i < winPS.phase; i++)
