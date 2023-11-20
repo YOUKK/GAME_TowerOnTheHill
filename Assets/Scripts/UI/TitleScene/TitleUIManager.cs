@@ -13,18 +13,9 @@ public class TitleUIManager : MonoBehaviour
         coinText.text = PlayerPrefs.GetInt("coin").ToString();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void SwitchScene(string sceneName)
     {
-        if (sceneName == "GamePlayScene")
-            SceneManager.LoadScene("GamePlayScene");
-        else if (sceneName == "Shop")
-            SceneManager.LoadScene("Shop");
-        // 튜토리얼과 레벨 선택 씬이 완성될 시 if문 수정하기
+        SceneManager.LoadScene(sceneName);
     }
 
     public void ExitGame()

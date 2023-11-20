@@ -222,7 +222,7 @@ public class DataManager : MonoBehaviour
             if (currentStage != stage) { ++i; continue; }
 
             List<MonsterSpawnData> waveList = new List<MonsterSpawnData>();
-
+            Debug.Log("elements[0] : " + elements[0]);
             while (int.Parse(elements[0]) == currentStage)
             {
                 MonsterSpawnData wave;

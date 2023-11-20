@@ -11,6 +11,8 @@ public class GameVictory : MonoBehaviour
     private PhaseStage winPS = new PhaseStage();
     private PhaseStage selectPS = new PhaseStage();
 
+    public bool gameClear = false;
+
     void Start()
     {
         
@@ -18,7 +20,8 @@ public class GameVictory : MonoBehaviour
 
     void Update()
     {
-		if (MonsterSpawner.GetInstance.IsAllMonsterDead)
+		//if (MonsterSpawner.GetInstance.IsAllMonsterDead)
+        if(gameClear)
 		{
             victoryText.SetActive(true);
             Debug.Log("승리!!!!");
@@ -26,7 +29,7 @@ public class GameVictory : MonoBehaviour
             // 스테이지 clear 정보 업데이트
             LoadWinPhaseStageFromJson();
             LoadSelectPhaseStageFromJson();
-            if(selectPS.phase >= winPS.stage && selectPS.stage > winPS.stage)
+            if(selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
 			{
                 winPS.phase = selectPS.phase;
                 winPS.stage = selectPS.stage;
