@@ -4,9 +4,10 @@ using UnityEngine;
 
 public enum CharacterType
 {
-    Normal, // Áö»ó¸¸ °ø°Ý °¡´É
-    Aerial, // ÀüÃ¼ °ø°Ý °¡´É
-    UnTouch, // º¸½º´Â °ø°Ý ºÒ°¡
+    Normal, // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    Aerial, // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    UnTouch, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
+    Buff, // dont attack character
 }
 
 [CreateAssetMenu(fileName = "Character", menuName = "Scripts/Character/CharacterStatus")]

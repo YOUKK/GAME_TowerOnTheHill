@@ -150,6 +150,10 @@ public class Character : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(attackDelay);
+            if (type == CharacterType.Buff)
+            {
+                Attack();   
+            }
             if (type == CharacterType.Normal && checkMonster)
             {
                 if (monster.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
