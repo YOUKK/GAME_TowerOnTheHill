@@ -34,19 +34,19 @@ public class Tutorial : MonoBehaviour
 
             Pause.SetActive(true);
 
-            Debug.Log("H");
+            //Debug.Log("H");
             tutorialText.text = dataset[1];
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            Time.timeScale = 1;
 
-            GamePlayManagers.TimeM.StartTimer();
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                Time.timeScale = 1;
 
-            Pause.SetActive(false);
+                GamePlayManagers.TimeM.StartTimer();
 
-            step++;
+                Pause.SetActive(false);
+
+                step++;
+            }
         }
     }
 }
