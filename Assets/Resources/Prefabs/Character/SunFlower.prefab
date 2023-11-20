@@ -724,6 +724,7 @@ MonoBehaviour:
   strength: 0
   healthPoint: 0
   attackDuration: 0
+  type: 0
 --- !u!1 &5650652732913055270
 GameObject:
   m_ObjectHideFlags: 0
