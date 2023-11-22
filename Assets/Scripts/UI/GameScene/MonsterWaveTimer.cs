@@ -40,12 +40,11 @@ public class MonsterWaveTimer : MonoBehaviour
     void Start()
     {
         waveSlider = waveBar.GetComponent<Slider>();
-        firstWaveStart = firstWaveTime - 5;
-        secondWaveStart = secondWaveTime - 5;
+        firstWaveStart = (int)DataManager.GetData.FirstWaveTime - 5;
+        secondWaveStart = (int)DataManager.GetData.SecondWaveTime - 5;
 
         //SetTime();
         StartCoroutine(Call2f());
-
     }
 
     void Update()
