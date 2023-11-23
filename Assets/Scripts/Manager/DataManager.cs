@@ -89,11 +89,13 @@ public class DataManager : MonoBehaviour
     private static DataManager instance;
     public static DataManager GetData { get { Init(); return instance; } }
 
-    [SerializeField]
-    private MonsterWaveTimer monsterWaveTimer;
     private static string shopDataPath;
     private static string characterDataPath;
     private static UpgradeData[] upgradeDatas;
+    private float firstWaveTime;
+    public float FirstWaveTime { get => firstWaveTime; }
+    private float secondWaveTime;
+    public float SecondWaveTime { get => secondWaveTime; }
 
 
     private string[] phaseFileNames = 
@@ -222,7 +224,7 @@ public class DataManager : MonoBehaviour
             if (currentStage != stage) { ++i; continue; }
 
             List<MonsterSpawnData> waveList = new List<MonsterSpawnData>();
-            Debug.Log("elements[0] : " + elements[0]);
+
             while (int.Parse(elements[0]) == currentStage)
             {
                 MonsterSpawnData wave;
@@ -233,14 +235,14 @@ public class DataManager : MonoBehaviour
                 if (elements[2] == "first")
                 {
                     ++i;
-                    monsterWaveTimer.FirstwaveTime = (int)wave.time;
+                    firstWaveTime = (int)wave.time;
                     elements = data[i].Split(new char[] { ',' });
                     continue;
                 }
                 else if (elements[2] == "second")
                 {
                     ++i;
-                    monsterWaveTimer.SecondWaveTime = (int)wave.time;
+                    secondWaveTime = (int)wave.time;
                     elements = data[i].Split(new char[] { ',' });
                     continue;
                 }

@@ -46,16 +46,18 @@ public class MonsterSpawner : MonoBehaviour
 
         currentWave = DataManager.GetData.TryParse(phase, stage).waveArray;
         count = currentWave.Length;
-
+        // Line 오브젝트 데이터 수집
         for (int i = 0; i < lines.Length; i++)
         {
             lines[i] = transform.GetChild(i).gameObject;
         }
-
+        // 생성된 몬스터를 관리할 리스트 초기화
         for(int i = 0; i < monsterList.Length; ++i)
         {
             monsterList[i] = new LinkedList<GameObject>();
         }
+
+        gameObject.GetComponent<MonsterWaveTimer>().enabled = true;
 
         resourceUI = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
         coinBox = resourceUI.transform.GetChild(1).gameObject;

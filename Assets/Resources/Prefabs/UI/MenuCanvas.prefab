@@ -939,7 +939,6 @@ GameObject:
   - component: {fileID: 242561937794356682}
   - component: {fileID: 242561937794356685}
   - component: {fileID: 242561937794356681}
-  - component: {fileID: 242561937794356694}
   m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -1049,20 +1048,6 @@ MonoBehaviour:
   resourceText: {fileID: 1281830005}
   coinBox: {fileID: 7753783274649732125}
   coinText: {fileID: 4733896777251152477}
---- !u!114 &242561937794356694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242561937794356684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f22f6425fd8264e8e9391fedc75487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waveBar: {fileID: 3269835726551511786}
-  monsterWaveText: {fileID: 1048111106}
 --- !u!1 &1968931038353201722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,11 +1817,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b21f81641d4a48b6a966b3d806d5a7c, type: 3}
---- !u!1 &3269835726551511786 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3331830881407055951, guid: 2b21f81641d4a48b6a966b3d806d5a7c, type: 3}
-  m_PrefabInstance: {fileID: 242561939283790501}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1205871699983919218 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1432669287620190935, guid: 2b21f81641d4a48b6a966b3d806d5a7c, type: 3}
