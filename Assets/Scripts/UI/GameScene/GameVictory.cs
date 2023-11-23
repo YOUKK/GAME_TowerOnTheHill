@@ -20,8 +20,8 @@ public class GameVictory : MonoBehaviour
 
     void Update()
     {
-		//if (MonsterSpawner.GetInstance.IsAllMonsterDead)
-        if(gameClear)
+		//if ()
+        if(MonsterSpawner.GetInstance.IsAllMonsterDead || gameClear)
 		{
             victoryText.SetActive(true);
             Debug.Log("½Â¸®!!!!");
