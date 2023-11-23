@@ -11,13 +11,15 @@ public class MonsterWaveTimer : MonoBehaviour
     public int FirstAppearTime { set { firstAppearTime = value; } get { return firstAppearTime; } }
     private int timeCheckInterval = 2; // 시간 체크 간격
 
+    [SerializeField]
     private int firstWaveStart = 0; // 첫번째 웨이브 시작 시간
-    //public int FirstWaveStart { set { firstWaveStart = value; } get { return firstWaveStart; } }
+    [SerializeField]
     private int secondWaveStart = 0; // 두번째 웨이브 시작 시간
-    //public int SecondWaveStart { set { secondWaveStart = value; } get { return secondWaveStart; } }
 
+    [SerializeField]
     private int firstWaveTime = 120; // 첫번째 웨이브 = 2분(슬라이드 딱 중간 지점)
     public int FirstwaveTime { set { firstWaveTime = value; } get { return firstWaveTime; } }
+    [SerializeField]
     private int secondWaveTime = 240; // 두번째 웨이브 = 4분(슬라이드 맨 끝)(firstwaveTime의 2배여야함)
     public int SecondWaveTime { set { secondWaveTime = value; } get { return secondWaveTime; } }
     private bool firstAppear = false;
@@ -40,8 +42,10 @@ public class MonsterWaveTimer : MonoBehaviour
     void Start()
     {
         waveSlider = waveBar.GetComponent<Slider>();
-        firstWaveStart = (int)DataManager.GetData.FirstWaveTime - 5;
-        secondWaveStart = (int)DataManager.GetData.SecondWaveTime - 5;
+        firstWaveTime = (int)DataManager.GetData.FirstWaveTime;
+        secondWaveTime = (int)DataManager.GetData.SecondWaveTime;
+        firstWaveStart = firstWaveTime - 5;
+        secondWaveStart = secondWaveTime - 5;
 
         //SetTime();
         StartCoroutine(Call2f());
