@@ -2287,7 +2287,6 @@ GameObject:
   m_Component:
   - component: {fileID: 638814808}
   - component: {fileID: 638814807}
-  - component: {fileID: 638814809}
   m_Layer: 0
   m_Name: StartEndUI
   m_TagString: Untagged
@@ -2328,20 +2327,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &638814809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638814806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0237a696442c60d40803a94518fb8038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  victoryText: {fileID: 913324959}
-  gameClear: 0
 --- !u!1 &706818426 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3714441676939484761, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
@@ -3085,8 +3070,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 242561937794356694, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 3409753229809285882, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409753229809285882, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444067748333384101, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444067748333384101, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444067748333384101, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444067748333384101, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4507280676128450254, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
@@ -3111,6 +3116,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5631590899593776217, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094305599525872468, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094305599525872468, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094305599525872468, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094305599525872468, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3123,6 +3144,11 @@ GameObject:
 --- !u!1 &911702284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3269835726551511786, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+  m_PrefabInstance: {fileID: 911702282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &911702285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7567511082648129013, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
   m_PrefabInstance: {fileID: 911702282}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &913324959
@@ -3991,7 +4017,7 @@ MonoBehaviour:
   monsterBuffTime: 10
   isAllMonsterDead: 0
   rewardCoin: 100
-  textVictory: {fileID: 913324959}
+  victoryPopup: {fileID: 911702285}
 --- !u!4 &1144570283
 Transform:
   m_ObjectHideFlags: 0
@@ -4023,6 +4049,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f22f6425fd8264e8e9391fedc75487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstWaveStart: 0
+  secondWaveStart: 0
+  firstWaveTime: 120
+  secondWaveTime: 240
   waveBar: {fileID: 911702284}
   monsterWaveText: {fileID: 911702283}
 --- !u!1 &1192950861

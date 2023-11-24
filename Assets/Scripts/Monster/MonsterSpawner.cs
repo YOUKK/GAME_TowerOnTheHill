@@ -27,13 +27,14 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField]
     private int rewardCoin = 100;
 
-    [SerializeField] GameObject textVictory;
     private CollectResource resourceUI;
     private GameObject coinBox;
 
     // 선택한 스테이지 정보
     private PhaseStage selectPS = new PhaseStage();
 
+    [SerializeField]
+    private GameObject victoryPopup;
 
     void Start()
     {
@@ -72,6 +73,7 @@ public class MonsterSpawner : MonoBehaviour
                 if (monsterList[i].Count != 0) return;
             }
             isAllMonsterDead = true;
+            victoryPopup.SetActive(true);
             return;
         }
 
