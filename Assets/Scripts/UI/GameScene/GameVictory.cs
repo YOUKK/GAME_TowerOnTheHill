@@ -6,7 +6,7 @@ using System.IO;
 public class GameVictory : MonoBehaviour
 {
     [SerializeField]
-    private GameObject victoryText;
+    private GameObject victoryBox;
 
     private PhaseStage winPS = new PhaseStage();
     private PhaseStage selectPS = new PhaseStage();
@@ -23,7 +23,10 @@ public class GameVictory : MonoBehaviour
 		//if ()
         if(MonsterSpawner.GetInstance.IsAllMonsterDead || gameClear)
 		{
-            victoryText.SetActive(true);
+            if (victoryBox.activeInHierarchy == false)
+            {
+                victoryBox.SetActive(true);
+            }
             Debug.Log("승리!!!!");
 
             // 스테이지 clear 정보 업데이트

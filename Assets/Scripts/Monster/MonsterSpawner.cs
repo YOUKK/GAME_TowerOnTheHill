@@ -27,7 +27,6 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField]
     private int rewardCoin = 100;
 
-    [SerializeField] GameObject textVictory;
     private CollectResource resourceUI;
     private GameObject coinBox;
 
