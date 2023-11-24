@@ -1,39 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.IO;
 
 public class GameVictory : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject victoryBox;
-
     private PhaseStage winPS = new PhaseStage();
     private PhaseStage selectPS = new PhaseStage();
 
     public bool gameClear = false;
 
-    void Start()
+    void OnEnable()
     {
-        
-    }
+        // TODO : 코인 및 캐릭터 UI 표시 and 버튼에 GameManager의 씬 이동 함수 연결
 
-    void Update()
-    {
-		//if ()
-        if(MonsterSpawner.GetInstance.IsAllMonsterDead || gameClear)
-		{
-            if (victoryBox.activeInHierarchy == false)
-            {
-                victoryBox.SetActive(true);
-            }
-            Debug.Log("승리!!!!");
-
+        if (MonsterSpawner.GetInstance.IsAllMonsterDead || gameClear)
+        {
             // 스테이지 clear 정보 업데이트
             LoadWinPhaseStageFromJson();
             LoadSelectPhaseStageFromJson();
-            if(selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
-			{
+            if (selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
+            {
                 winPS.phase = selectPS.phase;
                 winPS.stage = selectPS.stage;
                 SavePhaseStageToJson();
