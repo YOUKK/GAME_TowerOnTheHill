@@ -69,9 +69,8 @@ public class CollectResource : MonoBehaviour
         isCoinItemPressed = true;
         coinBoxActiveTimer = 1.5f;
         coinBox.SetActive(true);
-        
-        int currentCoin = PlayerPrefs.GetInt("coin");
-        PlayerPrefs.SetInt("coin", currentCoin + 50);
-        coinText.text = (currentCoin + 50).ToString();
+
+        GamePlayManagers.Instance.AddCoin(50);
+        coinText.text = PlayerPrefs.GetInt("coin").ToString();
     }
 }

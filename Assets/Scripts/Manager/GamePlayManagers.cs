@@ -28,6 +28,10 @@ public class GamePlayManagers : MonoBehaviour
     [SerializeField]
     private GameObject hammerItem;
 
+    // 한 스테이지 내에서 얻은 코인 값
+    private int earnedCoin = 0;
+    public int GetEarnedCoin { get => earnedCoin; }
+
     // 공유 변수
     public int slotNum = 6;
 
@@ -38,18 +42,12 @@ public class GamePlayManagers : MonoBehaviour
         //timeM.StartTimer();
         if(SceneManager.GetActiveScene().name == "GamePlayScene")
             ApplyShopItem();
-        if (!PlayerPrefs.HasKey("coin"))
-        {
-            PlayerPrefs.SetInt("coin", 0);
-            Debug.Log("Coin 새로 생성!");
-        }
     }
 
     void Update()
     {
         // 게임 플레이 씬이 시작되면 호출하기
         timeM.OnUpdate();
-        //Debug.Log(TimeM.Sec);
     }
 
     private static void Init()
@@ -63,7 +61,6 @@ public class GamePlayManagers : MonoBehaviour
                 go.AddComponent<GamePlayManagers>();
 			}
 
-            //DontDestroyOnLoad(go);
             instance = go.GetComponent<GamePlayManagers>();
 		}
 	}
@@ -73,5 +70,12 @@ public class GamePlayManagers : MonoBehaviour
         if (DataManager.GetData.GetShopData().hasHammer)
             hammerItem.SetActive(true);
         else hammerItem.SetActive(false);
+    }
+
+    public void AddCoin(int amount)
+    {
+        earnedCoin += amount;
+        int currentCoin = PlayerPrefs.GetInt("coin");
+        PlayerPrefs.SetInt("coin", currentCoin + 50);
     }
 }

@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
+using TMPro;
 
 public class GameVictory : MonoBehaviour
 {
+    public TextMeshProUGUI coinText;
+    public Image characterImage;
+    public Button nextButton;
+    public Button restartButton;
+    public bool gameClear = false;
+
     private PhaseStage winPS = new PhaseStage();
     private PhaseStage selectPS = new PhaseStage();
 
-    public bool gameClear = false;
-
     void OnEnable()
     {
-        // TODO : 코인 및 캐릭터 UI 표시 and 버튼에 GameManager의 씬 이동 함수 연결
+        // 버튼 클릭 시 호출될 함수 추가
+        restartButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("CharacterSelectScene"));
+        nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("LevelSelectScene"));
+        // 플레이한 스테이지에서 얻은 코인 값을 표시
+        coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
+        // TODO : 얻은 캐릭터 표시
 
         if (MonsterSpawner.GetInstance.IsAllMonsterDead || gameClear)
         {

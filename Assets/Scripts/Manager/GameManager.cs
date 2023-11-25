@@ -10,6 +10,12 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Init();
+
+        if (!PlayerPrefs.HasKey("coin"))
+        {
+            PlayerPrefs.SetInt("coin", 0);
+            Debug.Log("Coin 새로 생성");
+        }
     }
 
     private static void Init()
