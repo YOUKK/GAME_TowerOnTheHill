@@ -14,7 +14,6 @@ public abstract class Monster : MonoBehaviour
     protected float         ignoreDistance;
     protected bool          isAttacking;
     protected bool          isDead;
-    // 랜덤 머니 관련 변수 추가
 
     [SerializeField]
     protected int           currentHP;
@@ -29,6 +28,7 @@ public abstract class Monster : MonoBehaviour
     private ParticleSystem  monsterBuffEffect;
     private SpriteRenderer  sprite;
 
+    // 코인 랜덤 생성 퍼센티지
     protected int           randomPercent = 100;
     protected bool          isGetCoin;
     protected GameObject    randomCoin;
