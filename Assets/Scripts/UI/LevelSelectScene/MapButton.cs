@@ -27,6 +27,8 @@ public class MapButton : MonoBehaviour
     private GameObject map2Stage;
     [SerializeField]
     private GameObject map3Stage;
+    [SerializeField]
+    private Button backButton;
 
     private Color selectColor = new Color(226 / 255f, 199 / 255f, 153 / 255f);
     private Color unselectColor = new Color(135 / 255f, 120 / 255f, 98 / 255f);
@@ -39,6 +41,7 @@ public class MapButton : MonoBehaviour
     {
         currentStageButton = map1Stage;
         currentStageButton.GetComponent<Animation>().Play("GoDown");
+        backButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Title"));
     }
 
     void Update()
