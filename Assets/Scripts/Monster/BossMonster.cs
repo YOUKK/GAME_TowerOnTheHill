@@ -116,11 +116,13 @@ public class BossMonster : Monster
         {
             case AttackPattern.Normal:
                 {
+                    yield return new WaitForSeconds(patternDuration);
                     StartCoroutine(NormalAttackCoroutine());
                     break;
                 }
             case AttackPattern.First:
                 {
+                    yield return new WaitForSeconds(patternDuration);
                     StartCoroutine(FirstPatternCoroutine());
                     break;
                 }
@@ -206,7 +208,7 @@ public class BossMonster : Monster
     {
         isMove = false;
         anim.SetTrigger("AttackTrigger");
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(4.0f);
 
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
@@ -221,6 +223,7 @@ public class BossMonster : Monster
         pattern = AttackPattern.Second;
         anim.SetTrigger("AttackTrigger");
 
+        yield return new WaitForSeconds(4.0f);
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
         StartCoroutine(Think());
@@ -234,6 +237,7 @@ public class BossMonster : Monster
         pattern = AttackPattern.Third;
         anim.SetTrigger("AttackTrigger");
 
+        yield return new WaitForSeconds(4.0f);
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
         StartCoroutine(Think());
