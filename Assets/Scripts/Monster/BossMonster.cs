@@ -23,6 +23,15 @@ public class BossMonster : Monster
     private Vector3 startPosition;
     private int moveKey = 1;
 
+    [SerializeField]
+    private GameObject normalAttackObject;
+    [SerializeField]
+    private GameObject firstAttackObject;
+    [SerializeField]
+    private GameObject secondAttackObject;
+    [SerializeField]
+    private GameObject thirdAttackObject;
+
     protected override void Start()
     {
         base.Start();
@@ -177,6 +186,7 @@ public class BossMonster : Monster
     {
         // TODO : 랜덤한 라인에 몬스터 생성 (한 공격 당 2마리씩 호출)
         Debug.Log("Normal Attack");
+        // Monster spawner에 몬스터 생성 함수 추가.
     }
     private void FirstAttack()
     {

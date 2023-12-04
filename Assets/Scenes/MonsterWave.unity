@@ -1950,6 +1950,10 @@ MonoBehaviour:
   currentForce: 0
   monsterBuffEffect: {fileID: 7816509664032207918, guid: 98cb5643a597e384496c9c7a0a91e2d7, type: 3}
   patternDuration: 0
+  normalAttackObject: {fileID: 100000, guid: 7b56cd9b663f23f429e131a54ec87db0, type: 3}
+  firstAttackObject: {fileID: 100000, guid: 3d4907e6bd39f474b8fd8220920e65c4, type: 3}
+  secondAttackObject: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
+  thirdAttackObject: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
 --- !u!1 &625230443
 GameObject:
   m_ObjectHideFlags: 0
