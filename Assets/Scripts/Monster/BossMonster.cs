@@ -11,17 +11,22 @@ public class BossMonster : Monster
     private GameObject secondAttackObj;
     private GameObject thirdAttackObj;
     private List<MonsterSpawnData> monsterSpawns;
+    // 이동에 쓰이는 변수들
+    [SerializeField]
+    private Transform[] linesPosition; // 이동할 라인 위치
+    private int lineIndex = 1;
+    private short flag = 1; // 라인 인덱스를 순회할 방향을 결정하는 플래그
+    private float totalTime = 5.0f;
+    private float elapsedTime = 0.0f;
+    private Vector3 initialPosition;
+    private bool isMove;
 
     [SerializeField]
     private float patternDuration;
     // Normal 공격을 할 차례인지를 나타내는 변수
     private bool isNormalAttackTime;
-    private bool isMove;
     private bool firstHurt = false;
     private bool secondHurt = false;
-    private float moveRange = 3.0f;
-    private Vector3 startPosition;
-    private int moveKey = 1;
 
     [SerializeField]
     private GameObject normalAttackObject;
@@ -40,7 +45,7 @@ public class BossMonster : Monster
         patternDuration = 5.0f;
         isMove = false;
         transform.position = new Vector3(6.5f, 1, -1);
-        startPosition = transform.position;
+        initialPosition = transform.position;
         StartCoroutine(Think());
     }
 
@@ -71,16 +76,28 @@ public class BossMonster : Monster
 
     protected override void Move(float speed)
     {
-        if (Mathf.Abs(transform.position.y - startPosition.y) < moveRange)
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime < totalTime)
         {
-            transform.position = new Vector3(transform.position.x,
-            transform.position.y + speed * moveKey * Time.deltaTime, transform.position.z);
+            float t = elapsedTime / totalTime;
+            transform.position = Vector3.Lerp(initialPosition, linesPosition[lineIndex].position, t);
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, 
-                startPosition.y + (moveRange - 0.01f) * moveKey, transform.position.z);
-            moveKey *= -1;
+            transform.position = linesPosition[lineIndex].position;
+            elapsedTime = 0.0f;
+            initialPosition = transform.position;
+            // 목적지 라인 변경
+            if(lineIndex + flag >= linesPosition.Length)
+            {
+                flag = -1;
+            }
+            else if(lineIndex + flag < 0)
+            {
+                flag = 1;
+            }
+            lineIndex += flag;
         }
     }
 
@@ -251,5 +268,10 @@ public class BossMonster : Monster
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
         StartCoroutine(Think());
+    }
+
+    private void EnableNormalSkillEffects()
+    {
+        
     }
 }
