@@ -29,6 +29,8 @@ public class BossMonster : Monster
     private bool secondHurt = false;
 
     [SerializeField]
+    private Transform[] spawnPoints;
+    [SerializeField]
     private GameObject normalAttackObject;
     [SerializeField]
     private GameObject firstAttackObject;
