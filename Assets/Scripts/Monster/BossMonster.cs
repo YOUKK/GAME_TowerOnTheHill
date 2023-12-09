@@ -203,9 +203,14 @@ public class BossMonster : Monster
 
     private void NormalAttack()
     {
-        // TODO : 랜덤한 라인에 몬스터 생성 (한 공격 당 2마리씩 호출)
+        // 무작위 위치에 무작위 몬스터 2마리 소환
         Debug.Log("Normal Attack");
-        // Monster spawner에 몬스터 생성 함수 추가.
+        int randomLine = Random.Range(0, 5);
+        int randomMonster = Random.Range(0, 9);
+        CreateMonsters(randomLine, randomMonster);
+        randomLine = Random.Range(0, 5);
+        randomMonster = Random.Range(0, 9);
+        CreateMonsters(randomLine, randomMonster);
     }
     private void FirstAttack()
     {
@@ -272,8 +277,20 @@ public class BossMonster : Monster
         StartCoroutine(Think());
     }
 
-    private void EnableNormalSkillEffects()
+    private void CreateMonsters(int line, int monsterNum)
     {
-        
+        if (line < 0 || line >= 5 || monsterNum < 0 || monsterNum >= 9)
+        {
+            Debug.Log("Parameter is not valid");
+            return;
+        }
+        // 이팩트 생성
+        Vector3 effectPos = spawnPoints[line].position;
+        effectPos += Vector3.down * 0.5f;
+        Quaternion effectRot = Quaternion.Euler(-84, 0, 0);
+        Instantiate(normalAttackObject, effectPos, effectRot);
+        // 몬스터 생성
+        GameObject monster = Resources.Load<GameObject>($"Prefabs/Monsters/{(MonsterName)monsterNum}");
+        Instantiate(monster, spawnPoints[line].position, transform.rotation);
     }
 }
