@@ -25,13 +25,13 @@ public abstract class Monster : MonoBehaviour
     public    int           CurrentLine { set => currentLine = value; }
 
     [SerializeField]
-    private ParticleSystem   monsterBuffEffect;
+    private ParticleSystem  monsterBuffEffect;
+    private SpriteRenderer  sprite;
 
     // 코인 랜덤 생성 퍼센티지
-    protected int            randomPercent = 100;
-    protected bool           isGetCoin;
-    protected GameObject     randomCoin;
-    protected SpriteRenderer sprite;
+    protected int           randomPercent = 100;
+    protected bool          isGetCoin;
+    protected GameObject    randomCoin;
 
     protected virtual void Start()
     {
@@ -137,8 +137,7 @@ public abstract class Monster : MonoBehaviour
         else
         {
             Destroy(gameObject.GetComponent<BoxCollider2D>());
-            if (anim != null) anim.SetBool("isDead", true);
-            else Dead();
+            anim.SetBool("isDead", true);
             isDead = true;
         }
     }
@@ -167,9 +166,9 @@ public abstract class Monster : MonoBehaviour
     private IEnumerator HittedCoroutine(int damage)
     {
         currentHP -= damage;
-        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0.6f);
+        sprite.color = new Color(255, 255, 255, 0.6f);
         yield return new WaitForSeconds(0.2f);
-        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1);
+        sprite.color = new Color(255, 255, 255, 1);
     }
 
     public MonsterType GetMonsterType()

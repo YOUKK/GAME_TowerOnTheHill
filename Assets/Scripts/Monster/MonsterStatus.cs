@@ -6,7 +6,7 @@ public enum MonsterName
 {
     Normal_Monster, Shield_Monster1, Shield_Monster2,
     Shield_Monster3, Aerial_Monster, Fast_Monster, Jump_Monster,
-    Smart_Monster, Mani_Monster, Boss_Monster,
+    Smart_Monster, Mani_Monster,
 }
 
 public enum MonsterType

@@ -36,8 +36,6 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField]
     private GameObject victoryPopup;
 
-    public GameObject bossMonster;
-
     void Start()
     {
         Init();
@@ -124,19 +122,11 @@ public class MonsterSpawner : MonoBehaviour
             phase = 1; 
             stage = 1; 
         }
-        if(phase == 3 && stage == 5)
-        {
-            bossMonster = GameObject.Find("Boss");
-            if(bossMonster)
-            {
-                InsertMonster(bossMonster, 1);
-            }
-        }
     }
 
     public GameObject[] GetLineMonstersInfo(int line)
     {
-        if (monsterList[line] == null) return null;
+        if (monsterList[line].Count == 0) return null;
 
         List<GameObject> tempMonsterList = new List<GameObject>();
         foreach (var item in monsterList[line])

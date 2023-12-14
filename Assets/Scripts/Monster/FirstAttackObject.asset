@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterName: FirstAttackObject
   hp: 50
   speed: 0.5
-  force: 999999
+  force: 10000
   hitSpeed: 1
   attackDistance: 0.5
   type: 0

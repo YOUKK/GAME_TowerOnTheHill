@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class BossMonster : Monster
 {
-    // 문제
-    /// <summary>
-    /// Boss Monster는 MonsterWaveDB에서 일반 몬스터 출격시키듯 시킴.
-    /// Boss의 파라미터인 SpawnPoint와 Waypoints를 어떻게 전달할 것인가.
-    /// 생성 후 지정된 위치까지 어떻게 이동시킬 것인가(코드, 애니메이션)
-    /// 이후 따라오는 여러 에러들
-    /// </summary>
     public enum AttackPattern { Normal, First, Second, Third, }
     
     private AttackPattern pattern;
+    private GameObject firstAttackObj;
+    private GameObject secondAttackObj;
+    private GameObject thirdAttackObj;
     private List<MonsterSpawnData> monsterSpawns;
     // 이동에 쓰이는 변수들
     [SerializeField]
@@ -104,8 +100,6 @@ public class BossMonster : Monster
                 flag = 1;
             }
             lineIndex += flag;
-            // 라인을 이동할 때마다 현재 라인 정보를 갱신함.
-            currentLine = lineIndex;
         }
     }
 
@@ -141,7 +135,7 @@ public class BossMonster : Monster
     private IEnumerator Think()
     {
         Idle();
-        yield return new WaitForSeconds(2 * patternDuration);
+        yield return new WaitForSeconds(patternDuration);
         anim.SetTrigger("AttackPrepare");
         ChangeAttackPattern();
         anim.SetBool("isPatternEnd", false);
@@ -220,8 +214,7 @@ public class BossMonster : Monster
     }
     private void FirstAttack()
     {
-        GameObject obj = Instantiate(firstAttackObject, spawnPoints[currentLine].position, transform.rotation);
-        MonsterSpawner.GetInstance.InsertMonster(obj, currentLine);
+        Debug.Log("First Attack");
     }
     private void SecondAttack()
     {
@@ -238,7 +231,7 @@ public class BossMonster : Monster
         {
             isMove = false;
             anim.SetTrigger("AttackTrigger");
-            yield return new WaitForSeconds(6.0f);
+            yield return new WaitForSeconds(4.0f);
         }
 
         isNormalAttackTime = false;
@@ -249,7 +242,7 @@ public class BossMonster : Monster
     {
         isMove = false;
         anim.SetTrigger("AttackTrigger");
-        yield return new WaitForSeconds(10.0f);
+        yield return new WaitForSeconds(4.0f);
 
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
