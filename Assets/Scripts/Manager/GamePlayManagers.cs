@@ -25,8 +25,7 @@ public class GamePlayManagers : MonoBehaviour
     private MouseInputManager mouseInputM = new MouseInputManager();
     public static MouseInputManager MouseInputM { get { return instance.mouseInputM; } }
 
-    [SerializeField]
-    private GameObject hammerItem;
+    private GameObject menuCanvas;
 
     // 한 스테이지 내에서 얻은 코인 값
     private int earnedCoin = 0;
@@ -34,13 +33,17 @@ public class GamePlayManagers : MonoBehaviour
 
     // 공유 변수
     public int slotNum = 6;
+    private bool isGameClear = false;
+    public bool IsGameClear { get => isGameClear; set => isGameClear = value; }
+
 
 	void Start()
     {
         Init();
         timeM.InitTimer();
         //timeM.StartTimer();
-        if(SceneManager.GetActiveScene().name == "GamePlayScene")
+        menuCanvas = GameObject.Find("MenuCanvas");
+        if (SceneManager.GetActiveScene().name == "GamePlayScene")
             ApplyShopItem();
     }
 
@@ -48,6 +51,10 @@ public class GamePlayManagers : MonoBehaviour
     {
         // 게임 플레이 씬이 시작되면 호출하기
         timeM.OnUpdate();
+        if(isGameClear)
+        {
+            menuCanvas.GetComponent<MenuCanvas>().ActivePopupVectory();
+        }
     }
 
     private static void Init()
@@ -68,8 +75,8 @@ public class GamePlayManagers : MonoBehaviour
     private void ApplyShopItem()
     {
         if (DataManager.GetData.GetShopData().hasHammer)
-            hammerItem.SetActive(true);
-        else hammerItem.SetActive(false);
+            menuCanvas.GetComponent<MenuCanvas>().ActiveHammer(true);
+        else menuCanvas.GetComponent<MenuCanvas>().ActiveHammer(false);
     }
 
     public void AddCoin(int amount)

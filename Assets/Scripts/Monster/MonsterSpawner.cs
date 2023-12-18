@@ -33,8 +33,7 @@ public class MonsterSpawner : MonoBehaviour
     // 선택한 스테이지 정보
     private PhaseStage selectPS = new PhaseStage();
 
-    [SerializeField]
-    private GameObject victoryPopup;
+    private GameObject menuCanvas;
 
     void Start()
     {
@@ -58,9 +57,9 @@ public class MonsterSpawner : MonoBehaviour
             monsterList[i] = new LinkedList<GameObject>();
         }
 
-        gameObject.GetComponent<MonsterWaveTimer>().enabled = true;
-
-        resourceUI = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
+        menuCanvas = GameObject.Find("MenuCanvas");
+        menuCanvas.GetComponent<MenuCanvas>().ActiveMonsterWaveTimer();
+        resourceUI = menuCanvas.GetComponent<CollectResource>();
         coinBox = resourceUI.transform.GetChild(1).gameObject;
     }
 
@@ -72,8 +71,7 @@ public class MonsterSpawner : MonoBehaviour
             {
                 if (monsterList[i].Count != 0) return;
             }
-            isAllMonsterDead = true;
-            victoryPopup.SetActive(true);
+            GamePlayManagers.Instance.IsGameClear = true;
             return;
         }
 
