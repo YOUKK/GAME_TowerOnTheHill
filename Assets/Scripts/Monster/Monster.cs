@@ -104,7 +104,8 @@ public abstract class Monster : MonoBehaviour
     {
         if (isGetCoin)
             Instantiate(randomCoin, transform.position, transform.rotation);
-
+        
+        // TODO : 현재 스테이지가 3-5이면 아래 코드 호출하지 않도록 조치
         MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
         Destroy(gameObject);
     }
