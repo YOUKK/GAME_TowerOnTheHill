@@ -6,7 +6,7 @@ using System.IO;
 // CharacterSelectScene에서 선택한 캐릭터 정보를 Load하는 스크립트
 // CharacterButtonCanvas에 붙음
 
-public class SelectCharacter : MonoBehaviour
+public class LoadCharacterButtonList : MonoBehaviour
 {
     private ButtonList loadButtonList = new ButtonList();
 

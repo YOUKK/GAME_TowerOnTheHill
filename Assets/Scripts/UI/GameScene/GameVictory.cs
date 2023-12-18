@@ -14,8 +14,8 @@ public class GameVictory : MonoBehaviour
     public Button restartButton;
     public bool gameClear = false;
 
-    private PhaseStage winPS = new PhaseStage();
-    private PhaseStage selectPS = new PhaseStage();
+    private PhaseStage winPS = new PhaseStage(); // 현재 클리어한 곳까지의 맵, 스테이지 정보
+    private PhaseStage selectPS = new PhaseStage(); // 선택한 맵, 스테이지 정보
 
     void OnEnable()
     {

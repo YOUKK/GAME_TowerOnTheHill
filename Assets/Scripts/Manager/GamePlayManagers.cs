@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 // 이 클래스를 통해 다른 매니저 클래스에 접근한다.
 // 여러 씬에서 공유하는 변수는 여기에 static 변수로 선언한다.
 
+// Manager 오브젝트에 붙는다
+
 public class GamePlayManagers : MonoBehaviour
 {
     private static GamePlayManagers instance;
