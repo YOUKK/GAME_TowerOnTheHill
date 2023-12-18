@@ -82,6 +82,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     hit.transform.GetComponent<Seat>().usable = false;
 
                     Destroy(dragCharacter.gameObject);
+                    Debug.Log("체크체크" + dragCharacter);
                     StartCoroutine(CoolTimeColor());
                 }
 				else // seat 위에 캐릭터가 이미 있는 경우 미설치
