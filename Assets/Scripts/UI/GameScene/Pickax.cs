@@ -62,7 +62,7 @@ public class Pickax : MonoBehaviour
         {
             if (hits[i].transform.CompareTag("Enemy"))
             {
-                hits[i].transform.gameObject.GetComponent<Monster>().Hit(100000);
+                hits[i].transform.gameObject.GetComponent<Monster>().Hit(1000);
                 
                 ShopData shopData = DataManager.GetData.GetShopData();
                 shopData.hasHammer = false;
