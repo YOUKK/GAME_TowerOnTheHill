@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 // 모든 매니저 클래스의 집합 클래스. 대표 매니저 클래스이다.
 // 이 클래스를 통해 다른 매니저 클래스에 접근한다.
@@ -28,6 +29,8 @@ public class GamePlayManagers : MonoBehaviour
     public static MouseInputManager MouseInputM { get { return instance.mouseInputM; } }
 
     private GameObject menuCanvas;
+    private PhaseStage currentPS;
+    public PhaseStage GetCurrentPS { get => currentPS; }
 
     // 한 스테이지 내에서 얻은 코인 값
     private int earnedCoin = 0;
@@ -45,6 +48,11 @@ public class GamePlayManagers : MonoBehaviour
         timeM.InitTimer();
         //timeM.StartTimer();
         menuCanvas = GameObject.Find("MenuCanvas");
+        // 현재 스테이지-페이즈 정보 불러오기
+        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
+        string jsonData = File.ReadAllText(path);
+        currentPS = JsonUtility.FromJson<PhaseStage>(jsonData);
+
         if (SceneManager.GetActiveScene().name == "GamePlayScene")
             ApplyShopItem();
     }

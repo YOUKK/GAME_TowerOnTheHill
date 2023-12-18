@@ -26,7 +26,7 @@ public class GameVictory : MonoBehaviour
         coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
         // TODO : 얻은 캐릭터 표시
 
-        if (MonsterSpawner.GetInstance.IsAllMonsterDead || gameClear)
+        if (GamePlayManagers.Instance.IsGameClear || gameClear)
         {
             // 스테이지 clear 정보 업데이트
             LoadWinPhaseStageFromJson();

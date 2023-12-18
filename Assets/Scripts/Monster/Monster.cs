@@ -105,7 +105,12 @@ public abstract class Monster : MonoBehaviour
         if (isGetCoin)
             Instantiate(randomCoin, transform.position, transform.rotation);
 
-        MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
+        // 보스전(3-5)에서는 MonsterSpawner을 사용하지 않는다.
+        if (GamePlayManagers.Instance.GetCurrentPS.stage != 5 &&
+            GamePlayManagers.Instance.GetCurrentPS.phase != 3)
+        {
+            MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
+        }
         Destroy(gameObject);
     }
 

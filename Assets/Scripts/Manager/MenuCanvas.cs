@@ -20,9 +20,9 @@ public class MenuCanvas : MonoBehaviour
         }
     }
 
-    public void ActiveMonsterWaveTimer()
+    public void ActiveMonsterWaveTimer(bool active = true)
     {
-        gameObject.GetComponent<MonsterWaveTimer>().enabled = true;
+        gameObject.GetComponent<MonsterWaveTimer>().enabled = active;
     }
 
     public void ActivePopupVectory()

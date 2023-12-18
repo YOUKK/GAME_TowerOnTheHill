@@ -22,9 +22,6 @@ public class MonsterSpawner : MonoBehaviour
     private LinkedList<GameObject>[] monsterList = new LinkedList<GameObject>[5];
 
     [SerializeField]
-    private bool isAllMonsterDead = false;
-    public  bool IsAllMonsterDead { get => isAllMonsterDead; }
-    [SerializeField]
     private int rewardCoin = 100;
 
     private CollectResource resourceUI;
