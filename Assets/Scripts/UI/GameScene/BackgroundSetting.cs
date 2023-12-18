@@ -23,7 +23,7 @@ public class BackgroundSetting : MonoBehaviour
 		{
             background.sprite = map2Background;
 		}
-		else // selectPs.phase == 3
+		else if(selectPS.phase == 3)
 		{
             background.sprite = map3Background;
 		}
