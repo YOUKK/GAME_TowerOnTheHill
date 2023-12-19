@@ -12,6 +12,7 @@ public enum CharacterButtonList // InventoryCanvas에 있는 캐릭터 버튼 순서대로
     Walnut,
     Bomb,
     IceShooter,
+    flyCharacter,
     GasMushroom,
     Eater,
     Buffer,

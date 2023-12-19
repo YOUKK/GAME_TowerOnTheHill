@@ -17,6 +17,8 @@ public class GameVictory : MonoBehaviour
     private PhaseStage winPS = new PhaseStage(); // 현재 클리어한 곳까지의 맵, 스테이지 정보
     private PhaseStage selectPS = new PhaseStage(); // 선택한 맵, 스테이지 정보
 
+
+
     void OnEnable()
     {
         // 버튼 클릭 시 호출될 함수 추가
@@ -36,7 +38,22 @@ public class GameVictory : MonoBehaviour
                 winPS.phase = selectPS.phase;
                 winPS.stage = selectPS.stage;
                 SavePhaseStageToJson();
+
+                if(!(winPS.phase == 1 && winPS.stage == 5) || (winPS.phase == 2 && winPS.stage == 5) || (winPS.phase == 3 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 5))
+                    UnlockCharacter(); // 스테이지에 따른 캐릭터 해금
             }
+        }
+    }
+
+    private void UnlockCharacter()
+	{
+		if (PlayerPrefs.HasKey("chaUnlockLevel"))
+		{
+            PlayerPrefs.SetInt("chaUnlockLevel", PlayerPrefs.GetInt("chaUnlockLevel") + 1);
+        }
+		else
+		{
+            PlayerPrefs.SetInt("chaUnlockLevel", 2);
         }
     }
 
