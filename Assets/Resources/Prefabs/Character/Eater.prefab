@@ -308,4 +308,7 @@ MonoBehaviour:
   strength: 0
   healthPoint: 0
   attackDuration: 0
-  canAttack: 0
+  type: 2
+  pSec: 0
+  eating: 0
+  A: 0

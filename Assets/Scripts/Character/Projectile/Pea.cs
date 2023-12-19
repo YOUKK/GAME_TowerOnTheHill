@@ -12,7 +12,8 @@ public class Pea : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if( collision.tag == "Enemy" )
+        if( collision.tag == "Enemy" && 
+            collision.gameObject.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
         {
             collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
             gameObject.transform.position = mainCharacter.transform.position;

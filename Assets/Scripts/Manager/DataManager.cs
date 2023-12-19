@@ -205,7 +205,7 @@ public class DataManager : MonoBehaviour
     public StageWave TryParse(int phase, int stage)
     {
         TextAsset csvData = Resources.Load<TextAsset>($"Data/{phaseFileNames[phase]}");
-        // print(csvData);
+        print(csvData);
         string[] data = csvData.text.Split(new char[] { '\n' });
         StageWave stageWave = WaveParse(data, stage);
 
