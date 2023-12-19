@@ -156,6 +156,7 @@ public class Character : MonoBehaviour
             }
             if (type == CharacterType.Normal && checkMonster)
             {
+                print(monster.GetComponent<Monster>().GetMonsterType());
                 if (monster.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
                 {
                     Attack();
