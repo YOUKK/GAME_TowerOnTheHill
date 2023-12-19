@@ -31,9 +31,11 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected int healthPoint;
     [SerializeField]
-    protected int attackDuration;
+    protected float attackDuration;
     [SerializeField]
     protected CharacterType type;
+
+    protected DataManager dataManager;
 
     private GameObject monster;
     private Monster AttackMonster;
@@ -47,7 +49,7 @@ public class Character : MonoBehaviour
     public float AttackDelay { get => attackDelay; set => attackDelay = value; }
     public int ProjectileNum { get => projectileNum; set => projectileNum = value; }
     public float Range { get => range; set => range = value; }
-    public int AttackDuration { get => attackDuration; set => attackDuration = value; }
+    public float AttackDuration { get => attackDuration; set => attackDuration = value; }
     public bool IsDragged { get => isDragged; set => isDragged = value; }
     public bool CheckMonster { get => checkMonster; set => checkMonster = value; }
 
@@ -73,6 +75,8 @@ public class Character : MonoBehaviour
         strength = status.strength;
         healthPoint = status.healthPoint;
         attackDuration = status.attackDuration;
+
+        dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
 
         if (AttackCoroutine == null)
         {
@@ -141,6 +145,7 @@ public class Character : MonoBehaviour
     public virtual void Attack() { }
     private void Update()
     {
+        
         monster = gameObject.GetComponentInChildren<MonsterCheck>().Monster;
     }
     IEnumerator AttackCoolTime()
@@ -156,6 +161,7 @@ public class Character : MonoBehaviour
             }
             if (type == CharacterType.Normal && checkMonster)
             {
+                print(monster.GetComponent<Monster>().GetMonsterType());
                 if (monster.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
                 {
                     Attack();

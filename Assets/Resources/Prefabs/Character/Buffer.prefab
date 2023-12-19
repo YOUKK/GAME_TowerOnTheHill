@@ -499,6 +499,7 @@ MonoBehaviour:
   strength: 0
   healthPoint: 0
   attackDuration: 0
+  type: 3
 --- !u!1 &6961220223041308258
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4806666078449067750}
   - component: {fileID: 8540055552270600698}
+  - component: {fileID: 4567788554343440354}
   m_Layer: 0
   m_Name: MonsterCheck
   m_TagString: Untagged
@@ -581,6 +583,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4567788554343440354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961220223041308258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1188b3c1a3e830f4b8adabad81878f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCharacter: {fileID: 0}
+  monster: {fileID: 0}
+  localPos: {x: 0, y: 0}
 --- !u!1 &8362191282414012555
 GameObject:
   m_ObjectHideFlags: 0

@@ -321,6 +321,7 @@ MonoBehaviour:
   strength: 0
   healthPoint: 0
   attackDuration: 0
+  type: 1
 --- !u!50 &-2597260020604531359
 Rigidbody2D:
   serializedVersion: 4
