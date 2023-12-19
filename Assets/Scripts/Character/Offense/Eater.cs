@@ -9,12 +9,14 @@ public class Eater : Character
     [SerializeField]
     private bool eating = false;
     [SerializeField]
-    private int A = 0;
+    private float A = 0;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        AttackDuration = int.Parse(dataManager.GetUpgradeDataDic()["Eater"].statIncrease[
+                                   dataManager.GetUpgradeDataDic()["Eater"].currentLevel].ToString());
     }
     // Update is called once per frame
     public override void Attack()

@@ -190,7 +190,6 @@ public class DataManager : MonoBehaviour
             upgradeDatas[5] = new UpgradeData("GasMushroom", 0, new float[] { 5, 6, 7, 8, 10 }, UpgradeKind.Force);
             upgradeDatas[6] = new UpgradeData("IceShooter", 0, new float[] { 10, 11, 12, 13, 14 }, UpgradeKind.Force);
 
-
             string json = JsonHelper.ToJson(upgradeDatas, true);
             Debug.Log(json);
             File.WriteAllText(characterDataPath, json);

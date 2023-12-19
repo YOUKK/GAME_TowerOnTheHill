@@ -8,6 +8,8 @@ public class SunFlower : Character
     protected override void Start()
     {
         base.Start();
+        AttackDuration = dataManager.GetUpgradeDataDic()["SunFlower"].statIncrease[
+                         dataManager.GetUpgradeDataDic()["SunFlower"].currentLevel];
     }
 
     public override void Attack()
