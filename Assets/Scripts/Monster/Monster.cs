@@ -124,16 +124,16 @@ public abstract class Monster : MonoBehaviour
             {
                 case AttackType.NORMAL:
                     break;
-                case AttackType.SLOW:
+                case AttackType.SLOW: // 얼음 캐릭터
                     {
                         // Slow();
                         break;
                     }
-                case AttackType.STUN:
+                case AttackType.STUN: // 스턴 캐릭터
                     break;
-                case AttackType.CRAZY:
+                case AttackType.CRAZY: // 최면 버섯 캐릭터
                     break;
-                case AttackType.DEAD:
+                case AttackType.DEAD: // 즉사 공격
                     break;
                 default:
                     break;
@@ -141,7 +141,7 @@ public abstract class Monster : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject.GetComponent<BoxCollider2D>());
+            Destroy(gameObject.GetComponent<Collider2D>());
             anim.SetBool("isDead", true);
             isDead = true;
         }
