@@ -24,6 +24,7 @@ public class MonsterCheck : MonoBehaviour
 
     private void Update()
     {
+        print((int)LocalPos.y);
         var T = A.GetLineMonstersInfo((int)LocalPos.y);
         if (T != null)
         {
