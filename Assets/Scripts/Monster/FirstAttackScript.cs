@@ -8,6 +8,15 @@ public class FirstAttackScript : Monster
     private Vector3 startPosition;
     protected override void Start()
     {
+        // 스테이터스 세팅
+        ignoreDistance = 0.5f;
+        currentHP = status.hp;
+        currentSpeed = status.speed;
+        currentForce = status.force;
+        int ran = Random.Range(0, 100);
+        if (ran <= randomPercent) isGetCoin = true;
+        else isGetCoin = false;
+
         startPosition = transform.position;
     }
 
