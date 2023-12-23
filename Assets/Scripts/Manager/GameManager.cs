@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("coin", 0);
             Debug.Log("Coin 새로 생성");
         }
+
+        // 아래 두줄은 테스트를 위한 코드
+        PlayerPrefs.DeleteKey("chaUnlockLevel");
+        PlayerPrefs.DeleteKey("slotNum");
     }
 
     private static void Init()
