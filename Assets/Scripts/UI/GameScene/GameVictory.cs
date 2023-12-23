@@ -41,9 +41,24 @@ public class GameVictory : MonoBehaviour
 
                 if (!((winPS.phase == 1 && winPS.stage == 4) || (winPS.phase == 2 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 3) || (winPS.phase == 3 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 5)))
                     UnlockCharacter(); // 스테이지에 따른 캐릭터 해금
+
+                if ((winPS.phase == 1 && winPS.stage == 1) || (winPS.phase == 1 && winPS.stage == 2) || (winPS.phase == 1 && winPS.stage == 3) || (winPS.phase == 1 && winPS.stage == 5))
+                    UnlockSlot();
             }
 
             Debug.Log("게임 클리어시 데이터 업데이트");
+        }
+    }
+
+    private void UnlockSlot()
+	{
+        if (PlayerPrefs.HasKey("slotNum"))
+        {
+            PlayerPrefs.SetInt("slotNum", PlayerPrefs.GetInt("slotNum") + 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("slotNum", 2);
         }
     }
 
