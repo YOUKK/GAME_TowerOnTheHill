@@ -12,7 +12,6 @@ public class GameVictory : MonoBehaviour
     public Image characterImage;
     public Button nextButton;
     public Button restartButton;
-    public bool gameClear = false;
 
     private PhaseStage winPS = new PhaseStage(); // 현재 클리어한 곳까지의 맵, 스테이지 정보
     private PhaseStage selectPS = new PhaseStage(); // 선택한 맵, 스테이지 정보
@@ -28,7 +27,8 @@ public class GameVictory : MonoBehaviour
         coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
         // TODO : 얻은 캐릭터 표시
 
-        if (GamePlayManagers.Instance.IsGameClear || gameClear)
+
+        if (GamePlayManagers.Instance.IsGameClear)
         {
             // 스테이지 clear 정보 업데이트
             LoadWinPhaseStageFromJson();
@@ -39,13 +39,15 @@ public class GameVictory : MonoBehaviour
                 winPS.stage = selectPS.stage;
                 SavePhaseStageToJson();
 
-                if(!(winPS.phase == 1 && winPS.stage == 5) || (winPS.phase == 2 && winPS.stage == 5) || (winPS.phase == 3 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 5))
+                if (!((winPS.phase == 1 && winPS.stage == 4) || (winPS.phase == 2 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 3) || (winPS.phase == 3 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 5)))
                     UnlockCharacter(); // 스테이지에 따른 캐릭터 해금
             }
+
+            Debug.Log("게임 클리어시 데이터 업데이트");
         }
     }
 
-    private void UnlockCharacter()
+	private void UnlockCharacter()
 	{
 		if (PlayerPrefs.HasKey("chaUnlockLevel"))
 		{
@@ -53,8 +55,10 @@ public class GameVictory : MonoBehaviour
         }
 		else
 		{
-            PlayerPrefs.SetInt("chaUnlockLevel", 2);
+            PlayerPrefs.SetInt("chaUnlockLevel", 3);
         }
+
+        Debug.Log("chaUnlockLevel in gamevictory " + PlayerPrefs.GetInt("chaUnlockLevel"));
     }
 
     //  json을 phaseStage로 로드하는 함수

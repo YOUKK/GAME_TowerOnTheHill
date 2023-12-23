@@ -27,7 +27,7 @@ public class CharacterInventory : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
