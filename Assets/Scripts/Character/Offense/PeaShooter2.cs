@@ -8,6 +8,8 @@ public class PeaShooter2 : Character
     protected override void Start()
     {
         base.Start();
+        strength = int.Parse(dataManager.GetUpgradeDataDic()["PeaShooter2"].statIncrease[
+                    dataManager.GetUpgradeDataDic()["PeaShooter2"].currentLevel].ToString());
     }
 
     public override void Attack()

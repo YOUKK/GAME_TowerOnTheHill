@@ -37,8 +37,8 @@ public class GamePlayManagers : MonoBehaviour
     public int GetEarnedCoin { get => earnedCoin; }
 
     // 공유 변수
-    public int slotNum = 6;
-    private bool isGameClear = false;
+    //public int slotNum = 6;
+    [SerializeField] private bool isGameClear = false;
     public bool IsGameClear { get => isGameClear; set => isGameClear = value; }
 
 

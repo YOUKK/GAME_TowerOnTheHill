@@ -136,6 +136,7 @@ MonoBehaviour:
   strength: 0
   healthPoint: 0
   attackDuration: 0
+  type: 1
   attacker: {fileID: 5043891114440289369}
   attackEffect: {fileID: 3551478821791031117}
   DeadEffect: {fileID: 7215636651819552038}

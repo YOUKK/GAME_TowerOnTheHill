@@ -20,7 +20,7 @@ public class StageButton : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()

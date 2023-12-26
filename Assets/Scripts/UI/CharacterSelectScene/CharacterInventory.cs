@@ -10,9 +10,12 @@ public enum CharacterButtonList // InventoryCanvas에 있는 캐릭터 버튼 순서대로
     Sunflower,
     PeaShooter,
     Walnut,
-    GasMushroom,
+    Bomb,
     IceShooter,
+    flyCharacter,
+    GasMushroom,
     Eater,
+    Buffer,
     None, // InventoryCanvas에 캐릭터 버튼이 없는 걸 의미
 }
 
@@ -24,7 +27,7 @@ public class CharacterInventory : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()

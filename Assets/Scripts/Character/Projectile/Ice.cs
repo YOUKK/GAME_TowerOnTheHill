@@ -12,7 +12,8 @@ public class Ice : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Enemy")
+        if (col.tag == "Enemy"
+            && collision.gameObject.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
         {
             collision = col;
             col.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);

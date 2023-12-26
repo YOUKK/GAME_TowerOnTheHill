@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3846168}
   m_Layer: 5
-  m_Name: Button6
+  m_Name: Button8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ RectTransform:
   - {fileID: 731711543}
   - {fileID: 1079967849}
   m_Father: {fileID: 1153924668}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -563,7 +563,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 75
+  m_text: '150
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa2f3c655b3634b2b852b64fd197fd58, type: 2}
   m_sharedMaterial: {fileID: 6447333859754382329, guid: aa2f3c655b3634b2b852b64fd197fd58, type: 2}
@@ -1053,7 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 4
+  character: 9
   isSelect: 0
 --- !u!114 &54751305
 MonoBehaviour:
@@ -1760,7 +1762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 4
+  character: 9
   isSelect: 0
 --- !u!114 &154081745
 MonoBehaviour:
@@ -2060,7 +2062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 4
+  character: 9
   isSelect: 0
 --- !u!114 &180607669
 MonoBehaviour:
@@ -2941,7 +2943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 302167990}
   m_Layer: 5
-  m_Name: Button4 (3)
+  m_Name: Button4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2961,7 +2963,7 @@ RectTransform:
   - {fileID: 1771422300}
   - {fileID: 819294088}
   m_Father: {fileID: 1153924668}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3234,7 +3236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 75
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa2f3c655b3634b2b852b64fd197fd58, type: 2}
   m_sharedMaterial: {fileID: 6447333859754382329, guid: aa2f3c655b3634b2b852b64fd197fd58, type: 2}
@@ -3537,7 +3539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 387224717}
   m_Layer: 5
-  m_Name: Button4 (5)
+  m_Name: Button9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4384,7 +4386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 4
+  character: 5
   isSelect: 0
 --- !u!114 &500449777
 MonoBehaviour:
@@ -4874,7 +4876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &622182956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5426,7 +5428,7 @@ GameObject:
   - component: {fileID: 678355146}
   - component: {fileID: 678355145}
   m_Layer: 5
-  m_Name: GasMushroomButton
+  m_Name: BufferButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5466,7 +5468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 4
+  character: 8
   isSelect: 0
 --- !u!114 &678355146
 MonoBehaviour:
@@ -5475,7 +5477,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678355143}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -5581,7 +5583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &685992155
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5731,7 +5733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &724824697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6002,7 +6004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &769361436
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6114,7 +6116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 4
+  character: 9
   isSelect: 0
 --- !u!114 &782701781
 MonoBehaviour:
@@ -6295,7 +6297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798449687}
   m_Layer: 5
-  m_Name: Button4 (4)
+  m_Name: Button6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6315,7 +6317,7 @@ RectTransform:
   - {fileID: 1511592388}
   - {fileID: 500449775}
   m_Father: {fileID: 1153924668}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6470,7 +6472,7 @@ GameObject:
   - component: {fileID: 819294090}
   - component: {fileID: 819294089}
   m_Layer: 5
-  m_Name: GasMushroomButton
+  m_Name: BombButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6510,7 +6512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 4
+  character: 3
   isSelect: 0
 --- !u!114 &819294090
 MonoBehaviour:
@@ -6519,7 +6521,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819294087}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -6997,7 +6999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 4
+  character: 9
   isSelect: 0
 --- !u!114 &946011884
 MonoBehaviour:
@@ -7632,7 +7634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 75
+  m_text: 150
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa2f3c655b3634b2b852b64fd197fd58, type: 2}
   m_sharedMaterial: {fileID: 6447333859754382329, guid: aa2f3c655b3634b2b852b64fd197fd58, type: 2}
@@ -7985,8 +7987,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchoredPosition: {x: 15, y: 5}
+  m_SizeDelta: {x: 80, y: 90}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1047711878
 MonoBehaviour:
@@ -8008,7 +8010,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 382a9c9ed376a69449da5d29bf8ead1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9177961177dc0f4eb22b3023da8eef9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8329,7 +8331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1079967849
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8364,7 +8366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 5
+  character: 7
   isSelect: 0
 --- !u!114 &1079967851
 MonoBehaviour:
@@ -8832,6 +8834,7 @@ GameObject:
   - component: {fileID: 1153924671}
   - component: {fileID: 1153924670}
   - component: {fileID: 1153924669}
+  - component: {fileID: 1153924673}
   m_Layer: 5
   m_Name: Contents
   m_TagString: Untagged
@@ -8853,11 +8856,11 @@ RectTransform:
   - {fileID: 1465499338}
   - {fileID: 1369924070}
   - {fileID: 1904736076}
-  - {fileID: 2092080367}
-  - {fileID: 136803910}
-  - {fileID: 3846168}
   - {fileID: 302167990}
+  - {fileID: 136803910}
   - {fileID: 798449687}
+  - {fileID: 2092080367}
+  - {fileID: 3846168}
   - {fileID: 387224717}
   - {fileID: 1307125382}
   - {fileID: 1977612921}
@@ -8949,6 +8952,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153924667}
   m_CullTransparentMesh: 1
+--- !u!114 &1153924673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153924667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344581420059c03479d6edd7338603ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaUnlockLevel: 0
 --- !u!1 &1183701368
 GameObject:
   m_ObjectHideFlags: 0
@@ -9315,7 +9331,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 487125826}
   m_HandleRect: {fileID: 487125825}
   m_Direction: 2
-  m_Value: 1.000002
+  m_Value: 1.0000011
   m_Size: 0.94736844
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9881,7 +9897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1337190871
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10317,7 +10333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1411365677
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11200,7 +11216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 75
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa2f3c655b3634b2b852b64fd197fd58, type: 2}
   m_sharedMaterial: {fileID: 6447333859754382329, guid: aa2f3c655b3634b2b852b64fd197fd58, type: 2}
@@ -11998,7 +12014,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 382a9c9ed376a69449da5d29bf8ead1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2da2c536f78d3a240a166b0f153c436d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12221,8 +12237,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5}
-  m_SizeDelta: {x: 120, y: 120}
+  m_AnchoredPosition: {x: 15, y: 5}
+  m_SizeDelta: {x: 80, y: 90}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1702567808
 MonoBehaviour:
@@ -12244,7 +12260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 382a9c9ed376a69449da5d29bf8ead1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9177961177dc0f4eb22b3023da8eef9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13322,7 +13338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 382a9c9ed376a69449da5d29bf8ead1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2da2c536f78d3a240a166b0f153c436d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14699,7 +14715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1980948929
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15124,7 +15140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2057153852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15253,7 +15269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec82524bfb6d3434a86545e912701951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 3
+  character: 6
   isSelect: 0
 --- !u!1 &2092080366
 GameObject:
@@ -15265,7 +15281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2092080367}
   m_Layer: 5
-  m_Name: Button4
+  m_Name: Button7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15285,7 +15301,7 @@ RectTransform:
   - {fileID: 1439520371}
   - {fileID: 2057153852}
   m_Father: {fileID: 1153924668}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

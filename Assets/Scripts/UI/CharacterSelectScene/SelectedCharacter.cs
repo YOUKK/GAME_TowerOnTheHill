@@ -32,7 +32,10 @@ public class SelectedCharacter : MonoBehaviour
 
 	private void Awake()
 	{
-        max = GamePlayManagers.Instance.slotNum;
+		if (!PlayerPrefs.HasKey("slotNum"))
+            PlayerPrefs.SetInt("slotNum", 2);
+        max = PlayerPrefs.GetInt("slotNum");
+        //max = GamePlayManagers.Instance.slotNum;
         //max = DataManager.GetShopData().slotLevel;
         SetSlot();
     }
