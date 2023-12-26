@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+// 선택한 맵에 따라 백그라운드를 설정하는 스크립트
+// GamePlayScene에서 Background 오브젝트에 붙는다.
+// CharacterSeletScene에서 Background 오브젝트에 붙는다.
+
 public class BackgroundSetting : MonoBehaviour
 {
     private SpriteRenderer background; // 배경 스프라이트
