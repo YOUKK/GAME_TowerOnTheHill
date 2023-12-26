@@ -2024,7 +2024,7 @@ MonoBehaviour:
   - {fileID: 199239143}
   normalAttackObject: {fileID: 100000, guid: 7b56cd9b663f23f429e131a54ec87db0, type: 3}
   firstAttackObject: {fileID: 6060147283240614440, guid: fc6580ed02039454296bcb94e52b4205, type: 3}
-  secondAttackObject: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9, type: 3}
+  secondAttackObject: {fileID: 1072062405777353207, guid: d1b596e6b2fa0304bab3515022d767b9, type: 3}
   thirdAttackObject: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
 --- !u!1 &625230443
 GameObject:
@@ -2966,7 +2966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &700676519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5153,7 +5153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ad8ace49d8f6a469addb383437e725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotNum: 6
+  isGameClear: 0
 --- !u!4 &1454694005
 Transform:
   m_ObjectHideFlags: 0

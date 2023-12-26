@@ -222,7 +222,7 @@ public class BossMonster : Monster
     }
     private void SecondAttack()
     {
-        Debug.Log("Second Attack");
+        Instantiate(secondAttackObject, spawnPoints[currentLine].position, transform.rotation);
     }
     private void ThirdAttack()
     {
