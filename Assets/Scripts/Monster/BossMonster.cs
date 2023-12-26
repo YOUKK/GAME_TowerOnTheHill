@@ -7,9 +7,6 @@ public class BossMonster : Monster
     public enum AttackPattern { Normal, First, Second, Third, }
     
     private AttackPattern pattern;
-    private GameObject firstAttackObj;
-    private GameObject secondAttackObj;
-    private GameObject thirdAttackObj;
     private List<MonsterSpawnData> monsterSpawns;
     // 이동에 쓰이는 변수들
     [SerializeField]
@@ -27,6 +24,7 @@ public class BossMonster : Monster
     private bool isNormalAttackTime;
     private bool firstHurt = false;
     private bool secondHurt = false;
+    private int sortOrderCount = 0;
 
     [SerializeField]
     private Transform[] spawnPoints;
@@ -82,6 +80,7 @@ public class BossMonster : Monster
 
         if (elapsedTime < totalTime)
         {
+            currentLine = lineIndex;
             float t = elapsedTime / totalTime;
             transform.position = Vector3.Lerp(initialPosition, linesPosition[lineIndex].position, t);
         }
@@ -208,17 +207,22 @@ public class BossMonster : Monster
         int randomLine = Random.Range(0, 5);
         int randomMonster = Random.Range(0, 9);
         CreateMonsters(randomLine, randomMonster);
-        randomLine = Random.Range(0, 5);
+        int randomLine2 = 0;
+        do
+        {
+            randomLine2 = Random.Range(0, 5);
+        }
+        while (randomLine == randomLine2);
         randomMonster = Random.Range(0, 9);
-        CreateMonsters(randomLine, randomMonster);
+        CreateMonsters(randomLine2, randomMonster);
     }
     private void FirstAttack()
     {
-        Debug.Log("First Attack");
+        Instantiate(firstAttackObject, spawnPoints[currentLine].position, transform.rotation);
     }
     private void SecondAttack()
     {
-        Debug.Log("Second Attack");
+        Instantiate(secondAttackObject, spawnPoints[currentLine].position, transform.rotation);
     }
     private void ThirdAttack()
     {
@@ -227,7 +231,20 @@ public class BossMonster : Monster
 
     private IEnumerator NormalAttackCoroutine()
     {
-        for (int i = 0; i < 5; ++i)
+        int spawnCount = 0;
+        if (secondHurt)
+        {
+            spawnCount = 5;
+        }
+        else if (firstHurt)
+        {
+            spawnCount = 4;
+        }
+        else
+        {
+            spawnCount = 2;
+        }
+        for (int i = 0; i < spawnCount; ++i)
         {
             isMove = false;
             anim.SetTrigger("AttackTrigger");
@@ -291,6 +308,10 @@ public class BossMonster : Monster
         Instantiate(normalAttackObject, effectPos, effectRot);
         // 몬스터 생성
         GameObject monster = Resources.Load<GameObject>($"Prefabs/Monsters/{(MonsterName)monsterNum}");
+        monster.GetComponent<SpriteRenderer>().sortingLayerName = $"Line{line}";
+        monster.GetComponent<SpriteRenderer>().sortingOrder = sortOrderCount;
+        sortOrderCount++;
+        sortOrderCount %= 10;
         Instantiate(monster, spawnPoints[line].position, transform.rotation);
     }
 }

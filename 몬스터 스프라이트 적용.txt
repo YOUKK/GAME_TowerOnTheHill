@@ -1,5 +1,0 @@
-몬스터 프리펩에 스프라이트 적용 시
-
-1. Transform에서 Scale(0.3, 0.3, 1)로 지정.
-2. Capsule Collider 2D에서 Offset (0, -1) , Size(4.3, 4)로 지정
-3. Animation에서 대체로 W alk, Attack의 재생 시간은 1초로 지정
