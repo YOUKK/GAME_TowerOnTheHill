@@ -37,6 +37,9 @@ public class BossMonster : Monster
     [SerializeField]
     private GameObject thirdAttackObject;
 
+    private GameObject thirdAttackEffect1;
+    private GameObject thirdAttackEffect2;
+
     protected override void Start()
     {
         base.Start();
@@ -155,11 +158,13 @@ public class BossMonster : Monster
                 }
             case AttackPattern.Second:
                 {
+                    yield return new WaitForSeconds(patternDuration);
                     StartCoroutine(SecondPatternCoroutine());
                     break;
                 }
             case AttackPattern.Third:
                 {
+                    yield return new WaitForSeconds(patternDuration);
                     StartCoroutine(ThirdPatternCoroutine());
                     break;
                 }
@@ -226,7 +231,43 @@ public class BossMonster : Monster
     }
     private void ThirdAttack()
     {
-        Debug.Log("Third Attack");
+        Vector2[] characterOnSeats = Map.GetInstance().GetCharacterPlacedSeats();
+
+        // 캐릭터가 올라와 있는 seat의 인덱스
+        int random1Idx = 0;
+        int random2Idx = 0;
+
+        if (characterOnSeats.Length > 2)
+        {
+            random1Idx = Random.Range(0, characterOnSeats.Length - 1);
+            do
+            {
+                random2Idx = Random.Range(0, characterOnSeats.Length - 1);
+            }
+            while (random1Idx == random2Idx);
+        }
+        else if (characterOnSeats.Length == 2)
+        {
+            random1Idx = 0;
+            random2Idx = 1;
+        }
+        else if (characterOnSeats.Length == 1)
+        {
+            EnableSkillEffects(characterOnSeats[0]);
+            Map.GetInstance().GetCharacterInSeat(characterOnSeats[0]).Hit(1000);
+            return;
+        }
+        else return;
+
+        // 이팩트 실행
+        EnableSkillEffects(characterOnSeats[random1Idx]);
+        EnableSkillEffects(characterOnSeats[random2Idx]);
+
+        // 캐릭터 오브젝트 가져오고 Hit 함수 호출
+        Map.GetInstance().GetCharacterInSeat(characterOnSeats[random1Idx]).Hit(1000);
+        Map.GetInstance().GetCharacterInSeat(characterOnSeats[random2Idx]).Hit(1000);
+        // 이펙트 종료
+        //DisableSkillEffects();
     }
 
     private IEnumerator NormalAttackCoroutine()
@@ -313,5 +354,24 @@ public class BossMonster : Monster
         sortOrderCount++;
         sortOrderCount %= 10;
         Instantiate(monster, spawnPoints[line].position, transform.rotation);
+    }
+
+    private void EnableSkillEffects(Vector2 seat)
+    {
+        Vector3 skillPos = Map.GetInstance().GetSeatPosition(seat);
+
+        skillPos += Vector3.down * 0.5f;
+
+        Quaternion newRotation = Quaternion.Euler(90, 0, 0);
+
+        thirdAttackEffect1 = Instantiate(thirdAttackObject, skillPos, newRotation);
+        //thirdAttackEffect1.GetComponent<ParticleSystem>().Play();
+        //thirdAttackEffect2.GetComponent<ParticleSystem>().Play();
+    }
+
+    private void DisableSkillEffects()
+    {
+        Destroy(thirdAttackEffect1);
+        Destroy(thirdAttackEffect2);
     }
 }

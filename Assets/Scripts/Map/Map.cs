@@ -191,4 +191,14 @@ public class Map : MonoBehaviour
 
         return line;
     }
+
+    public Character GetCharacterInSeat(Vector2 loc)
+    {
+        GameObject ch = seats[(int)loc.y][(int)loc.x].GetComponent<Seat>().character;
+        if (ch != null)
+        {
+            return ch.GetComponent<Character>();
+        }
+        return null;
+    }
 }
