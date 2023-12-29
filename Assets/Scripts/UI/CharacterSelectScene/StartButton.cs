@@ -29,6 +29,7 @@ public class StartButton : MonoBehaviour
 
         // æ¿ ¿Ãµø
         SceneManager.LoadScene("GamePlayScene");
+        SoundManager.Instance.PlayBGM("Battle");
 	}
 
     public void CanPressButton()
