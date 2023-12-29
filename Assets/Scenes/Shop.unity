@@ -2112,7 +2112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4650f94dfecd084f80fee374e92bc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterWaveTimer: {fileID: 0}
 --- !u!4 &472400362
 Transform:
   m_ObjectHideFlags: 0

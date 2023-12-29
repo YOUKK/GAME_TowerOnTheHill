@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
         }
 
         // 아래 두줄은 테스트를 위한 코드
-        PlayerPrefs.DeleteKey("chaUnlockLevel");
-        PlayerPrefs.DeleteKey("slotNum");
+        //PlayerPrefs.DeleteKey("chaUnlockLevel");
+        //PlayerPrefs.DeleteKey("slotNum");
     }
 
     private static void Init()
