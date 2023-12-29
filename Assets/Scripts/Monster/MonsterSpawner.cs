@@ -152,7 +152,7 @@ public class MonsterSpawner : MonoBehaviour
         {
             foreach (var item in monsterList[i])
             {
-                item.GetComponent<Monster>().ChangeStatus(10, 0.2f, 500);
+                item.GetComponent<Monster>().ChangeStatus(20, 0.2f, 50);
             }
         }
         Invoke("NerfMonsters", monsterBuffTime);
