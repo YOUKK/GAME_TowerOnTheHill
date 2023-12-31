@@ -28,8 +28,8 @@ public class GameVictory : MonoBehaviour
         // TODO : 얻은 캐릭터 표시
 
 
-        if (GamePlayManagers.Instance.IsGameClear)
-        {
+        //if (GamePlayManagers.Instance.IsGameClear)
+        //{
             // 스테이지 clear 정보 업데이트
             LoadWinPhaseStageFromJson();
             LoadSelectPhaseStageFromJson();
@@ -47,7 +47,7 @@ public class GameVictory : MonoBehaviour
             }
 
             Debug.Log("게임 클리어시 데이터 업데이트");
-        }
+        //}
     }
 
     private void UnlockSlot()
