@@ -2897,7 +2897,6 @@ MonoBehaviour:
   characterImage: {fileID: 6768956932011690896}
   nextButton: {fileID: 1343593530568368399}
   restartButton: {fileID: 5657598237948736659}
-  gameClear: 0
 --- !u!1 &7753783274649732125
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,10 +61,10 @@ public class GamePlayManagers : MonoBehaviour
     {
         // 게임 플레이 씬이 시작되면 호출하기
         timeM.OnUpdate();
-        if(isGameClear)
-        {
-            menuCanvas.GetComponent<MenuCanvas>().ActivePopupVectory();
-        }
+        //if(isGameClear)
+        //{
+        //    menuCanvas.GetComponent<MenuCanvas>().ActivePopupVectory();
+        //}
     }
 
     private static void Init()
@@ -80,6 +80,16 @@ public class GamePlayManagers : MonoBehaviour
 
             instance = go.GetComponent<GamePlayManagers>();
 		}
+	}
+
+    public void Victory()
+	{
+        menuCanvas.GetComponent<MenuCanvas>().ActivePopupVictory();
+    }
+
+    public void Defeat()
+	{
+        menuCanvas.GetComponent<MenuCanvas>().ActivePopupDefeat();
 	}
 
     private void ApplyShopItem()

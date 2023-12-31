@@ -1,27 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 // StartEndUI 오브젝트 -> 자식 Endline오브젝트에 붙는다. 
 public class GameDefeat : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject defeat;
-    void Start()
-    {
-        
-    }
+	public TextMeshProUGUI coinText;
+	public Button nextButton;
+	public Button restartButton;
 
-    void Update()
-    {
-        
-    }
-
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnEnable()
 	{
-		if (collision.CompareTag("Enemy"))
-		{
-            defeat.SetActive(true);
-		}
+		restartButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("CharacterSelectScene"));
+		nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("LevelSelectScene"));
+
+		coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
 	}
 }
