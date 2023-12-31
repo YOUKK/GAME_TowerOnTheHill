@@ -25,7 +25,7 @@ public class MenuCanvas : MonoBehaviour
         gameObject.GetComponent<MonsterWaveTimer>().enabled = active;
     }
 
-    public void ActivePopupVectory()
+    public void ActivePopupVictory()
     {
         GameObject obj = GetComponentInChildren<GameVictory>(true).gameObject;
         if(obj)
@@ -35,6 +35,19 @@ public class MenuCanvas : MonoBehaviour
         else
         {
             Debug.LogError("Failed to find object Popup_Victory");
+        }
+    }
+
+    public void ActivePopupDefeat()
+	{
+        GameObject obj = GetComponentInChildren<GameDefeat>(true).gameObject;
+        if (obj)
+        {
+            obj.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Failed to find object Popup_Defeat");
         }
     }
 }
