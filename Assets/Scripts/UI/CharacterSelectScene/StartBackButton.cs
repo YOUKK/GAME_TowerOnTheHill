@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class StartBackButton : MonoBehaviour
 {
     private TextMeshProUGUI text;
     private SelectedCharacter selectedCharacter;
@@ -43,4 +43,9 @@ public class StartButton : MonoBehaviour
         transform.GetComponent<Button>().interactable = false;
         text.color = new Color(1, 196 / 255f, 175 / 255f, 0.5f);
     }
+
+    public void Back()
+	{
+        GameManager.GetInstance.MoveScene("LevelSelectScene");
+	}
 }

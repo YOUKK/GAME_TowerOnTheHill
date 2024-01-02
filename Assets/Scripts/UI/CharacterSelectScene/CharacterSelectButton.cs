@@ -11,7 +11,7 @@ public class CharacterSelectButton : MonoBehaviour
     private CharacterInventory characterInventory;
     [SerializeField]
     private CharacterButtonList character; // 캐릭터 버튼 enum, 하이어라키창에서 설정
-    private StartButton startButton;
+    private StartBackButton startButton;
 
 
     public bool isSelect = false;
@@ -27,7 +27,7 @@ public class CharacterSelectButton : MonoBehaviour
         selectedCharacter = GameObject.Find("SelectedCanvas").GetComponent<SelectedCharacter>();
         characterInventory = GameObject.Find("InventoryCanvas").GetComponent<CharacterInventory>();
         characterInventory.enumPerButtonDic.Add(character, gameObject);
-        startButton = GameObject.Find("InventoryCanvas").transform.GetChild(0).transform.GetChild(3).gameObject.GetComponent<StartButton>();
+        startButton = GameObject.Find("InventoryCanvas").transform.GetChild(0).transform.GetChild(3).gameObject.GetComponent<StartBackButton>();
 
         motherObject = transform.parent;
     }

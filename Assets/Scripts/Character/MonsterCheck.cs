@@ -11,6 +11,15 @@ public class MonsterCheck : MonoBehaviour
     [SerializeField]
     private Vector2 localPos;
 
+    [SerializeField]
+    private Vector2 rangeSize;
+    [SerializeField]
+    private Vector2 rangePos;
+
+
+    [SerializeField]
+    private Collider2D[] hitRangeMonster;
+
     public Vector2 LocalPos { get => localPos; set => localPos = value; }
     public GameObject Monster { get => monster; set => monster = value; }
 
@@ -18,12 +27,40 @@ public class MonsterCheck : MonoBehaviour
     void Start()
     {
         mainCharacter = transform.GetComponentInParent<Character>();
-        A = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>();
-        //Range = LocalPos.x + (float)mainCharacter.Range;
+
+        rangePos = new Vector2(transform.position.x + mainCharacter.Range / 2f, transform.position.y);
+        rangeSize = new Vector2(mainCharacter.Range, 0.5f);
+        // A = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>();
+        // Range = LocalPos.x + (float)mainCharacter.Range;
     }
 
     private void Update()
     {
+        hitRangeMonster = Physics2D.OverlapBoxAll(rangePos,
+                                                  rangeSize,
+                                                  0);
+
+        bool flag = false;
+
+        for (int i = 0; i < hitRangeMonster.Length; i++)
+        {
+            if(hitRangeMonster[i].CompareTag("Enemy"))
+            {
+                flag = true;
+                break;
+            }
+        }
+
+        if(flag && hitRangeMonster.Length != 0)
+        {
+            mainCharacter.CheckMonster = true;
+        }
+        else
+        {
+            mainCharacter.CheckMonster = false;
+        }
+
+        /*
         //print((int)LocalPos.y);
         var T = A.GetLineMonstersInfo((int)LocalPos.y);
         if (T != null)
@@ -45,5 +82,6 @@ public class MonsterCheck : MonoBehaviour
         {
             mainCharacter.CheckMonster = false;
         }
+        */
     }
 }
