@@ -53,6 +53,7 @@ public class Resource : MonoBehaviour
                             isClick = true;
                             resourceUI.EarnResource(50); // resource의 양을 일단 50이라고 설정함
                             StartCoroutine(MovetoUI(iconGem.transform.position));
+                            SoundManager.Instance.PlayEffect("GetResource");
                             break;
                         }
                     case ResourceType.Coin:

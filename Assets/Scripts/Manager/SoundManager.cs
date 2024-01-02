@@ -49,5 +49,8 @@ public class SoundManager : MonoBehaviour
 	public void PlayEffect(string pileName)
 	{
 		string path = $"Sounds/Effect/{pileName}";
+		AudioClip audioClip = Resources.Load<AudioClip>(path);
+		effectSource.clip = audioClip;
+		effectSource.Play();
 	}
 }
