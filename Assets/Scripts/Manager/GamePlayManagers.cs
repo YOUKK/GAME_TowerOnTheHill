@@ -61,11 +61,11 @@ public class GamePlayManagers : MonoBehaviour
     {
         // 게임 플레이 씬이 시작되면 호출하기
         timeM.OnUpdate();
-        //if(isGameClear)
-        //{
-        //    menuCanvas.GetComponent<MenuCanvas>().ActivePopupVectory();
-        //}
-    }
+
+        // 테스트 코드
+		if (isGameClear)
+            Victory();
+	}
 
     private static void Init()
 	{

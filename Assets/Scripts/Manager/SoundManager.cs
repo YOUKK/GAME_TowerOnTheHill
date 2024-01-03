@@ -4,31 +4,38 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-	private static SoundManager instance;
-	public static SoundManager Instance { get { Init(); return instance; } }
+	private static SoundManager instance = null;
+	public static SoundManager Instance { 
+		get
+		{
+			if (instance == null)
+			{
+				return null;
+			}
+		 return instance; 
+		} 
+	}
 
 	AudioSource bgmSource;
 	AudioSource effectSource;
 
 	private void Awake()
 	{
-		Init();
+		// ΩÃ±€≈Ê
+		if (instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad(this.gameObject);
+		}
+		else
+		{
+			Destroy(this.gameObject);
+		}
 
 		bgmSource = transform.GetChild(0).GetComponent<AudioSource>();
 		effectSource = transform.GetChild(1).GetComponent<AudioSource>();
 
 		PlayBGM("Title");
-	}
-
-	private static void Init()
-	{
-		// ΩÃ±€≈Ê
-		if(instance == null)
-		{
-			GameObject go = GameObject.Find("SoundManager");
-			DontDestroyOnLoad(go);
-			instance = go.GetComponent<SoundManager>();
-		}
 	}
 
 	public void PlayBGM(string pileName)
@@ -42,5 +49,8 @@ public class SoundManager : MonoBehaviour
 	public void PlayEffect(string pileName)
 	{
 		string path = $"Sounds/Effect/{pileName}";
+		AudioClip audioClip = Resources.Load<AudioClip>(path);
+		effectSource.clip = audioClip;
+		effectSource.Play();
 	}
 }
