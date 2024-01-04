@@ -13,8 +13,8 @@ public class GameDefeat : MonoBehaviour
 
 	private void OnEnable()
 	{
-		restartButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("CharacterSelectScene"));
-		nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("LevelSelectScene"));
+		restartButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "CharacterSelectScene"));
+		nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "LevelSelectScene"));
 
 		coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
 	}

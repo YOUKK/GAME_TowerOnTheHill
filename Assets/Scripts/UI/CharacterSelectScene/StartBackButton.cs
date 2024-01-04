@@ -46,6 +46,6 @@ public class StartBackButton : MonoBehaviour
 
     public void Back()
 	{
-        GameManager.GetInstance.MoveScene("LevelSelectScene");
+        GameManager.GetInstance.MoveScene("CharacterSelectScene" ,"LevelSelectScene");
 	}
 }
