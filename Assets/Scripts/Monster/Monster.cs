@@ -29,7 +29,7 @@ public abstract class Monster : MonoBehaviour
     private SpriteRenderer  sprite;
 
     // 코인 랜덤 생성 퍼센티지
-    protected int           randomPercent = 100;
+    protected int           randomPercent = 35;
     protected bool          isGetCoin;
     protected GameObject    randomCoin;
 
