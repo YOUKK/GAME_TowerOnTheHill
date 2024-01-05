@@ -4,21 +4,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class StartBackButton : MonoBehaviour
 {
     private TextMeshProUGUI text;
     private SelectedCharacter selectedCharacter;
+    private PhaseStage selectPhaseStage = new PhaseStage();
 
     void Start()
     {
         text = transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
         selectedCharacter = GameObject.Find("SelectedCanvas").GetComponent<SelectedCharacter>();
+
+        LoadSelectPhaseStageFromJson();
     }
 
     void Update()
     {
         
+    }
+
+    private void LoadSelectPhaseStageFromJson()
+    {
+        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
+        string jsonData = File.ReadAllText(path);
+        selectPhaseStage = JsonUtility.FromJson<PhaseStage>(jsonData);
     }
 
     // StartButton 클릭시 1. 캐릭터 선택 정보 json으로 저장됨 2. 게임플레이씬으로 전환
@@ -28,8 +39,14 @@ public class StartBackButton : MonoBehaviour
         selectedCharacter.SaveButtonListToJson();
 
         // 씬 이동
-        SceneManager.LoadScene("GamePlayScene");
-        SoundManager.Instance.PlayBGM("Battle");
+        if (selectPhaseStage.phase == 3 && selectPhaseStage.stage == 5)
+        {
+            GameManager.GetInstance.MoveScene("CharacterSelectScene", "BossWave");
+        }
+		else
+		{
+            GameManager.GetInstance.MoveScene("CharacterSelectScene", "GamePlayScene");
+        }
 	}
 
     public void CanPressButton()
@@ -46,6 +63,6 @@ public class StartBackButton : MonoBehaviour
 
     public void Back()
 	{
-        GameManager.GetInstance.MoveScene("LevelSelectScene");
+        GameManager.GetInstance.MoveScene("CharacterSelectScene" ,"LevelSelectScene");
 	}
 }
