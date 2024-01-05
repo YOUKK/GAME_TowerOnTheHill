@@ -38,14 +38,15 @@ public class StartBackButton : MonoBehaviour
         // json 파일 저장
         selectedCharacter.SaveButtonListToJson();
 
+        // 씬 이동
         if (selectPhaseStage.phase == 3 && selectPhaseStage.stage == 5)
         {
             GameManager.GetInstance.MoveScene("CharacterSelectScene", "BossWave");
         }
-
-        // 씬 이동
-        GameManager.GetInstance.MoveScene("CharacterSelectScene", "GamePlayScene");
-        //SoundManager.Instance.PlayBGM("Battle");
+		else
+		{
+            GameManager.GetInstance.MoveScene("CharacterSelectScene", "GamePlayScene");
+        }
 	}
 
     public void CanPressButton()
