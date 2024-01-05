@@ -19,7 +19,7 @@ public class GameVictory : MonoBehaviour
 
 
     void OnEnable()
-    {
+    { 
         // 버튼 클릭 시 호출될 함수 추가
         restartButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "CharacterSelectScene"));
         nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "LevelSelectScene"));

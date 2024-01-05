@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             SoundManager.Instance.PlayBGM("Title");
 		}
         
-        if(toScene == "GamePlayScene")
+        if(toScene == "GamePlayScene" || toScene == "BossWave")
 		{
             SoundManager.Instance.PlayBGM("Battle");
 		}

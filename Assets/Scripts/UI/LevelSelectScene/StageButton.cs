@@ -47,12 +47,7 @@ public class StageButton : MonoBehaviour
     }
 
     private void LoadCharacterSelectScene()
-	{
-        if(selectPhaseStage.phase == 3 && selectPhaseStage.stage == 5)
-		{
-            GameManager.GetInstance.MoveScene("LevelSelectScene", "BossWave");
-		}
-        
+	{        
         GameManager.GetInstance.MoveScene("LevelSelectScene", "CharacterSelectScene");
     }
 }
