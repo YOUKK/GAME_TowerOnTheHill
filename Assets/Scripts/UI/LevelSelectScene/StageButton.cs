@@ -47,7 +47,7 @@ public class StageButton : MonoBehaviour
     }
 
     private void LoadCharacterSelectScene()
-	{
-        SceneManager.LoadScene("CharacterSelectScene");
-	}
+	{        
+        GameManager.GetInstance.MoveScene("LevelSelectScene", "CharacterSelectScene");
+    }
 }

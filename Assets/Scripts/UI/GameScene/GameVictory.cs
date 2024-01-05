@@ -19,10 +19,10 @@ public class GameVictory : MonoBehaviour
 
 
     void OnEnable()
-    {
+    { 
         // 버튼 클릭 시 호출될 함수 추가
-        restartButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("CharacterSelectScene"));
-        nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("LevelSelectScene"));
+        restartButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "CharacterSelectScene"));
+        nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "LevelSelectScene"));
         // 플레이한 스테이지에서 얻은 코인 값을 표시
         coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
         // TODO : 얻은 캐릭터 표시

@@ -38,8 +38,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void MoveScene(string sceneName)
+    // fromScene은 현재 씬
+    // toScene은 이동하려는 씬
+    // 씬에 따라 BGM 재생이 달라서 인자로 2개 씬을 받는 걸로 수정
+    public void MoveScene(string fromScene, string toScene)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(toScene);
+
+        if(fromScene == "GamePlayScene")
+		{
+            SoundManager.Instance.PlayBGM("Title");
+		}
+        
+        if(toScene == "GamePlayScene" || toScene == "BossWave")
+		{
+            SoundManager.Instance.PlayBGM("Battle");
+		}
     }
 }

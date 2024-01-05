@@ -41,7 +41,7 @@ public class MapButton : MonoBehaviour
     {
         currentStageButton = map1Stage;
         currentStageButton.GetComponent<Animation>().Play("GoDown");
-        backButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Title"));
+        backButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("LevelSelectScene", "Title"));
     }
 
     void Update()

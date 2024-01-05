@@ -14,9 +14,9 @@ public class TitleUIManager : MonoBehaviour
     void Start()
     {
         coinText.text = PlayerPrefs.GetInt("coin").ToString();
-        playButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("LevelSelectScene"));
-        tutorialButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("TutorialScene"));
-        shopButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Shop"));
+        playButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Title", "LevelSelectScene"));
+        tutorialButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Title", "TutorialScene"));
+        shopButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Title", "Shop"));
     }
 
     public void ExitGame()
