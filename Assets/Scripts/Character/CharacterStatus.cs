@@ -4,10 +4,11 @@ using UnityEngine;
 
 public enum CharacterType
 {
-    Normal, // ���� ���� ����
-    Aerial, // ��ü ���� ����
-    UnTouch, // ������ ���� �Ұ�
-    Buff, // dont attack character
+    Normal, // Only Ground
+    Common, // Ground & Aerial(50%)
+    Aerial, // Ground & Aerial
+    UnTouch, // Not attack Boss Monster
+    Buff, // Not attack Monster
 }
 
 [CreateAssetMenu(fileName = "Character", menuName = "Scripts/Character/CharacterStatus")]

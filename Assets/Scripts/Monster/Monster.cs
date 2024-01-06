@@ -126,15 +126,24 @@ public abstract class Monster : MonoBehaviour
                     break;
                 case AttackType.SLOW: // 얼음 캐릭터
                     {
-                        // Slow();
+                        Slow();
                         break;
                     }
                 case AttackType.STUN: // 스턴 캐릭터
-                    break;
+                    {
+                        Stun();
+                        break;
+                    }
                 case AttackType.CRAZY: // 최면 버섯 캐릭터
-                    break;
+                    {
+                        Crazy();
+                        break;
+                    }
                 case AttackType.DEAD: // 즉사 공격
-                    break;
+                    {
+                        Dead();
+                        break;
+                    }
                 default:
                     break;
             }
@@ -147,9 +156,29 @@ public abstract class Monster : MonoBehaviour
         }
     }
 
-    public void Slow(float speed, Character AttackCharacter)
+    public void Crazy()
     {
-        currentSpeed = status.speed / speed;    
+        currentSpeed = status.speed * (-1);
+
+        gameObject.tag = "Character";
+        gameObject.layer = 6;
+    }
+
+    public void Stun(float delay = 0.2f)
+    {
+        currentSpeed = 0;
+        gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.1f, gameObject.transform.position.y);
+        Invoke("SDelay", delay);
+    }
+
+    public void Slow(float speed = 1.2f)
+    {
+        currentSpeed = status.speed / speed;
+        Invoke("SDelay", 1.95f);
+    }
+    void SDelay()
+    {
+        currentSpeed = status.speed;
     }
 
     public void SetLine(int line)
