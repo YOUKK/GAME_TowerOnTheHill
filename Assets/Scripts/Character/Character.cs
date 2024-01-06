@@ -35,8 +35,6 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected CharacterType type;
 
-    protected DataManager dataManager;
-
     private GameObject monster;
     private Monster AttackMonster;
 
@@ -75,8 +73,6 @@ public class Character : MonoBehaviour
         strength = status.strength;
         healthPoint = status.healthPoint;
         attackDuration = status.attackDuration;
-
-        dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
 
         if (AttackCoroutine == null)
         {
