@@ -143,7 +143,6 @@ public class Character : MonoBehaviour
     public virtual void Attack() { }
     private void Update()
     {
-        
         monster = gameObject.GetComponentInChildren<MonsterCheck>().Monster;
     }
     IEnumerator AttackCoolTime()
@@ -155,28 +154,6 @@ public class Character : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
 
             Attack();
-            /*
-            if (type == CharacterType.Buff)
-            {
-                Attack();   
-            }
-            if (type == CharacterType.Normal && checkMonster)
-            {
-                print(monster.GetComponent<Monster>().GetMonsterType());
-                if (monster.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
-                {
-                    Attack();
-                }
-            }
-            if (type == CharacterType.Aerial && checkMonster)
-            {
-                Attack();
-            }
-            if (type == CharacterType.UnTouch && checkMonster)
-            {
-                if (monster.GetComponent<Monster>().GetMonsterType() == MonsterType.Normal)
-                    Attack();
-            }*/
         }
     }
 }
