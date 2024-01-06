@@ -46,7 +46,7 @@ public class ExitManager : MonoBehaviour
         TimeState = true;
         GamePlayManagers.TimeM.StartTimer();
         GamePlayManagers.TimeM.InitTimer();
-        SceneManager.LoadScene("Shop");
+        SceneManager.LoadScene("LevelSelectScene");
     }
     public void RestartButton()
     {
