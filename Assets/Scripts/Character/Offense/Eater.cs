@@ -45,7 +45,7 @@ public class Eater : Character
     }
     void attackDelaySet()
     {
-        Monster.GetComponent<Monster>().Hit(100000);
+        Monster.GetComponent<Monster>().Hit(1, AttackType.DEAD);
         Monster.GetComponent<SpriteRenderer>().enabled = false;
     }
 }

@@ -15,7 +15,6 @@ public class Ice : MonoBehaviour
         if (col.tag == "Enemy" && collision.gameObject.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
         {
             col.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
-            col.gameObject.GetComponent<Monster>().Slow(2.0f, mainCharacter);
             gameObject.transform.position = mainCharacter.transform.position;
             gameObject.SetActive(false);
         }

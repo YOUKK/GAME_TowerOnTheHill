@@ -177,6 +177,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6051066927150680357}
     m_Modifications:
+    - target: {fileID: -6195767434655123819, guid: 98cb5643a597e384496c9c7a0a91e2d7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7816509664032207916, guid: 98cb5643a597e384496c9c7a0a91e2d7, type: 3}
       propertyPath: m_Name
       value: MonsterBuffEffect
