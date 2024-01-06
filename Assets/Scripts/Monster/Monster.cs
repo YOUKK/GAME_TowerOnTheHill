@@ -22,8 +22,6 @@ public abstract class Monster : MonoBehaviour
     [SerializeField]
     protected int           currentForce; 
     [SerializeField]
-
-    public MonsterStatus    Status      { get => status; }
     public    int           CurrentLine { set => currentLine = value; }
 
     [SerializeField]

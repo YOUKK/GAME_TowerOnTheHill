@@ -47,12 +47,12 @@ public class MonsterCheck : MonoBehaviour
             if(hitRangeMonster[i].CompareTag("Enemy"))
             {
                 if (mainCharacter.Type == CharacterType.Normal          &&
-                    MonsterType.Aerial == hitRangeMonster[i].gameObject.GetComponent<Monster>().Status.type)
+                    MonsterType.Aerial == hitRangeMonster[i].gameObject.GetComponent<Monster>().GetMonsterType())
                 {
                     continue;
                 }
                 else if (mainCharacter.Type == CharacterType.UnTouch    &&
-                    MonsterType.Unique == hitRangeMonster[i].gameObject.GetComponent<Monster>().Status.type)
+                    MonsterType.Unique == hitRangeMonster[i].gameObject.GetComponent<Monster>().GetMonsterType())
                 {
                     continue;
                 }
