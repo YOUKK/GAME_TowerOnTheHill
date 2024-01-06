@@ -79,6 +79,7 @@ public class MonsterWaveTimer : MonoBehaviour
     IEnumerator MonsterWaveTextPopUp()
 	{
         monsterWaveText.SetActive(true);
+        SoundManager.Instance.PlayEffect("MonstersAreComming");
 
         yield return new WaitForSeconds(2f);
 
