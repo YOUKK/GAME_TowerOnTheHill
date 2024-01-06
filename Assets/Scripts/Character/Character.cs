@@ -155,6 +155,9 @@ public class Character : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(attackDelay);
+
+            Attack();
+            /*
             if (type == CharacterType.Buff)
             {
                 Attack();   
@@ -175,7 +178,7 @@ public class Character : MonoBehaviour
             {
                 if (monster.GetComponent<Monster>().GetMonsterType() == MonsterType.Normal)
                     Attack();
-            }
+            }*/
         }
     }
 }

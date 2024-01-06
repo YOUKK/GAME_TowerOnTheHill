@@ -46,6 +46,7 @@ public class MonsterCheck : MonoBehaviour
         {
             if(hitRangeMonster[i].CompareTag("Enemy"))
             {
+                monster = hitRangeMonster[i].gameObject;
                 flag = true;
                 break;
             }
@@ -59,29 +60,5 @@ public class MonsterCheck : MonoBehaviour
         {
             mainCharacter.CheckMonster = false;
         }
-
-        /*
-        //print((int)LocalPos.y);
-        var T = A.GetLineMonstersInfo((int)LocalPos.y);
-        if (T != null)
-        {
-            //print(T[0].transform.position.x);
-            //print(mainCharacter.transform.position.x);
-            //print((float)mainCharacter.Range);
-            if (T[0].transform.position.x - mainCharacter.transform.position.x <= (float)mainCharacter.Range)
-            {
-                monster = T[0];
-                mainCharacter.CheckMonster = true;
-            }
-            else
-            {
-                mainCharacter.CheckMonster = false;
-            }
-        }
-        else
-        {
-            mainCharacter.CheckMonster = false;
-        }
-        */
     }
 }
