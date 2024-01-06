@@ -21,12 +21,11 @@ public class ShopManager : ShopBase
     #region Costs
     const int hammerCost = 100;
     const int seatExpansionCost = 300;
-    readonly int[] slotExpansionCost = { 100, 200, 300, 400 };
+    readonly int[] slotExpansionCost = { 300, 400 };
     #endregion
 
     void Start()
     {
-        PlayerPrefs.SetInt("coin", 1000);
         shopData = DataManager.GetData.GetShopData();
 
         Bind<Button>(typeof(Buttons));
@@ -35,8 +34,8 @@ public class ShopManager : ShopBase
         GetButton((int)Buttons.SeatButton).GetComponentInChildren<TextMeshProUGUI>().text = 
             seatExpansionCost.ToString();
         GetButton((int)Buttons.SlotButton).GetComponentInChildren<TextMeshProUGUI>().text = 
-            slotExpansionCost[Mathf.Clamp(shopData.slotLevel, 0, 3)].ToString();
-        slotLevelText.text = $"({shopData.slotLevel}/4)";
+            slotExpansionCost[Mathf.Clamp(shopData.slotLevel, 0, 1)].ToString();
+        slotLevelText.text = $"({shopData.slotLevel}/2)";
 
         characterUpgradePopup.SetActive(false);
         UpdateShopButtons();
@@ -120,7 +119,7 @@ public class ShopManager : ShopBase
         if (Buy(slotExpansionCost[shopData.slotLevel]) == false) return;
 
         shopData.slotLevel++;
-        slotLevelText.text = $"{shopData.slotLevel}/4";
+        slotLevelText.text = $"{shopData.slotLevel}/2";
 
         UpdateShopButtons();
         DataManager.GetData.SaveShopData(shopData);
