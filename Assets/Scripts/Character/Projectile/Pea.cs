@@ -14,7 +14,14 @@ public class Pea : MonoBehaviour
     {
         if( collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
+            if(collision.gameObject.GetComponent<Monster>().GetMonsterType() == MonsterType.Aerial)
+            {
+                collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength * Random.Range(0, 2));
+            }
+            else
+            {
+                collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
+            }
             gameObject.transform.position = mainCharacter.transform.position;
             gameObject.SetActive(false);
         }

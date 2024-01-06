@@ -35,13 +35,13 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected CharacterType type;
 
-    protected DataManager dataManager;
-
     private GameObject monster;
     private Monster AttackMonster;
 
     private bool isDragged = false;
     private bool checkMonster = false;
+
+    public CharacterType Type { get => type; set => type = value; }
     public int CoolTime { get => coolTime; set => coolTime = value; }
     public int Strength { get => strength; set => strength = value; }
     public int HealthPoint { get => healthPoint; set => healthPoint = value; }
@@ -75,8 +75,6 @@ public class Character : MonoBehaviour
         strength = status.strength;
         healthPoint = status.healthPoint;
         attackDuration = status.attackDuration;
-
-        dataManager = GameObject.Find("DataManager").GetComponent<DataManager>();
 
         if (AttackCoroutine == null)
         {
@@ -145,7 +143,6 @@ public class Character : MonoBehaviour
     public virtual void Attack() { }
     private void Update()
     {
-        
         monster = gameObject.GetComponentInChildren<MonsterCheck>().Monster;
     }
     IEnumerator AttackCoolTime()
@@ -155,27 +152,8 @@ public class Character : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(attackDelay);
-            if (type == CharacterType.Buff)
-            {
-                Attack();   
-            }
-            if (type == CharacterType.Normal && checkMonster)
-            {
-                print(monster.GetComponent<Monster>().GetMonsterType());
-                if (monster.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
-                {
-                    Attack();
-                }
-            }
-            if (type == CharacterType.Aerial && checkMonster)
-            {
-                Attack();
-            }
-            if (type == CharacterType.UnTouch && checkMonster)
-            {
-                if (monster.GetComponent<Monster>().GetMonsterType() == MonsterType.Normal)
-                    Attack();
-            }
+
+            Attack();
         }
     }
 }
