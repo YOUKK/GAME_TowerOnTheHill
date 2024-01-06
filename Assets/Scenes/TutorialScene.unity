@@ -161,9 +161,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   monsterBuffTime: 10
-  isAllMonsterDead: 0
   rewardCoin: 100
-  textVictory: {fileID: 0}
 --- !u!4 &30072026
 Transform:
   m_ObjectHideFlags: 0
@@ -699,8 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ad8ace49d8f6a469addb383437e725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hammerItem: {fileID: 364287124}
-  slotNum: 6
+  isGameClear: 0
 --- !u!4 &178940663
 Transform:
   m_ObjectHideFlags: 0
@@ -923,7 +920,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d20165594527c04da84fd844cc9a07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defeat: {fileID: 517903583}
+  coinText: {fileID: 0}
+  nextButton: {fileID: 0}
+  restartButton: {fileID: 0}
 --- !u!61 &287616123
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -950,11 +949,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 7.5}
   m_EdgeRadius: 0
---- !u!1 &364287124 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3714441676939484761, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
-  m_PrefabInstance: {fileID: 1611641630}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &372531289
 GameObject:
   m_ObjectHideFlags: 0
@@ -3517,17 +3511,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982905591}
   m_CullTransparentMesh: 1
---- !u!114 &1058742181 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 242561937794356694, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
-  m_PrefabInstance: {fileID: 1611641630}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f22f6425fd8264e8e9391fedc75487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1067277563
 GameObject:
   m_ObjectHideFlags: 0
@@ -4731,6 +4714,14 @@ PrefabInstance:
     - target: {fileID: 242561937794356680, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 242561937794356682, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 242561937794356682, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 242561937794356683, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_Camera
@@ -6078,7 +6069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4650f94dfecd084f80fee374e92bc15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterWaveTimer: {fileID: 1058742181}
 --- !u!4 &1871196885
 Transform:
   m_ObjectHideFlags: 0
