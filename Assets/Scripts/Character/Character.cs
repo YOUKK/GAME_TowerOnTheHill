@@ -40,6 +40,8 @@ public class Character : MonoBehaviour
 
     private bool isDragged = false;
     private bool checkMonster = false;
+
+    public CharacterType Type { get => type; set => type = value; }
     public int CoolTime { get => coolTime; set => coolTime = value; }
     public int Strength { get => strength; set => strength = value; }
     public int HealthPoint { get => healthPoint; set => healthPoint = value; }
