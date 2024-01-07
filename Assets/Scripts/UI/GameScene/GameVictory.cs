@@ -9,7 +9,6 @@ using TMPro;
 public class GameVictory : MonoBehaviour
 {
     public TextMeshProUGUI coinText;
-    public Image characterImage;
     public Button nextButton;
     public Button restartButton;
 
@@ -46,6 +45,7 @@ public class GameVictory : MonoBehaviour
                     UnlockSlot();
             }
 
+        SoundManager.Instance.PlayEffect("Win");
             Debug.Log("게임 클리어시 데이터 업데이트");
         //}
     }
