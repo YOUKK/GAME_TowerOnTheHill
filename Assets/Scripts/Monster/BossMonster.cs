@@ -68,14 +68,14 @@ public class BossMonster : Monster
         {
             monsterRandomRange = 6;
             anim.SetTrigger("HurtTrigger");
-            SoundManager.Instance.PlayEffect("BossHurt");
+            SoundManager.Instance.PlayEffect("BossNormal");
             firstHurt = true;
         }
         if (currentHP < (float)status.hp * 1 / 3 && secondHurt == false)
         {
             monsterRandomRange = 9;
             anim.SetTrigger("HurtTrigger");
-            SoundManager.Instance.PlayEffect("BossHurt");
+            SoundManager.Instance.PlayEffect("BossNormal");
             secondHurt = true;
         }
     }
@@ -149,7 +149,7 @@ public class BossMonster : Monster
         Idle();
         yield return new WaitForSeconds(patternDuration);
         anim.SetTrigger("AttackPrepare");
-        SoundManager.Instance.PlayEffect("BossAttack");
+        SoundManager.Instance.PlayEffect("BossNormal");
         ChangeAttackPattern();
         anim.SetBool("isPatternEnd", false);
         // switch문으로 상태 결정
@@ -364,6 +364,9 @@ public class BossMonster : Monster
         sortOrderCount++;
         sortOrderCount %= 10;
         Instantiate(monster, spawnPoints[line].position, transform.rotation);
+        // 사운드 (라인에 따라 몬스터 사운드를 다르게 줌)
+        if (line % 2 == 0) SoundManager.Instance.PlayEffect("MonsterSpawn1");
+        else SoundManager.Instance.PlayEffect("MonsterSpawn2");
     }
 
     private void EnableSkillEffects(Vector2 seat)
