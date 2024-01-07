@@ -56,20 +56,8 @@ public class Map : MonoBehaviour
 		}
     }
 
-    // AddLine() 테스트 코드
-    public bool flag = false;
-	private void Update()
-	{
-        if (flag)
-		{
-            AddLine();
-            flag = false;
-		}
-	}
-    
-
 	// (상점에서 구매시) 방어선 증가 기능
-	private void AddLine()
+	public void AddLine()
 	{
         //mapX++;
 

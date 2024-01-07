@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
     // 씬에 따라 BGM 재생이 달라서 인자로 2개 씬을 받는 걸로 수정
     public void MoveScene(string fromScene, string toScene)
     {
+        // 버튼 사운드
+        SoundManager.Instance.PlayEffect("Button1");
+        // 씬 이동
         SceneManager.LoadScene(toScene);
 
         if(fromScene == "GamePlayScene" || fromScene == "BossWave" || fromScene == "TutorialScene")

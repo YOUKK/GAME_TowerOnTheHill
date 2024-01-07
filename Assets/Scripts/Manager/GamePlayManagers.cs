@@ -53,7 +53,7 @@ public class GamePlayManagers : MonoBehaviour
         string jsonData = File.ReadAllText(path);
         currentPS = JsonUtility.FromJson<PhaseStage>(jsonData);
 
-        if (SceneManager.GetActiveScene().name == "GamePlayScene")
+        if (SceneManager.GetActiveScene().name == "GamePlayScene" || SceneManager.GetActiveScene().name == "BossWave")
             ApplyShopItem();
     }
 
@@ -97,6 +97,11 @@ public class GamePlayManagers : MonoBehaviour
         if (DataManager.GetData.GetShopData().hasHammer)
             menuCanvas.GetComponent<MenuCanvas>().ActiveHammer(true);
         else menuCanvas.GetComponent<MenuCanvas>().ActiveHammer(false);
+
+        if(DataManager.GetData.GetShopData().hasSeatExpansion)
+        {
+            Map.GetInstance().AddLine(); // Map에서 방어선 증가시키는 함수 AddLine 실행
+        }
     }
 
     public void AddCoin(int amount)

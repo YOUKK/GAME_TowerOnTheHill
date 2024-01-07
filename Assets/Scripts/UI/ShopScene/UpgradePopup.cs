@@ -80,6 +80,8 @@ public class UpgradePopup : ShopBase
 
     void UpgradeCharacter(string name)
     {
+        SoundManager.Instance.PlayEffect("Button1");
+
         if (characterDic[name].currentLevel < MAX_LEVEL)
         {
             int cost = PlayerPrefs.GetInt("coin") - trainingCost[characterDic[name].currentLevel];
@@ -126,6 +128,7 @@ public class UpgradePopup : ShopBase
 
     public void ClosePopup()
     {
+        SoundManager.Instance.PlayEffect("Button1");
         gameObject.SetActive(false);
     }
 }
