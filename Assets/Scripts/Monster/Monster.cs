@@ -116,6 +116,8 @@ public abstract class Monster : MonoBehaviour
 
     public void Hit(int damage, AttackType type = AttackType.NORMAL)
     {
+        SoundManager.Instance.PlayEffect("Hit");
+
         if (currentHP - damage > 0)
         {
             StartCoroutine(HittedCoroutine(damage));
@@ -151,7 +153,10 @@ public abstract class Monster : MonoBehaviour
         else
         {
             Destroy(gameObject.GetComponent<Collider2D>());
-            anim.SetBool("isDead", true);
+            if (anim != null)
+            {
+                anim.SetBool("isDead", true);
+            }
             isDead = true;
         }
     }

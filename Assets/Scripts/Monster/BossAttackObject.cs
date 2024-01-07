@@ -23,6 +23,11 @@ public class BossAttackObject : Monster
 
     protected override void Update()
     {
+        if(isDead == true)
+        {
+            Destroy(gameObject);
+        }
+
         if (startPosition.x - transform.position.x < distance)
             Move(currentSpeed);
         else

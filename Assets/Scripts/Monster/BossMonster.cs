@@ -22,12 +22,17 @@ public class BossMonster : Monster
     private float patternDuration;
     // Normal 공격을 할 차례인지를 나타내는 변수
     private bool isNormalAttackTime;
+    // 보스의 체력이 2/3, 1/3 이하인지 나타내는 변수
     private bool firstHurt = false;
     private bool secondHurt = false;
+    // 보스 몬스터의 sort order
     private int sortOrderCount = 0;
+    // 생성되는 몬스터의 종류 인덱스 범위
+    private int monsterRandomRange = 0;
 
     [SerializeField]
     private Transform[] spawnPoints;
+    // 보스 몬스터의 각 공격 패턴이 가지는 이팩트
     [SerializeField]
     private GameObject normalAttackObject;
     [SerializeField]
@@ -37,18 +42,18 @@ public class BossMonster : Monster
     [SerializeField]
     private GameObject thirdAttackObject;
 
-    private GameObject thirdAttackEffect1;
-    private GameObject thirdAttackEffect2;
+    private GameObject thirdAttackEffect;
 
     protected override void Start()
     {
         base.Start();
         pattern = AttackPattern.Normal;
         isNormalAttackTime = true;
-        patternDuration = 5.0f;
+        patternDuration = 10f;
         isMove = false;
         transform.position = new Vector3(6.5f, 1, -1);
         initialPosition = transform.position;
+        monsterRandomRange = 4;
         StartCoroutine(Think());
     }
 
@@ -61,11 +66,13 @@ public class BossMonster : Monster
 
         if (currentHP < (float)status.hp * 2 / 3 && firstHurt == false)
         {
+            monsterRandomRange = 6;
             anim.SetTrigger("HurtTrigger");
             firstHurt = true;
         }
         if (currentHP < (float)status.hp * 1 / 3 && secondHurt == false)
         {
+            monsterRandomRange = 9;
             anim.SetTrigger("HurtTrigger");
             secondHurt = true;
         }
@@ -171,7 +178,6 @@ public class BossMonster : Monster
             default:
                 break;
         }
-        // 각 코루틴 마지막 줄에서 Think 코루틴 다시 실행
         yield return null;
     }
 
@@ -210,7 +216,7 @@ public class BossMonster : Monster
         // 무작위 위치에 무작위 몬스터 2마리 소환
         Debug.Log("Normal Attack");
         int randomLine = Random.Range(0, 5);
-        int randomMonster = Random.Range(0, 9);
+        int randomMonster = Random.Range(0, monsterRandomRange);
         CreateMonsters(randomLine, randomMonster);
         int randomLine2 = 0;
         do
@@ -218,7 +224,7 @@ public class BossMonster : Monster
             randomLine2 = Random.Range(0, 5);
         }
         while (randomLine == randomLine2);
-        randomMonster = Random.Range(0, 9);
+        randomMonster = Random.Range(0, monsterRandomRange);
         CreateMonsters(randomLine2, randomMonster);
     }
     private void FirstAttack()
@@ -364,14 +370,6 @@ public class BossMonster : Monster
 
         Quaternion newRotation = Quaternion.Euler(90, 0, 0);
 
-        thirdAttackEffect1 = Instantiate(thirdAttackObject, skillPos, newRotation);
-        //thirdAttackEffect1.GetComponent<ParticleSystem>().Play();
-        //thirdAttackEffect2.GetComponent<ParticleSystem>().Play();
-    }
-
-    private void DisableSkillEffects()
-    {
-        Destroy(thirdAttackEffect1);
-        Destroy(thirdAttackEffect2);
+        thirdAttackEffect = Instantiate(thirdAttackObject, skillPos, newRotation);
     }
 }
