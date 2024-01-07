@@ -51,6 +51,8 @@ public class MapButton : MonoBehaviour
 
     public void ButtonClick()
 	{
+        SoundManager.Instance.PlayEffect("Button1");
+
         if(EventSystem.current.currentSelectedGameObject.name == "Map1Button") // Map1버튼 클릭
 		{
             mapButton1.GetComponent<Image>().sprite = selectSprite;
