@@ -18,6 +18,7 @@ public class GameDefeat : MonoBehaviour
 
 		coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
 
+		SoundManager.Instance.StopBGM();
 		SoundManager.Instance.PlayEffect("Lose");
 	}
 }

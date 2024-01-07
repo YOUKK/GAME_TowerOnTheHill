@@ -31,7 +31,7 @@ public class LoadCharacterButtonList : MonoBehaviour
     private void SetButton()
 	{
         int i = 0;
-        while(loadButtonList.list[i] != CharacterButtonList.None)
+        while(loadButtonList.list[i] != CharacterButtonList.None && i < 8)
 		{
             string path = $"Prefabs/CharacterButton/{loadButtonList.list[i]}Button";
             GameObject button = Instantiate(Resources.Load<GameObject>(path), transform.position, Quaternion.identity);
