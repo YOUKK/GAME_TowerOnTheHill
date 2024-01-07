@@ -33,10 +33,9 @@ public class SelectedCharacter : MonoBehaviour
 	private void Awake()
 	{
 		if (!PlayerPrefs.HasKey("slotNum"))
-            PlayerPrefs.SetInt("slotNum", 2);
-        max = PlayerPrefs.GetInt("slotNum");
-        //max = GamePlayManagers.Instance.slotNum;
-        //max = DataManager.GetShopData().slotLevel;
+            PlayerPrefs.SetInt("slotNum", 2); // 맨 처음 1-1레벨 슬롯 수
+        max = PlayerPrefs.GetInt("slotNum") + DataManager.GetData.GetShopData().slotLevel; // slotLevel은 상점 구매에 따라 0 or 1 or 2
+
         SetSlot();
     }
 
