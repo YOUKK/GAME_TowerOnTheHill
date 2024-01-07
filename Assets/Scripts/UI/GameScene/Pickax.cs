@@ -63,6 +63,7 @@ public class Pickax : MonoBehaviour
             if (hits[i].transform.CompareTag("Enemy"))
             {
                 hits[i].transform.gameObject.GetComponent<Monster>().Hit(1000);
+                SoundManager.Instance.PlayEffect("HammerItem");
                 
                 ShopData shopData = DataManager.GetData.GetShopData();
                 shopData.hasHammer = false;
@@ -86,6 +87,7 @@ public class Pickax : MonoBehaviour
                 {
                     Vector2 location = hits[i].transform.gameObject.GetComponent<Seat>().location;
                     Map.GetInstance().RemoveCharacter(location);
+                    SoundManager.Instance.PlayEffect("PickaxeItem");
 
                     ItemEnableButton(); // Piackax ±â´É ²ô±â
                     break;

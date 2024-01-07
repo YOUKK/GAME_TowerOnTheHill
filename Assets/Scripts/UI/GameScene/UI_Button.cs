@@ -77,6 +77,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
                     //dragCharacter.transform.position = hit.transform.position;
                     Map.GetInstance().PutCharacter(location, character);
+                    SoundManager.Instance.PlayEffect("CharacterSeat");
 
                     hit.transform.GetComponent<Seat>().isCharacterOn = true;
                     hit.transform.GetComponent<Seat>().usable = false;
