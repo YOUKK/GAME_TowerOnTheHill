@@ -19,9 +19,9 @@ public class Bomber : Character
     }
     void Duration()
     {
-        Bomb();
+        //Bomb();
         //anim.SetBool("isDead", true);
-        Invoke("DeadDelay", 1.0f);
+        //Invoke("DeadDelay", 2.0f);
     }
     void Bomb()
     {
