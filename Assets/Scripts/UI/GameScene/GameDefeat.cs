@@ -17,5 +17,7 @@ public class GameDefeat : MonoBehaviour
 		nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "LevelSelectScene"));
 
 		coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
+
+		SoundManager.Instance.PlayEffect("Lose");
 	}
 }
