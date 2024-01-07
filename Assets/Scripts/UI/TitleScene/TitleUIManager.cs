@@ -21,6 +21,7 @@ public class TitleUIManager : MonoBehaviour
 
     public void ExitGame()
     {
+        SoundManager.Instance.PlayEffect("Button1");
         Application.Quit();
     }
 }

@@ -72,11 +72,13 @@ public class VolumeSetting : MonoBehaviour
 
 	public void OpenSetting()
 	{
+		SoundManager.Instance.PlayEffect("Button1");
 		settingPopup.SetActive(true);
 	}
 
 	public void CloseSetting()
 	{
+		SoundManager.Instance.PlayEffect("Button1");
 		settingPopup.SetActive(false);
 	}
 }

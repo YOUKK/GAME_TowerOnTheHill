@@ -92,11 +92,13 @@ public class ShopManager : ShopBase
 
     private void ActivateUpgradePopup()
     {
+        SoundManager.Instance.PlayEffect("Button1");
         characterUpgradePopup.SetActive(true);
     }
 
     public void BuyHammerItem()
     {
+        SoundManager.Instance.PlayEffect("Button1");
         if (Buy(hammerCost) == false) return;
 
         shopData.hasHammer = true;
@@ -106,16 +108,18 @@ public class ShopManager : ShopBase
 
     public void BuySeatExpansionItem()
     {
+        SoundManager.Instance.PlayEffect("Button1");
         if (Buy(seatExpansionCost) == false) return;
 
         shopData.hasSeatExpansion = true;
-        Map.GetInstance().flag = true; // Map에서 방어선 증가시키는 함수 AddLine 실행
+        
         UpdateShopButtons();
         DataManager.GetData.SaveShopData(shopData);
     }
 
     public void BuySlotExpansionItem()
     {
+        SoundManager.Instance.PlayEffect("Button1");
         if (Buy(slotExpansionCost[shopData.slotLevel]) == false) return;
 
         shopData.slotLevel++;
