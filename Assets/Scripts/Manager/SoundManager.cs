@@ -38,6 +38,11 @@ public class SoundManager : MonoBehaviour
 		PlayBGM("Title");
 	}
 
+	public void StopBGM()
+	{
+		bgmSource.Stop();
+	}
+
 	public void PlayBGM(string pileName)
 	{
 		string path = $"Sounds/BGM/{pileName}";
