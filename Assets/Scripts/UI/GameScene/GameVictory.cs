@@ -9,7 +9,6 @@ using TMPro;
 public class GameVictory : MonoBehaviour
 {
     public TextMeshProUGUI coinText;
-    public Image characterImage;
     public Button nextButton;
     public Button restartButton;
 
