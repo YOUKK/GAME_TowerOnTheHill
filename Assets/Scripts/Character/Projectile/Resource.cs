@@ -61,6 +61,7 @@ public class Resource : MonoBehaviour
                             isClick = true;
                             resourceUI.EarnCoin();
                             StartCoroutine(MovetoUI(iconCoin.position));
+                            SoundManager.Instance.PlayEffect("Coin");
                             break;
                         }
                     default:
