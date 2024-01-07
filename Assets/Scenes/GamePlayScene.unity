@@ -3963,16 +3963,44 @@ PrefabInstance:
       value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 749402591}
     - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+    - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RestartButton
       objectReference: {fileID: 0}
+    - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ExitManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 916602187, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 926549182, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 926549183, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_LocalScale.x
@@ -4043,24 +4071,80 @@ PrefabInstance:
       value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 749402591}
     - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+    - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: FinishButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432000024, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1998582019, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 749402591}
     - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+    - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ExitManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998582020, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 242561937794356680, guid: 0fed5f929a6a16b46816bf53870d8dd8, type: 3}
       propertyPath: m_Pivot.x

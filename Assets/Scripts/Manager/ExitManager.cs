@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class ExitManager : MonoBehaviour
 {
+
     bool TimeState = true;
     [SerializeField]
     GameObject Pause;
@@ -19,7 +20,7 @@ public class ExitManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         // ½Ã°£ÀÌ Èå¸£°í ÀÖÀ» ¶§
         if (TimeState && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -38,11 +39,13 @@ public class ExitManager : MonoBehaviour
         Time.timeScale = 1;
         TimeState = true;
         GamePlayManagers.TimeM.StartTimer();
+        SoundManager.Instance.PlayEffect("button1");   
         Pause.SetActive(false);
     }
     public void FinishButton()
     {
         Time.timeScale = 1;
+        SoundManager.Instance.PlayEffect("button1");
         TimeState = true;
         GamePlayManagers.TimeM.StartTimer();
         GamePlayManagers.TimeM.InitTimer();
@@ -51,6 +54,7 @@ public class ExitManager : MonoBehaviour
     public void RestartButton()
     {
         Time.timeScale = 1;
+        SoundManager.Instance.PlayEffect("button1");
         TimeState = true;
         GamePlayManagers.TimeM.StartTimer();
         GamePlayManagers.TimeM.InitTimer();
