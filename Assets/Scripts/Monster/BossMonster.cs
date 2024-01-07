@@ -68,12 +68,14 @@ public class BossMonster : Monster
         {
             monsterRandomRange = 6;
             anim.SetTrigger("HurtTrigger");
+            SoundManager.Instance.PlayEffect("BossHurt");
             firstHurt = true;
         }
         if (currentHP < (float)status.hp * 1 / 3 && secondHurt == false)
         {
             monsterRandomRange = 9;
             anim.SetTrigger("HurtTrigger");
+            SoundManager.Instance.PlayEffect("BossHurt");
             secondHurt = true;
         }
     }
@@ -81,6 +83,7 @@ public class BossMonster : Monster
     private void Idle()
     {
         anim.SetBool("isPatternEnd", true);
+
         isMove = false;
     }
 
@@ -146,6 +149,7 @@ public class BossMonster : Monster
         Idle();
         yield return new WaitForSeconds(patternDuration);
         anim.SetTrigger("AttackPrepare");
+        SoundManager.Instance.PlayEffect("BossAttack");
         ChangeAttackPattern();
         anim.SetBool("isPatternEnd", false);
         // switch문으로 상태 결정
@@ -371,5 +375,11 @@ public class BossMonster : Monster
         Quaternion newRotation = Quaternion.Euler(90, 0, 0);
 
         thirdAttackEffect = Instantiate(thirdAttackObject, skillPos, newRotation);
+    }
+
+    protected override void Dead()
+    {
+        SoundManager.Instance.PlayEffect("BossDeath");
+        base.Dead();
     }
 }

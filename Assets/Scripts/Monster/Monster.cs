@@ -102,6 +102,7 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Dead() // Animation의 Event에 의해 실행됨.
     {
+        SoundManager.Instance.PlayEffect("MonsterDeath");
         if (isGetCoin)
             Instantiate(randomCoin, transform.position, transform.rotation);
 
