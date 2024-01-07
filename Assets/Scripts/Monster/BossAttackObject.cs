@@ -18,7 +18,8 @@ public class BossAttackObject : Monster
         if (ran <= randomPercent) isGetCoin = true;
         else isGetCoin = false;
 
-        startPosition = transform.position;
+        startPosition = transform.position + new Vector3(0, 0.3f, 0);
+        transform.position = startPosition;
     }
 
     protected override void Update()
