@@ -47,12 +47,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(toScene);
 
-        if(fromScene == "GamePlayScene")
+        if(fromScene == "GamePlayScene" || fromScene == "BossWave" || fromScene == "TutorialScene")
 		{
             SoundManager.Instance.PlayBGM("Title");
 		}
         
-        if(toScene == "GamePlayScene" || toScene == "BossWave")
+        if(toScene == "GamePlayScene" || toScene == "BossWave" || toScene == "TutorialScene")
 		{
             SoundManager.Instance.PlayBGM("Battle");
 		}
