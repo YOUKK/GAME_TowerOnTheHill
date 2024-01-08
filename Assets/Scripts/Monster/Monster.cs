@@ -16,6 +16,9 @@ public abstract class Monster : MonoBehaviour
     protected bool          isDead;
 
     [SerializeField]
+    private   bool          isCrazy = false; 
+
+    [SerializeField]
     protected int           currentHP;
     [SerializeField]
     protected float         currentSpeed;
@@ -86,12 +89,33 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Attack() // Animation의 Event에 의해 실행됨.
     {
-        Character targetCharacter = target.gameObject.GetComponent<Character>();
-        if (targetCharacter != null)
-            targetCharacter.Hit(currentForce, this);
-        else Debug.Log("target doesn't have Character");
+        if (isCrazy)
+        {
+            Monster targetMonster = target.gameObject.GetComponent<Monster>();
 
-        StartCoroutine(AttackCoolCoroutine());
+            if (targetMonster != null)
+                targetMonster.Hit(currentForce);
+            else Debug.Log("target doesn't have Character");
+
+            StartCoroutine(AttackCoolCoroutine());
+        }
+        else
+        {
+            Character targetCharacter = target.gameObject.GetComponent<Character>();
+
+            Monster targetMonster = target.gameObject.GetComponent<Monster>();
+
+            if (targetMonster != null)
+            {
+                targetMonster.Hit(currentForce);
+            }
+
+            if (targetCharacter != null)
+                targetCharacter.Hit(currentForce, this);
+            else Debug.Log("target doesn't have Character");
+
+            StartCoroutine(AttackCoolCoroutine());
+        }
     }
 
     protected virtual IEnumerator AttackCoolCoroutine()
@@ -168,9 +192,13 @@ public abstract class Monster : MonoBehaviour
 
         gameObject.tag = "Character";
         gameObject.layer = 6;
+
+        gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        isCrazy = true;
     }
 
-    public void Stun(float delay = 0.2f)
+    public void Stun(float delay = 2.0f)
     {
         currentSpeed = 0;
         gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.1f, gameObject.transform.position.y);
@@ -197,6 +225,13 @@ public abstract class Monster : MonoBehaviour
         if (collision.transform.CompareTag("Character"))
         {
             if (transform.position.x - collision.transform.position.x > ignoreDistance)
+            {
+                target = collision.transform;
+            }
+        }
+        if (isCrazy && collision.transform.CompareTag("Enemy"))
+        {
+            if (collision.transform.position.x - transform.position.x > ignoreDistance)
             {
                 target = collision.transform;
             }

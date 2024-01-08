@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4954303607459677039}
-  - component: {fileID: 849553481329713733}
   - component: {fileID: 1210272456805784681}
   - component: {fileID: 1540617663537765335}
+  - component: {fileID: 1213522892378527561}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -36,30 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &849553481329713733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044249650538498902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e530c499203ef7b44bf9eaec020c7367, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 4958428184421055105}
-  projectileSecond: {fileID: 0}
-  status: {fileID: 11400000, guid: 99203462f37d09a44ab66c8e8496a51c, type: 2}
-  coolTime: 0
-  projectileSpeed: 0
-  attackDelay: 0
-  projectileNum: 0
-  range: 0
-  strength: 0
-  healthPoint: 0
-  attackDuration: 0
-  type: 0
 --- !u!61 &1210272456805784681
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107,6 +83,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1213522892378527561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044249650538498902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e530c499203ef7b44bf9eaec020c7367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  projectileSecond: {fileID: 0}
+  status: {fileID: 11400000, guid: 99203462f37d09a44ab66c8e8496a51c, type: 2}
+  coolTime: 0
+  projectileSpeed: 0
+  attackDelay: 0
+  projectileNum: 0
+  range: 0
+  strength: 0
+  healthPoint: 0
+  attackDuration: 0
+  type: 2
 --- !u!1 &2999915491374901228
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 5938174273376326110}
   - component: {fileID: 7351882435438046636}
   - component: {fileID: 1838588752761926049}
+  - component: {fileID: 377239551405518252}
   m_Layer: 0
   m_Name: Asset
   m_TagString: Untagged
@@ -195,8 +196,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 941133623
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d57ac74cdb1988f41a5eafcfb30fc3a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -209,6 +210,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &377239551405518252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999915491374901228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159c92bcfdfd97e4daa520d89daac00b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &4958428184421055105
 GameObject:
   m_ObjectHideFlags: 0

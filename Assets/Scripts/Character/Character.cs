@@ -99,8 +99,6 @@ public class Character : MonoBehaviour
         {
             anim.SetBool("isDead", true);
             Invoke("DeadDelay", 1.0f);
-
-            Invoke("SlowDelay", AttackDuration);
         }
         else
         {
@@ -127,7 +125,7 @@ public class Character : MonoBehaviour
         Map.GetInstance().RemoveCharacter(location);
     }
 
-    protected void Dead()
+    protected virtual void Dead()
     {
         Debug.Log("Stop Attack Coroutine");
         StopCoroutine(AttackCoroutine);

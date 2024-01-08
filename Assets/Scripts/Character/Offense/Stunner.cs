@@ -14,7 +14,7 @@ public class Stunner : Character
         if (!IsDragged && CheckMonster)
         {
             anim.SetTrigger("canAttack");
-            Invoke("attackDelaySet", 0.1f);
+            Invoke("attackDelaySet", 0.05f);
         }
     }
     void attackDelaySet()

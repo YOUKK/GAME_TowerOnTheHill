@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee68a7c09cc0b6e43b3ac3e969b5cefe, type: 3}
-  m_Name: PeaShooter(Ice)
+  m_Name: IceShooter
   m_EditorClassIdentifier: 
   coolTime: 1
   projectileSpeed: 1.5

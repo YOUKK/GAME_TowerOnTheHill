@@ -12,12 +12,15 @@ public class Ice : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Enemy" && collision.gameObject.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
+        if (col.tag == "Enemy" && col.gameObject.GetComponent<Monster>().GetMonsterType() != MonsterType.Aerial)
         {
-            col.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength);
+            col.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength, AttackType.SLOW);
             gameObject.transform.position = mainCharacter.transform.position;
             gameObject.SetActive(false);
         }
     }
-
+    private void OnDisable()
+    {
+        gameObject.transform.position = mainCharacter.transform.position;
+    }
 }
