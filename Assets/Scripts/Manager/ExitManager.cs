@@ -38,9 +38,9 @@ public class ExitManager : MonoBehaviour
     {
         Time.timeScale = 1;
         TimeState = true;
-        GamePlayManagers.TimeM.StartTimer();
-        //SoundManager.Instance.PlayEffect("button1");   
+        GamePlayManagers.TimeM.StartTimer();  
         Pause.SetActive(false);
+        SoundManager.Instance.PlayEffect("button1");
     }
     public void FinishButton()
     {
