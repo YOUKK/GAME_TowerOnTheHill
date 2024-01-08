@@ -51,7 +51,7 @@ public class Resource : MonoBehaviour
                     case ResourceType.Gem:
                         {
                             isClick = true;
-                            resourceUI.EarnResource(50); // resource의 양을 일단 50이라고 설정함
+                            resourceUI.EarnResource(2000);
                             StartCoroutine(MovetoUI(iconGem.transform.position));
                             SoundManager.Instance.PlayEffect("GetResource");
                             break;
