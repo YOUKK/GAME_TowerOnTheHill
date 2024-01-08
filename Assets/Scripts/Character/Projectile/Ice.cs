@@ -19,5 +19,8 @@ public class Ice : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
+    private void OnDisable()
+    {
+        gameObject.transform.position = mainCharacter.transform.position;
+    }
 }

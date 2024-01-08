@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
   projectileSecond: {fileID: 0}
-  status: {fileID: 11400000, guid: 4502ce94f344ea441ad0b5b48b6dd545, type: 2}
+  status: {fileID: 11400000, guid: 25910dfaf79cdc047900e5d2ffda5958, type: 2}
   coolTime: 0
   projectileSpeed: 0
   attackDelay: 0
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 941133623
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e5ae6c3daf2b2b54c9a52dbaf018c19c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71d088e7c27e0a348a23cfb1ef4692a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -227,7 +227,7 @@ Animator:
   m_GameObject: {fileID: 8056422300304879121}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c5f00dc2c92f4245839fc0147f31669, type: 2}
+  m_Controller: {fileID: 9100000, guid: f997e92183d5ade40aec68964f57e5d9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -346,6 +346,9 @@ MonoBehaviour:
   mainCharacter: {fileID: 0}
   monster: {fileID: 0}
   localPos: {x: 0, y: 0}
+  rangeSize: {x: 0, y: 0}
+  rangePos: {x: 0, y: 0}
+  hitRangeMonster: []
 --- !u!1001 &1177180636572346170
 PrefabInstance:
   m_ObjectHideFlags: 0

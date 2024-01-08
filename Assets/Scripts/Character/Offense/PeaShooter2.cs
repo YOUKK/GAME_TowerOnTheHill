@@ -14,32 +14,25 @@ public class PeaShooter2 : Character
 
     public override void Attack()
     {
-        anim.SetTrigger("canAttack");
-        Invoke("attackDelaySet", 0.1f);
         if (!IsDragged && CheckMonster)
         {
             anim.SetTrigger("canAttack");
             Invoke("attackDelaySet", 0.1f);
         }
     }
-    private void Update()
-    {
-        for (int i = 0; i < gameObject.transform.GetChild(1).childCount; i++)
-        {
-            if(!gameObject.transform.GetChild(1).GetChild(i).gameObject.activeSelf)
-            {
-                gameObject.transform.GetChild(1).GetChild(i).position = gameObject.transform.position;
-            }
-        }
-    }
+
     void attackDelaySet()
     {
         projectile = projectiles.Dequeue();
+        // print(projectile.name);
         projectiles.Enqueue(projectile);
         activatedProj.Enqueue(projectile);
+
         projectileSecond = projectiles.Dequeue();
+        // print(projectileSecond.name);
         projectiles.Enqueue(projectileSecond);
         activatedProj.Enqueue(projectileSecond);
+
         projectile.SetActive(true);
         projectileSecond.SetActive(true);
 
