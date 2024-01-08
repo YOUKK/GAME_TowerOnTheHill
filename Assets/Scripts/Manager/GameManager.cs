@@ -47,18 +47,26 @@ public class GameManager : MonoBehaviour
     public void MoveScene(string fromScene, string toScene)
     {
         // 버튼 사운드
-        SoundManager.Instance.PlayEffect("Button1");
-        // 씬 이동
-        SceneManager.LoadScene(toScene);
+        try
+        {
+            SoundManager.Instance.PlayEffect("Button1");
 
-        if(fromScene == "GamePlayScene" || fromScene == "BossWave" || fromScene == "TutorialScene")
-		{
-            SoundManager.Instance.PlayBGM("Title");
-		}
-        
-        if(toScene == "GamePlayScene" || toScene == "BossWave" || toScene == "TutorialScene")
-		{
-            SoundManager.Instance.PlayBGM("Battle");
-		}
+            // 씬 이동
+            SceneManager.LoadScene(toScene);
+
+            if (fromScene == "GamePlayScene" || fromScene == "BossWave" || fromScene == "TutorialScene")
+            {
+                SoundManager.Instance.PlayBGM("Title");
+            }
+
+            if (toScene == "GamePlayScene" || toScene == "BossWave" || toScene == "TutorialScene")
+            {
+                SoundManager.Instance.PlayBGM("Battle");
+            }
+        }
+        catch (System.Exception)
+        {
+            SceneManager.LoadScene(toScene);
+        }
     }
 }

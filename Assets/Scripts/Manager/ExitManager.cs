@@ -49,7 +49,7 @@ public class ExitManager : MonoBehaviour
         GamePlayManagers.TimeM.StartTimer();
         GamePlayManagers.TimeM.InitTimer();
         if (SceneManager.GetActiveScene().name == "TutorialScene")
-            GameManager.GetInstance.MoveScene("TutorialScene", "TitleScene");
+            GameManager.GetInstance.MoveScene("TutorialScene", "Title");
         else
             GameManager.GetInstance.MoveScene("GamePlayScene", "CharacterSelectScene");
     }
