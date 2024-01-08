@@ -15,4 +15,14 @@ public class Madman : Character
         if (projectile == null)
             return;
     }
+
+    public override void Hit(int damage, Monster attackMonster)
+    {
+        base.Hit(damage, attackMonster);
+
+        if (healthPoint - damage <= 0)
+        {
+            attackMonster.Hit(0, AttackType.CRAZY);
+        }
+    }
 }
