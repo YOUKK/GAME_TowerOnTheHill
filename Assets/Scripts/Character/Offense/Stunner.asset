@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coolTime: 1
   projectileSpeed: 1.5
-  attackDelay: 4
+  attackDelay: 6
   pAttackDelay: 0
   projectileNum: 1
   range: 8
   strength: 5
   healthPoint: 50
-  attackDuration: 8
+  attackDuration: 4
   type: 1
