@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee68a7c09cc0b6e43b3ac3e969b5cefe, type: 3}
-  m_Name: Stunner
+  m_Name: Madman
   m_EditorClassIdentifier: 
   coolTime: 1
-  projectileSpeed: 1.5
-  attackDelay: 4
+  projectileSpeed: 1
+  attackDelay: 1
   pAttackDelay: 0
   projectileNum: 1
-  range: 8
+  range: 0
   strength: 5
-  healthPoint: 50
-  attackDuration: 8
-  type: 1
+  healthPoint: 1
+  attackDuration: 100000
+  type: 4
