@@ -29,7 +29,7 @@ public class Buff : MonoBehaviour
                         break;
                     case 2:
                         hit[i].gameObject.GetComponent<Character>().Strength = hit[i].gameObject.GetComponent<Character>().status.strength;
-                        hit[i].gameObject.GetComponent<Character>().AttackDelay = hit[i].gameObject.GetComponent<Character>().status.attackDelay - 3;
+                        hit[i].gameObject.GetComponent<Character>().AttackDelay = hit[i].gameObject.GetComponent<Character>().status.attackDelay - 0.5f;
                         hit[i].gameObject.GetComponent<Character>().HealthPoint = hit[i].gameObject.GetComponent<Character>().status.healthPoint;
                         break;
                     case 3:
