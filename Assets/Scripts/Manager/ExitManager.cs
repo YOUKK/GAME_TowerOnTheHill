@@ -38,9 +38,9 @@ public class ExitManager : MonoBehaviour
     {
         Time.timeScale = 1;
         TimeState = true;
-        GamePlayManagers.TimeM.StartTimer();
-        //SoundManager.Instance.PlayEffect("button1");   
+        GamePlayManagers.TimeM.StartTimer(); 
         Pause.SetActive(false);
+        SoundManager.Instance.PlayEffect("button1");
     }
     public void FinishButton()
     {
@@ -49,6 +49,7 @@ public class ExitManager : MonoBehaviour
         GamePlayManagers.TimeM.StartTimer();
         GamePlayManagers.TimeM.InitTimer();
         GameManager.GetInstance.MoveScene("GamePlayScene", "CharacterSelectScene");
+        SoundManager.Instance.PlayEffect("button1");
     }
     public void RestartButton()
     {
@@ -57,5 +58,6 @@ public class ExitManager : MonoBehaviour
         GamePlayManagers.TimeM.StartTimer();
         GamePlayManagers.TimeM.InitTimer();
         GameManager.GetInstance.MoveScene("GamePlayScene", "GamePlayScene");
+        SoundManager.Instance.PlayEffect("button1");
     }
 }
