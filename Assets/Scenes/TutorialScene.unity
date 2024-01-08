@@ -2706,8 +2706,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
-=======
 --- !u!1001 &968076906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2837,7 +2835,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d07697fdee3897547b5d80f287144619, type: 3}
->>>>>>> Stashed changes
 --- !u!1 &1067277563
 GameObject:
   m_ObjectHideFlags: 0
