@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bombe
+  m_Name: Bomb
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -40,7 +40,7 @@ AnimationClip:
     - time: 0.75
       value: {fileID: 21300000, guid: ab3ae566a9e45294ca3d508914d81c6a, type: 3}
     - time: 0.8333333
-      value: {fileID: 21300000, guid: a9239c7d4c2ee5348be8ad210a0112f5, type: 3}
+      value: {fileID: 21300000, guid: 6bdaf4ff0f811234a9a3aba251804608, type: 3}
     - time: 0.9166667
       value: {fileID: 21300000, guid: 6bdaf4ff0f811234a9a3aba251804608, type: 3}
     attribute: m_Sprite
@@ -72,7 +72,7 @@ AnimationClip:
     - {fileID: 21300000, guid: a04a819582a6865468e0efaf380c85c2, type: 3}
     - {fileID: 21300000, guid: 2509c65da971ce445a917baa0e46db7a, type: 3}
     - {fileID: 21300000, guid: ab3ae566a9e45294ca3d508914d81c6a, type: 3}
-    - {fileID: 21300000, guid: a9239c7d4c2ee5348be8ad210a0112f5, type: 3}
+    - {fileID: 21300000, guid: 6bdaf4ff0f811234a9a3aba251804608, type: 3}
     - {fileID: 21300000, guid: 6bdaf4ff0f811234a9a3aba251804608, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2

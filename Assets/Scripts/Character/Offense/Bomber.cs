@@ -4,6 +4,26 @@ using UnityEngine;
 
 public class Bomber : Character
 {
+    public void Bombed()
+    {
+        Collider2D[] hit = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(3, 3), 0);
+
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].tag == "Enemy")
+            {
+                hit[i].GetComponent<Monster>().Hit(Strength);
+            }
+        }
+
+        Dead();
+    }
+}
+
+
+/*
+public class Bomber : Character
+{
     Queue<GameObject> bombedEnemy = new Queue<GameObject>();
     private Character mainCharacter;
     // Start is called before the first frame update
@@ -45,3 +65,4 @@ public class Bomber : Character
         }
     }
 }
+*/
