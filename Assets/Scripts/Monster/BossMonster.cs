@@ -383,6 +383,7 @@ public class BossMonster : Monster
     protected override void Dead()
     {
         SoundManager.Instance.PlayEffect("BossDeath");
+        GamePlayManagers.Instance.Victory();
         base.Dead();
     }
 }
