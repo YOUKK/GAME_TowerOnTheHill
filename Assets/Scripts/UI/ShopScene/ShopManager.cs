@@ -139,6 +139,6 @@ public class ShopManager : ShopBase
     public void BackToTitle()
     {
         DataManager.GetData.SaveShopData(shopData);
-        SceneManager.LoadScene("Title");
+        GameManager.GetInstance.MoveScene("Shop", "Title");
     }
 }

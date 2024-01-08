@@ -58,6 +58,8 @@ public class Pickax : MonoBehaviour
 
     private void KillMonster()
     {
+        bool flag = false;
+
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].transform.CompareTag("Enemy"))
@@ -71,8 +73,17 @@ public class Pickax : MonoBehaviour
                 transform.parent.gameObject.SetActive(false);
                 break;
             }
+            else if (hits[i].transform.CompareTag("Pickax"))
+            {
+                flag = true; // button컴포넌트로 눌리는 ClickButton()과 겹치지 않게 flag로 체크
+                break;
+            }
         }
-        ItemEnableButton();
+
+        if (isFlicker && !flag) // 캐릭터 삭제 & Pickax버튼 다시 누르기 빼고는 기능 해제
+        {
+            ItemEnableButton();
+        }
     }
 
     private void DeleteCharac()
