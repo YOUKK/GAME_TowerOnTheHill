@@ -170,7 +170,7 @@ public abstract class Monster : MonoBehaviour
         gameObject.layer = 6;
     }
 
-    public void Stun(float delay = 0.2f)
+    public void Stun(float delay = 2.0f)
     {
         currentSpeed = 0;
         gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.1f, gameObject.transform.position.y);
