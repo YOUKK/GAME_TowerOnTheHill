@@ -18,7 +18,7 @@ MonoBehaviour:
   pAttackDelay: 0
   projectileNum: 1
   range: 1
-  strength: 10000
+  strength: 250
   healthPoint: 1000
   attackDuration: 2
-  type: 0
+  type: 2
