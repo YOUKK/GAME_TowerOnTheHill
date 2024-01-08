@@ -205,10 +205,10 @@ public abstract class Monster : MonoBehaviour
         Invoke("SDelay", delay);
     }
 
-    public void Slow(float speed = 1.2f)
+    public void Slow(float speed = 1.6f)
     {
         currentSpeed = status.speed / speed;
-        Invoke("SDelay", 1.95f);
+        Invoke("SDelay", 5f);
     }
     void SDelay()
     {
