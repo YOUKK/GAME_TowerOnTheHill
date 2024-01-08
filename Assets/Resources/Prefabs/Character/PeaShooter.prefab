@@ -98,6 +98,9 @@ MonoBehaviour:
   mainCharacter: {fileID: 0}
   monster: {fileID: 0}
   localPos: {x: 0, y: 0}
+  rangeSize: {x: 0, y: 0}
+  rangePos: {x: 0, y: 0}
+  hitRangeMonster: []
 --- !u!1 &4013732960186604069
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
   projectileSecond: {fileID: 0}
-  status: {fileID: 11400000, guid: 4502ce94f344ea441ad0b5b48b6dd545, type: 2}
+  status: {fileID: 11400000, guid: 9fd494dd20c88d343bba13e91dd4e481, type: 2}
   coolTime: 0
   projectileSpeed: 0
   attackDelay: 0
