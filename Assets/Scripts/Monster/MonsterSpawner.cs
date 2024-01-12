@@ -136,6 +136,10 @@ public class MonsterSpawner : MonoBehaviour
     {
         if (monsterList[line].Remove(obj))
             Debug.Log("Monster is removed");
+        else
+        {
+            Debug.LogError("Monster doesn't removed");
+        }
             //for(int i = 0; i < 5; ++i)
             //    Debug.Log("Line : " + i + " " + monsterList[i].Count);
     }
