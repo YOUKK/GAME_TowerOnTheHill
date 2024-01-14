@@ -241,9 +241,12 @@ public abstract class Monster : MonoBehaviour
     private IEnumerator HittedCoroutine(int damage)
     {
         currentHP -= damage;
-        sprite.color = new Color(255, 255, 255, 0.6f);
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = new Color(255, 255, 255, 1);
+        if (sprite != null)
+        {
+            sprite.color = new Color(255, 255, 255, 0.6f);
+            yield return new WaitForSeconds(0.2f);
+            sprite.color = new Color(255, 255, 255, 1);
+        }
     }
 
     public MonsterType GetMonsterType()
