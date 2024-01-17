@@ -80,6 +80,9 @@ public class Resource : MonoBehaviour
 			yield return null;
 		}
 
-        gameObject.SetActive(false);
+        if(type == ResourceType.Gem)
+            gameObject.SetActive(false);
+        if(type == ResourceType.Coin)
+            Destroy(gameObject);
     }
 }

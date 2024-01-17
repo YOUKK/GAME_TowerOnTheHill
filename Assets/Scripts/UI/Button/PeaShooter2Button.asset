@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74516f5c0a93c954d89a9f17b64ee73e, type: 3}
   m_Name: PeaShooter2Button
   m_EditorClassIdentifier: 
-  sprite: {fileID: 3595809875095480248, guid: 32e494e948cbb884da524c2778349be0, type: 3}
+  sprite: {fileID: 5016359546271705471, guid: d7cdd246d55e283408723e0cad485746, type: 3}
   characterObject: {fileID: 3595809875095480248, guid: 32e494e948cbb884da524c2778349be0, type: 3}
   coolTime: 14
   price: 200

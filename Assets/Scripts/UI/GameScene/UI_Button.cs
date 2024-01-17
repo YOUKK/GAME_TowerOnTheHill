@@ -48,7 +48,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             Debug.Log("Down");
             _pressed = true;
-            GamePlayManagers.MouseInputM.IsDrag = true;
+            GameManager.MouseInputM.IsDrag = true;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             dragCharacter = Instantiate(sprite, mousePosition + Vector3.forward, transform.rotation);
             dragCharacter.tag = "DragCharacter";
@@ -63,7 +63,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             Debug.Log("Up");
             _pressed = false;
-            GamePlayManagers.MouseInputM.IsDrag = false;
+            GameManager.MouseInputM.IsDrag = false;
 
             Vector3 rayStart = new Vector3(dragCharacter.transform.position.x, dragCharacter.transform.position.y, -2);
             Debug.DrawRay(rayStart, Vector3.forward * 10.0f, Color.red, 3.0f);
