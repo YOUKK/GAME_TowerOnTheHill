@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public static GameManager GetInstance { get { Init(); return instance; } }
+
+    private MouseInputManager mouseInputM = new MouseInputManager();
+    public static MouseInputManager MouseInputM { get { return instance.mouseInputM; } }
+
     void Awake()
     {
         Init();

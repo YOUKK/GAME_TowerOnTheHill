@@ -25,8 +25,8 @@ public class GamePlayManagers : MonoBehaviour
     private TimeManager timeM = new TimeManager();
     public static TimeManager TimeM { get { return Instance.timeM; } }
 
-    private MouseInputManager mouseInputM = new MouseInputManager();
-    public static MouseInputManager MouseInputM { get { return instance.mouseInputM; } }
+    //private MouseInputManager mouseInputM = new MouseInputManager();
+    //public static MouseInputManager MouseInputM { get { return instance.mouseInputM; } }
 
     private GameObject menuCanvas;
     private PhaseStage currentPS;
