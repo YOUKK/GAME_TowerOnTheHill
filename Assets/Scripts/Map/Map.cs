@@ -14,7 +14,7 @@ public class Map : MonoBehaviour
     static Map              _map;
     public static Map GetInstance() { return _map; }
 
-    private int mapX = 9, mapY = 5;
+    public int mapX = 9, mapY = 5;
     List<List<GameObject>>  seats = new List<List<GameObject>>();
     public List<List<GameObject>> Seats { get => seats; set => seats = value; }
 
