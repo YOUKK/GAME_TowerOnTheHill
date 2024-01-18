@@ -107,6 +107,7 @@ MonoBehaviour:
   healthPoint: 0
   attackDuration: 0
   type: 2
+  deadEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
 --- !u!1 &2999915491374901228
 GameObject:
   m_ObjectHideFlags: 0
