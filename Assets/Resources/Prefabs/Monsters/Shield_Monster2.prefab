@@ -73,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2144018253
-  m_SortingLayer: 8
-  m_SortingOrder: 4
+  m_SortingLayerID: 223328553
+  m_SortingLayer: 9
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 9f283519781efd44eb8ea57cc0550599, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: e2a6923a64cd38143a1946157b6fda89, type: 2}
+  isCrazy: 0
   currentHP: 0
   currentSpeed: 0
   currentForce: 0
@@ -170,30 +171,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4463724205499276616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 1726677302049926109}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4befd3a874b570a4badf9399ec9d981e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  projectileSecond: {fileID: 0}
-  status: {fileID: 0}
-  coolTime: 0
-  projectileSpeed: 0
-  attackDelay: 0
-  projectileNum: 0
-  range: 0
-  strength: 0
-  healthPoint: 0
-  attackDuration: 0
-  type: 0
 --- !u!1001 &1726677302049926109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -261,3 +238,27 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 7816509664032207918, guid: 98cb5643a597e384496c9c7a0a91e2d7, type: 3}
   m_PrefabInstance: {fileID: 1726677302049926109}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4463724205499276616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4befd3a874b570a4badf9399ec9d981e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  projectileSecond: {fileID: 0}
+  status: {fileID: 0}
+  coolTime: 0
+  projectileSpeed: 0
+  attackDelay: 0
+  projectileNum: 0
+  range: 0
+  strength: 0
+  healthPoint: 0
+  attackDuration: 0
+  type: 0
