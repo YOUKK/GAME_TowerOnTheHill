@@ -21,7 +21,7 @@ public class Pea : MonoBehaviour
             {
                 // 화살이 공중 몬스터에 적중할 지 아닐 지 결정할 변수
                 int flag = Random.Range(0, 2);
-                if (flag == 0) Instantiate(missEffect, transform.position - Vector3.forward, transform.rotation);
+                if (flag == 0) Instantiate(missEffect, collision.transform.position + Vector3.up * 0.7f, transform.rotation);
                 collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength * flag);
             }
             else
