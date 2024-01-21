@@ -20,6 +20,7 @@ public class Buffer : Character
         projectiles.Clear();
 
         projectile = gameObject.transform.Find("Projectiles").transform.GetChild(Random.Range(0, 3)).gameObject;
+        print(projectile.name);
         projectiles.Enqueue(projectile);
         activatedProj.Enqueue(projectile);
         projectile.SetActive(true);
