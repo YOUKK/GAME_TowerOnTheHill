@@ -16,7 +16,7 @@ public class Bomber : Character
             }
         }
 
-        Dead();
+        Invoke("DeadDelay", 0.01f);    
     }
 }
 
