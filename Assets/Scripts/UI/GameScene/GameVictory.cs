@@ -8,16 +8,19 @@ using TMPro;
 
 public class GameVictory : MonoBehaviour
 {
-    public TextMeshProUGUI coinText;
-    public Button nextButton;
-    public Button restartButton;
+    [SerializeField]
+    protected TextMeshProUGUI coinText;
+    [SerializeField]
+    private Button nextButton;
+    [SerializeField]
+    private Button restartButton;
 
-    private PhaseStage winPS = new PhaseStage(); // 현재 클리어한 곳까지의 맵, 스테이지 정보
-    private PhaseStage selectPS = new PhaseStage(); // 선택한 맵, 스테이지 정보
+    protected PhaseStage winPS = new PhaseStage(); // 현재 클리어한 곳까지의 맵, 스테이지 정보
+    protected PhaseStage selectPS = new PhaseStage(); // 선택한 맵, 스테이지 정보
 
 
 
-    void OnEnable()
+    private void OnEnable()
     { 
         // 버튼 클릭 시 호출될 함수 추가
         restartButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "CharacterSelectScene"));
@@ -51,7 +54,7 @@ public class GameVictory : MonoBehaviour
         //}
     }
 
-    private void UnlockSlot()
+    protected void UnlockSlot()
 	{
         if (PlayerPrefs.HasKey("slotNum"))
         {
@@ -63,7 +66,7 @@ public class GameVictory : MonoBehaviour
         }
     }
 
-	private void UnlockCharacter()
+	protected void UnlockCharacter()
 	{
 		if (PlayerPrefs.HasKey("chaUnlockLevel"))
 		{
@@ -78,7 +81,7 @@ public class GameVictory : MonoBehaviour
     }
 
     //  json을 phaseStage로 로드하는 함수
-    private void LoadWinPhaseStageFromJson()
+    protected void LoadWinPhaseStageFromJson()
     {
         string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");
         string jsonData = File.ReadAllText(path);
@@ -86,7 +89,7 @@ public class GameVictory : MonoBehaviour
     }
 
     //  json을 phaseStage로 로드하는 함수
-    private void LoadSelectPhaseStageFromJson()
+    protected void LoadSelectPhaseStageFromJson()
     {
         string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
         string jsonData = File.ReadAllText(path);
@@ -94,7 +97,7 @@ public class GameVictory : MonoBehaviour
     }
 
     // phaseStage를 json으로 저장하는 함수
-    private void SavePhaseStageToJson()
+    protected void SavePhaseStageToJson()
     {
         string jsonData = JsonUtility.ToJson(winPS, true);
         string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");
