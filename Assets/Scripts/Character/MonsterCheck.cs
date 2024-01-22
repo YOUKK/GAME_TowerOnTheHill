@@ -36,9 +36,7 @@ public class MonsterCheck : MonoBehaviour
 
     private void Update()
     {
-        hitRangeMonster = Physics2D.OverlapBoxAll(rangePos,
-                                                  rangeSize,
-                                                  0);
+        hitRangeMonster = Physics2D.OverlapBoxAll(rangePos, rangeSize, 0);
 
         bool flag = false;
 
@@ -52,7 +50,8 @@ public class MonsterCheck : MonoBehaviour
                     continue;
                 }
                 else if (mainCharacter.Type == CharacterType.UnTouch    &&
-                    MonsterType.Unique == hitRangeMonster[i].gameObject.GetComponent<Monster>().GetMonsterType())
+                    MonsterType.Unique == hitRangeMonster[i].gameObject.GetComponent<Monster>().GetMonsterType() &&
+                    MonsterType.Aerial == hitRangeMonster[i].gameObject.GetComponent<Monster>().GetMonsterType())
                 {
                     continue;
                 }
