@@ -41,8 +41,12 @@ public class GamePlayManagers : MonoBehaviour
     [SerializeField] private bool isGameClear = false;
     public bool IsGameClear { get => isGameClear; set => isGameClear = value; }
 
+    // 공유 변수
+    public PhaseStage winPS = new PhaseStage(); // 현재 클리어한 곳까지의 맵, 스테이지 정보
+    public PhaseStage selectPS = new PhaseStage(); // 선택한 맵, 스테이지 정보
 
-	void Start()
+
+    void Start()
     {
         Init();
         timeM.InitTimer();
@@ -82,8 +86,46 @@ public class GamePlayManagers : MonoBehaviour
 		}
 	}
 
+    //  json을 phaseStage로 로드하는 함수
+    protected void LoadWinPhaseStageFromJson()
+    {
+        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");
+        string jsonData = File.ReadAllText(path);
+        winPS = JsonUtility.FromJson<PhaseStage>(jsonData);
+    }
+
+    //  json을 phaseStage로 로드하는 함수
+    protected void LoadSelectPhaseStageFromJson()
+    {
+        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
+        string jsonData = File.ReadAllText(path);
+        selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
+    }
+
+
+    // phaseStage를 json으로 저장하는 함수
+    protected void SavePhaseStageToJson()
+    {
+        string jsonData = JsonUtility.ToJson(winPS, true);
+        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");
+        File.WriteAllText(path, jsonData);
+    }
+
     public void Victory()
 	{
+        // 조건에 따라 팝업
+        LoadWinPhaseStageFromJson();
+        LoadSelectPhaseStageFromJson();
+
+        // 새로운 스테이지를 깼는데
+        if(selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
+		{
+            // 새로운 캐릭터가 해금되는 스테이지라면
+            if (!((selectPS.phase == 1 && selectPS.stage == 4) || (selectPS.phase == 2 && selectPS.stage == 4) || (selectPS.phase == 3 && (selectPS.stage == 3 || selectPS.stage == 4 || selectPS.stage == 5)))){
+                menuCanvas.GetComponent<MenuCanvas>().ActiveVictoryCharacter();
+			}
+		}
+
         menuCanvas.GetComponent<MenuCanvas>().ActivePopupVictory();
     }
 

@@ -25,6 +25,21 @@ public class MenuCanvas : MonoBehaviour
         gameObject.GetComponent<MonsterWaveTimer>().enabled = active;
     }
 
+    public void ActiveVictoryCharacter()
+	{
+        GameObject obj = GetComponentInChildren<GameVictoryCharacter>(true).gameObject;
+        obj.SetActive(true);
+    }
+
+    public void ActiveCharacterShow()
+	{
+        GameObject obj = GetComponentInChildren<GameVictoryCharacter>().gameObject;
+        obj.SetActive(false);
+
+        obj = GetComponentInChildren<CharacterShow>(true).gameObject;
+        obj.SetActive(true);
+	}
+
     public void ActivePopupVictory()
     {
         GameObject obj = GetComponentInChildren<GameVictory>(true).gameObject;
