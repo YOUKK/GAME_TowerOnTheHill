@@ -21,4 +21,4 @@ MonoBehaviour:
   strength: 250
   healthPoint: 1000
   attackDuration: 2
-  type: 2
+  type: 3
