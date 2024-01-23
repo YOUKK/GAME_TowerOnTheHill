@@ -64,14 +64,17 @@ public class Pickax : MonoBehaviour
         {
             if (hits[i].transform.CompareTag("Enemy"))
             {
-                hits[i].transform.gameObject.GetComponent<Monster>().Hit(1000);
-                SoundManager.Instance.PlayEffect("HammerItem");
-                
-                ShopData shopData = DataManager.GetData.GetShopData();
-                shopData.hasHammer = false;
-                DataManager.GetData.SaveShopData(shopData);
-                transform.parent.gameObject.SetActive(false);
-                break;
+                if (hits[i].transform.name != "Boss")
+                {
+                    hits[i].transform.gameObject.GetComponent<Monster>().Hit(1000);
+                    SoundManager.Instance.PlayEffect("HammerItem");
+
+                    ShopData shopData = DataManager.GetData.GetShopData();
+                    shopData.hasHammer = false;
+                    DataManager.GetData.SaveShopData(shopData);
+                    transform.parent.gameObject.SetActive(false);
+                    break;
+                }
             }
             else if (hits[i].transform.CompareTag("Pickax"))
             {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SmartMonster : Monster
 {
@@ -64,9 +65,12 @@ public class SmartMonster : Monster
         // Ensure the player reaches the exact end position
         transform.position = endPosition;
 
-        MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
-        currentLine = destinationLine;
-        MonsterSpawner.GetInstance.InsertMonster(gameObject, destinationLine);
+        if (SceneManager.GetActiveScene().name != "BossWave")
+        {
+            MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
+            currentLine = destinationLine;
+            MonsterSpawner.GetInstance.InsertMonster(gameObject, destinationLine);
+        }
         isLineMoving = false;
         isFinishedLineMoving = true;
     }

@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterName: Shield3
   hp: 260
   speed: 0.35
-  force: 10
+  force: 15
   hitSpeed: 3
   attackDistance: 0.5
   type: 0

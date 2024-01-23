@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum AttackType { NORMAL, SLOW, STUN, CRAZY, DEAD}
 
@@ -131,8 +132,7 @@ public abstract class Monster : MonoBehaviour
             Instantiate(randomCoin, transform.position, transform.rotation);
 
         // 보스전(3-5)에서는 MonsterSpawner을 사용하지 않는다.
-        if (GamePlayManagers.Instance.GetCurrentPS.stage != 5 &&
-            GamePlayManagers.Instance.GetCurrentPS.phase != 3)
+        if (SceneManager.GetActiveScene().name != "BossWave")
         {
             MonsterSpawner.GetInstance.RemoveMonster(gameObject, currentLine);
         }
@@ -241,9 +241,12 @@ public abstract class Monster : MonoBehaviour
     private IEnumerator HittedCoroutine(int damage)
     {
         currentHP -= damage;
-        sprite.color = new Color(255, 255, 255, 0.6f);
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = new Color(255, 255, 255, 1);
+        if (sprite != null)
+        {
+            sprite.color = new Color(255, 255, 255, 0.6f);
+            yield return new WaitForSeconds(0.2f);
+            sprite.color = new Color(255, 255, 255, 1);
+        }
     }
 
     public MonsterType GetMonsterType()

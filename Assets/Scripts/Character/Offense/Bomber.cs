@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Bomber : Character
 {
+    [SerializeField]
+    GameObject deadEffect;
+
     public void Bombed()
     {
         Collider2D[] hit = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector2(3, 3), 0);
@@ -18,51 +21,14 @@ public class Bomber : Character
 
         Invoke("DeadDelay", 0.01f);    
     }
-}
 
-
-/*
-public class Bomber : Character
-{
-    Queue<GameObject> bombedEnemy = new Queue<GameObject>();
-    private Character mainCharacter;
-    // Start is called before the first frame update
-    protected override void Start()
+    protected override void Dead()
     {
-        base.Start();
-    }
-
-    public override void Attack()
-    {
-        //anim.SetTrigger("canAttack");
-        Invoke("Duration", attackDuration);
-    }
-    void Duration()
-    {
-        //Bomb();
-        //anim.SetBool("isDead", true);
-        //Invoke("DeadDelay", 2.0f);
-    }
-    void Bomb()
-    {
-        for (int i = 0; i < bombedEnemy.Count; i++)
+        if(deadEffect)
         {
-            bombedEnemy.Dequeue().GetComponent<Monster>().Hit((int)mainCharacter.Strength);
+            Instantiate(deadEffect, transform.position, transform.rotation);
+            SoundManager.Instance.PlayEffect("Bomb");
         }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.tag == "Enemy")
-        {
-            bombedEnemy.Enqueue(collision.gameObject);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            bombedEnemy.Dequeue();
-        }
+        base.Dead();
     }
 }
-*/

@@ -6,6 +6,9 @@ public class Pea : MonoBehaviour
 {
     private Character mainCharacter;
 
+    [SerializeField]
+    private GameObject missEffect;
+
     private void Start()
     {
         mainCharacter = gameObject.GetComponentInParent<Character>();
@@ -16,7 +19,10 @@ public class Pea : MonoBehaviour
         {
             if(collision.gameObject.GetComponent<Monster>().GetMonsterType() == MonsterType.Aerial)
             {
-                collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength * Random.Range(0, 2));
+                // 화살이 공중 몬스터에 적중할 지 아닐 지 결정할 변수
+                int flag = Random.Range(0, 2);
+                if (flag == 0) Instantiate(missEffect, collision.transform.position + Vector3.up * 0.7f, transform.rotation);
+                collision.gameObject.GetComponent<Monster>().Hit((int)mainCharacter.Strength * flag);
             }
             else
             {
