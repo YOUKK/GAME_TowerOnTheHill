@@ -492,6 +492,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameClear: 0
+  winPS:
+    phase: 0
+    stage: 0
+  selectPS:
+    phase: 0
+    stage: 0
 --- !u!4 &178940663
 Transform:
   m_ObjectHideFlags: 0
@@ -1176,11 +1182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6500896320757367188, guid: 7803a70e88969d846af0317711eeeece, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -808.10004
+      value: 151.90002
       objectReference: {fileID: 0}
     - target: {fileID: 6500896320757367188, guid: 7803a70e88969d846af0317711eeeece, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 530
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 6500896321270234620, guid: 7803a70e88969d846af0317711eeeece, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
