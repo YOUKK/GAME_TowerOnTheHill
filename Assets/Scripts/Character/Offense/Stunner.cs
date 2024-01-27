@@ -7,7 +7,7 @@ public class Stunner : Character
     protected override void Start()
     {
         base.Start();
-
+        AttackDuration = (int)DataManager.GetData.GetUpgradeDataDic()["Stunner"].statIncrease[DataManager.GetData.GetUpgradeDataDic()["Stunner"].currentLevel];
     }
     public override void Attack()
     {

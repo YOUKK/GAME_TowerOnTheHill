@@ -16,7 +16,7 @@ public class Eater : Character
     {
         base.Start();
 
-        AttackDuration = int.Parse(DataManager.GetData.GetUpgradeDataDic()["Eater"].statIncrease[DataManager.GetData.GetUpgradeDataDic()["Eater"].currentLevel].ToString());
+        AttackDuration = (int)DataManager.GetData.GetUpgradeDataDic()["Eater"].statIncrease[DataManager.GetData.GetUpgradeDataDic()["Eater"].currentLevel];
     }
     // Update is called once per frame
     public override void Attack()

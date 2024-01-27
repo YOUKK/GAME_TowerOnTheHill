@@ -182,13 +182,16 @@ public class DataManager : MonoBehaviour
         {
             upgradeDatas = new UpgradeData[7];
 
-            upgradeDatas[0] = new UpgradeData("PeaShooter", 0, new float[] { 10, 12, 14, 17, 20 }, UpgradeKind.Force);
-            upgradeDatas[1] = new UpgradeData("PeaShooter2", 0, new float[] { 7, 9, 11, 13, 15 }, UpgradeKind.Force);
-            upgradeDatas[2] = new UpgradeData("SunFlower", 0, new float[] { 10, 9.5f, 9, 8, 7 }, UpgradeKind.SkillSpeed);
-            upgradeDatas[3] = new UpgradeData("Walnut", 0, new float[] { 200, 210, 220, 230, 240 }, UpgradeKind.Health);
+            upgradeDatas[0] = new UpgradeData("Normal Shooter", 0, new float[] { 10, 12, 14, 17, 20 }, UpgradeKind.Force);
+            upgradeDatas[1] = new UpgradeData("Double Shooter", 0, new float[] { 7, 9, 11, 13, 15 }, UpgradeKind.Force);
+            upgradeDatas[2] = new UpgradeData("Fairy", 0, new float[] { 10, 9.5f, 9, 8, 7 }, UpgradeKind.SkillSpeed);
+            upgradeDatas[3] = new UpgradeData("Guard", 0, new float[] { 200, 210, 220, 230, 240 }, UpgradeKind.Health);
             upgradeDatas[4] = new UpgradeData("Eater", 0, new float[] { 5, 4.6f, 4.2f, 3.8f, 3.2f }, UpgradeKind.SkillSpeed);
-            upgradeDatas[5] = new UpgradeData("GasMushroom", 0, new float[] { 5, 6, 7, 8, 10 }, UpgradeKind.Force);
-            upgradeDatas[6] = new UpgradeData("IceShooter", 0, new float[] { 10, 11, 12, 13, 14 }, UpgradeKind.Force);
+            upgradeDatas[5] = new UpgradeData("Magician", 0, new float[] { 5, 6, 7, 8, 10 }, UpgradeKind.Force);
+            upgradeDatas[6] = new UpgradeData("Ice Magician", 0, new float[] { 10, 11, 12, 13, 14 }, UpgradeKind.Force);
+            upgradeDatas[7] = new UpgradeData("Buffer", 0, new float[] { 10, 9, 8, 7, 6 }, UpgradeKind.SkillSpeed);
+            upgradeDatas[8] = new UpgradeData("Aerial Shooter", 0, new float[] { 10, 11, 12, 13, 14 }, UpgradeKind.Force);
+            upgradeDatas[9] = new UpgradeData("Stunner", 0, new float[] { 8.0f, 7.5f, 6.8f, 6.2f, 5.6f }, UpgradeKind.SkillSpeed);
 
             string json = JsonHelper.ToJson(upgradeDatas, true);
             Debug.Log(json);

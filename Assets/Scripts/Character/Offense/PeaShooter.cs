@@ -9,7 +9,8 @@ public class PeaShooter : Character
     {
         base.Start();
 
-        strength = int.Parse(DataManager.GetData.GetUpgradeDataDic()["PeaShooter"].statIncrease[DataManager.GetData.GetUpgradeDataDic()["PeaShooter"].currentLevel].ToString());
+        strength = (int)DataManager.GetData.GetUpgradeDataDic()["Normal Shooter"].statIncrease[
+            DataManager.GetData.GetUpgradeDataDic()["Normal Shooter"].currentLevel];
     }
 
     public override void Attack()

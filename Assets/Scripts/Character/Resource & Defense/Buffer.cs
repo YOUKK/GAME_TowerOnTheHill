@@ -8,6 +8,8 @@ public class Buffer : Character
     protected override void Start()
     {
         base.Start();
+
+        AttackDuration = (int)DataManager.GetData.GetUpgradeDataDic()["Buffer"].statIncrease[DataManager.GetData.GetUpgradeDataDic()["Buffer"].currentLevel];
     }
 
     public override void Attack()
