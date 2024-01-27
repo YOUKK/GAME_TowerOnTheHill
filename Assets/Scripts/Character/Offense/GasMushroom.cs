@@ -8,7 +8,8 @@ public class GasMushroom : Character
     protected override void Start()
     {
         base.Start();
-        strength = int.Parse(DataManager.GetData.GetUpgradeDataDic()["GasMushroom"].statIncrease[DataManager.GetData.GetUpgradeDataDic()["GasMushroom"].currentLevel].ToString());
+        strength = (int)DataManager.GetData.GetUpgradeDataDic()["Magician"].statIncrease[
+            DataManager.GetData.GetUpgradeDataDic()["Magician"].currentLevel];
     }
 
     public override void Attack()

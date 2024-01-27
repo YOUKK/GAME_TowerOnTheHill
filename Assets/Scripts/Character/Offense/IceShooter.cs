@@ -8,8 +8,8 @@ public class IceShooter : Character
     protected override void Start()
     {
         base.Start();
-        strength = int.Parse(DataManager.GetData.GetUpgradeDataDic()["IceShooter"].statIncrease[
-                    DataManager.GetData.GetUpgradeDataDic()["IceShooter"].currentLevel].ToString());
+        strength = (int)DataManager.GetData.GetUpgradeDataDic()["Ice Magician"].statIncrease[
+                    DataManager.GetData.GetUpgradeDataDic()["Ice Magician"].currentLevel];
     }
 
     public override void Attack()

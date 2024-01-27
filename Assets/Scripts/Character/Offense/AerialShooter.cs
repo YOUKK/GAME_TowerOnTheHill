@@ -8,6 +8,9 @@ public class AerialShooter : Character
     protected override void Start()
     {
         base.Start();
+
+        strength = (int)DataManager.GetData.GetUpgradeDataDic()["Aerial Shooter"].statIncrease[
+            DataManager.GetData.GetUpgradeDataDic()["Aerial Shooter"].currentLevel];
     }
 
     public override void Attack()

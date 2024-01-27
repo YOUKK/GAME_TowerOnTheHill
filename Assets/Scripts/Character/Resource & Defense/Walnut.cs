@@ -8,8 +8,8 @@ public class Walnut : Character
     protected override void Start()
     {
         base.Start();
-        HealthPoint = int.Parse(DataManager.GetData.GetUpgradeDataDic()["Walnut"].statIncrease[
-                                DataManager.GetData.GetUpgradeDataDic()["Walnut"].currentLevel].ToString());
+        HealthPoint = (int)DataManager.GetData.GetUpgradeDataDic()["Guard"].statIncrease[
+                                DataManager.GetData.GetUpgradeDataDic()["Guard"].currentLevel];
     }
 
     public override void Attack()
