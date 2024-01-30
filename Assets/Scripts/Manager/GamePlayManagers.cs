@@ -87,7 +87,7 @@ public class GamePlayManagers : MonoBehaviour
 	}
 
     //  json을 phaseStage로 로드하는 함수
-    protected void LoadWinPhaseStageFromJson()
+    public void LoadWinPhaseStageFromJson()
     {
         string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");
         string jsonData = File.ReadAllText(path);
@@ -95,7 +95,7 @@ public class GamePlayManagers : MonoBehaviour
     }
 
     //  json을 phaseStage로 로드하는 함수
-    protected void LoadSelectPhaseStageFromJson()
+    public void LoadSelectPhaseStageFromJson()
     {
         string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
         string jsonData = File.ReadAllText(path);
@@ -104,7 +104,7 @@ public class GamePlayManagers : MonoBehaviour
 
 
     // phaseStage를 json으로 저장하는 함수
-    protected void SavePhaseStageToJson()
+    public void SavePhaseStageToJson()
     {
         string jsonData = JsonUtility.ToJson(winPS, true);
         string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");

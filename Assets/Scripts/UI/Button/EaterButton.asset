@@ -16,3 +16,4 @@ MonoBehaviour:
   characterObject: {fileID: 8552929937083278397, guid: baf57ccc7a4b9ae44889bb183090f726, type: 3}
   coolTime: 7
   price: 150
+  description: "\uD55C\uBC88\uC5D0 \uD55C \uBAAC\uC2A4\uD130\uB97C \uBA39\uC5B4 \uCE58\uC6C1\uB2C8\uB2E4."
