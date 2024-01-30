@@ -15,18 +15,10 @@ public class MapButton : MonoBehaviour
     private Sprite unselectSprite;
 
     [SerializeField]
-    private GameObject mapButton1;
+    private GameObject[] mapButton = new GameObject[3];
     [SerializeField]
-    private GameObject mapButton2;
-    [SerializeField]
-    private GameObject mapButton3;
+    private GameObject[] mapStagesButton = new GameObject[3];
 
-    [SerializeField]
-    private GameObject map1Stage;
-    [SerializeField]
-    private GameObject map2Stage;
-    [SerializeField]
-    private GameObject map3Stage;
     [SerializeField]
     private Button backButton;
 
@@ -35,74 +27,66 @@ public class MapButton : MonoBehaviour
 
     private GameObject currentStageButton; // 현재 띄어져있는 스테이지 버튼
 
-    private List<string> animList = new List<string>();
-
     void Start()
     {
-        currentStageButton = map1Stage;
+        // 클리어한 스테이지가 가장 먼저 뜨도록 설정
+        GamePlayManagers.Instance.LoadWinPhaseStageFromJson();
+        int curPhase = GamePlayManagers.Instance.winPS.phase - 1;
+        currentStageButton = mapStagesButton[curPhase];
+        MapButtonEffect(curPhase);
         currentStageButton.GetComponent<Animation>().Play("GoDown");
+
         backButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("LevelSelectScene", "Title"));
     }
 
-    void Update()
-    {
-        
-    }
+    // 맵 버튼 클릭시 버튼 색 효과 처리
+    private void MapButtonEffect(int current)
+	{
+        for(int i = 0; i < 3; i++)
+		{
+            if(i == current)
+			{
+                mapButton[i].GetComponent<Image>().sprite = selectSprite;
+                mapButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = selectColor;
+            }
+			else
+			{
+                mapButton[i].GetComponent<Image>().sprite = unselectSprite;
+                mapButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
+            }
+		}
+	}
 
+    // 맵 버튼 클릭에 따른 애니메이션 처리
+    private void Animation(int current)
+	{
+        if(currentStageButton != mapStagesButton[current])
+		{
+            currentStageButton.GetComponent<Animation>().Play("GoUp");
+            currentStageButton = mapStagesButton[current];
+            currentStageButton.GetComponent<Animation>().Play("GoDown");
+        }
+	}
+
+    // 맵 버튼이랑 연결된 함수
     public void ButtonClick()
 	{
         SoundManager.Instance.PlayEffect("Button1");
 
         if(EventSystem.current.currentSelectedGameObject.name == "Map1Button") // Map1버튼 클릭
 		{
-            mapButton1.GetComponent<Image>().sprite = selectSprite;
-            mapButton2.GetComponent<Image>().sprite = unselectSprite;
-            mapButton3.GetComponent<Image>().sprite = unselectSprite;
-
-            mapButton1.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = selectColor;
-            mapButton2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
-            mapButton3.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
-
-            if (currentStageButton != map1Stage)
-            {
-                currentStageButton.GetComponent<Animation>().Play("GoUp");
-                currentStageButton = map1Stage;
-                currentStageButton.GetComponent<Animation>().Play("GoDown");
-            }
+            MapButtonEffect(0);
+            Animation(0);
         }
         else if(EventSystem.current.currentSelectedGameObject.name == "Map2Button") // Map2버튼 클릭
 		{
-            mapButton1.GetComponent<Image>().sprite = unselectSprite;
-            mapButton2.GetComponent<Image>().sprite = selectSprite;
-            mapButton3.GetComponent<Image>().sprite = unselectSprite;
-
-            mapButton1.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
-            mapButton2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = selectColor;
-            mapButton3.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
-
-            if (currentStageButton != map2Stage)
-            {
-                currentStageButton.GetComponent<Animation>().Play("GoUp");
-                currentStageButton = map2Stage;
-                currentStageButton.GetComponent<Animation>().Play("GoDown");
-            }
+            MapButtonEffect(1);
+            Animation(1);
         }
 		else // Map3버튼 클릭
 		{
-            mapButton1.GetComponent<Image>().sprite = unselectSprite;
-            mapButton2.GetComponent<Image>().sprite = unselectSprite;
-            mapButton3.GetComponent<Image>().sprite = selectSprite;
-
-            mapButton1.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
-            mapButton2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = unselectColor;
-            mapButton3.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = selectColor;
-
-            if (currentStageButton != map3Stage)
-            {
-                currentStageButton.GetComponent<Animation>().Play("GoUp");
-                currentStageButton = map3Stage;
-                currentStageButton.GetComponent<Animation>().Play("GoDown");
-            }
+            MapButtonEffect(2);
+            Animation(2);
         }
 	}
 }
