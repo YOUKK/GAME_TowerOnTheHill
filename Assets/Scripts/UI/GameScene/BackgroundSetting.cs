@@ -15,30 +15,20 @@ public class BackgroundSetting : MonoBehaviour
     [SerializeField]
     private Sprite map3Background;
 
-    private PhaseStage selectPS = new PhaseStage();
-
 	private void Awake()
 	{
         background = GetComponent<SpriteRenderer>();
-        LoadSelectPhaseStageFromJson();
+        GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();
+        int phase = GamePlayManagers.Instance.selectPS.phase;
 
         // selectPS.phase == 1 인 경우는 원래 그대로
-        if(selectPS.phase == 2)
+        if(phase == 2)
 		{
             background.sprite = map2Background;
 		}
-		else if(selectPS.phase == 3)
+		else if(phase == 3)
 		{
             background.sprite = map3Background;
 		}
     }
-
-	//  json을 phaseStage로 로드하는 함수
-	private void LoadSelectPhaseStageFromJson()
-    {
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
-        string jsonData = File.ReadAllText(path);
-        selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
-    }
-
 }
