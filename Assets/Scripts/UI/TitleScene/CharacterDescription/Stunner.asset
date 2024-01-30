@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f3abb0a5509b1468d94901e00b51bb, type: 3}
+  m_Name: Stunner
+  m_EditorClassIdentifier: 
+  figureSprite: {fileID: 21300000, guid: 06420e6d65c65854998a9f25ae799378, type: 3}
+  figureName: Stunner
+  figureDescription: "\uC774 \uB9C8\uBC95\uC0AC\uB294 \uC801\uC5D0\uAC8C \uC21C\uAC04
+    \uCDA9\uACA9\uC744 \uC8FC\uB294 \uC5D0\uB108\uC9C0 \uBCFC\uC744 \uB0A0\uB9BD\uB2C8\uB2E4.
+    \uC774\uAC83\uC744 \uB9DE\uC740 \uC801\uC740 \uC7A0\uAE50 \uACBD\uC9C1\uB429\uB2C8\uB2E4.
+    \uC815\uC2E0\uC801\uC778 \uCDA9\uACA9\uC744 \uC8FC\uB294 \uAC83\uC774\uB77C \uBCC4\uB85C
+    \uC544\uD504\uC9C0\uB294 \uC54A\uB2E4\uACE0 \uD569\uB2C8\uB2E4."
