@@ -43,43 +43,43 @@ public class CharacterShow : MonoBehaviour
 
         if(phase == 1 && stage == 1)
 		{
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/WalnutButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/WalnutButton");
 		}
         else if(phase == 1 && stage == 2)
 		{
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/BombButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/BombButton");
         }
         else if(phase == 1 && stage == 3)
 		{
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/IceShooterButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/IceShooterButton");
         }
         else if(phase == 1 & stage == 5)
 		{
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/AerialShooterButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/AerialShooterButton");
         }
         else if(phase == 2 && stage == 1)
 		{
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/GasMushroomButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/GasMushroomButton");
         }
         else if(phase == 2 && stage == 2)
 		{
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/EaterButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/EaterButton");
         }
         else if(phase == 2 && stage == 3)
 		{
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/BufferButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/BufferButton");
         }
         else if (phase == 2 && stage == 5)
         {
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/StunnerButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/StunnerButton");
         }
         else if (phase == 3 && stage == 1)
         {
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/PeaShooter2Button.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/PeaShooter2Button");
         }
         else if (phase == 3 && stage == 2)
         {
-            characterData = AssetDatabase.LoadAssetAtPath<CharacterButtonData>("Assets/Scripts/UI/Button/MadmanButton.asset");
+            characterData = Resources.Load<CharacterButtonData>("CharacterButton/MadmanButton");
         }
     }
 

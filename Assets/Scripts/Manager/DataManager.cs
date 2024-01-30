@@ -109,8 +109,8 @@ public class DataManager : MonoBehaviour
     {
         Init();
 
-        shopDataPath = Application.dataPath + "/Resources/Data/shopData.json";
-        characterDataPath = Application.dataPath + "/Resources/Data/CharacterUpgradeData.json";
+        shopDataPath = Application.dataPath + "/JsonData/shopData.json";
+        characterDataPath = Application.dataPath + "/JsonData/CharacterUpgradeData.json";
     }
 
     private static void Init()
@@ -133,15 +133,15 @@ public class DataManager : MonoBehaviour
     {
         ShopData shopData = new ShopData();
 
-        if (File.Exists(shopDataPath))
-        {
-            string jsonString = File.ReadAllText(shopDataPath);
-            shopData = JsonUtility.FromJson<ShopData>(jsonString);
-        }
+        /*if (File.Exists(shopDataPath))
+        {*/
+        string jsonString = File.ReadAllText(shopDataPath);
+        shopData = JsonUtility.FromJson<ShopData>(jsonString);
+        /*}
         else
         {
             SaveShopData(shopData);
-        }
+        }*/
         
         return shopData;
     }
@@ -180,7 +180,7 @@ public class DataManager : MonoBehaviour
     {
         if (!File.Exists(characterDataPath))
         {
-            upgradeDatas = new UpgradeData[7];
+            upgradeDatas = new UpgradeData[10];
 
             upgradeDatas[0] = new UpgradeData("Normal Shooter", 0, new float[] { 10, 12, 14, 17, 20 }, UpgradeKind.Force);
             upgradeDatas[1] = new UpgradeData("Double Shooter", 0, new float[] { 7, 9, 11, 13, 15 }, UpgradeKind.Force);

@@ -106,8 +106,8 @@ public class MonsterSpawner : MonoBehaviour
     // 이 함수를 씬 로드할 때마다 호출하기
     private void SetPhaseStage()
     {
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
-        string jsonData = File.ReadAllText(path);
+        //string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
+        string jsonData = Resources.Load<TextAsset>("Data/selectPhaseStage").ToString();
         selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
 
         phase = selectPS.phase;
