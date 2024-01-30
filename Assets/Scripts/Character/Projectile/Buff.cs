@@ -20,26 +20,30 @@ public class Buff : MonoBehaviour
         {
             if(hit[i].tag == "Character" && hit[i].name != "Buffer")
             {
-                switch ((int)gameObject.name[gameObject.name.Length - 1] - 48)
+                try
                 {
-                    case 1:
-                        hit[i].gameObject.GetComponent<Character>().Strength = hit[i].gameObject.GetComponent<Character>().status.strength + 5;
-                        hit[i].gameObject.GetComponent<Character>().AttackDelay = hit[i].gameObject.GetComponent<Character>().status.attackDelay;
-                        hit[i].gameObject.GetComponent<Character>().HealthPoint = hit[i].gameObject.GetComponent<Character>().status.healthPoint;
-                        break;
-                    case 2:
-                        hit[i].gameObject.GetComponent<Character>().Strength = hit[i].gameObject.GetComponent<Character>().status.strength;
-                        hit[i].gameObject.GetComponent<Character>().AttackDelay = hit[i].gameObject.GetComponent<Character>().status.attackDelay - 0.5f;
-                        hit[i].gameObject.GetComponent<Character>().HealthPoint = hit[i].gameObject.GetComponent<Character>().status.healthPoint;
-                        break;
-                    case 3:
-                        hit[i].gameObject.GetComponent<Character>().Strength = hit[i].gameObject.GetComponent<Character>().status.strength;
-                        hit[i].gameObject.GetComponent<Character>().AttackDelay = hit[i].gameObject.GetComponent<Character>().status.attackDelay;
-                        hit[i].gameObject.GetComponent<Character>().HealthPoint = hit[i].gameObject.GetComponent<Character>().status.healthPoint + 20;
-                        break;
-                    default:
-                        break;
+                    switch ((int)gameObject.name[gameObject.name.Length - 1] - 48)
+                    {
+                        case 1:
+                            hit[i].gameObject.GetComponent<Character>().Strength = hit[i].gameObject.GetComponent<Character>().status.strength + 5;
+                            hit[i].gameObject.GetComponent<Character>().AttackDelay = hit[i].gameObject.GetComponent<Character>().status.attackDelay;
+                            hit[i].gameObject.GetComponent<Character>().HealthPoint = hit[i].gameObject.GetComponent<Character>().status.healthPoint;
+                            break;
+                        case 2:
+                            hit[i].gameObject.GetComponent<Character>().Strength = hit[i].gameObject.GetComponent<Character>().status.strength;
+                            hit[i].gameObject.GetComponent<Character>().AttackDelay = hit[i].gameObject.GetComponent<Character>().status.attackDelay - 0.5f;
+                            hit[i].gameObject.GetComponent<Character>().HealthPoint = hit[i].gameObject.GetComponent<Character>().status.healthPoint;
+                            break;
+                        case 3:
+                            hit[i].gameObject.GetComponent<Character>().Strength = hit[i].gameObject.GetComponent<Character>().status.strength;
+                            hit[i].gameObject.GetComponent<Character>().AttackDelay = hit[i].gameObject.GetComponent<Character>().status.attackDelay;
+                            hit[i].gameObject.GetComponent<Character>().HealthPoint = hit[i].gameObject.GetComponent<Character>().status.healthPoint + 20;
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                catch (System.Exception) { }
             }
         }
     }
