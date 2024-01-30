@@ -3869,6 +3869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hammer: {fileID: 7618836871997100705}
+  victoryCharacter: {fileID: 913942350727177589}
 --- !u!114 &1370609744820421607
 MonoBehaviour:
   m_ObjectHideFlags: 0

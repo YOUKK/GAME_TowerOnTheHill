@@ -6,11 +6,8 @@ public class MenuCanvas : MonoBehaviour
 {
     [SerializeField]
     private GameObject hammer;
-
-    private void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject victoryCharacter;
 
     public void ActiveHammer(bool active)
     {
@@ -27,16 +24,14 @@ public class MenuCanvas : MonoBehaviour
 
     public void ActiveVictoryCharacter()
 	{
-        GameObject obj = GetComponentInChildren<GameVictoryCharacter>(true).gameObject;
-        obj.SetActive(true);
+        victoryCharacter.SetActive(true);
     }
 
     public void ActiveCharacterShow()
 	{
-        GameObject obj = GetComponentInChildren<GameVictoryCharacter>().gameObject;
-        obj.SetActive(false);
+        victoryCharacter.SetActive(false);
 
-        obj = GetComponentInChildren<CharacterShow>(true).gameObject;
+        GameObject obj = GetComponentInChildren<CharacterShow>(true).gameObject;
         obj.SetActive(true);
 	}
 

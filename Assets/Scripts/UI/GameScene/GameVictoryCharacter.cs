@@ -14,13 +14,15 @@ public class GameVictoryCharacter : GameVictory
 	{
 		unlockButton.onClick.AddListener(() => menuCanvas.ActiveCharacterShow());
 
-        LoadWinPhaseStageFromJson();
-        LoadSelectPhaseStageFromJson();
+        GamePlayManagers.Instance.LoadWinPhaseStageFromJson();
+        GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();
+        winPS = GamePlayManagers.Instance.winPS; // 얕은 복사
+        selectPS = GamePlayManagers.Instance.selectPS; // 얕은 복사
         if (selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
         {
             winPS.phase = selectPS.phase;
             winPS.stage = selectPS.stage;
-            SavePhaseStageToJson();
+            GamePlayManagers.Instance.SaveWinPhaseStageToJson();
 
             if (!((winPS.phase == 1 && winPS.stage == 4) || (winPS.phase == 2 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 3) || (winPS.phase == 3 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 5)))
                 UnlockCharacter(); // 스테이지에 따른 캐릭터 해금
