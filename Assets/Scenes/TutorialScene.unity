@@ -771,6 +771,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PeaShooterButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7273200036809266967, guid: d58bb94d649f4ee4abf5d02ca8b2fae4, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d58bb94d649f4ee4abf5d02ca8b2fae4, type: 3}
 --- !u!224 &267720321 stripped
@@ -2943,6 +2947,10 @@ PrefabInstance:
     - target: {fileID: 4663002450338831206, guid: 7cb072806746a6347969ee2721d436f4, type: 3}
       propertyPath: m_Name
       value: SunFlowerButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663002450338831206, guid: 7cb072806746a6347969ee2721d436f4, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4663002450338831207, guid: 7cb072806746a6347969ee2721d436f4, type: 3}
       propertyPath: m_Pivot.x

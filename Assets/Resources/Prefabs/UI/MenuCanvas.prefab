@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 5609513799554505160}
   - component: {fileID: 4578647866725545904}
   m_Layer: 5
-  m_Name: Space
+  m_Name: NextText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3295,7 +3295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7036915454993386468
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3902,6 +3902,7 @@ MonoBehaviour:
   data: []
   tutorialText: {fileID: 9156144393863343289}
   Pause: {fileID: 5773993238803110023}
+  NextText: {fileID: 555094313417147021}
 --- !u!1 &6500424736134528364
 GameObject:
   m_ObjectHideFlags: 0
@@ -8780,7 +8781,7 @@ GameObject:
   - component: {fileID: 9156144393863343289}
   - component: {fileID: 6213559250310661010}
   m_Layer: 5
-  m_Name: Text
+  m_Name: LogText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
