@@ -15,6 +15,8 @@ public class Tutorial : MonoBehaviour
     [SerializeField]
     GameObject Pause;
 
+    string[] dataset;
+
     private void Start()
     {
         TextAsset csvData = Resources.Load<TextAsset>($"Data/tutorial");
@@ -23,10 +25,9 @@ public class Tutorial : MonoBehaviour
     }
     private void Update()
     {
-        string[] dataset = data[step].Split(new char[] { ',' });
+        dataset = data[step].Split(new char[] { ',' });
 
-        print(dataset[1]);
-        if( int.Parse(dataset[0]) <= GamePlayManagers.TimeM.Sec )
+        if ( int.Parse(dataset[0]) <= GamePlayManagers.TimeM.Sec )
         {
             Time.timeScale = 0;
 
