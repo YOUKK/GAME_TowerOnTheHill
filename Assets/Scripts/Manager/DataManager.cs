@@ -109,8 +109,8 @@ public class DataManager : MonoBehaviour
     {
         Init();
 
-        shopDataPath = Application.dataPath + "/JsonData/shopData.json";
-        characterDataPath = Application.dataPath + "/JsonData/CharacterUpgradeData.json";
+        shopDataPath = Application.persistentDataPath + "/shopData.json";
+        characterDataPath = Application.persistentDataPath + "/CharacterUpgradeData.json";
     }
 
     private static void Init()
@@ -133,15 +133,15 @@ public class DataManager : MonoBehaviour
     {
         ShopData shopData = new ShopData();
 
-        /*if (File.Exists(shopDataPath))
-        {*/
-        string jsonString = File.ReadAllText(shopDataPath);
-        shopData = JsonUtility.FromJson<ShopData>(jsonString);
-        /*}
+        if (File.Exists(shopDataPath))
+        {
+            string jsonString = File.ReadAllText(shopDataPath);
+            shopData = JsonUtility.FromJson<ShopData>(jsonString);
+        }
         else
         {
             SaveShopData(shopData);
-        }*/
+        }
         
         return shopData;
     }
