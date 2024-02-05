@@ -4868,7 +4868,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 0}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -5079,10 +5079,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase the number of seats on all lines by one more space.
+  m_text: "\uCE90\uB9AD\uD130\uB97C \uBC30\uCE58\uD560 \uC218 \uC788\uB294  \uC2DC\uD2B8\uAC00
+    \uD55C \uC904 \uB354 \uCD94\uAC00\uB429\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
+  m_sharedMaterial: {fileID: -8928909099055281477, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6419,10 +6420,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase the character's health
+  m_text: "\uCE90\uB9AD\uD130\uC758 \uCCB4\uB825\uC744 \uD5A5\uC0C1\uC2DC\uD0B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
+  m_sharedMaterial: {fileID: -8928909099055281477, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7832,10 +7833,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Decrease the character's attack delay
+  m_text: "\uCE90\uB9AD\uD130\uC758 \uACF5\uACA9 \uB300\uAE30 \uC2DC\uAC04\uC744
+    \uB0AE\uCDA5\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
+  m_sharedMaterial: {fileID: -8928909099055281477, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8149,10 +8151,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hammer
+  m_text: "\uD5E4\uBA38"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9f931e6ec4936948bf4765e7c10b44f, type: 2}
+  m_sharedMaterial: {fileID: 4972099374358413219, guid: f9f931e6ec4936948bf4765e7c10b44f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10783,10 +10785,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The hammer allows you to kill the monster that the character missed.
+  m_text: "\uD5E4\uBA38\uB97C \uB9DE\uC740 \uC801\uC740 \uB370\uBBF8\uC9C0 1000\uC758
+    \uAC15\uD55C \uCDA9\uACA9\uC744 \uBC1B\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
+  m_sharedMaterial: {fileID: -8928909099055281477, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12644,10 +12647,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Seat Expansion
+  m_text: "\uC2DC\uD2B8 \uD655\uC7A5"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9f931e6ec4936948bf4765e7c10b44f, type: 2}
+  m_sharedMaterial: {fileID: 4972099374358413219, guid: f9f931e6ec4936948bf4765e7c10b44f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14546,10 +14549,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Character Upgrade
+  m_text: "\uCE90\uB9AD\uD130 \uC5C5\uADF8\uB808\uC774\uB4DC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9f931e6ec4936948bf4765e7c10b44f, type: 2}
+  m_sharedMaterial: {fileID: 4972099374358413219, guid: f9f931e6ec4936948bf4765e7c10b44f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17486,10 +17489,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Slot Expansion
+  m_text: "\uC2AC\uB86F \uD655\uC7A5"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9f931e6ec4936948bf4765e7c10b44f, type: 2}
+  m_sharedMaterial: {fileID: 4972099374358413219, guid: f9f931e6ec4936948bf4765e7c10b44f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23004,10 +23007,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase the character's power
+  m_text: "\uCE90\uB9AD\uD130\uC758 \uACF5\uACA9\uB825\uC744 \uD5A5\uC0C1\uC2DC\uD0B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
+  m_sharedMaterial: {fileID: -8928909099055281477, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23634,11 +23637,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increases the number of slots to select characters to participate in the
-    battle.
+  m_text: "\uC804\uC7A5\uC5D0 \uCC38\uC5EC\uD560 \uCE90\uB9AD\uD130\uB97C \uC120\uD0DD\uD560
+    \uC218 \uC788\uB294 \uC2AC\uB86F\uC774 \uD55C \uCE78 \uCD94\uAC00\uB429\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
-  m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
+  m_sharedMaterial: {fileID: -8928909099055281477, guid: a20d22c2b6bf08b47b7779ea538b47e2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
