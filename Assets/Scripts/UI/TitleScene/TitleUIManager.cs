@@ -53,6 +53,27 @@ public class TitleUIManager : MonoBehaviour
         ChangeBookPopup("Normal_Shooter");
     }
 
+    private void SetFigureResolution(string figure)
+    {
+        if(figure == "Aerial_Monster")
+        {
+            targetImage.rectTransform.sizeDelta = new Vector2(144.0f, 91.2f);
+        }
+        else if(figure == "Bomber")
+        {
+            targetImage.rectTransform.sizeDelta = new Vector2(90.0f, 108.0f);
+        }
+        else if(figure == "Fairy")
+        {
+            targetImage.rectTransform.sizeDelta = new Vector2(133.0f, 112.0f);
+        }
+        // 위의 세 몬스터/캐릭터가 아닌 경우
+        else
+        {
+            targetImage.rectTransform.sizeDelta = new Vector2(150.0f, 150.0f);
+        }
+    }
+
     private void ActiveBookPopup(bool flag)
     {
         if(bookPopup != null)
@@ -70,6 +91,8 @@ public class TitleUIManager : MonoBehaviour
             targetImage.sprite = figureDic[key].figureSprite;
             targetName.text = figureDic[key].figureName;
             targetDescription.text = figureDic[key].figureDescription;
+
+            SetFigureResolution(key);
         }
     }
 
