@@ -2011,8 +2011,8 @@ MonoBehaviour:
   m_text: "\uC804\uBC29\uC5D0 \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD569\uB2C8\uB2E4.\\n50%
     \uD655\uB960\uB85C \uACF5\uC911 \uBAAC\uC2A4\uD130\uB97C \uC801\uC911\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9c54e28f48ab7a34f9e46cf3beb66621, type: 2}
-  m_sharedMaterial: {fileID: -7626035548891753981, guid: 9c54e28f48ab7a34f9e46cf3beb66621, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 658d501c81659c84b9c11de9bcde13d6, type: 2}
+  m_sharedMaterial: {fileID: -8566361921754841168, guid: 658d501c81659c84b9c11de9bcde13d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
