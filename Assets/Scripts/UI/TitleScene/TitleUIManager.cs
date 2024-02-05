@@ -18,11 +18,16 @@ public class TitleUIManager : MonoBehaviour
 
     [Header("Book Popup")]
     [SerializeField] private GameObject bookPopup;
-    [SerializeField] private Sprite targetImage;
+    [SerializeField] private Image targetImage;
     [SerializeField] private TMP_Text targetName;
     [SerializeField] private TMP_Text targetDescription;
 
-    //private Dictionary<string, >
+    [Header("Figure Description")]
+    [SerializeField] private FigureDescription[] characterDescriptions;
+    [SerializeField] private FigureDescription[] monsterDescriptions;
+
+    // ScriptableObject명, ScriptableObject 데이터 쌍의 딕셔너리 정보 저장
+    private Dictionary<string, FigureDescription> figureDic = new Dictionary<string, FigureDescription>();
 
     void Start()
     {
@@ -33,6 +38,19 @@ public class TitleUIManager : MonoBehaviour
         shopButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Title", "Shop"));
         bookButton.onClick.AddListener(() => ActiveBookPopup(true));
         closeBookButton.onClick.AddListener(() => ActiveBookPopup(false));
+
+        // 캐릭터 설명 정보를 딕셔너리에 저장
+        foreach(var element in characterDescriptions)
+        {
+            figureDic.Add(element.name, element);
+        }
+        // 몬스터 설명 정보를 딕셔너리에 저장
+        foreach(var element in monsterDescriptions)
+        {
+            figureDic.Add(element.name, element);
+        }
+
+        ChangeBookPopup("Normal_Shooter");
     }
 
     private void ActiveBookPopup(bool flag)
@@ -45,9 +63,14 @@ public class TitleUIManager : MonoBehaviour
     }
 
     // 클릭한 캐릭터/몬스터의 정보를 표시할 팝업 창 갱신
-    public void ChangeBookPopup(string targetName)
+    public void ChangeBookPopup(string key)
     {
-
+        if(figureDic.ContainsKey(key))
+        {
+            targetImage.sprite = figureDic[key].figureSprite;
+            targetName.text = figureDic[key].figureName;
+            targetDescription.text = figureDic[key].figureDescription;
+        }
     }
 
     public void ExitGame()
