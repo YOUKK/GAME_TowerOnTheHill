@@ -10,26 +10,20 @@ public class StartBackButton : MonoBehaviour
 {
     private TextMeshProUGUI text;
     private SelectedCharacter selectedCharacter;
-    private PhaseStage selectPhaseStage = new PhaseStage();
+    private PhaseStage selectPhaseStage;
 
     void Start()
     {
         text = transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
         selectedCharacter = GameObject.Find("SelectedCanvas").GetComponent<SelectedCharacter>();
 
-        LoadSelectPhaseStageFromJson();
+        GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();
+        selectPhaseStage = GamePlayManagers.Instance.selectPS;
     }
 
     void Update()
     {
         
-    }
-
-    private void LoadSelectPhaseStageFromJson()
-    {
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
-        string jsonData = File.ReadAllText(path);
-        selectPhaseStage = JsonUtility.FromJson<PhaseStage>(jsonData);
     }
 
     // StartButton 클릭시 1. 캐릭터 선택 정보 json으로 저장됨 2. 게임플레이씬으로 전환
