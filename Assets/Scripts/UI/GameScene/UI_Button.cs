@@ -68,6 +68,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
             if (hit) // seat에 설치
             {
+                Debug.Log("체크77777 " + hit.transform.GetComponent<Seat>().usable);
                 if (hit.transform.GetComponent<Seat>().usable)
                 {
                     Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
