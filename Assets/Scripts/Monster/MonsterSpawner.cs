@@ -107,7 +107,8 @@ public class MonsterSpawner : MonoBehaviour
     private void SetPhaseStage()
     {
         //string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
-        string jsonData = Resources.Load<TextAsset>("Data/selectPhaseStage").ToString();
+        //string jsonData = Resources.Load<TextAsset>("Data/selectPhaseStage").ToString();
+        string jsonData = File.ReadAllText(Application.persistentDataPath + "/selectPhaseStage.json");
         selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
 
         phase = selectPS.phase;
