@@ -114,6 +114,7 @@ public class GamePlayManagers : MonoBehaviour
     public void LoadSelectPhaseStageFromJson()
     {
         selectPSPath = Application.persistentDataPath + "/selectPhaseStage.json";
+        //selectPSPath = Resources.Load<TextAsset>("Data/selectPhaseStage");
         if (!File.Exists(selectPSPath))
         {
             TextAsset jsonTmp = Resources.Load<TextAsset>("Data/selectPhaseStage");
