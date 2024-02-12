@@ -10,8 +10,8 @@ public class MonsterSpawner : MonoBehaviour
     private static MonsterSpawner instance;
     public  static MonsterSpawner GetInstance { get { Init(); return instance; } }
 
-    public  int           phase = 1;
-    public  int           stage = 1;
+    public int           phase = 1;
+    public int           stage = 1;
     public  GameObject[]  lines = new GameObject[5];
 
     private int           count = 0; // 한 스테이지의 길이(몬스터 생성 수)
