@@ -142,6 +142,13 @@ public class GamePlayManagers : MonoBehaviour
 
     public void Victory()
 	{
+        // 튜토리얼 씬의 경우
+        if (MonsterSpawner.GetInstance.phase == 9 && MonsterSpawner.GetInstance.stage == 1)
+        {
+            menuCanvas.GetComponent<MenuCanvas>().ActivePopupVictory();
+            return;
+        }
+
         // 조건에 따라 팝업
         LoadWinPhaseStageFromJson();
         LoadSelectPhaseStageFromJson();

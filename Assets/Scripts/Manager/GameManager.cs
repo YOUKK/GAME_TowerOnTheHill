@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
         }
         
         // 아래는 테스트를 위한 코드
-        PlayerPrefs.DeleteKey("chaUnlockLevel");
-        PlayerPrefs.DeleteKey("slotNum");
+        //PlayerPrefs.DeleteKey("chaUnlockLevel");
+        //PlayerPrefs.DeleteKey("slotNum");
         //PlayerPrefs.SetInt("chaUnlockLevel", 12);
         //PlayerPrefs.SetInt("slotNum", 6);
         //Debug.Log("PlayerPref 변수 설정 - 테스트용");

@@ -30,21 +30,24 @@ public class GameVictory : MonoBehaviour
         // TODO : 얻은 캐릭터 표시
 
         // 스테이지 clear 정보 업데이트
-        GamePlayManagers.Instance.LoadWinPhaseStageFromJson();
-        GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();
-        winPS = GamePlayManagers.Instance.winPS; // 얕은 복사
-        selectPS = GamePlayManagers.Instance.selectPS; // 얕은 복사
-        if (selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
+        if (!(MonsterSpawner.GetInstance.phase == 9)) // 튜토리얼씬이 아닐 때만
         {
-            winPS.phase = selectPS.phase;
-            winPS.stage = selectPS.stage;
-            GamePlayManagers.Instance.SaveWinPhaseStageToJson();
+            GamePlayManagers.Instance.LoadWinPhaseStageFromJson();
+            GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();
+            winPS = GamePlayManagers.Instance.winPS; // 얕은 복사
+            selectPS = GamePlayManagers.Instance.selectPS; // 얕은 복사
+            if (selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
+            {
+                winPS.phase = selectPS.phase;
+                winPS.stage = selectPS.stage;
+                GamePlayManagers.Instance.SaveWinPhaseStageToJson();
 
-            if (!((winPS.phase == 1 && winPS.stage == 4) || (winPS.phase == 2 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 3) || (winPS.phase == 3 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 5)))
-                UnlockCharacter(); // 스테이지에 따른 캐릭터 해금
+                if (!((winPS.phase == 1 && winPS.stage == 4) || (winPS.phase == 2 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 3) || (winPS.phase == 3 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 5)))
+                    UnlockCharacter(); // 스테이지에 따른 캐릭터 해금
 
-            if ((winPS.phase == 1 && winPS.stage == 1) || (winPS.phase == 1 && winPS.stage == 2) || (winPS.phase == 1 && winPS.stage == 3) || (winPS.phase == 1 && winPS.stage == 5))
-                UnlockSlot();
+                if ((winPS.phase == 1 && winPS.stage == 1) || (winPS.phase == 1 && winPS.stage == 2) || (winPS.phase == 1 && winPS.stage == 3) || (winPS.phase == 1 && winPS.stage == 5))
+                    UnlockSlot();
+            }
         }
 
         SoundManager.Instance.StopBGM();
