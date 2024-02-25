@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     protected Queue<GameObject> projectiles = new Queue<GameObject>();
     protected Queue<GameObject> activatedProj = new Queue<GameObject>();
 
-    IEnumerator AttackCoroutine = null;
+    protected IEnumerator AttackCoroutine = null;
     [SerializeField]
     protected int coolTime;
     [SerializeField]
@@ -148,4 +148,9 @@ public class Character : MonoBehaviour
             Attack();
         }
     }
+
+	//protected void StopGem()
+	//{
+	//	StopCoroutine(AttackCoroutine);
+	//}
 }

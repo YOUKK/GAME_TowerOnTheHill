@@ -10,6 +10,19 @@ public class SunFlower : Character
         base.Start();
         AttackDuration = DataManager.GetData.GetUpgradeDataDic()["Fairy"].statIncrease[
                          DataManager.GetData.GetUpgradeDataDic()["Fairy"].currentLevel];
+
+        GamePlayManagers.Instance.finishProcess += StopGem;
+    }
+
+    private void StopGem()
+    {
+        StopCoroutine(AttackCoroutine);
+    }
+
+    protected override void Dead()
+    {
+        GamePlayManagers.Instance.finishProcess -= StopGem;
+        base.Dead();
     }
 
     public override void Attack()
@@ -32,6 +45,7 @@ public class SunFlower : Character
     {
         activatedProj.Peek().transform.position = gameObject.transform.position;
         GameObject T = activatedProj.Dequeue();
+        T.transform.GetComponent<Resource>().MinusDelegate();
         T.SetActive(false);
     }
 }

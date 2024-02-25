@@ -39,6 +39,13 @@ public class Tower : Character
                 projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
             }
         }
+
+        GamePlayManagers.Instance.finishProcess += StopGem;
+    }
+
+    private void StopGem()
+    {
+        StopCoroutine("CreateResourceCoroutine");
     }
 
     void Update()
@@ -46,7 +53,7 @@ public class Tower : Character
         if (!isCreating)
         {
             isCreating = true;
-            StartCoroutine(CreateResourceCoroutine());
+            StartCoroutine("CreateResourceCoroutine");
         }
         if (attacker.monsterCount > 0 && !isAttacking)
         {
@@ -78,6 +85,7 @@ public class Tower : Character
     {
         activatedProj.Peek().transform.position = gameObject.transform.position;
         GameObject T = activatedProj.Dequeue();
+        T.transform.GetComponent<Resource>().MinusDelegate();
         T.SetActive(false);
     }
 
@@ -115,6 +123,7 @@ public class Tower : Character
         DeadAttack();
         yield return new WaitForSeconds(0.7f);
         MonsterSpawner.GetInstance.BuffMonsters();
+        GamePlayManagers.Instance.finishProcess -= StopGem;
         Map.GetInstance().RemoveCharacter(location);
         Destroy(gameObject);
     }
