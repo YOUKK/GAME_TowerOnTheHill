@@ -31,7 +31,8 @@ public class TitleUIManager : MonoBehaviour
 
     void Start()
     {
-        coinText.text = PlayerPrefs.GetInt("coin").ToString();
+        // coinText.text = PlayerPrefs.GetInt("coin").ToString();
+        coinText.text = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin).ToString();
         // 버튼에 리스너 함수 추가
         playButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Title", "LevelSelectScene"));
         tutorialButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("Title", "TutorialScene"));
