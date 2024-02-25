@@ -4388,7 +4388,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1250514910}
         m_TargetAssemblyTypeName: VolumeSetting, Assembly-CSharp
-        m_MethodName: MasterControl
+        m_MethodName: BGMControl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
