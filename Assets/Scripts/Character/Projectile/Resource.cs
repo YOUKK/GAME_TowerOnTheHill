@@ -24,7 +24,12 @@ public class Resource : MonoBehaviour
     private bool isClick = false;
     public bool GetIsClick() { return isClick; }
 
-    void Start()
+	void OnEnable()
+	{
+        GamePlayManagers.Instance.finishProcess += EndProcess;
+    }
+
+	void Start()
     {
         if (transform.CompareTag("Gem")) type = ResourceType.Gem;
         else if (transform.CompareTag("Coin")) type = ResourceType.Coin;
@@ -72,17 +77,37 @@ public class Resource : MonoBehaviour
     }
 
     // 리소스Gem을 클릭하면 리소스UI로 이동하는 기능
-    IEnumerator MovetoUI(Vector3 destination)
+    IEnumerator MovetoUI(Vector2 destination)
 	{
-		while (Vector2.Distance(transform.position, destination) > 0.1f)
+        while (Vector2.Distance(transform.position, destination) > 0.1f)
 		{
 			transform.position = Vector2.Lerp(transform.position, destination, 0.05f);
 			yield return null;
 		}
 
+        MinusDelegate();
+
+        if (type == ResourceType.Gem)
+			gameObject.SetActive(false);
+		if (type == ResourceType.Coin)
+			Destroy(gameObject);
+    }
+
+	private void EndProcess()
+	{
         if(type == ResourceType.Gem)
+		{
             gameObject.SetActive(false);
-        if(type == ResourceType.Coin)
-            Destroy(gameObject);
+		}
+        else
+        {
+            resourceUI.EarnCoin();
+            StartCoroutine(MovetoUI(iconCoin.position));
+        }
+    }
+
+    public void MinusDelegate()
+	{
+        GamePlayManagers.Instance.finishProcess -= EndProcess;
     }
 }
