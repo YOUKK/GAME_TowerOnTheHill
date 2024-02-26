@@ -145,7 +145,9 @@ public abstract class Monster : MonoBehaviour
 
         if (currentHP - damage > 0)
         {
-            StartCoroutine(HittedCoroutine(damage));
+            currentHP -= damage;
+
+            StartCoroutine(HittedEffectCoroutine(type));
 
             switch (type)
             {
@@ -213,6 +215,7 @@ public abstract class Monster : MonoBehaviour
     void SDelay()
     {
         currentSpeed = status.speed;
+        sprite.color = new Color(255, 255, 255);
     }
 
     public void SetLine(int line)
@@ -238,14 +241,32 @@ public abstract class Monster : MonoBehaviour
         }
     }
 
-    private IEnumerator HittedCoroutine(int damage)
+    private IEnumerator HittedEffectCoroutine(AttackType type = AttackType.NORMAL)
     {
-        currentHP -= damage;
         if (sprite != null)
         {
-            sprite.color = new Color(255, 255, 255, 0.6f);
-            yield return new WaitForSeconds(0.2f);
-            sprite.color = new Color(255, 255, 255, 1);
+            switch (type)
+            {
+                case AttackType.NORMAL:
+                    {
+                        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0.6f);
+                        yield return new WaitForSeconds(0.2f);
+                        sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1);
+                        break;
+                    }
+                case AttackType.SLOW:
+                    {
+                        sprite.color = new Color(0, 255, 255);
+                        break;
+                    }
+                case AttackType.STUN:
+                    {
+                        sprite.color = new Color(255, 255, 0);
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
     }
 
