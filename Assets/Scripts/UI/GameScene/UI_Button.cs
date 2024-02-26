@@ -29,13 +29,9 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         menuCanvas = GameObject.Find("MenuCanvas").GetComponent<CollectResource>();
 
         // button에 필요한 정보
-        //sprite = transform.GetComponentInParent<SelectCharacter>().SpriteCha[transform.GetSiblingIndex()];
         sprite = data.Sprite;
-        //character = transform.GetComponentInParent<SelectCharacter>().ObjectCha[transform.GetSiblingIndex()];
         character = data.CharacterObject;
-        //coolTime = transform.GetComponentInParent<SelectCharacter>().CoolTime[transform.GetSiblingIndex()];
         coolTime = data.CoolTime;
-        //price = transform.GetComponentInParent<SelectCharacter>().ChaPrice[transform.GetSiblingIndex()];
         price = data.Price;
         coolTimeImage = transform.GetChild(2).GetComponent<Image>();
         priceImage = transform.GetChild(3).gameObject;
@@ -72,6 +68,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
             if (hit) // seat에 설치
             {
+                Debug.Log("체크77777 " + hit.transform.GetComponent<Seat>().usable);
                 if (hit.transform.GetComponent<Seat>().usable)
                 {
                     Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;

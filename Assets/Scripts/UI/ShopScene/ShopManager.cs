@@ -45,14 +45,15 @@ public class ShopManager : ShopBase
         GetButton((int)Buttons.SlotButton).onClick.AddListener(BuySlotExpansionItem);
         GetButton((int)Buttons.UpgradeButton).onClick.AddListener(ActivateUpgradePopup);
 
-        if (PlayerPrefs.HasKey("coin"))
-            currentCoinText.text = PlayerPrefs.GetInt("coin").ToString();
-        else Debug.LogError("No Coin Data!");
+        //if (PlayerPrefs.HasKey("coin"))
+        //    currentCoinText.text = PlayerPrefs.GetInt("coin").ToString();
+        //else Debug.LogError("No Coin Data!");
+        currentCoinText.text = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin).ToString();
     }
 
     private void UpdateShopButtons()
     {
-        int currentCoin = PlayerPrefs.GetInt("coin");
+        int currentCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
 
         if (currentCoin < hammerCost || shopData.hasHammer == true)
         {
@@ -80,11 +81,11 @@ public class ShopManager : ShopBase
     
     private bool Buy(int cost)
     {
-        int currentCoin = PlayerPrefs.GetInt("coin");
+        int currentCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
         if (currentCoin < hammerCost) return false;
 
         currentCoin -= cost;
-        PlayerPrefs.SetInt("coin", currentCoin);
+        GameManager.GetInstance.SetPlayerData(PlayerDataKind.Coin, currentCoin);
         currentCoinText.text = currentCoin.ToString();
 
         return true;

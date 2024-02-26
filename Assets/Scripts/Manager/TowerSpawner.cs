@@ -8,6 +8,7 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] GameObject tower;
     void Start()
     {
+        Debug.Log("빌드 오류 체크***** " + Map.GetInstance());
         if(Map.GetInstance() != null)
         { 
             if(SceneManager.GetActiveScene().name == "TutorialScene")

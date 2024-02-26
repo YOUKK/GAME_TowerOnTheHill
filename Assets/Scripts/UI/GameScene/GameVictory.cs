@@ -15,8 +15,8 @@ public class GameVictory : MonoBehaviour
     [SerializeField]
     private Button restartButton;
 
-    protected PhaseStage winPS = new PhaseStage(); // 현재 클리어한 곳까지의 맵, 스테이지 정보
-    protected PhaseStage selectPS = new PhaseStage(); // 선택한 맵, 스테이지 정보
+    protected PhaseStage winPS; // 현재 클리어한 곳까지의 맵, 스테이지 정보
+    protected PhaseStage selectPS; // 선택한 맵, 스테이지 정보
 
 
 
@@ -29,17 +29,18 @@ public class GameVictory : MonoBehaviour
         coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
         // TODO : 얻은 캐릭터 표시
 
-
-        //if (GamePlayManagers.Instance.IsGameClear)
-        //{
-            // 스테이지 clear 정보 업데이트
-            LoadWinPhaseStageFromJson();
-            LoadSelectPhaseStageFromJson();
+        // 스테이지 clear 정보 업데이트
+        if (!(MonsterSpawner.GetInstance.phase == 9)) // 튜토리얼씬이 아닐 때만
+        {
+            GamePlayManagers.Instance.LoadWinPhaseStageFromJson();
+            GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();
+            winPS = GamePlayManagers.Instance.winPS; // 얕은 복사
+            selectPS = GamePlayManagers.Instance.selectPS; // 얕은 복사
             if (selectPS.phase > winPS.phase || (selectPS.phase == winPS.phase && selectPS.stage > winPS.stage))
             {
                 winPS.phase = selectPS.phase;
                 winPS.stage = selectPS.stage;
-                SavePhaseStageToJson();
+                GamePlayManagers.Instance.SaveWinPhaseStageToJson();
 
                 if (!((winPS.phase == 1 && winPS.stage == 4) || (winPS.phase == 2 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 3) || (winPS.phase == 3 && winPS.stage == 4) || (winPS.phase == 3 && winPS.stage == 5)))
                     UnlockCharacter(); // 스테이지에 따른 캐릭터 해금
@@ -47,11 +48,11 @@ public class GameVictory : MonoBehaviour
                 if ((winPS.phase == 1 && winPS.stage == 1) || (winPS.phase == 1 && winPS.stage == 2) || (winPS.phase == 1 && winPS.stage == 3) || (winPS.phase == 1 && winPS.stage == 5))
                     UnlockSlot();
             }
+        }
 
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlayEffect("Win");
-            Debug.Log("게임 클리어시 데이터 업데이트");
-        //}
+        Debug.Log("게임 클리어시 데이터 업데이트");
     }
 
     protected void UnlockSlot()
@@ -78,29 +79,5 @@ public class GameVictory : MonoBehaviour
         }
 
         Debug.Log("chaUnlockLevel in gamevictory " + PlayerPrefs.GetInt("chaUnlockLevel"));
-    }
-
-    //  json을 phaseStage로 로드하는 함수
-    protected void LoadWinPhaseStageFromJson()
-    {
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");
-        string jsonData = File.ReadAllText(path);
-        winPS = JsonUtility.FromJson<PhaseStage>(jsonData);
-    }
-
-    //  json을 phaseStage로 로드하는 함수
-    protected void LoadSelectPhaseStageFromJson()
-    {
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
-        string jsonData = File.ReadAllText(path);
-        selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
-    }
-
-    // phaseStage를 json으로 저장하는 함수
-    protected void SavePhaseStageToJson()
-    {
-        string jsonData = JsonUtility.ToJson(winPS, true);
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "winPhaseStage.json");
-        File.WriteAllText(path, jsonData);
     }
 }

@@ -16,34 +16,14 @@ public class PhaseStage
 
 public class StageButton : MonoBehaviour
 {
-    private PhaseStage selectPhaseStage = new PhaseStage();
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        
-    }
-
-    // phaseStage를 json으로 저장하는 함수
-    private void SavePhaseStageToJson()
+	// stage 버튼에 연결되는 OnClick 함수
+	public void stageButtonClick(string level)
 	{
-        string jsonData = JsonUtility.ToJson(selectPhaseStage, true);
-        string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
-        File.WriteAllText(path, jsonData);
-	}
+		GamePlayManagers.Instance.selectPS.phase = level[0] - '0';
+		GamePlayManagers.Instance.selectPS.stage = level[1] - '0';
+		GamePlayManagers.Instance.SaveSelectPhaseStageToJson();
 
-    // stage 버튼에 연결되는 OnClick 함수
-    public void stageButtonClick(string level)
-	{
-        selectPhaseStage.phase = level[0] - '0';
-        selectPhaseStage.stage = level[1] - '0';
-
-        SavePhaseStageToJson();
-        LoadCharacterSelectScene();
+		LoadCharacterSelectScene();
     }
 
     private void LoadCharacterSelectScene()
