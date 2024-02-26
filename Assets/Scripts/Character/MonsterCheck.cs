@@ -28,7 +28,7 @@ public class MonsterCheck : MonoBehaviour
     {
         mainCharacter = transform.GetComponentInParent<Character>();
 
-        rangePos = new Vector2(transform.position.x + mainCharacter.Range / 2f, transform.position.y);
+        rangePos = new Vector2(transform.position.x + mainCharacter.Range, transform.position.y);
         rangeSize = new Vector2(mainCharacter.Range, 0.5f);
         // A = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>();
         // Range = LocalPos.x + (float)mainCharacter.Range;
