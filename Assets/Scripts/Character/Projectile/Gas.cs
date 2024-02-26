@@ -10,9 +10,9 @@ public class Gas : MonoBehaviour
     void Start()
     {
         mainCharacter = transform.GetComponentInParent<GasMushroom>();
-        transform.position = new Vector2(transform.position.x + ((1 + mainCharacter.Range) / 2) + 0.2f,
+        transform.position = new Vector2(2.5f,
                                          transform.position.y);
-        transform.localScale = new Vector2(mainCharacter.Range, transform.localScale.y);
+        transform.localScale = new Vector2(8.5f, 4);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
