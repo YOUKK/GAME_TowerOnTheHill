@@ -71,6 +71,6 @@ public class CollectResource : MonoBehaviour
         coinBox.SetActive(true);
 
         GamePlayManagers.Instance.AddCoin(50);
-        coinText.text = PlayerPrefs.GetInt("coin").ToString();
+        coinText.text = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin).ToString();
     }
 }

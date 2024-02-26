@@ -39,7 +39,7 @@ public class UpgradePopup : ShopBase
     void Start()
     {
         characterDic = DataManager.GetData.GetUpgradeDataDic();
-        currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
+        currentCoin.text = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin).ToString();
 
         // 캐릭터 각각에 대한 업그레이드 UI 정보들을 불러와 캐릭터 이름에 따라 딕셔너리에 저장.
         foreach (var item in characterUpgradeUI)
@@ -59,7 +59,7 @@ public class UpgradePopup : ShopBase
             slider.value = (currentLevel + 1) / 5.0f;
             if (currentLevel < MAX_LEVEL)
             {
-                if (PlayerPrefs.GetInt("coin") < trainingCost[currentLevel])
+                if (GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin) < trainingCost[currentLevel])
                     upgradeButton.interactable = false;
                 else upgradeButton.interactable = true;
 
@@ -84,8 +84,8 @@ public class UpgradePopup : ShopBase
 
         if (characterDic[name].currentLevel < MAX_LEVEL)
         {
-            int cost = PlayerPrefs.GetInt("coin") - trainingCost[characterDic[name].currentLevel];
-            PlayerPrefs.SetInt("coin", cost);
+            int cost = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin) - trainingCost[characterDic[name].currentLevel];
+            GameManager.GetInstance.SetPlayerData(PlayerDataKind.Coin, cost);
         }
 
         int newLevel = characterDic[name].currentLevel + 1;
@@ -106,7 +106,7 @@ public class UpgradePopup : ShopBase
             upgradeUIDic[name].costText.text = "---";
         }
 
-        currentCoin.text = PlayerPrefs.GetInt("coin").ToString();
+        currentCoin.text = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin).ToString();
         UpdateButtonActive();
 
         DataManager.GetData.SaveCharacterUpgradeData();
@@ -118,7 +118,7 @@ public class UpgradePopup : ShopBase
         {
             if (characterDic[item.Key].currentLevel < MAX_LEVEL)
             {
-                if (PlayerPrefs.GetInt("coin") < trainingCost[characterDic[item.Key].currentLevel])
+                if (GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin) < trainingCost[characterDic[item.Key].currentLevel])
                     item.Value.upgradeButton.interactable = false;
                 else item.Value.upgradeButton.interactable = true;
             }
