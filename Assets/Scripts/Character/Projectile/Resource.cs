@@ -81,7 +81,7 @@ public class Resource : MonoBehaviour
 	{
         while (Vector2.Distance(transform.position, destination) > 0.1f)
 		{
-			transform.position = Vector2.Lerp(transform.position, destination, Time.deltaTime * 0.05f);
+			transform.position = Vector2.Lerp(transform.position, destination, Time.deltaTime * 7f);
 			yield return null;
 		}
 

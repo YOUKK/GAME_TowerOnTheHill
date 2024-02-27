@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("File Is Not Found");
             SetPlayerData(PlayerDataKind.Coin, 0);
+            SetPlayerData(PlayerDataKind.SlotNum, 2);
+            SetPlayerData(PlayerDataKind.ChaUnlockLevel, 3);
         }
         switch (kind)
         {

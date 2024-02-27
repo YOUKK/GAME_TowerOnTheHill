@@ -57,27 +57,13 @@ public class GameVictory : MonoBehaviour
 
     protected void UnlockSlot()
 	{
-        if (PlayerPrefs.HasKey("slotNum"))
-        {
-            PlayerPrefs.SetInt("slotNum", PlayerPrefs.GetInt("slotNum") + 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("slotNum", 2);
-        }
+        int slotNum = GameManager.GetInstance.GetPlayerData(PlayerDataKind.SlotNum);
+        GameManager.GetInstance.SetPlayerData(PlayerDataKind.SlotNum, slotNum + 1);
     }
 
 	protected void UnlockCharacter()
 	{
-		if (PlayerPrefs.HasKey("chaUnlockLevel"))
-		{
-            PlayerPrefs.SetInt("chaUnlockLevel", PlayerPrefs.GetInt("chaUnlockLevel") + 1);
-        }
-		else
-		{
-            PlayerPrefs.SetInt("chaUnlockLevel", 3);
-        }
-
-        Debug.Log("chaUnlockLevel in gamevictory " + PlayerPrefs.GetInt("chaUnlockLevel"));
+        int chaUnlockLevel = GameManager.GetInstance.GetPlayerData(PlayerDataKind.ChaUnlockLevel);
+        GameManager.GetInstance.SetPlayerData(PlayerDataKind.ChaUnlockLevel, chaUnlockLevel + 1);
     }
 }
