@@ -52,19 +52,19 @@ public class GamePlayManagers : MonoBehaviour
     private string winPSPath;
     private string selectPSPath;
 
-    void Start()
+	private void Awake()
+	{
+        // 현재 스테이지-페이즈 정보 불러오기
+        LoadWinPhaseStageFromJson();
+        LoadSelectPhaseStageFromJson();
+    }
+
+	void Start()
     {
         Init();
         timeM.InitTimer();
         //timeM.StartTimer();
         menuCanvas = GameObject.Find("MenuCanvas");
-
-        //winPS.phase = 1; winPS.stage = 0;
-        //selectPS.phase = 1; selectPS.stage = 1;
-
-        // 현재 스테이지-페이즈 정보 불러오기
-        LoadWinPhaseStageFromJson();
-        LoadSelectPhaseStageFromJson();
 
         if (SceneManager.GetActiveScene().name == "GamePlayScene" || SceneManager.GetActiveScene().name == "BossWave")
             ApplyShopItem();
@@ -104,9 +104,7 @@ public class GamePlayManagers : MonoBehaviour
 		winPSPath = Path.Combine(Application.dataPath, "winPhaseStage.json");
 		if (!File.Exists(winPSPath))
 		{
-            //TextAsset jsonTmp = Resources.Load<TextAsset>("Data/winPhaseStage");
-            //File.WriteAllText(winPSPath, jsonTmp.text);
-            //Debug.LogWarning("WinPhaseStage json was generated");
+            winPS.phase = 1; winPS.stage = 0;
             SaveWinPhaseStageToJson();
 		}
 
@@ -120,9 +118,7 @@ public class GamePlayManagers : MonoBehaviour
 		selectPSPath = Path.Combine(Application.dataPath, "selectPhaseStage.json");
 		if (!File.Exists(selectPSPath))
 		{
-            //TextAsset jsonTmp = Resources.Load<TextAsset>("Data/selectPhaseStage");
-            //File.WriteAllText(selectPSPath, jsonTmp.text);
-            //Debug.LogWarning("SelectPhaseStage json was generated");
+            selectPS.phase = 1; selectPS.stage = 1;
             SaveSelectPhaseStageToJson();
 		}
 
