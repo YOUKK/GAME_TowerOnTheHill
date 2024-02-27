@@ -104,13 +104,13 @@ public class GamePlayManagers : MonoBehaviour
     //  json을 WinphaseStage로 로드하는 함수
     public void LoadWinPhaseStageFromJson()
     {
-        winPSPath = Application.persistentDataPath + "/winPhaseStage.json";
-        if (!File.Exists(winPSPath))
-        {
-            TextAsset jsonTmp = Resources.Load<TextAsset>("Data/winPhaseStage");
-            File.WriteAllText(winPSPath, jsonTmp.text);
-            Debug.LogWarning("WinPhaseStage json was generated");
-        }
+        winPSPath = Path.Combine(Application.dataPath, "winPhaseStage.json");
+        //if (!File.Exists(winPSPath))
+        //{
+        //    TextAsset jsonTmp = Resources.Load<TextAsset>("Data/winPhaseStage");
+        //    File.WriteAllText(winPSPath, jsonTmp.text);
+        //    Debug.LogWarning("WinPhaseStage json was generated");
+        //}
 
         string jsonData = File.ReadAllText(winPSPath);
         winPS = JsonUtility.FromJson<PhaseStage>(jsonData);
@@ -119,14 +119,13 @@ public class GamePlayManagers : MonoBehaviour
     //  json을 SelectphaseStage로 로드하는 함수
     public void LoadSelectPhaseStageFromJson()
     {
-        selectPSPath = Application.persistentDataPath + "/selectPhaseStage.json";
-        //selectPSPath = Resources.Load<TextAsset>("Data/selectPhaseStage");
-        if (!File.Exists(selectPSPath))
-        {
-            TextAsset jsonTmp = Resources.Load<TextAsset>("Data/selectPhaseStage");
-            File.WriteAllText(selectPSPath, jsonTmp.text);
-            Debug.LogWarning("SelectPhaseStage json was generated");
-        }
+        selectPSPath = Path.Combine(Application.dataPath, "selectPhaseStage.json");
+        //if (!File.Exists(selectPSPath))
+        //{
+        //    TextAsset jsonTmp = Resources.Load<TextAsset>("Data/selectPhaseStage");
+        //    File.WriteAllText(selectPSPath, jsonTmp.text);
+        //    Debug.LogWarning("SelectPhaseStage json was generated");
+        //}
 
         string jsonData = File.ReadAllText(selectPSPath);
         selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
