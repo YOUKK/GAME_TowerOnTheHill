@@ -196,7 +196,7 @@ public class GamePlayManagers : MonoBehaviour
     public void AddCoin(int amount)
     {
         earnedCoin += amount;
-        int currentCoin = PlayerPrefs.GetInt("coin");
-        PlayerPrefs.SetInt("coin", currentCoin + 50);
+        int currentCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
+        GameManager.GetInstance.SetPlayerData(PlayerDataKind.Coin, currentCoin + 50);
     }
 }
