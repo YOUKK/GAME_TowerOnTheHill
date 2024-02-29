@@ -45,7 +45,7 @@ public class SunFlower : Character
     {
         activatedProj.Peek().transform.position = gameObject.transform.position;
         GameObject T = activatedProj.Dequeue();
-        T.transform.GetComponent<Resource>().MinusDelegate();
+        //T.transform.GetComponent<Resource>().MinusDelegate();
         T.SetActive(false);
     }
 }

@@ -29,6 +29,15 @@ public class Resource : MonoBehaviour
         GamePlayManagers.Instance.finishProcess += EndProcess;
     }
 
+	private void OnDisable()
+	{
+        GamePlayManagers.Instance.finishProcess -= EndProcess;
+	}
+	private void OnDestroy()
+	{
+        GamePlayManagers.Instance.finishProcess -= EndProcess;
+	}
+
 	void Start()
     {
         if (transform.CompareTag("Gem")) type = ResourceType.Gem;
@@ -85,7 +94,7 @@ public class Resource : MonoBehaviour
 			yield return null;
 		}
 
-        MinusDelegate();
+        //MinusDelegate();
 
         if (type == ResourceType.Gem)
 			gameObject.SetActive(false);
@@ -97,6 +106,7 @@ public class Resource : MonoBehaviour
 	{
         if(type == ResourceType.Gem)
 		{
+            Debug.Log(gameObject.name + "-+-+-+-+-+-+-+---");
             gameObject.SetActive(false);
 		}
         else
@@ -106,8 +116,8 @@ public class Resource : MonoBehaviour
         }
     }
 
-    public void MinusDelegate()
-	{
-        GamePlayManagers.Instance.finishProcess -= EndProcess;
-    }
+ //   public void MinusDelegate()
+	//{
+ //       GamePlayManagers.Instance.finishProcess -= EndProcess;
+ //   }
 }
