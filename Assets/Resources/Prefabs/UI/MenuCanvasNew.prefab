@@ -459,6 +459,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   continueButton: {fileID: 2126317843109986078}
+  image: {fileID: 0}
+  name: {fileID: 0}
+  description: {fileID: 0}
 --- !u!1 &2126317843109986075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4575,6 +4578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hammer: {fileID: 8374928481761778393}
+  victoryCharacter: {fileID: 0}
 --- !u!114 &1046894074399460255
 MonoBehaviour:
   m_ObjectHideFlags: 0
