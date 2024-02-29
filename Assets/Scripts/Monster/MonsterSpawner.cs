@@ -108,7 +108,7 @@ public class MonsterSpawner : MonoBehaviour
     {
         //string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
         //string jsonData = Resources.Load<TextAsset>("Data/selectPhaseStage").ToString();
-        string jsonData = File.ReadAllText(Application.persistentDataPath + "/selectPhaseStage.json");
+        string jsonData = File.ReadAllText(Application.dataPath + "/selectPhaseStage.json");
         selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
 
         phase = selectPS.phase;
@@ -186,13 +186,13 @@ public class MonsterSpawner : MonoBehaviour
     IEnumerator CoinRewardCoroutine()
     {
         coinBox.SetActive(true);
-        int initialCoin = PlayerPrefs.GetInt("coin");
-        PlayerPrefs.SetInt("coin", initialCoin + rewardCoin);
+        int initialCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
+        GameManager.GetInstance.SetPlayerData(PlayerDataKind.Coin, initialCoin);
 
         TextMeshProUGUI textMeshPro = coinBox.GetComponentInChildren<TextMeshProUGUI>();
         for (int i = 0; i <= 8; ++i)
         {
-            int afterCoin = PlayerPrefs.GetInt("coin");
+            int afterCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
             float lerpCoin = Mathf.Lerp(initialCoin, afterCoin, (float)i/8);
             textMeshPro.text = ((int)lerpCoin).ToString();
             yield return new WaitForSeconds(0.25f);
