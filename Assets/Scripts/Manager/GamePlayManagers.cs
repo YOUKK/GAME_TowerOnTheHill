@@ -146,7 +146,7 @@ public class GamePlayManagers : MonoBehaviour
     public void Victory()
 	{
         // 젬 비활성 & 코인 자동 수집
-        finishProcess();
+        //finishProcess();
 
         // 튜토리얼 씬의 경우
         if (MonsterSpawner.GetInstance.phase == 9 && MonsterSpawner.GetInstance.stage == 1)
@@ -174,7 +174,7 @@ public class GamePlayManagers : MonoBehaviour
     public void Defeat()
 	{
         // 젬 비활성 & 코인 자동 수집
-        finishProcess();
+        //finishProcess();
         menuCanvas.GetComponent<MenuCanvas>().ActivePopupDefeat();
 	}
 
