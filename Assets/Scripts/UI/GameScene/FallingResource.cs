@@ -33,7 +33,7 @@ public class FallingResource : MonoBehaviour
             time += Time.deltaTime;
             if (time > 8f) // 7ÃÊ ÈÄ¿¡ destroy
             {
-                gameObject.GetComponent<Resource>().MinusDelegate();
+                //gameObject.GetComponent<Resource>().MinusDelegate();
                 Destroy(gameObject);
                 //time = 0f;
             }
