@@ -17,7 +17,7 @@ public class GamePlayManagers : MonoBehaviour
 	{
 		get
 		{
-            Init();
+            //Init();
             return instance;
 		}
 	}
@@ -54,6 +54,8 @@ public class GamePlayManagers : MonoBehaviour
 
 	private void Awake()
 	{
+        Init();
+
         // 현재 스테이지-페이즈 정보 불러오기
         LoadWinPhaseStageFromJson();
         LoadSelectPhaseStageFromJson();
@@ -61,7 +63,6 @@ public class GamePlayManagers : MonoBehaviour
 
 	void Start()
     {
-        Init();
         timeM.InitTimer();
         //timeM.StartTimer();
         menuCanvas = GameObject.Find("MenuCanvas");
@@ -146,7 +147,7 @@ public class GamePlayManagers : MonoBehaviour
     public void Victory()
 	{
         // 젬 비활성 & 코인 자동 수집
-        finishProcess();
+        //finishProcess();
 
         // 튜토리얼 씬의 경우
         if (MonsterSpawner.GetInstance.phase == 9 && MonsterSpawner.GetInstance.stage == 1)
@@ -174,7 +175,7 @@ public class GamePlayManagers : MonoBehaviour
     public void Defeat()
 	{
         // 젬 비활성 & 코인 자동 수집
-        finishProcess();
+        //finishProcess();
         menuCanvas.GetComponent<MenuCanvas>().ActivePopupDefeat();
 	}
 
