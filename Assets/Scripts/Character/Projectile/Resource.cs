@@ -88,14 +88,17 @@ public class Resource : MonoBehaviour
     // 리소스Gem을 클릭하면 리소스UI로 이동하는 기능
     IEnumerator MovetoUI(Vector2 destination)
 	{
+        Debug.Log("MoveToUI 호출됨!");
         while (Vector2.Distance(transform.position, destination) > 0.1f)
 		{
-			transform.position = Vector2.Lerp(transform.position, destination, Time.deltaTime * 7f);
+            Debug.Log("Move 01");
+			transform.position = Vector2.Lerp(transform.position, destination, Time.unscaledDeltaTime * 7f);
 			yield return null;
 		}
 
         //MinusDelegate();
 
+        Debug.Log("Move 02");
         if (type == ResourceType.Gem)
 			gameObject.SetActive(false);
 		if (type == ResourceType.Coin)
@@ -106,7 +109,6 @@ public class Resource : MonoBehaviour
 	{
         if(type == ResourceType.Gem)
 		{
-            Debug.Log(gameObject.name + "-+-+-+-+-+-+-+---");
             gameObject.SetActive(false);
 		}
         else
