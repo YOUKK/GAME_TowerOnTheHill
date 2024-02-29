@@ -27,7 +27,6 @@ public class GameVictory : MonoBehaviour
         nextButton.onClick.AddListener(() => GameManager.GetInstance.MoveScene("GamePlayScene", "LevelSelectScene"));
         // 플레이한 스테이지에서 얻은 코인 값을 표시
         coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
-        // TODO : 얻은 캐릭터 표시
 
         // 스테이지 clear 정보 업데이트
         if (!(MonsterSpawner.GetInstance.phase == 9)) // 튜토리얼씬이 아닐 때만
