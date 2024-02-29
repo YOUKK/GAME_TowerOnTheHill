@@ -35,13 +35,6 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("coin", 0);
             Debug.Log("Coin 새로 생성");
         }
-        
-        // 아래는 테스트를 위한 코드
-        //PlayerPrefs.DeleteKey("chaUnlockLevel");
-        //PlayerPrefs.DeleteKey("slotNum");
-        //PlayerPrefs.SetInt("chaUnlockLevel", 12);
-        //PlayerPrefs.SetInt("slotNum", 6);
-        //Debug.Log("PlayerPref 변수 설정 - 테스트용");
     }
 
     private static void Init()
@@ -57,20 +50,24 @@ public class GameManager : MonoBehaviour
 
             DontDestroyOnLoad(go);
             instance = go.GetComponent<GameManager>();
+            Debug.Log("GameManager was generated");
         }
-        Debug.Log("GameManager was generated");
     }
 
     public int GetPlayerData(PlayerDataKind kind)
     {
         string path = Path.Combine(Application.dataPath, "PlayerData.json");
-        if(!File.Exists(path))
+        if (!File.Exists(path))
         {
             Debug.Log("File Is Not Found");
             SetPlayerData(PlayerDataKind.Coin, 0);
             SetPlayerData(PlayerDataKind.SlotNum, 2);
             SetPlayerData(PlayerDataKind.ChaUnlockLevel, 3);
         }
+
+        string jsonString = File.ReadAllText(path);
+        playerData = JsonUtility.FromJson<PlayerData>(jsonString);
+
         switch (kind)
         {
             case PlayerDataKind.Coin:
@@ -112,7 +109,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-        string jsonData = JsonUtility.ToJson(playerData);
+        string jsonData = JsonUtility.ToJson(playerData, true);
         string path = Path.Combine(Application.dataPath, "PlayerData.json");
         File.WriteAllText(path, jsonData);
     }
