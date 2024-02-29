@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         Init();
 
         playerData = new PlayerData();
+        Debug.Log("GameManager스크립트 Awake 호출!!!!!!!!!!!!!!!");
 
         if (!PlayerPrefs.HasKey("coin"))
         {
