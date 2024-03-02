@@ -17,7 +17,7 @@ public class GamePlayManagers : MonoBehaviour
 	{
 		get
 		{
-            //Init();
+            Init();
             return instance;
 		}
 	}

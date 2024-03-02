@@ -30,6 +30,8 @@ public abstract class Monster : MonoBehaviour
 
     [SerializeField]
     private ParticleSystem  monsterBuffEffect;
+    [SerializeField]
+    private ParticleSystem  monsterHitEffect;
     private SpriteRenderer  sprite;
 
     // 코인 랜덤 생성 퍼센티지
@@ -49,7 +51,8 @@ public abstract class Monster : MonoBehaviour
         randomCoin = Resources.Load<GameObject>("Prefabs/Projectile/Coin");
         if (randomCoin == null) Debug.LogError("Wrond Path Prefab Coin");
 
-        monsterBuffEffect.Stop();
+        if(monsterBuffEffect != null)
+            monsterBuffEffect.Stop();
 
         // 스테이터스 세팅
         ignoreDistance = 0.5f;
@@ -127,7 +130,6 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Dead() // Animation의 Event에 의해 실행됨.
     {
-        SoundManager.Instance.PlayEffect("MonsterDeath");
         if (isGetCoin)
             Instantiate(randomCoin, transform.position, transform.rotation);
 
@@ -142,6 +144,8 @@ public abstract class Monster : MonoBehaviour
     public void Hit(int damage, AttackType type = AttackType.NORMAL)
     {
         SoundManager.Instance.PlayEffect("Hit");
+        if(monsterHitEffect != null)
+            monsterHitEffect.Play();
 
         if (currentHP - damage > 0)
         {
@@ -183,6 +187,7 @@ public abstract class Monster : MonoBehaviour
             if (anim != null)
             {
                 anim.SetBool("isDead", true);
+                SoundManager.Instance.PlayEffect("MonsterDeath");
             }
             isDead = true;
         }
@@ -277,7 +282,8 @@ public abstract class Monster : MonoBehaviour
 
     public void ChangeStatus(int hp, float speed, int force)
     {
-        monsterBuffEffect.Play();
+        if(monsterBuffEffect != null)
+            monsterBuffEffect.Play();
         currentHP += hp;
         currentSpeed += speed;
         currentForce += force;
@@ -285,7 +291,8 @@ public abstract class Monster : MonoBehaviour
 
     public void ChangeStatus()
     {
-        monsterBuffEffect.Stop();
+        if (monsterBuffEffect != null)
+            monsterBuffEffect.Stop();
         currentSpeed = status.speed;
         currentForce = status.force;
     }
