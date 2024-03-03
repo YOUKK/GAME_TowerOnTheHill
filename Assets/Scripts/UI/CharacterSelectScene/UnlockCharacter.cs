@@ -10,7 +10,7 @@ public class UnlockCharacter : MonoBehaviour
     {
 
         int chaUnlockLevel = GameManager.GetInstance.GetPlayerData(PlayerDataKind.ChaUnlockLevel);
-        Debug.Log("chaUnlockLevel" + chaUnlockLevel);
+        //Debug.Log("chaUnlockLevel" + chaUnlockLevel);
         for(int i = 0; i < chaUnlockLevel; i++)
 		{
             transform.GetChild(i).transform.GetChild(1).gameObject.SetActive(true);

@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class SunFlower : Character
 {
-    // Start is called before the first frame update
-    protected override void Start()
+	private void OnEnable()
+	{
+        GameManager.GetInstance.finishProcess += StopGem;
+
+    }
+
+	// Start is called before the first frame update
+	protected override void Start()
     {
         base.Start();
         AttackDuration = DataManager.GetData.GetUpgradeDataDic()["Fairy"].statIncrease[
                          DataManager.GetData.GetUpgradeDataDic()["Fairy"].currentLevel];
-
-        GamePlayManagers.Instance.finishProcess += StopGem;
     }
 
     private void StopGem()
@@ -19,9 +23,13 @@ public class SunFlower : Character
         StopCoroutine(AttackCoroutine);
     }
 
-    protected override void Dead()
+	private void OnDisable()
+	{
+        GameManager.GetInstance.finishProcess -= StopGem;
+    }
+
+	protected override void Dead()
     {
-        GamePlayManagers.Instance.finishProcess -= StopGem;
         base.Dead();
     }
 
@@ -45,7 +53,6 @@ public class SunFlower : Character
     {
         activatedProj.Peek().transform.position = gameObject.transform.position;
         GameObject T = activatedProj.Dequeue();
-        //T.transform.GetComponent<Resource>().MinusDelegate();
         T.SetActive(false);
     }
 }

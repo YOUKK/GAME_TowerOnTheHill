@@ -18,7 +18,12 @@ public class Tower : Character
     private bool    isCreating = false;
     private bool    isAttacking = false;
 
-    protected override void Start()
+	private void OnEnable()
+	{
+        GameManager.GetInstance.finishProcess += StopGem;
+    }
+
+	protected override void Start()
     {
         coolTime = status.coolTime;
         projectileSpeed = status.projectileSpeed;
@@ -39,8 +44,6 @@ public class Tower : Character
                 projectiles.Enqueue(gameObject.transform.GetChild(0).GetChild(i).gameObject);
             }
         }
-
-        GamePlayManagers.Instance.finishProcess += StopGem;
     }
 
     private void StopGem()
@@ -85,7 +88,6 @@ public class Tower : Character
     {
         activatedProj.Peek().transform.position = gameObject.transform.position;
         GameObject T = activatedProj.Dequeue();
-        //T.transform.GetComponent<Resource>().MinusDelegate();
         T.SetActive(false);
     }
 
@@ -123,12 +125,17 @@ public class Tower : Character
         DeadAttack();
         yield return new WaitForSeconds(0.7f);
         MonsterSpawner.GetInstance.BuffMonsters();
-        GamePlayManagers.Instance.finishProcess -= StopGem;
         Map.GetInstance().RemoveCharacter(location);
         Destroy(gameObject);
     }
 
-    private void DeadAttack()
+	private void OnDisable()
+	{
+        Debug.Log("Tower¿« StopGem ª©±‚");
+        GameManager.GetInstance.finishProcess -= StopGem;
+    }
+
+	private void DeadAttack()
     {
         RaycastHit2D[] hittedMonster = Physics2D.RaycastAll(transform.position, Vector2.right, 100f, 1 << 8);
         foreach (var item in hittedMonster)
