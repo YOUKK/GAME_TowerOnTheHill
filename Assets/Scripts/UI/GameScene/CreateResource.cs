@@ -9,10 +9,13 @@ public class CreateResource : MonoBehaviour
     private Vector3 leftTopPos;
     private Vector3 rightTopPos;
 
-    void Start()
-    {
-        GamePlayManagers.Instance.finishProcess += StopCreate;
+	private void OnEnable()
+	{
+        GameManager.GetInstance.finishProcess += StopCreate;
+    }
 
+	void Start()
+    {
         resource = Resources.Load<GameObject>("Prefabs/Projectile/FallingGem");
         leftTopPos = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, 10f)); // 왼쪽 위 화면의 좌표
         rightTopPos = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 10f)); // 오른쪽 위 화면의 좌표
@@ -20,13 +23,13 @@ public class CreateResource : MonoBehaviour
         StartCoroutine("Create");
     }
 
-    void Update()
-    {
-        //if(isCreate)
-            //Move();
-    }
+	private void OnDisable()
+	{
+        GameManager.GetInstance.finishProcess -= StopCreate;
+	}
 
-    IEnumerator Create()
+
+	IEnumerator Create()
     {
         while (true)
         {

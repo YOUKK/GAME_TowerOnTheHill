@@ -24,12 +24,15 @@ public class GameManager : MonoBehaviour
 
     private static PlayerData playerData;
 
+    public delegate void Finish();
+    public Finish finishProcess; // 게임 끝날 때 젬, 코인 처리
+
     void Awake()
     {
         Init();
 
         playerData = new PlayerData();
-        Debug.Log("GameManager스크립트 Awake 호출!!!!!!!!!!!!!!!");
+        //Debug.Log("GameManager스크립트 Awake 호출!!!!!!!!!!!!!!!");
 
         if (!PlayerPrefs.HasKey("coin"))
         {
