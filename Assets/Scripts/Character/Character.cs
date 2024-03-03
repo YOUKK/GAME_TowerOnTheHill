@@ -127,7 +127,7 @@ public class Character : MonoBehaviour
 
     protected virtual void Dead()
     {
-        Debug.Log("Stop Attack Coroutine");
+        Debug.Log("Stop Attack Coroutine " + gameObject.name);
         StopCoroutine(AttackCoroutine);
         Destroy(gameObject);
     }
@@ -139,7 +139,7 @@ public class Character : MonoBehaviour
     }
     IEnumerator AttackCoolTime()
     {
-        Debug.Log("Start Attack Coroutine");
+        Debug.Log("Start Attack Coroutine " + gameObject.name);
 
         while (true)
         {
@@ -148,9 +148,4 @@ public class Character : MonoBehaviour
             Attack();
         }
     }
-
-	//protected void StopGem()
-	//{
-	//	StopCoroutine(AttackCoroutine);
-	//}
 }

@@ -42,7 +42,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (onPrice)
         {
-            Debug.Log("Down");
+            //Debug.Log("Down");
             _pressed = true;
             GameManager.MouseInputM.IsDrag = true;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -57,7 +57,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_pressed)
         {
-            Debug.Log("Up");
+            //Debug.Log("Up");
             _pressed = false;
             GameManager.MouseInputM.IsDrag = false;
 
@@ -80,7 +80,7 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     hit.transform.GetComponent<Seat>().usable = false;
 
                     Destroy(dragCharacter.gameObject);
-                    Debug.Log("체크체크" + dragCharacter);
+                    //Debug.Log("체크체크" + dragCharacter);
                     StartCoroutine(CoolTimeColor());
                 }
 				else // seat 위에 캐릭터가 이미 있는 경우 미설치

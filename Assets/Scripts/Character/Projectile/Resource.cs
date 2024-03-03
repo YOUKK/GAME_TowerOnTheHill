@@ -26,16 +26,12 @@ public class Resource : MonoBehaviour
 
 	void OnEnable()
 	{
-        GamePlayManagers.Instance.finishProcess += EndProcess;
+        GameManager.GetInstance.finishProcess += EndProcess;
     }
 
 	private void OnDisable()
 	{
-        GamePlayManagers.Instance.finishProcess -= EndProcess;
-	}
-	private void OnDestroy()
-	{
-        GamePlayManagers.Instance.finishProcess -= EndProcess;
+        GameManager.GetInstance.finishProcess -= EndProcess;
 	}
 
 	void Start()
@@ -88,17 +84,15 @@ public class Resource : MonoBehaviour
     // 리소스Gem을 클릭하면 리소스UI로 이동하는 기능
     IEnumerator MovetoUI(Vector2 destination)
 	{
-        Debug.Log("MoveToUI 호출됨!");
+        //Debug.Log("MoveToUI 호출됨!");
         while (Vector2.Distance(transform.position, destination) > 0.1f)
 		{
-            Debug.Log("Move 01");
+            //Debug.Log("Move 01");
 			transform.position = Vector2.Lerp(transform.position, destination, Time.unscaledDeltaTime * 7f);
 			yield return null;
 		}
 
-        //MinusDelegate();
-
-        Debug.Log("Move 02");
+        //Debug.Log("Move 02");
         if (type == ResourceType.Gem)
 			gameObject.SetActive(false);
 		if (type == ResourceType.Coin)
@@ -117,9 +111,4 @@ public class Resource : MonoBehaviour
             StartCoroutine(MovetoUI(iconCoin.position));
         }
     }
-
- //   public void MinusDelegate()
-	//{
- //       GamePlayManagers.Instance.finishProcess -= EndProcess;
- //   }
 }

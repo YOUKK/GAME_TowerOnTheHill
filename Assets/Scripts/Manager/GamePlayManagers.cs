@@ -22,9 +22,6 @@ public class GamePlayManagers : MonoBehaviour
 		}
 	}
 
-    public delegate void Finish();
-    public Finish finishProcess; // 게임 끝날 때 젬, 코인 처리
-
     private TimeManager timeM = new TimeManager();
     public static TimeManager TimeM { get { return Instance.timeM; } }
 
@@ -54,8 +51,6 @@ public class GamePlayManagers : MonoBehaviour
 
 	private void Awake()
 	{
-        Init();
-
         // 현재 스테이지-페이즈 정보 불러오기
         LoadWinPhaseStageFromJson();
         LoadSelectPhaseStageFromJson();
@@ -147,7 +142,7 @@ public class GamePlayManagers : MonoBehaviour
     public void Victory()
 	{
         // 젬 비활성 & 코인 자동 수집
-        //finishProcess();
+        GameManager.GetInstance.finishProcess();
 
         // 튜토리얼 씬의 경우
         if (MonsterSpawner.GetInstance.phase == 9 && MonsterSpawner.GetInstance.stage == 1)
@@ -175,7 +170,7 @@ public class GamePlayManagers : MonoBehaviour
     public void Defeat()
 	{
         // 젬 비활성 & 코인 자동 수집
-        //finishProcess();
+        GameManager.GetInstance.finishProcess();
         menuCanvas.GetComponent<MenuCanvas>().ActivePopupDefeat();
 	}
 
