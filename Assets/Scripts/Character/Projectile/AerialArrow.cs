@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AerialArrow : MonoBehaviour
 {
+    [SerializeField]
     private Character mainCharacter;
     private void Start()
     {
