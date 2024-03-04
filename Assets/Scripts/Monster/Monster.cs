@@ -93,6 +93,13 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Attack() // Animation의 Event에 의해 실행됨.
     {
+        if(target == null)
+        {
+            Debug.LogWarning("Target is null");
+            isAttacking = false;
+            return;
+        }
+
         if (isCrazy)
         {
             Monster targetMonster = target.gameObject.GetComponent<Monster>();
@@ -107,12 +114,12 @@ public abstract class Monster : MonoBehaviour
         {
             Character targetCharacter = target.gameObject.GetComponent<Character>();
 
-            Monster targetMonster = target.gameObject.GetComponent<Monster>();
+            /*Monster targetMonster = target.gameObject.GetComponent<Monster>();
 
             if (targetMonster != null)
             {
                 targetMonster.Hit(currentForce);
-            }
+            }*/
 
             if (targetCharacter != null)
                 targetCharacter.Hit(currentForce, this);
