@@ -26,16 +26,16 @@ public class SoundManager : MonoBehaviour
 		{
 			instance = this;
 			DontDestroyOnLoad(this.gameObject);
+
+			bgmSource = transform.GetChild(0).GetComponent<AudioSource>();
+			effectSource = transform.GetChild(1).GetComponent<AudioSource>();
+
+			PlayBGM("Title");
 		}
 		else
 		{
 			Destroy(this.gameObject);
 		}
-
-		bgmSource = transform.GetChild(0).GetComponent<AudioSource>();
-		effectSource = transform.GetChild(1).GetComponent<AudioSource>();
-
-		PlayBGM("Title");
 	}
 
 	public void StopBGM()

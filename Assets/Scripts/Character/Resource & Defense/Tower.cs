@@ -131,7 +131,7 @@ public class Tower : Character
 
 	private void OnDisable()
 	{
-        Debug.Log("Tower¿« StopGem ª©±‚");
+        //Debug.Log("Tower¿« StopGem ª©±‚");
         GameManager.GetInstance.finishProcess -= StopGem;
     }
 
