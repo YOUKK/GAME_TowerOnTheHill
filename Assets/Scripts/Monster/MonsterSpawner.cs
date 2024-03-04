@@ -70,6 +70,7 @@ public class MonsterSpawner : MonoBehaviour
             }
             GamePlayManagers.Instance.IsGameClear = true; // 테스트 코드
             GamePlayManagers.Instance.Victory();
+            Debug.Log("MonsterSpawner의 Victory 호출!");
             return;
         }
 

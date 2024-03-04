@@ -28,14 +28,14 @@ public class CollectResource : MonoBehaviour
 
     void Update()
     {
-        if(isCoinItemPressed)
-        {
-            CloseCoinBox();
-        }
-    }
+		if (isCoinItemPressed)
+		{
+			CloseCoinBox();
+		}
+	}
 
-    // 게임 중 자원 얻기
-    public void EarnResource(int get) // get은 얻은 자원의 양
+	// 게임 중 자원 얻기
+	public void EarnResource(int get) // get은 얻은 자원의 양
 	{
         resource += get;
         ChangeText();
@@ -69,6 +69,7 @@ public class CollectResource : MonoBehaviour
         isCoinItemPressed = true;
         coinBoxActiveTimer = 1.5f;
         coinBox.SetActive(true);
+        //Invoke("CloseCoinBox", 1.5f);
 
         GamePlayManagers.Instance.AddCoin(50);
         coinText.text = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin).ToString();

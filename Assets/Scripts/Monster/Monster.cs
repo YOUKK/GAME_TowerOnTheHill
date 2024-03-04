@@ -138,7 +138,10 @@ public abstract class Monster : MonoBehaviour
     protected virtual void Dead() // Animation의 Event에 의해 실행됨.
     {
         if (isGetCoin)
+        {
+            Debug.Log("코인 드랍!");
             Instantiate(randomCoin, transform.position, transform.rotation);
+        }
 
         // 보스전(3-5)에서는 MonsterSpawner을 사용하지 않는다.
         if (SceneManager.GetActiveScene().name != "BossWave")

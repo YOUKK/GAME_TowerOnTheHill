@@ -72,11 +72,11 @@ public class GamePlayManagers : MonoBehaviour
         timeM.OnUpdate();
 
         // Å×½ºÆ® ÄÚµå
-		if (isGameClear)
-		{
-            Victory();
-            IsGameClear = false;
-        }
+		//if (isGameClear)
+		//{
+  //          Victory();
+  //          IsGameClear = false;
+  //      }
 	}
 
     private static void Init()
@@ -188,6 +188,7 @@ public class GamePlayManagers : MonoBehaviour
 
     public void AddCoin(int amount)
     {
+        Debug.Log("ÄÚÀÎ +50 È¹µæ!");
         earnedCoin += amount;
         int currentCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
         GameManager.GetInstance.SetPlayerData(PlayerDataKind.Coin, currentCoin + 50);
