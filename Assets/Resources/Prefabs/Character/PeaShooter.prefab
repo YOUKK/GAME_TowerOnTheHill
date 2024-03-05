@@ -100,6 +100,7 @@ MonoBehaviour:
   localPos: {x: 0, y: 0}
   rangeSize: {x: 0, y: 0}
   rangePos: {x: 0, y: 0}
+  allObject: []
   hitRangeMonster: []
 --- !u!1 &4013732960186604069
 GameObject:

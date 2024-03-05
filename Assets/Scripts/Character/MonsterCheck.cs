@@ -18,6 +18,8 @@ public class MonsterCheck : MonoBehaviour
 
 
     [SerializeField]
+    private Collider2D[] allObject;
+    [SerializeField]
     private Collider2D[] hitRangeMonster;
 
     public Vector2 LocalPos { get => localPos; set => localPos = value; }
@@ -28,15 +30,23 @@ public class MonsterCheck : MonoBehaviour
     {
         mainCharacter = transform.GetComponentInParent<Character>();
 
-        rangePos = new Vector2(transform.position.x + mainCharacter.Range, transform.position.y);
-        rangeSize = new Vector2(mainCharacter.Range, 0.5f);
+        rangePos = new Vector2(transform.position.x + mainCharacter.Range / 2, transform.position.y);
+        rangeSize = new Vector2(mainCharacter.Range, 0.3f);
         // A = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>();
         // Range = LocalPos.x + (float)mainCharacter.Range;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(rangePos, rangeSize);
+    }
+
     private void Update()
     {
-        hitRangeMonster = Physics2D.OverlapBoxAll(rangePos, rangeSize, 0);
+        allObject = Physics2D.OverlapBoxAll(rangePos, rangeSize, 0);
+
+        hitRangeMonster = allObject;
 
         bool flag = false;
 

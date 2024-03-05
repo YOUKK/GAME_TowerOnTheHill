@@ -61,7 +61,7 @@ public class Resource : MonoBehaviour
                     case ResourceType.Gem:
                         {
                             isClick = true;
-                            resourceUI.EarnResource(200);
+                            resourceUI.EarnResource(50);
                             StartCoroutine(MovetoUI(iconGem.transform.position));
                             SoundManager.Instance.PlayEffect("GetResource");
                             break;
