@@ -82,7 +82,7 @@ public class ShopManager : ShopBase
     private bool Buy(int cost)
     {
         int currentCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
-        if (currentCoin < hammerCost) return false;
+        if (currentCoin < cost) return false;
 
         currentCoin -= cost;
         GameManager.GetInstance.SetPlayerData(PlayerDataKind.Coin, currentCoin);
