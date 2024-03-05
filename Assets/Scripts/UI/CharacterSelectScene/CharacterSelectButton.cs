@@ -79,7 +79,8 @@ public class CharacterSelectButton : MonoBehaviour
 
     private void CheckStartButton()
 	{
-		if (!selectedCharacter.CanAddButton()) // start 가능
+		//if (!selectedCharacter.CanAddButton()) // start 가능
+        if(selectedCharacter.Turn > 1)
             startButton.CanPressButton();
 		else // start 불가능
             startButton.CannotPressButton();
