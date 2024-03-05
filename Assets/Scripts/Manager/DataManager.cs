@@ -109,8 +109,8 @@ public class DataManager : MonoBehaviour
     {
         Init();
 
-        shopDataPath = Application.persistentDataPath + "/shopData.json";
-        characterDataPath = Application.persistentDataPath + "/CharacterUpgradeData.json";
+        shopDataPath = Path.Combine(Application.dataPath, "shopData.json");
+        characterDataPath = Path.Combine(Application.dataPath, "CharacterUpgradeData.json");
     }
 
     private static void Init()
