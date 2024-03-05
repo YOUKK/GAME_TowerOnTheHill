@@ -153,7 +153,7 @@ public abstract class Monster : MonoBehaviour
 
     public void Hit(int damage, AttackType type = AttackType.NORMAL)
     {
-        SoundManager.Instance.PlayEffect("Hit");
+        SoundManager.Instance.PlayEffectSmall("Hit");
         if(monsterHitEffect != null)
             monsterHitEffect.Play();
 
