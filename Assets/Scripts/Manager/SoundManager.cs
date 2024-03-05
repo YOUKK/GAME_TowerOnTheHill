@@ -56,6 +56,16 @@ public class SoundManager : MonoBehaviour
 		string path = $"Sounds/Effect/{pileName}";
 		//print(path);
 		AudioClip audioClip = Resources.Load<AudioClip>(path);
+		effectSource.volume = 1.0f;
+		effectSource.PlayOneShot(audioClip);
+	}
+
+	// 소리 작게 플레이
+	public void PlayEffectSmall(string pileName)
+	{
+		string path = $"Sounds/Effect/{pileName}";
+		AudioClip audioClip = Resources.Load<AudioClip>(path);
+		effectSource.volume = 0.7f;
 		effectSource.PlayOneShot(audioClip);
 	}
 }

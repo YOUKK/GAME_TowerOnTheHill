@@ -27,7 +27,7 @@ public class Bomber : Character
         if(deadEffect)
         {
             Instantiate(deadEffect, transform.position, transform.rotation);
-            SoundManager.Instance.PlayEffect("Bomb");
+            SoundManager.Instance.PlayEffectSmall("Bomb");
         }
         base.Dead();
     }
