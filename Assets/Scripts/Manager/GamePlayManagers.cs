@@ -71,13 +71,12 @@ public class GamePlayManagers : MonoBehaviour
         // 게임 플레이 씬이 시작되면 호출하기
         timeM.OnUpdate();
 
-        // 테스트 코드
-		//if (isGameClear)
-		//{
-  //          Victory();
-  //          IsGameClear = false;
-  //      }
-	}
+        /*if (isGameClear)
+        {
+            Victory();
+            IsGameClear = false;
+        }*/
+    }
 
     private static void Init()
 	{
