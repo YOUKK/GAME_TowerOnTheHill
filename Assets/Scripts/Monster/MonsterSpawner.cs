@@ -68,9 +68,13 @@ public class MonsterSpawner : MonoBehaviour
             {
                 if (monsterList[i].Count != 0) return;
             }
-            GamePlayManagers.Instance.IsGameClear = true; // 테스트 코드
-            GamePlayManagers.Instance.Victory();
-            Debug.Log("MonsterSpawner의 Victory 호출!");
+            // GamePlayManagers.Instance.IsGameClear = true; // 테스트 코드
+            if (GamePlayManagers.Instance.IsGameClear == false)
+            {
+                GamePlayManagers.Instance.Victory();
+                Debug.Log("MonsterSpawner의 Victory 호출!");
+                GamePlayManagers.Instance.IsGameClear = true;
+            }
             return;
         }
 
