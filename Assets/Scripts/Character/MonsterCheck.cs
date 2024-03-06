@@ -16,7 +16,7 @@ public class MonsterCheck : MonoBehaviour
     [SerializeField]
     private Vector2 rangePos;
 
-    private float maxAttackRange = 6.8f;
+    private float maxAttackRange = 8.4f;
 
     [SerializeField]
     private Collider2D[] allObject;
