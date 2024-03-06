@@ -187,8 +187,8 @@ public class GamePlayManagers : MonoBehaviour
 
     public void AddCoin(int amount)
     {
-        Debug.Log("ÄÚÀÎ +50 È¹µæ!");
         earnedCoin += amount;
+        Debug.Log("ÄÚÀÎ +50 È¹µæ!, ¾òÀº ÄÚÀÎ : " + earnedCoin);
         int currentCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
         GameManager.GetInstance.SetPlayerData(PlayerDataKind.Coin, currentCoin + 50);
     }
