@@ -13,6 +13,8 @@ public class GameVictoryCharacter : GameVictory
 	private void OnEnable()
 	{
 		unlockButton.onClick.AddListener(() => menuCanvas.ActiveCharacterShow());
+        // 플레이한 스테이지에서 얻은 코인 값을 표시
+        coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
 
         GamePlayManagers.Instance.LoadWinPhaseStageFromJson();
         GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();
@@ -33,7 +35,7 @@ public class GameVictoryCharacter : GameVictory
 
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlayEffect("Win");
-        Debug.Log("게임 클리어시 데이터 업데이트");
+        //Debug.Log("게임 클리어시 데이터 업데이트");
     }
 
 }
