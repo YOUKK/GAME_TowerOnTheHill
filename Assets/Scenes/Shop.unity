@@ -5947,6 +5947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26996e8f4917414facc95ed23c5f800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GetShopManager: {fileID: 2137964254}
   closeButton: {fileID: 713689365}
   currentCoin: {fileID: 1289960030}
   characterUpgradeUI:

@@ -51,7 +51,7 @@ public class ShopManager : ShopBase
         currentCoinText.text = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin).ToString();
     }
 
-    private void UpdateShopButtons()
+    public void UpdateShopButtons()
     {
         int currentCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
 

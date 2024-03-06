@@ -6,6 +6,9 @@ using TMPro;
 
 public class UpgradePopup : ShopBase
 {
+    [SerializeField]
+    private ShopManager GetShopManager;
+
     struct UpgradeUIInfo
     {
         public Button upgradeButton;
@@ -128,6 +131,7 @@ public class UpgradePopup : ShopBase
 
     public void ClosePopup()
     {
+        GetShopManager.UpdateShopButtons();
         SoundManager.Instance.PlayEffect("Button1");
         gameObject.SetActive(false);
     }
