@@ -16,6 +16,7 @@ public class MonsterCheck : MonoBehaviour
     [SerializeField]
     private Vector2 rangePos;
 
+    private float maxAttackRange = 6.8f;
 
     [SerializeField]
     private Collider2D[] allObject;
@@ -35,13 +36,13 @@ public class MonsterCheck : MonoBehaviour
         // A = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>();
         // Range = LocalPos.x + (float)mainCharacter.Range;
     }
-
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(rangePos, rangeSize);
     }
-
+    */
     private void Update()
     {
         allObject = Physics2D.OverlapBoxAll(rangePos, rangeSize, 0);
@@ -54,6 +55,7 @@ public class MonsterCheck : MonoBehaviour
         {
             if(hitRangeMonster[i].CompareTag("Enemy"))
             {
+                if (hitRangeMonster[i].transform.position.x > maxAttackRange) continue;
                 if (mainCharacter.Type == CharacterType.Normal          &&
                     MonsterType.Aerial == hitRangeMonster[i].gameObject.GetComponent<Monster>().GetMonsterType())
                 {
