@@ -516,6 +516,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8061117998656543445, guid: 7803a70e88969d846af0317711eeeece, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7803a70e88969d846af0317711eeeece, type: 3}
 --- !u!1 &126253641
@@ -1662,10 +1666,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: 517f724ade0a6e3439586594d24a9392, type: 2}
+  isCrazy: 0
   currentHP: 0
   currentSpeed: 0
   currentForce: 0
   monsterBuffEffect: {fileID: 7816509664032207918, guid: 98cb5643a597e384496c9c7a0a91e2d7, type: 3}
+  monsterHitEffect: {fileID: 0}
   linesPosition:
   - {fileID: 2046103472}
   - {fileID: 548162378}
@@ -4513,6 +4519,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameClear: 0
+  winPS:
+    phase: 0
+    stage: 0
+  selectPS:
+    phase: 0
+    stage: 0
 --- !u!4 &1454694005
 Transform:
   m_ObjectHideFlags: 0
