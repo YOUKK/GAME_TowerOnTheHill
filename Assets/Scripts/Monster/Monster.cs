@@ -66,6 +66,17 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (isCrazy && transform.position.x >= 8.4f)
+        {
+            Destroy(gameObject.GetComponent<Collider2D>());
+            if (anim != null)
+            {
+                anim.SetBool("isDead", true);
+                SoundManager.Instance.PlayEffect("MonsterDeath");
+            }
+            isDead = true;
+        }
+
         if (isDead) return;
 
         if (target == null)
@@ -88,7 +99,7 @@ public abstract class Monster : MonoBehaviour
     protected virtual void Move(float speed)
     {
         transform.position = new Vector3(transform.position.x + speed * (-1) * Time.deltaTime,
-            transform.position.y, transform.position.z);
+                                         transform.position.y, transform.position.z);
     }
 
     protected virtual void Attack() // Animation의 Event에 의해 실행됨.
