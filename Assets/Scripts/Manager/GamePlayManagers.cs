@@ -144,7 +144,8 @@ public class GamePlayManagers : MonoBehaviour
         GameManager.GetInstance.finishProcess();
 
         // Æ©Åä¸®¾ó ¾ÀÀÇ °æ¿ì
-        if (MonsterSpawner.GetInstance.phase == 9 && MonsterSpawner.GetInstance.stage == 1)
+        //if (MonsterSpawner.GetInstance.phase == 9 && MonsterSpawner.GetInstance.stage == 1)
+        if(SceneManager.GetActiveScene().name == "TutorialScene")
         {
             menuCanvas.GetComponent<MenuCanvas>().ActivePopupVictory();
             return;

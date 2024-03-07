@@ -230,7 +230,8 @@ public abstract class Monster : MonoBehaviour
     void SDelay()
     {
         currentSpeed = status.speed;
-        sprite.color = new Color(255, 255, 255);
+        if(sprite != null)
+            sprite.color = new Color(255, 255, 255);
     }
 
     public void SetLine(int line)

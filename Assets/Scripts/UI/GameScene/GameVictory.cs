@@ -29,7 +29,7 @@ public class GameVictory : MonoBehaviour
         coinText.text = GamePlayManagers.Instance.GetEarnedCoin.ToString();
 
         // 스테이지 clear 정보 업데이트
-        if (!(MonsterSpawner.GetInstance.phase == 9)) // 튜토리얼씬이 아닐 때만
+        if (SceneManager.GetActiveScene().name != "TutorialScene") // 튜토리얼씬이 아닐 때만
         {
             GamePlayManagers.Instance.LoadWinPhaseStageFromJson();
             GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();

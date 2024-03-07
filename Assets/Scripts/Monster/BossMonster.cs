@@ -49,7 +49,7 @@ public class BossMonster : Monster
         base.Start();
         pattern = AttackPattern.Normal;
         isNormalAttackTime = true;
-        patternDuration = 10f;
+        patternDuration = 7.0f;
         isMove = false;
         transform.position = new Vector3(6.5f, 1, -1);
         initialPosition = transform.position;
@@ -285,11 +285,11 @@ public class BossMonster : Monster
         int spawnCount = 0;
         if (secondHurt)
         {
-            spawnCount = 5;
+            spawnCount = 10;
         }
         else if (firstHurt)
         {
-            spawnCount = 4;
+            spawnCount = 6;
         }
         else
         {
