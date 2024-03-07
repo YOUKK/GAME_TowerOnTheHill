@@ -2192,7 +2192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8116862262956768203, guid: 8aeaeea50f3b29d4dac38b38a168a74a, type: 3}
       propertyPath: mapX
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8116862262956768203, guid: 8aeaeea50f3b29d4dac38b38a168a74a, type: 3}
       propertyPath: Line9
