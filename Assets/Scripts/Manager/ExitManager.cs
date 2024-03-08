@@ -48,10 +48,13 @@ public class ExitManager : MonoBehaviour
         TimeState = true;
         GamePlayManagers.TimeM.StartTimer();
         GamePlayManagers.TimeM.InitTimer();
+        /*
         if (SceneManager.GetActiveScene().name == "TutorialScene")
             GameManager.GetInstance.MoveScene("TutorialScene", "Title");
         else
-            GameManager.GetInstance.MoveScene("GamePlayScene", "CharacterSelectScene");
+            GameManager.GetInstance.MoveScene("GamePlayScene", "Title");
+        */
+        GameManager.GetInstance.MoveScene("GamePlayScene", "Title");
     }
     public void RestartButton()
     {
@@ -61,6 +64,8 @@ public class ExitManager : MonoBehaviour
         GamePlayManagers.TimeM.InitTimer();
         if (SceneManager.GetActiveScene().name == "TutorialScene")
             GameManager.GetInstance.MoveScene("TutorialScene", "TutorialScene");
+        else if (SceneManager.GetActiveScene().name == "BossWave")
+            GameManager.GetInstance.MoveScene("BossWave", "BossWave");
         else
             GameManager.GetInstance.MoveScene("GamePlayScene", "GamePlayScene");
     }
