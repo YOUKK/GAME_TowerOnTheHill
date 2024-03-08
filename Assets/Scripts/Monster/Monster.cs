@@ -39,6 +39,8 @@ public abstract class Monster : MonoBehaviour
     protected bool          isGetCoin;
     protected GameObject    randomCoin;
 
+    public bool isDetect = false;
+
     protected virtual void Start()
     {
         isAttacking = false;
@@ -66,6 +68,8 @@ public abstract class Monster : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (isDead) return;
+
         if (isCrazy && transform.position.x >= 8.4f)
         {
             Destroy(gameObject.GetComponent<Collider2D>());
@@ -76,8 +80,6 @@ public abstract class Monster : MonoBehaviour
             }
             isDead = true;
         }
-
-        if (isDead) return;
 
         if (target == null)
         {
@@ -111,7 +113,7 @@ public abstract class Monster : MonoBehaviour
             return;
         }
 
-        if (isCrazy)
+        if (isCrazy) // 나 : madman 맞은 몬스터 / 상대 : 몬스터
         {
             Monster targetMonster = target.gameObject.GetComponent<Monster>();
 
@@ -121,22 +123,36 @@ public abstract class Monster : MonoBehaviour
 
             StartCoroutine(AttackCoolCoroutine());
         }
-        else
+        else // 나 : 몬스터 / 상대 : 캐릭터 or madman 맞은 몬스터
         {
-            Character targetCharacter = target.gameObject.GetComponent<Character>();
-
-            /*Monster targetMonster = target.gameObject.GetComponent<Monster>();
-
-            if (targetMonster != null)
+            // madman 맞은 몬스터와 싸우는 경우
+            if (target.GetComponent<Monster>() != null)
             {
-                targetMonster.Hit(currentForce);
-            }*/
+                Monster targetMadMonster = target.gameObject.GetComponent<Monster>();
 
-            if (targetCharacter != null)
-                targetCharacter.Hit(currentForce, this);
-            else Debug.Log("target doesn't have Character");
+                if (targetMadMonster != null)
+                    targetMadMonster.Hit(currentForce);
+                else Debug.Log("target doesn't have Monster");
 
-            StartCoroutine(AttackCoolCoroutine());
+                StartCoroutine(AttackCoolCoroutine());
+            }
+            else // 일반 캐릭터와 싸우는 경우
+            {
+                Character targetCharacter = target.gameObject.GetComponent<Character>();
+
+                /*Monster targetMonster = target.gameObject.GetComponent<Monster>();
+
+                if (targetMonster != null)
+                {
+                    targetMonster.Hit(currentForce);
+                }*/
+
+                if (targetCharacter != null)
+                    targetCharacter.Hit(currentForce, this);
+                else Debug.Log("target doesn't have Character");
+
+                StartCoroutine(AttackCoolCoroutine());
+            }
         }
     }
 
@@ -254,15 +270,23 @@ public abstract class Monster : MonoBehaviour
     {
         if (collision.transform.CompareTag("Character"))
         {
+            isDetect = true;
             if (transform.position.x - collision.transform.position.x > ignoreDistance)
             {
                 target = collision.transform;
             }
         }
+		else
+		{
+            isDetect = false;
+		}
+
         if (isCrazy && collision.transform.CompareTag("Enemy"))
         {
+            Debug.Log("아군 적의 적 감지 트리거");
             if (collision.transform.position.x - transform.position.x > ignoreDistance)
             {
+                Debug.Log("아군 적의 공격 범위 내에 몬스터가 있음");
                 target = collision.transform;
             }
         }
