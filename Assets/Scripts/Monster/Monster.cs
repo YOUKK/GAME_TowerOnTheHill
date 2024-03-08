@@ -140,13 +140,6 @@ public abstract class Monster : MonoBehaviour
             {
                 Character targetCharacter = target.gameObject.GetComponent<Character>();
 
-                /*Monster targetMonster = target.gameObject.GetComponent<Monster>();
-
-                if (targetMonster != null)
-                {
-                    targetMonster.Hit(currentForce);
-                }*/
-
                 if (targetCharacter != null)
                     targetCharacter.Hit(currentForce, this);
                 else Debug.Log("target doesn't have Character");
@@ -267,7 +260,7 @@ public abstract class Monster : MonoBehaviour
         currentLine = line;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Character"))
         {
