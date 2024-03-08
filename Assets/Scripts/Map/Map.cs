@@ -129,8 +129,17 @@ public class Map : MonoBehaviour
         GameObject prevCharacter1 = seats[y1][x1].GetComponent<Seat>().character;
         GameObject prevCharacter2 = seats[y2][x2].GetComponent<Seat>().character;
         // 기존 캐릭터들의 이름으로 같은 종류의 새로운 캐릭터 프리팹을 찾음
-        string characterName1 = prevCharacter1.name;
-        string characterName2 = prevCharacter2.name;
+        string characterName1 = "";
+        string characterName2 = "";
+        if (prevCharacter1 != null && prevCharacter2 != null)
+        {
+            characterName1 = prevCharacter1.name;
+            characterName2 = prevCharacter2.name;
+        }
+        else
+        {
+            return;
+        }
 
         GameObject newCharacter1 = Resources.Load<GameObject>($"Prefabs/Character/{characterName1}");
         GameObject newCharacter2 = Resources.Load<GameObject>($"Prefabs/Character/{characterName2}");
@@ -139,8 +148,6 @@ public class Map : MonoBehaviour
         int prevCharacter2Health = prevCharacter2.GetComponent<Character>().HealthPoint;
 
         // 기존 캐릭터 삭제
-        //prevCharacter1.GetComponent<Character>().Hit(100000);
-        //prevCharacter2.GetComponent<Character>().Hit(100000);
         RemoveCharacter(seat1);
         RemoveCharacter(seat2);
 
