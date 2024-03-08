@@ -256,7 +256,8 @@ public abstract class Monster : MonoBehaviour
     }
     void SDelay()
     {
-        currentSpeed = status.speed;
+        if(!isCrazy)
+            currentSpeed = status.speed;
         if(sprite != null)
             sprite.color = new Color(255, 255, 255);
     }
