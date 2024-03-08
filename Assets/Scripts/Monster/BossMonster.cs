@@ -28,7 +28,8 @@ public class BossMonster : Monster
     // 보스 몬스터의 sort order
     private int sortOrderCount = 0;
     // 생성되는 몬스터의 종류 인덱스 범위
-    private int monsterRandomRange = 0;
+    private int monsterRandomRangeBegin;
+    private int monsterRandomRangeEnd;
 
     [SerializeField]
     private Transform[] spawnPoints;
@@ -53,8 +54,9 @@ public class BossMonster : Monster
         isMove = false;
         transform.position = new Vector3(6.5f, 1, -1);
         initialPosition = transform.position;
-        monsterRandomRange = 4;
-        StartCoroutine(Think());
+        monsterRandomRangeBegin = 0;
+        monsterRandomRangeEnd = 4;
+        StartCoroutine(Think(11.0f));
     }
 
     protected override void Update()
@@ -66,14 +68,16 @@ public class BossMonster : Monster
 
         if (currentHP < (float)status.hp * 2 / 3 && firstHurt == false)
         {
-            monsterRandomRange = 6;
+            monsterRandomRangeBegin = 2;
+            monsterRandomRangeEnd = 6;
             anim.SetTrigger("HurtTrigger");
             SoundManager.Instance.PlayEffect("BossNormal");
             firstHurt = true;
         }
         if (currentHP < (float)status.hp * 1 / 3 && secondHurt == false)
         {
-            monsterRandomRange = 9;
+            monsterRandomRangeBegin = 3;
+            monsterRandomRangeEnd = 9;
             anim.SetTrigger("HurtTrigger");
             SoundManager.Instance.PlayEffect("BossNormal");
             secondHurt = true;
@@ -144,10 +148,10 @@ public class BossMonster : Monster
         }
     }
 
-    private IEnumerator Think()
+    private IEnumerator Think(float duration)
     {
         Idle();
-        yield return new WaitForSeconds(patternDuration);
+        yield return new WaitForSeconds(duration);
         anim.SetTrigger("AttackPrepare");
         SoundManager.Instance.PlayEffect("BossNormal");
         ChangeAttackPattern();
@@ -157,25 +161,25 @@ public class BossMonster : Monster
         {
             case AttackPattern.Normal:
                 {
-                    yield return new WaitForSeconds(patternDuration);
+                    yield return new WaitForSeconds(duration);
                     StartCoroutine(NormalAttackCoroutine());
                     break;
                 }
             case AttackPattern.First:
                 {
-                    yield return new WaitForSeconds(patternDuration);
+                    yield return new WaitForSeconds(duration);
                     StartCoroutine(FirstPatternCoroutine());
                     break;
                 }
             case AttackPattern.Second:
                 {
-                    yield return new WaitForSeconds(patternDuration);
+                    yield return new WaitForSeconds(duration);
                     StartCoroutine(SecondPatternCoroutine());
                     break;
                 }
             case AttackPattern.Third:
                 {
-                    yield return new WaitForSeconds(patternDuration);
+                    yield return new WaitForSeconds(duration);
                     StartCoroutine(ThirdPatternCoroutine());
                     break;
                 }
@@ -220,7 +224,7 @@ public class BossMonster : Monster
         // 무작위 위치에 무작위 몬스터 2마리 소환
         Debug.Log("Normal Attack");
         int randomLine = Random.Range(0, 5);
-        int randomMonster = Random.Range(0, monsterRandomRange);
+        int randomMonster = Random.Range(monsterRandomRangeBegin, monsterRandomRangeEnd);
         CreateMonsters(randomLine, randomMonster);
         int randomLine2 = 0;
         do
@@ -228,7 +232,7 @@ public class BossMonster : Monster
             randomLine2 = Random.Range(0, 5);
         }
         while (randomLine == randomLine2);
-        randomMonster = Random.Range(0, monsterRandomRange);
+        randomMonster = Random.Range(monsterRandomRangeBegin, monsterRandomRangeEnd);
         CreateMonsters(randomLine2, randomMonster);
     }
     private void FirstAttack()
@@ -289,7 +293,7 @@ public class BossMonster : Monster
         }
         else if (firstHurt)
         {
-            spawnCount = 6;
+            spawnCount = 7;
         }
         else
         {
@@ -304,7 +308,7 @@ public class BossMonster : Monster
 
         isNormalAttackTime = false;
         anim.SetBool("isPatternEnd", true);
-        StartCoroutine(Think());
+        StartCoroutine(Think(8.0f));
     }
     private IEnumerator FirstPatternCoroutine()
     {
@@ -314,7 +318,7 @@ public class BossMonster : Monster
 
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
-        StartCoroutine(Think());
+        StartCoroutine(Think(7.0f));
     }
     private IEnumerator SecondPatternCoroutine()
     {
@@ -328,7 +332,7 @@ public class BossMonster : Monster
         yield return new WaitForSeconds(4.0f);
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
-        StartCoroutine(Think());
+        StartCoroutine(Think(6.0f));
     }
     private IEnumerator ThirdPatternCoroutine()
     {
@@ -342,7 +346,7 @@ public class BossMonster : Monster
         yield return new WaitForSeconds(4.0f);
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
-        StartCoroutine(Think());
+        StartCoroutine(Think(4.5f));
     }
 
     private void CreateMonsters(int line, int monsterNum)
