@@ -44,6 +44,10 @@ public class BossAttackObject : Monster
     {
         if (collision.transform.CompareTag("Character"))
         {
+            if(collision.GetComponent<Monster>() != null)
+            {
+                collision.GetComponent<Monster>().Hit(currentForce);
+            }
             Debug.Log($"{name} attacked");
             collision.GetComponent<Character>().Hit(currentForce);
         }

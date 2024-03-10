@@ -9689,6 +9689,7 @@ MonoBehaviour:
   currentForce: 0
   monsterBuffEffect: {fileID: 5426510462844330001}
   monsterHitEffect: {fileID: 2344052253787967815}
+  isDetect: 0
 --- !u!61 &3862453038369407923
 BoxCollider2D:
   m_ObjectHideFlags: 0

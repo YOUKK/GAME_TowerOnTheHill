@@ -97,12 +97,13 @@ public class SmartMonster : Monster
         if (way1.hpSum < way2.hpSum)
         {
             destinationLine = way1.lineNumber;
-            return new Vector3(transform.position.x, way1.location.y, transform.position.z);
+            // 0.2는 같은 라인의 몬스터 스폰 y pos와 캐릭터 스폰 y pos간의 오차
+            return new Vector3(transform.position.x, way1.location.y - 0.2f, transform.position.z);
         }
         else
         {
             destinationLine = way2.lineNumber;
-            return new Vector3(transform.position.x, way2.location.y, transform.position.z);
+            return new Vector3(transform.position.x, way2.location.y - 0.2f, transform.position.z);
         }
     }
 }
