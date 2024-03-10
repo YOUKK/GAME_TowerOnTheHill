@@ -70,17 +70,6 @@ public abstract class Monster : MonoBehaviour
     {
         if (isDead) return;
 
-        if (isCrazy && transform.position.x >= 8.4f)
-        {
-            Destroy(gameObject.GetComponent<Collider2D>());
-            if (anim != null)
-            {
-                anim.SetBool("isDead", true);
-                SoundManager.Instance.PlayEffect("MonsterDeath");
-            }
-            isDead = true;
-        }
-
         if (target == null)
         {
             Move(currentSpeed);
@@ -275,13 +264,26 @@ public abstract class Monster : MonoBehaviour
             isDetect = false;
 		}
 
-        if (isCrazy && collision.transform.CompareTag("Enemy"))
+        if (isCrazy)
         {
-            Debug.Log("아군 적의 적 감지 트리거");
-            if (collision.transform.position.x - transform.position.x > ignoreDistance)
+            if (collision.CompareTag("Enemy"))
             {
-                Debug.Log("아군 적의 공격 범위 내에 몬스터가 있음");
-                target = collision.transform;
+                Debug.Log("아군 적의 적 감지 트리거");
+                if (collision.transform.position.x - transform.position.x > ignoreDistance)
+                {
+                    Debug.Log("아군 적의 공격 범위 내에 몬스터가 있음");
+                    target = collision.transform;
+                }
+            }
+            else if(collision.CompareTag("MadMonsterDead"))
+            {
+                Destroy(gameObject.GetComponent<Collider2D>());
+                if (anim != null)
+                {
+                    anim.SetBool("isDead", true);
+                    SoundManager.Instance.PlayEffect("MonsterDeath");
+                }
+                isDead = true;
             }
         }
     }

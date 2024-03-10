@@ -12,6 +12,7 @@ TagManager:
   - Gem
   - Coin
   - Character2
+  - MadMonsterDead
   layers:
   - Default
   - TransparentFX

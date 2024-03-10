@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -471990603
   m_SortingLayer: 5
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: bd3c1ccbb83621f47a9a1d1df97a7da4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -127,6 +127,7 @@ MonoBehaviour:
   currentForce: 0
   monsterBuffEffect: {fileID: 5217318484327632038}
   monsterHitEffect: {fileID: 2638006282351924528}
+  isDetect: 0
 --- !u!61 &7002812578534016973
 BoxCollider2D:
   m_ObjectHideFlags: 0

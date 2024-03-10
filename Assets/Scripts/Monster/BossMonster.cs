@@ -325,28 +325,28 @@ public class BossMonster : Monster
         isMove = false;
         pattern = AttackPattern.First;
         anim.SetTrigger("AttackTrigger");
-        yield return new WaitForSeconds(patternDuration);
+        yield return new WaitForSeconds(5.0f);
         pattern = AttackPattern.Second;
         anim.SetTrigger("AttackTrigger");
 
         yield return new WaitForSeconds(4.0f);
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
-        StartCoroutine(Think(6.0f));
+        StartCoroutine(Think(5.0f));
     }
     private IEnumerator ThirdPatternCoroutine()
     {
         isMove = false;
         pattern = AttackPattern.Second;
         anim.SetTrigger("AttackTrigger");
-        yield return new WaitForSeconds(patternDuration);
+        yield return new WaitForSeconds(4.0f);
         pattern = AttackPattern.Third;
         anim.SetTrigger("AttackTrigger");
 
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(2.0f);
         isNormalAttackTime = true;
         anim.SetBool("isPatternEnd", true);
-        StartCoroutine(Think(4.5f));
+        StartCoroutine(Think(3.0f));
     }
 
     private void CreateMonsters(int line, int monsterNum)
