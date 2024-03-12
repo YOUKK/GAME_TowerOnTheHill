@@ -12,7 +12,7 @@ public class Tower_Attacker : MonoBehaviour
             for (int i = 0; i < monsterList.Count; ++i)
                 if (monsterList[i] == null)
                 {
-                    Debug.Log("Attacker : Removed");
+                    // Debug.Log("Attacker : Removed");
                     monsterList.RemoveAt(i);
                 }
             return monsterList;
@@ -24,7 +24,7 @@ public class Tower_Attacker : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            Debug.Log($"Attacker : Mosnter in {collision.name}");
+            // Debug.Log($"Attacker : Mosnter in {collision.name}");
             monsterList.Add(collision.gameObject);
             ++monsterCount;
         }
@@ -34,7 +34,7 @@ public class Tower_Attacker : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("Attacker : Mosnter dead");
+            // Debug.Log("Attacker : Mosnter dead");
             if (monsterList.Remove(collision.gameObject) == false)
                 Debug.Log("Attacker : Wrong Access");
             --monsterCount;

@@ -105,11 +105,11 @@ public class Tower : Character
     // 공격 방식 : Tower_Attack 클래스의 콜라이더에 몬스터가 카운트 되면 공격 시작, 없으면 공격 중단.
     public override void Attack()
     {
-        Debug.Log("Tower : Attack() start");
+        // Debug.Log("Tower : Attack() start");
         GameObject[] currentMonsterList = attacker.MonsterList.ToArray();
         foreach (var item in currentMonsterList)
         {
-            Debug.Log($"Tower --> {item.name} HIT");
+            // Debug.Log($"Tower --> {item.name} HIT");
             item.GetComponent<Monster>().Hit(status.strength);
         }
     }
