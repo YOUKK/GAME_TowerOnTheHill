@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PrePlacement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class PrePlacement : MonoBehaviour, IPointerEnterHandler/*, IPointerExitHandler*/
 {
     void Start()
     {
@@ -27,8 +27,13 @@ public class PrePlacement : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         }
 	}
 
-    public void OnPointerExit(PointerEventData eventData)
+ //   public void OnPointerExit(PointerEventData eventData)
+	//{
+ //           transform.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+ //   }
+
+    public void OffPrePlacement()
 	{
-            transform.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+        transform.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
     }
 }
