@@ -42,7 +42,6 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (onPrice)
         {
-            //Debug.Log("Down");
             _pressed = true;
             GameManager.MouseInputM.IsDrag = true;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -57,18 +56,16 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_pressed)
         {
-            //Debug.Log("Up");
             _pressed = false;
             GameManager.MouseInputM.IsDrag = false;
 
             Vector3 rayStart = new Vector3(dragCharacter.transform.position.x, dragCharacter.transform.position.y, -2);
-            Debug.DrawRay(rayStart, Vector3.forward * 10.0f, Color.red, 3.0f);
+            //Debug.DrawRay(rayStart, Vector3.forward * 10.0f, Color.red, 3.0f);
 
             int layerMask = 1 << LayerMask.NameToLayer("Seat");
             RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector3.forward, 10.0f, layerMask);
             if (hit) // seat에 설치
             {
-                //Debug.Log("체크77777 " + hit.transform.GetComponent<Seat>().usable);
                 if (hit.transform.GetComponent<Seat>().usable)
                 {
                     Vector2 location = hit.transform.gameObject.GetComponent<Seat>().location;
@@ -80,7 +77,6 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     hit.transform.GetComponent<Seat>().usable = false;
 
                     Destroy(dragCharacter.gameObject);
-                    //Debug.Log("체크체크" + dragCharacter);
                     StartCoroutine(CoolTimeColor());
                 }
 				else // seat 위에 캐릭터가 이미 있는 경우 미설치
@@ -128,15 +124,12 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // 캐릭터 설치 쿨타임
     IEnumerator CoolTimeColor()
 	{
-        //Debug.Log("쿨타임 시작");
         onCoolTime = true;
 
         float time = coolTime;
-        //Debug.Log(time);
         coolTimeImage.fillAmount = 1f;
         while (time > 0.1f)
         {
-            //Debug.Log(time);
             time -= Time.deltaTime;
             coolTimeImage.fillAmount = time / coolTime;
 
@@ -146,7 +139,6 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         coolTimeImage.fillAmount = 0f;
         yield return new WaitForSeconds(1f);
         onCoolTime = false;
-        //Debug.Log("쿨타임 끝");
     }
 
     // 캐릭터 설치 가격

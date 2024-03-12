@@ -69,7 +69,7 @@ public class SelectedCharacter : MonoBehaviour
         string path = Path.Combine(Application.dataPath, "buttonList.json");
         File.WriteAllText(path, jsonData);
 
-        Debug.Log(jsonData);
+        //Debug.Log(jsonData);
 	}
 
     public void PrintDic()

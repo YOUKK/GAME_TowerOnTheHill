@@ -58,9 +58,9 @@ public class MonsterWaveTimer : MonoBehaviour
             if (GamePlayManagers.TimeM.Sec > firstWaveStart)
             {
                 firstPopUp = true;
-                Debug.Log("첫번째 웨이브 시작! " + GamePlayManagers.TimeM.Sec);
-                Debug.Log("firstwavetime" + firstWaveTime);
-                Debug.Log("firstwavestart " + firstWaveStart);
+                //Debug.Log("첫번째 웨이브 시작! " + GamePlayManagers.TimeM.Sec);
+                //Debug.Log("firstwavetime" + firstWaveTime);
+                //Debug.Log("firstwavestart " + firstWaveStart);
                 StartCoroutine(MonsterWaveTextPopUp());
             }
         }
@@ -70,7 +70,7 @@ public class MonsterWaveTimer : MonoBehaviour
             if(GamePlayManagers.TimeM.Sec > secondWaveStart)
 			{
                 secondPopUp = true;
-                Debug.Log("두번째 웨이브 시작!");
+                //Debug.Log("두번째 웨이브 시작!");
                 StartCoroutine(MonsterWaveTextPopUp());
             }
 		}
