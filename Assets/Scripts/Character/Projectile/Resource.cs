@@ -21,6 +21,9 @@ public class Resource : MonoBehaviour
     private GameObject coinBox;
     private Transform iconCoin;
 
+    [SerializeField]
+    private int resourcePrice = 50;
+
     private bool isClick = false;
     public bool GetIsClick() { return isClick; }
 
@@ -61,7 +64,7 @@ public class Resource : MonoBehaviour
                     case ResourceType.Gem:
                         {
                             isClick = true;
-                            resourceUI.EarnResource(50);
+                            resourceUI.EarnResource(resourcePrice);
                             StartCoroutine(MovetoUI(iconGem.transform.position));
                             SoundManager.Instance.PlayEffect("GetResource");
                             break;
