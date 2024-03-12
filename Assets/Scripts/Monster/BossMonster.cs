@@ -222,7 +222,7 @@ public class BossMonster : Monster
     private void NormalAttack()
     {
         // 무작위 위치에 무작위 몬스터 2마리 소환
-        Debug.Log("Normal Attack");
+        // Debug.Log("Normal Attack");
         int randomLine = Random.Range(0, 5);
         int randomMonster = Random.Range(monsterRandomRangeBegin, monsterRandomRangeEnd);
         CreateMonsters(randomLine, randomMonster);

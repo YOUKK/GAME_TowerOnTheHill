@@ -42,10 +42,10 @@ public class MenuCanvas : MonoBehaviour
         {
             obj.SetActive(true);
         }
-        else
+        /*else
         {
             Debug.LogError("Failed to find object Popup_Victory");
-        }
+        }*/
     }
 
     public void ActivePopupDefeat()
@@ -55,9 +55,9 @@ public class MenuCanvas : MonoBehaviour
         {
             obj.SetActive(true);
         }
-        else
+        /*else
         {
             Debug.LogError("Failed to find object Popup_Defeat");
-        }
+        }*/
     }
 }

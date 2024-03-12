@@ -28,7 +28,6 @@ public class TimeManager
     public void StartTimer() // 타이머 시작
 	{
         On = true;
-        Debug.Log("타이머 시작");
 	}
 
     public void StopTimer() // 타이머 멈춤(일시정지를 누른 경우)

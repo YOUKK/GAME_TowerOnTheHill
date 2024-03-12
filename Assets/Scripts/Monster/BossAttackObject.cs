@@ -48,7 +48,6 @@ public class BossAttackObject : Monster
             {
                 collision.GetComponent<Monster>().Hit(currentForce);
             }
-            Debug.Log($"{name} attacked");
             collision.GetComponent<Character>().Hit(currentForce);
         }
     }

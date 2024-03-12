@@ -34,11 +34,11 @@ public class GameManager : MonoBehaviour
         playerData = new PlayerData();
         //Debug.Log("GameManager스크립트 Awake 호출!!!!!!!!!!!!!!!");
 
-        if (!PlayerPrefs.HasKey("coin"))
+        /*if (!PlayerPrefs.HasKey("coin"))
         {
             PlayerPrefs.SetInt("coin", 0);
             Debug.Log("Coin 새로 생성");
-        }
+        }*/
     }
 
     private static void Init()
@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
 
             DontDestroyOnLoad(go);
             instance = go.GetComponent<GameManager>();
-            Debug.Log("GameManager was generated");
         }
     }
 
@@ -63,7 +62,6 @@ public class GameManager : MonoBehaviour
         string path = Path.Combine(Application.dataPath, "PlayerData.json");
         if (!File.Exists(path))
         {
-            Debug.Log("File Is Not Found");
             SetPlayerData(PlayerDataKind.Coin, 0);
             SetPlayerData(PlayerDataKind.SlotNum, 2);
             SetPlayerData(PlayerDataKind.ChaUnlockLevel, 2);

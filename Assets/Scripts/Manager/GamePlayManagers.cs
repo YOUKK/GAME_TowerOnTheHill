@@ -59,7 +59,6 @@ public class GamePlayManagers : MonoBehaviour
 	void Start()
     {
         timeM.InitTimer();
-        //timeM.StartTimer();
         menuCanvas = GameObject.Find("MenuCanvas");
 
         if (SceneManager.GetActiveScene().name == "GamePlayScene" || SceneManager.GetActiveScene().name == "BossWave")
@@ -70,12 +69,6 @@ public class GamePlayManagers : MonoBehaviour
     {
         // 게임 플레이 씬이 시작되면 호출하기
         timeM.OnUpdate();
-
-        /*if (isGameClear)
-        {
-            Victory();
-            IsGameClear = false;
-        }*/
     }
 
     private static void Init()
@@ -189,7 +182,7 @@ public class GamePlayManagers : MonoBehaviour
     public void AddCoin(int amount)
     {
         earnedCoin += amount;
-        Debug.Log("코인 +50 획득!, 얻은 코인 : " + earnedCoin);
+        // Debug.Log("코인 +50 획득!, 얻은 코인 : " + earnedCoin);
         int currentCoin = GameManager.GetInstance.GetPlayerData(PlayerDataKind.Coin);
         GameManager.GetInstance.SetPlayerData(PlayerDataKind.Coin, currentCoin + 50);
     }

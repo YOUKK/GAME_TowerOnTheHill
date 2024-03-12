@@ -39,7 +39,7 @@ public class MonsterSpawner : MonoBehaviour
         SetPhaseStage();
         if (SceneManager.GetActiveScene().name == "TutorialScene") { phase = 9; stage = 1; }
         
-        Debug.Log("phase: " + phase + " stage: " + stage);
+        // Debug.Log("phase: " + phase + " stage: " + stage);
 
         currentWave = DataManager.GetData.TryParse(phase, stage).waveArray;
         count = currentWave.Length;
@@ -72,7 +72,6 @@ public class MonsterSpawner : MonoBehaviour
             if (GamePlayManagers.Instance.IsGameClear == false)
             {
                 GamePlayManagers.Instance.Victory();
-                Debug.Log("MonsterSpawner¿« Victory »£√‚!");
                 GamePlayManagers.Instance.IsGameClear = true;
             }
             return;
@@ -140,12 +139,14 @@ public class MonsterSpawner : MonoBehaviour
 
     public void RemoveMonster(GameObject obj, int line)
     {
-        if (monsterList[line].Remove(obj))
+        monsterList[line].Remove(obj);
+
+        /*if (monsterList[line].Remove(obj))
             Debug.Log("Monster is removed");
         else
         {
             Debug.LogError("Monster doesn't removed");
-        }
+        }*/
             //for(int i = 0; i < 5; ++i)
             //    Debug.Log("Line : " + i + " " + monsterList[i].Count);
     }

@@ -194,7 +194,7 @@ public class DataManager : MonoBehaviour
             upgradeDatas[9] = new UpgradeData("Stunner", 0, new float[] { 8.0f, 7.5f, 6.8f, 6.2f, 5.6f }, UpgradeKind.SkillSpeed);
 
             string json = JsonHelper.ToJson(upgradeDatas, true);
-            Debug.Log(json);
+            // Debug.Log(json);
             File.WriteAllText(characterDataPath, json);
         }
         else
