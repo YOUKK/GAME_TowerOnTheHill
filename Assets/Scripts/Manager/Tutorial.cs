@@ -26,7 +26,6 @@ public class Tutorial : MonoBehaviour
     {
         MapBase = GameObject.Find("Map_Base").GetComponent<Map>();
         TextAsset csvData = Resources.Load<TextAsset>($"Data/tutorial");
-        //print(csvData);
         data = csvData.text.Split(new char[] { '\n' });
     }
     private void Update()

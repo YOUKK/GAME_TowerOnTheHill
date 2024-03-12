@@ -20,8 +20,7 @@ public class ExitManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-        // ½Ã°£ÀÌ Èå¸£°í ÀÖÀ» ¶§
+    {
         if (TimeState && Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
@@ -48,12 +47,7 @@ public class ExitManager : MonoBehaviour
         TimeState = true;
         GamePlayManagers.TimeM.StartTimer();
         GamePlayManagers.TimeM.InitTimer();
-        /*
-        if (SceneManager.GetActiveScene().name == "TutorialScene")
-            GameManager.GetInstance.MoveScene("TutorialScene", "Title");
-        else
-            GameManager.GetInstance.MoveScene("GamePlayScene", "Title");
-        */
+        
         GameManager.GetInstance.MoveScene("GamePlayScene", "Title");
     }
     public void RestartButton()

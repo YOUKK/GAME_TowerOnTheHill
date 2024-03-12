@@ -97,7 +97,7 @@ public abstract class Monster : MonoBehaviour
     {
         if(target == null)
         {
-            Debug.LogWarning("Target is null");
+            // Debug.LogWarning("Target is null");
             isAttacking = false;
             return;
         }
@@ -108,7 +108,7 @@ public abstract class Monster : MonoBehaviour
 
             if (targetMonster != null)
                 targetMonster.Hit(currentForce);
-            else Debug.Log("target doesn't have Character");
+            // else Debug.Log("target doesn't have Character");
 
             StartCoroutine(AttackCoolCoroutine());
         }
@@ -121,7 +121,7 @@ public abstract class Monster : MonoBehaviour
 
                 if (targetMadMonster != null)
                     targetMadMonster.Hit(currentForce);
-                else Debug.Log("target doesn't have Monster");
+                // else Debug.Log("target doesn't have Monster");
 
                 StartCoroutine(AttackCoolCoroutine());
             }
@@ -131,7 +131,7 @@ public abstract class Monster : MonoBehaviour
 
                 if (targetCharacter != null)
                     targetCharacter.Hit(currentForce, this);
-                else Debug.Log("target doesn't have Character");
+                // else Debug.Log("target doesn't have Character");
 
                 StartCoroutine(AttackCoolCoroutine());
             }
@@ -148,7 +148,6 @@ public abstract class Monster : MonoBehaviour
     {
         if (isGetCoin)
         {
-            Debug.Log("코인 드랍!");
             Instantiate(randomCoin, transform.position, transform.rotation);
         }
 
@@ -268,10 +267,8 @@ public abstract class Monster : MonoBehaviour
         {
             if (collision.CompareTag("Enemy"))
             {
-                Debug.Log("아군 적의 적 감지 트리거");
                 if (collision.transform.position.x - transform.position.x > ignoreDistance)
                 {
-                    Debug.Log("아군 적의 공격 범위 내에 몬스터가 있음");
                     target = collision.transform;
                 }
             }
