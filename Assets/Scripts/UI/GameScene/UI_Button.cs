@@ -88,6 +88,9 @@ public class UI_Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     menuCanvas.EarnResource(price);
                     Destroy(dragCharacter.gameObject);
                 }
+
+                // 캐릭터 설치 후 preplacement 없애기
+                hit.transform.GetComponent<PrePlacement>().OffPrePlacement();
             }
 			else // seat가 아닌 곳에 드래그한 경우 미설치
 			{
