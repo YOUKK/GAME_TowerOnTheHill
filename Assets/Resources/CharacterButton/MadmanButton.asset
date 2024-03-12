@@ -15,5 +15,5 @@ MonoBehaviour:
   sprite: {fileID: 698377941775664198, guid: 33b46f845fd8aaa4a896656b089f9663, type: 3}
   characterObject: {fileID: 2454413619844626515, guid: cb9049b2944090b45a951b73415e01cb, type: 3}
   coolTime: 14
-  price: 100
+  price: 150
   description: "\uBAAC\uC2A4\uD130\uB97C \uC544\uAD70\uC73C\uB85C \uB9CC\uB4ED\uB2C8\uB2E4."
