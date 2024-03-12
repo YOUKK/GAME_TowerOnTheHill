@@ -35,7 +35,6 @@ public class GameVictoryCharacter : GameVictory
 
         SoundManager.Instance.StopBGM();
         SoundManager.Instance.PlayEffect("Win");
-        //Debug.Log("게임 클리어시 데이터 업데이트");
     }
 
 }
