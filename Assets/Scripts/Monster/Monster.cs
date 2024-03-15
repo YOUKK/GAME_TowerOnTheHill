@@ -31,7 +31,7 @@ public abstract class Monster : MonoBehaviour
     [SerializeField]
     private ParticleSystem  monsterBuffEffect;
     [SerializeField]
-    private ParticleSystem  monsterHitEffect;
+    protected ParticleSystem  monsterHitEffect;
     private SpriteRenderer  sprite;
 
     // 코인 랜덤 생성 퍼센티지
@@ -159,7 +159,7 @@ public abstract class Monster : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Hit(int damage, AttackType type = AttackType.NORMAL)
+    public virtual void Hit(int damage, AttackType type = AttackType.NORMAL)
     {
         SoundManager.Instance.PlayEffectSmall("Hit");
         if(monsterHitEffect != null)
