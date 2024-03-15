@@ -40,15 +40,36 @@ public class BossAttackObject : Monster
         base.Move(speed);
     }
 
+    public override void Hit(int damage, AttackType type = AttackType.NORMAL)
+    {
+        SoundManager.Instance.PlayEffectSmall("Hit");
+        if (monsterHitEffect != null)
+            monsterHitEffect.Play();
+
+        if (currentHP - damage > 0)
+        {
+            currentHP -= damage;
+        }
+        else
+        {
+            Destroy(gameObject.GetComponent<Collider2D>());
+            isDead = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Character"))
         {
-            if(collision.GetComponent<Monster>() != null)
+            Monster monsterComponent = collision.GetComponent<Monster>();
+            if (monsterComponent != null)
             {
                 collision.GetComponent<Monster>().Hit(currentForce);
             }
-            collision.GetComponent<Character>().Hit(currentForce);
+            else
+            {
+                collision.GetComponent<Character>().Hit(currentForce);
+            }
         }
     }
 }
