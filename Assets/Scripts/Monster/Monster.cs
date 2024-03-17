@@ -250,20 +250,17 @@ public abstract class Monster : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Character"))
+        if (!isCrazy) // madman을 맞지 않은 몬스터
         {
-            isDetect = true;
-            if (transform.position.x - collision.transform.position.x > ignoreDistance)
+            if (collision.transform.CompareTag("Character"))
             {
-                target = collision.transform;
+                if (transform.position.x - collision.transform.position.x > ignoreDistance)
+                {
+                    target = collision.transform;
+                }
             }
         }
-		else
-		{
-            isDetect = false;
-		}
-
-        if (isCrazy)
+        else // madman 맞은 몬스터
         {
             if (collision.CompareTag("Enemy"))
             {
@@ -272,7 +269,7 @@ public abstract class Monster : MonoBehaviour
                     target = collision.transform;
                 }
             }
-            else if(collision.CompareTag("MadMonsterDead"))
+            else if(collision.CompareTag("MadMonsterDead")) // madman 맞은 몬스터가 닿으면 죽는 collider
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
                 if (anim != null)
