@@ -64,6 +64,11 @@ public abstract class Monster : MonoBehaviour
         int ran = Random.Range(0, 100);
         if (ran <= randomPercent) isGetCoin = true;
         else isGetCoin = false;
+
+        if(SceneManager.GetActiveScene().name == "BossWave")
+        {
+            GamePlayManagers.Instance.onKillAllMonsters += AutoDeathAtGameVictory;
+        }
     }
 
     protected virtual void Update()
@@ -218,7 +223,11 @@ public abstract class Monster : MonoBehaviour
         gameObject.tag = "Character";
         gameObject.layer = 6;
 
-        gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+        if(sprite != null)
+        {
+            sprite.flipX = false;
+        }
 
         isCrazy = true;
     }
@@ -331,5 +340,17 @@ public abstract class Monster : MonoBehaviour
             monsterBuffEffect.Stop();
         currentSpeed = status.speed;
         currentForce = status.force;
+    }
+
+    // 게임 클리어 시 델리게이트에 의해 호출됨
+    private void AutoDeathAtGameVictory()
+    {
+        Destroy(gameObject.GetComponent<Collider2D>());
+        if (anim != null)
+        {
+            anim.SetBool("isDead", true);
+            SoundManager.Instance.PlayEffect("MonsterDeath");
+        }
+        isDead = true;
     }
 }
