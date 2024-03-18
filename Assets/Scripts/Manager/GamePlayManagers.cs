@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
@@ -48,6 +49,9 @@ public class GamePlayManagers : MonoBehaviour
     // json 파일 경로
     private string winPSPath;
     private string selectPSPath;
+
+    // 보스 씬에서 보스가 죽으면 남아있는 몬스터을 동시에 죽이기 위한 델리게이트
+    public Action onKillAllMonsters;
 
 	private void Awake()
 	{
