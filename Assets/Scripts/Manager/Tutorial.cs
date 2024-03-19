@@ -61,7 +61,7 @@ public class Tutorial : MonoBehaviour
 
                 default:
                     NextText.SetActive(true);
-                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+                    if (Input.GetKeyDown(KeyCode.Space))
                     {
                         break;
                     }
