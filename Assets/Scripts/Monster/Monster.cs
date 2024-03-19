@@ -64,10 +64,21 @@ public abstract class Monster : MonoBehaviour
         int ran = Random.Range(0, 100);
         if (ran <= randomPercent) isGetCoin = true;
         else isGetCoin = false;
+    }
 
-        if(SceneManager.GetActiveScene().name == "BossWave")
+    private void OnEnable()
+    {
+        if (SceneManager.GetActiveScene().name == "BossWave")
         {
             GamePlayManagers.Instance.onKillAllMonsters += AutoDeathAtGameVictory;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (SceneManager.GetActiveScene().name == "BossWave")
+        {
+            GamePlayManagers.Instance.onKillAllMonsters -= AutoDeathAtGameVictory;
         }
     }
 
