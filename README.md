@@ -12,7 +12,7 @@
 <br>
 
 ## 플레이 영상
-[![플레이 영상 링크](http://mg.youtube.com/vi/0xGrBqQ2XVQ&t=11s/0.jpg)](https://youtu.be/0xGrBqQ2XVQ&t=11s)
+[플레이 영상 링크](https://youtu.be/0xGrBqQ2XVQ&t=11s)
 
 <br>
 
