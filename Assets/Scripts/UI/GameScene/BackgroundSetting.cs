@@ -18,17 +18,21 @@ public class BackgroundSetting : MonoBehaviour
 	private void Awake()
 	{
         background = GetComponent<SpriteRenderer>();
+    }
+
+	private void Start()
+	{
         GamePlayManagers.Instance.LoadSelectPhaseStageFromJson();
         int phase = GamePlayManagers.Instance.selectPS.phase;
 
         // selectPS.phase == 1 인 경우는 원래 그대로
-        if(phase == 2)
-		{
+        if (phase == 2)
+        {
             background.sprite = map2Background;
-		}
-		else if(phase == 3)
-		{
+        }
+        else if (phase == 3)
+        {
             background.sprite = map3Background;
-		}
+        }
     }
 }

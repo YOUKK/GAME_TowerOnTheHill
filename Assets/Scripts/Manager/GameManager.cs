@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public int GetPlayerData(PlayerDataKind kind)
     {
-        string path = Path.Combine(Application.dataPath, "PlayerData.json");
+        string path = Path.Combine(Application.persistentDataPath, "PlayerData.json");
         if (!File.Exists(path))
         {
             SetPlayerData(PlayerDataKind.Coin, 0);
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         }
 
         string jsonString = File.ReadAllText(path);
-        playerData = JsonUtility.FromJson<PlayerData>(jsonString);
+        playerData = JsonUtility.FromJson<PlayerData>(JsonEncrypt.AESDecrypt(jsonString));
 
         switch (kind)
         {
@@ -112,8 +112,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
         string jsonData = JsonUtility.ToJson(playerData, true);
-        string path = Path.Combine(Application.dataPath, "PlayerData.json");
-        File.WriteAllText(path, jsonData);
+        string path = Path.Combine(Application.persistentDataPath, "PlayerData.json");
+        File.WriteAllText(path, JsonEncrypt.AESEncrypt(jsonData));
     }
 
     // fromSceneÀº ÇöÀç ¾À

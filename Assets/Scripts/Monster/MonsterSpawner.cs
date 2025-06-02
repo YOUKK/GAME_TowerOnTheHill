@@ -112,11 +112,13 @@ public class MonsterSpawner : MonoBehaviour
     {
         //string path = Path.Combine(Application.dataPath + "/Resources/Data/", "selectPhaseStage.json");
         //string jsonData = Resources.Load<TextAsset>("Data/selectPhaseStage").ToString();
-        string jsonData = File.ReadAllText(Application.dataPath + "/selectPhaseStage.json");
-        selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
+        //string jsonData = File.ReadAllText(Application.dataPath + "/selectPhaseStage.json");
+        //selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
 
-        phase = selectPS.phase;
-        stage = selectPS.stage;
+        //phase = selectPS.phase;
+        //stage = selectPS.stage;
+        phase = GamePlayManagers.Instance.selectPS.phase;
+        stage = GamePlayManagers.Instance.selectPS.stage;
 
         if (phase < 1 || stage < 1) 
         { 

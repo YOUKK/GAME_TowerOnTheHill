@@ -93,7 +93,7 @@ public class GamePlayManagers : MonoBehaviour
     //  json을 WinphaseStage로 로드하는 함수
     public void LoadWinPhaseStageFromJson()
     {
-		winPSPath = Path.Combine(Application.dataPath, "winPhaseStage.json");
+		winPSPath = Path.Combine(Application.persistentDataPath, "winPhaseStage.json");
 		if (!File.Exists(winPSPath))
 		{
             winPS.phase = 1; winPS.stage = 0;
@@ -101,13 +101,13 @@ public class GamePlayManagers : MonoBehaviour
 		}
 
 		string jsonData = File.ReadAllText(winPSPath);
-        winPS = JsonUtility.FromJson<PhaseStage>(jsonData);
+        winPS = JsonUtility.FromJson<PhaseStage>(JsonEncrypt.AESDecrypt(jsonData));
     }
 
     //  json을 SelectphaseStage로 로드하는 함수
     public void LoadSelectPhaseStageFromJson()
     {
-		selectPSPath = Path.Combine(Application.dataPath, "selectPhaseStage.json");
+		selectPSPath = Path.Combine(Application.persistentDataPath, "selectPhaseStage.json");
 		if (!File.Exists(selectPSPath))
 		{
             selectPS.phase = 1; selectPS.stage = 1;
@@ -115,24 +115,24 @@ public class GamePlayManagers : MonoBehaviour
 		}
 
 		string jsonData = File.ReadAllText(selectPSPath);
-        selectPS = JsonUtility.FromJson<PhaseStage>(jsonData);
+        selectPS = JsonUtility.FromJson<PhaseStage>(JsonEncrypt.AESDecrypt(jsonData));
     }
 
 
     // WinphaseStage를 json으로 저장하는 함수
     public void SaveWinPhaseStageToJson()
     {
-        winPSPath = Path.Combine(Application.dataPath, "winPhaseStage.json");
+        winPSPath = Path.Combine(Application.persistentDataPath, "winPhaseStage.json");
         string jsonData = JsonUtility.ToJson(winPS, true);
-        File.WriteAllText(winPSPath, jsonData);
+        File.WriteAllText(winPSPath, JsonEncrypt.AESEncrypt(jsonData));
     }
 
     // SelectphaseStage를 json으로 저장하는 함수
     public void SaveSelectPhaseStageToJson()
     {
-        selectPSPath = Path.Combine(Application.dataPath, "selectPhaseStage.json");
+        selectPSPath = Path.Combine(Application.persistentDataPath, "selectPhaseStage.json");
         string jsonData = JsonUtility.ToJson(selectPS, true);
-        File.WriteAllText(selectPSPath, jsonData);
+        File.WriteAllText(selectPSPath, JsonEncrypt.AESEncrypt(jsonData));
     }
 
     public void Victory()
