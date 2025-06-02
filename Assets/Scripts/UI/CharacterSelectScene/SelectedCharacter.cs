@@ -66,8 +66,8 @@ public class SelectedCharacter : MonoBehaviour
     public void SaveButtonListToJson()
 	{
         string jsonData = JsonUtility.ToJson(saveButtonList, true);
-        string path = Path.Combine(Application.dataPath, "buttonList.json");
-        File.WriteAllText(path, jsonData);
+        string path = Path.Combine(Application.persistentDataPath, "buttonList.json");
+        File.WriteAllText(path, JsonEncrypt.AESEncrypt(jsonData));
 
         //Debug.Log(jsonData);
 	}

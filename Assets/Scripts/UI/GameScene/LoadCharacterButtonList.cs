@@ -23,9 +23,9 @@ public class LoadCharacterButtonList : MonoBehaviour
 
 	private void LoadButtonListFromJson()
 	{
-        string path = Path.Combine(Application.dataPath, "buttonList.json");
+        string path = Path.Combine(Application.persistentDataPath, "buttonList.json");
         string jsonData = File.ReadAllText(path);
-        loadButtonList = JsonUtility.FromJson<ButtonList>(jsonData);
+        loadButtonList = JsonUtility.FromJson<ButtonList>(JsonEncrypt.AESDecrypt(jsonData));
     }
 
     private void SetButton()
